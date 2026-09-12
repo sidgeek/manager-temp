@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>软考中级·系统集成项目管理工程师 — 重点复习计划</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#ffffff; --ink:#1f2430; --sub:#5b6472; --line:#e4e7ef;
+  --accent:#4f5fe0; --accent-soft:#eef0ff;
+  --g-start:#d97706; --g-start-bg:#fff7e6; --g-plan:#2563eb; --g-plan-bg:#eaf2ff;
+  --g-exec:#059669; --g-exec-bg:#e8f8f2; --g-mon:#7c3aed; --g-mon-bg:#f3eefe;
+  --g-close:#e11d48; --g-close-bg:#ffeef2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 80px}
+header{background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;padding:36px 0 30px}
+header .wrap{padding-bottom:0}
+header h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+header p{margin-top:8px;font-size:14px;opacity:.92}
+nav.toc{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:22px}
+nav.toc .in{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:13px;padding:10px 12px;border-bottom:2.5px solid transparent}
+nav.toc a:hover,nav.toc a.on{color:var(--accent);border-color:var(--accent)}
+section{margin-top:44px;scroll-margin-top:64px}
+h2.sec{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:13px;padding:2px 9px}
+p.lead{color:var(--sub);font-size:13.5px;margin-bottom:18px}
+.grid{display:grid;gap:14px}
+.g4{grid-template-columns:repeat(4,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px){.g4,.g3,.g2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
+.stat .k{font-size:24px;font-weight:800;color:var(--accent)}
+.stat .t{font-size:12.5px;color:var(--sub);margin-top:2px}
+.stat .d{font-size:12px;color:#9aa2b1;margin-top:6px}
+/* ---- 阶段流程 SVG 卡片 ---- */
+.plan-flow svg{width:100%;height:auto;display:block}
+/* ---- 计划卡片 ---- */
+.phase{border-left:5px solid var(--accent)}
+.phase h3{font-size:15.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.phase .tag{font-size:11.5px;border-radius:20px;padding:1px 10px;background:var(--accent-soft);color:var(--accent);font-weight:600}
+.phase .goal{font-size:13px;color:var(--sub);margin:6px 0 10px}
+ul.tasks{list-style:none}
+ul.tasks li{font-size:13.5px;padding:5px 0 5px 2px;border-bottom:1px dashed var(--line);display:flex;gap:8px;align-items:flex-start}
+ul.tasks li:last-child{border-bottom:none}
+ul.tasks input[type=checkbox]{margin-top:4px;accent-color:var(--accent);width:15px;height:15px;flex:none;cursor:pointer}
+ul.tasks li.done span{text-decoration:line-through;color:#9aa2b1}
+.phase .mile{margin-top:10px;font-size:12.5px;background:var(--accent-soft);border-radius:8px;padding:6px 10px;color:var(--accent)}
+.progressbar{height:8px;background:#eceef6;border-radius:6px;overflow:hidden;margin-top:8px}
+.progressbar i{display:block;height:100%;background:linear-gradient(90deg,#4f5fe0,#7c3aed);width:0;transition:width .4s}
+/* ---- 过程矩阵 ---- */
+.matrix{overflow-x:auto}
+table.mtx{border-collapse:separate;border-spacing:6px;min-width:920px;width:100%}
+table.mtx th{font-size:12.5px;color:#fff;padding:7px 10px;border-radius:8px;font-weight:600}
+table.mtx th.h-start{background:var(--g-start)} table.mtx th.h-plan{background:var(--g-plan)}
+table.mtx th.h-exec{background:var(--g-exec)} table.mtx th.h-mon{background:var(--g-mon)} table.mtx th.h-close{background:var(--g-close)}
+table.mtx th.rowh{background:#37415c;text-align:left;min-width:120px}
+td.cell{vertical-align:top;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px;min-width:150px}
+.chip{display:block;width:100%;text-align:left;border:none;cursor:pointer;font-size:12.5px;padding:5px 8px;border-radius:7px;margin-bottom:5px;color:var(--ink);background:#f4f6fb;font-family:inherit;line-height:1.4}
+.chip:hover{filter:brightness(.96);transform:translateY(-1px);transition:.15s}
+.chip.c-start{background:var(--g-start-bg);color:#8a5200;border:1px solid #f3ddae}
+.chip.c-plan{background:var(--g-plan-bg);color:#1e4bb8;border:1px solid #c6dbff}
+.chip.c-exec{background:var(--g-exec-bg);color:#0a6b52;border:1px solid #bfeadd}
+.chip.c-mon{background:var(--g-mon-bg);color:#5b2bb8;border:1px solid #e0d3fb}
+.chip.c-close{background:var(--g-close-bg);color:#b01238;border:1px solid #f9cddb}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:10px 2px 4px;font-size:12.5px;color:var(--sub)}
+.legend b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+/* ---- 大纲树 ---- */
+.area-block{margin-bottom:12px}
+.area-head{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 15px}
+.area-head:hover{border-color:var(--accent)}
+.area-head .arrow{transition:.2s;color:var(--sub);font-size:12px}
+.area-block.open .area-head .arrow{transform:rotate(90deg)}
+.area-head .cnt{font-size:11.5px;color:var(--sub);background:#f1f3f9;border-radius:20px;padding:1px 9px}
+.proc-list{display:none;margin-top:8px;grid-template-columns:repeat(2,1fr);gap:8px}
+.area-block.open .proc-list{display:grid}
+@media(max-width:800px){.proc-list{grid-template-columns:1fr!important}}
+.proc-item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.proc-item h4{font-size:13.5px;display:flex;align-items:center;gap:7px}
+.proc-item h4 .pg{font-size:10.5px;padding:1px 7px;border-radius:5px;font-weight:600}
+.proc-item .brief{font-size:12px;color:var(--sub);margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.proc-item button.det{margin-top:7px;font-size:12px;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;font-family:inherit}
+.proc-item button.det:hover{text-decoration:underline}
+/* ---- 高频考点 ---- */
+table.kt{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:12px;overflow:hidden}
+table.kt th{background:#37415c;color:#fff;padding:9px 12px;text-align:left;font-size:12.5px}
+table.kt td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.kt tr:last-child td{border-bottom:none}
+table.kt td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
+.lvl{display:inline-block;font-size:11px;border-radius:4px;padding:1px 6px;color:#fff}
+.lvl.hi{background:#e11d48}.lvl.mid{background:#d97706}.lvl.lo{background:#64748b}
+/* ---- 详情抽屉 ---- */
+.drawer-mask{position:fixed;inset:0;background:rgba(20,25,50,.35);z-index:90;display:none}
+.drawer{position:fixed;top:0;right:-460px;width:440px;max-width:92vw;height:100%;background:#fff;z-index:95;box-shadow:-8px 0 30px rgba(20,25,50,.15);transition:right .28s;overflow-y:auto}
+body.show-drawer .drawer{right:0}
+body.show-drawer .drawer-mask{display:block}
+.drawer .dhead{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 20px 12px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.drawer .dhead h3{font-size:16px}
+.drawer .dhead .x{border:none;background:#f1f3f9;border-radius:8px;width:28px;height:28px;cursor:pointer;font-size:14px;color:var(--sub)}
+.drawer .dbody{padding:16px 20px 40px}
+.dsec{margin-bottom:16px}
+.dsec .dt{font-size:12px;font-weight:700;color:#fff;border-radius:6px;display:inline-block;padding:2px 10px;margin-bottom:6px}
+.dsec .dv{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:10px 12px;white-space:pre-wrap}
+.dsec.t-def .dt{background:#475569}.dsec.t-role .dt{background:#0f766e}
+.dsec.t-freq .dt{background:#b45309}.dsec.t-in .dt{background:#2563eb}
+.dsec.t-tool .dt{background:#7c3aed}.dsec.t-out .dt{background:#e11d48}
+footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>软考中级 · 系统集成项目管理工程师 — 重点复习计划</h1>
+    <p>大纲 → 细节 一页打通：知识全景矩阵 · 49 过程 ITTO 速查 · 六周分阶段计划（可勾选进度）· 高频考点清单</p>
+    <nav class="toc"><div class="in">
+      <a href="#overview">① 考情概览</a>
+      <a href="#plan">② 复习计划与依赖</a>
+      <a href="#matrix">③ 知识全景矩阵</a>
+      <a href="#outline">④ 大纲与细节</a>
+      <a href="#key">⑤ 高频考点</a>
+    </div></nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ 1 考情概览 ============ -->
+<section id="overview">
+  <h2 class="sec"><span class="no">①</span>考情概览</h2>
+  <p class="lead">两科同次通过才算过关（各科满分 75 分、45 分及格）；机考形式。具体批次与日期以中国计算机技术职业资格网官方通知为准。</p>
+  <div class="grid g4">
+    <div class="card stat"><div class="k">75 + 75</div><div class="t">基础知识（单选）+ 应用技术（案例）</div><div class="d">两科均 ≥45 分且同次通过</div></div>
+    <div class="card stat"><div class="k">150 分钟 ×2</div><div class="t">上下午各一场机考</div><div class="d">基础：75 道单选；案例：3~4 道大题</div></div>
+    <div class="card stat"><div class="k">~40%</div><div class="t">项目管理知识占比最大</div><div class="d">十大领域 + 49 过程是核心得分区</div></div>
+    <div class="card stat"><div class="k">6 周</div><div class="t">本计划默认备考周期</div><div class="d">按剩余时间等比压缩/拉伸即可</div></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card">
+      <h3 style="font-size:14.5px;margin-bottom:8px">基础知识（上午）考点分布</h3>
+      <table class="kt">
+        <tr><th>模块</th><th>约分值</th><th>特点</th></tr>
+        <tr><td>项目管理（十大领域/49过程）</td><td>25~30 分</td><td>与案例联动，优先级最高</td></tr>
+        <tr><td>信息化与信息技术</td><td>10~15 分</td><td>背诵型，性价比高</td></tr>
+        <tr><td>法律法规与标准规范</td><td>5~8 分</td><td>招投标法、合同法、著作权为高频</td></tr>
+        <tr><td>信息系统集成与服务管理</td><td>5~8 分</td><td>运维、资质、监理常考</td></tr>
+        <tr><td>专业英语</td><td>5 分</td><td>固定 5 道术语题，送分</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="font-size:14.5px;margin-bottom:8px">应用技术（案例）题型套路</h3>
+      <table class="kt">
+        <tr><th>题型</th><th>应对策略</th></tr>
+        <tr><td>计算题（EVM/CPM/预测）</td><td>必拿分：挣值公式 + 网络图关键路径，套路固定</td></tr>
+        <tr><td>找错改错题</td><td>从"未做/未按流程/缺少文档"角度逐句找茬</td></tr>
+        <tr><td>理论背诵题</td><td>背 ITTO 口诀 + 各领域核心概念定义</td></tr>
+        <tr><td>情境分析题</td><td>套用"识别问题→引用理论→给出措施"三段式</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 复习计划 ============ -->
+<section id="plan">
+  <h2 class="sec"><span class="no">②</span>六周复习计划 · 阶段依赖图</h2>
+  <p class="lead">阶段之间存在明确的前后依赖（虚线为贯穿全程的"记忆线"：ITTO 与英语词汇每天 20 分钟滚动背）。点击下方各阶段卡片中的任务可勾选打卡，进度自动保存在本机。</p>
+  <div class="card plan-flow" style="margin-bottom:14px">
+    <svg viewBox="0 0 1080 300" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC,Microsoft YaHei,sans-serif">
+      <defs>
+        <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 z" fill="#8a93a8"/></marker>
+        <marker id="ar2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 z" fill="#c3a24a"/></marker>
+      </defs>
+      <!-- 贯穿记忆线 -->
+      <rect x="30" y="238" width="1020" height="42" rx="10" fill="#fdf6e3" stroke="#e8d9a8"/>
+      <text x="540" y="264" text-anchor="middle" font-size="13" fill="#a1802a">贯穿全程的"记忆线"：49 过程 ITTO 口诀 + 英语术语，每天 20 分钟滚动记忆（依赖所有阶段，也被所有阶段依赖）</text>
+      <!-- 主链 -->
+      <g font-size="13.5" font-weight="600">
+        <rect x="30"  y="80" width="150" height="66" rx="12" fill="#fff7e6" stroke="#e5b45c"/><text x="105" y="108" text-anchor="middle" fill="#8a5200">W1 基础认知</text><text x="105" y="128" text-anchor="middle" font-size="11" font-weight="400" fill="#a8813a">信息化+法规+英语</text>
+        <rect x="222" y="80" width="150" height="66" rx="12" fill="#eaf2ff" stroke="#7fa6f0"/><text x="297" y="108" text-anchor="middle" fill="#1e4bb8">W2 核心四域</text><text x="297" y="128" text-anchor="middle" font-size="11" font-weight="400" fill="#4a6fc0">整合/范围/进度/成本</text>
+        <rect x="414" y="80" width="150" height="66" rx="12" fill="#e8f8f2" stroke="#63c7a5"/><text x="489" y="108" text-anchor="middle" fill="#0a6b52">W3 支撑六域</text><text x="489" y="128" text-anchor="middle" font-size="11" font-weight="400" fill="#3a9c80">质量/资源/沟通/风险/采购/干系人</text>
+        <rect x="606" y="80" width="150" height="66" rx="12" fill="#f3eefe" stroke="#ab8df0"/><text x="681" y="108" text-anchor="middle" fill="#5b2bb8">W4 案例专项</text><text x="681" y="128" text-anchor="middle" font-size="11" font-weight="400" fill="#8266c0">EVM/CPM 计算+找错</text>
+        <rect x="798" y="80" width="150" height="66" rx="12" fill="#ffeef2" stroke="#ef92ac"/><text x="873" y="108" text-anchor="middle" fill="#b01238">W5 真题套卷</text><text x="873" y="128" text-anchor="middle" font-size="11" font-weight="400" fill="#c05a75">全真限时+错题本</text>
+        <rect x="972" y="52" width="78" height="120" rx="12" fill="#37415c"/><text x="1011" y="100" text-anchor="middle" fill="#fff" font-size="12">W6</text><text x="1011" y="120" text-anchor="middle" fill="#fff" font-size="12">考前</text><text x="1011" y="140" text-anchor="middle" fill="#cdd6ee" font-size="10.5" font-weight="400">冲刺</text>
+      </g>
+      <!-- 箭头 -->
+      <g stroke="#8a93a8" stroke-width="2" fill="none">
+        <line x1="180" y1="113" x2="216" y2="113" marker-end="url(#ar)"/>
+        <line x1="372" y1="113" x2="408" y2="113" marker-end="url(#ar)"/>
+        <line x1="564" y1="113" x2="600" y2="113" marker-end="url(#ar)"/>
+        <line x1="756" y1="113" x2="792" y2="113" marker-end="url(#ar)"/>
+        <line x1="948" y1="113" x2="966" y2="113" marker-end="url(#ar)"/>
+      </g>
+      <!-- 里程碑 -->
+      <g font-size="11" fill="#5b6472">
+        <path d="M297 156 l9 9 -9 9 -9 -9 z" fill="#d97706"/><text x="297" y="192" text-anchor="middle">里程碑：周测≥40分</text>
+        <path d="M681 156 l9 9 -9 9 -9 -9 z" fill="#7c3aed"/><text x="681" y="192" text-anchor="middle">里程碑：EVM/CPM 零失分</text>
+        <path d="M873 156 l9 9 -9 9 -9 -9 z" fill="#e11d48"/><text x="873" y="192" text-anchor="middle">里程碑：真题≥50分</text>
+      </g>
+      <!-- 记忆线与各阶段连线 -->
+      <g stroke="#c3a24a" stroke-width="1.4" stroke-dasharray="4 4" fill="none">
+        <line x1="105" y1="146" x2="105" y2="234" marker-end="url(#ar2)"/>
+        <line x1="297" y1="146" x2="297" y2="234" marker-end="url(#ar2)"/>
+        <line x1="489" y1="146" x2="489" y2="234" marker-end="url(#ar2)"/>
+        <line x1="681" y1="146" x2="681" y2="234" marker-end="url(#ar2)"/>
+        <line x1="873" y1="146" x2="873" y2="234" marker-end="url(#ar2)"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="grid g2" id="planCards">
+    <!-- 卡片由 JS 渲染 -->
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <h3 style="font-size:14px">总体打卡进度</h3>
+      <button id="resetBtn" style="font-size:12px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 12px;cursor:pointer;color:var(--sub)">重置进度</button>
+    </div>
+    <div class="progressbar"><i id="totalBar"></i></div>
+    <div id="totalTxt" style="font-size:12px;color:var(--sub);margin-top:5px"></div>
+  </div>
+</section>
+
+<!-- ============ 3 知识全景矩阵 ============ -->
+<section id="matrix">
+  <h2 class="sec"><span class="no">③</span>知识全景矩阵（十大领域 × 五大过程组 · 49 过程）</h2>
+  <p class="lead">这是整张试卷的"地图"：行是知识领域，列是过程组，每个色块是一个过程。<b>点击任意过程块</b>，右侧弹出该过程的完整 ITTO（输入 / 工具与技术 / 输出 / 定义 / 开展频率）。颜色即过程组。</p>
+  <div class="card">
+    <div class="legend">
+      <span><b style="background:var(--g-start)"></b>启动（2 个）</span>
+      <span><b style="background:var(--g-plan)"></b>规划（24 个）</span>
+      <span><b style="background:var(--g-exec)"></b>执行（10 个）</span>
+      <span><b style="background:var(--g-mon)"></b>监控（12 个）</span>
+      <span><b style="background:var(--g-close)"></b>收尾（1 个）</span>
+      <span style="margin-left:auto">💡 规划组 24 个过程占近半壁江山，是 ITTO 记忆的主战场</span>
+    </div>
+    <div class="matrix"><table class="mtx" id="mtxTable"></table></div>
+  </div>
+</section>
+
+<!-- ============ 4 大纲与细节 ============ -->
+<section id="outline">
+  <h2 class="sec"><span class="no">④</span>大纲与细节（可折叠知识树）</h2>
+  <p class="lead">先看"面"再钻"点"：默认折叠只显示十大领域大纲，点击领域展开该领域全部过程；点击过程的「查看 ITTO 详情」弹出完整定义与输入输出。适合考前最后一周按领域逐个过筛。</p>
+  <div style="margin-bottom:10px">
+    <button class="exp" data-all="open" style="font-size:12.5px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 12px;cursor:pointer;color:var(--sub)">全部展开</button>
+    <button class="exp" data-all="close" style="font-size:12.5px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 12px;cursor:pointer;color:var(--sub);margin-left:6px">全部折叠</button>
+  </div>
+  <div id="outlineTree"></div>
+</section>
+
+<!-- ============ 5 高频考点 ============ -->
+<section id="key">
+  <h2 class="sec"><span class="no">⑤</span>高频考点清单（冲刺期反复看）</h2>
+  <p class="lead">按性价比排序：⭐⭐⭐ 必须滚瓜烂熟；⭐⭐ 高频需熟练；⭐ 理解即可。</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="font-size:14.5px;margin-bottom:8px">计算题公式（案例必考）</h3>
+      <table class="kt">
+        <tr><th>考点</th><th>核心公式/要点</th></tr>
+        <tr><td>挣值分析</td><td>CV=EV−AC，SV=EV−PV，CPI=EV/AC，SPI=EV/PV</td></tr>
+        <tr><td>预测</td><td>ETC=(BAC−EV)/CPI，EAC=AC+ETC；典型/非典型两种假设</td></tr>
+        <tr><td>关键路径</td><td>最长路径=总工期；总浮动时间=LS−ES=LF−EF；关键活动浮动为 0</td></tr>
+        <tr><td>三点估算</td><td>三角分布 (O+M+P)/3；β 分布 (O+4M+P)/6，σ=(P−O)/6</td></tr>
+        <tr><td>决策树/期望</td><td>EMV=Σ(概率×影响)，常与风险应对结合出题</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="font-size:14.5px;margin-bottom:8px">理论高频背诵点</h3>
+      <table class="kt">
+        <tr><th>考点</th><th>级别</th><th>必背内容</th></tr>
+        <tr><td>49 过程归属</td><td><span class="lvl hi">⭐⭐⭐</span></td><td>每过程属于哪个领域/哪个组（本页矩阵即答案）</td></tr>
+        <tr><td>变更控制流程</td><td><span class="lvl hi">⭐⭐⭐</span></td><td>提出→CCB 评估→批准/拒绝→实施→验证→记录更新</td></tr>
+        <tr><td>风险应对策略</td><td><span class="lvl hi">⭐⭐⭐</span></td><td>威胁：规避/转移/减轻/接受上报；机会：开拓/分享/提高/接受</td></tr>
+        <tr><td>质量七工具</td><td><span class="lvl mid">⭐⭐</span></td><td>因果图/流程图/核查表/帕累托/直方图/控制图/散点图</td></tr>
+        <tr><td>干系人矩阵</td><td><span class="lvl mid">⭐⭐</span></td><td>权力-利益方格 → 重点管理/令其满意/随时告知/监督</td></tr>
+        <tr><td>合同类型</td><td><span class="lvl mid">⭐⭐</span></td><td>总价/成本补偿/工料合同各自风险归属</td></tr>
+        <tr><td>招投标流程</td><td><span class="lvl mid">⭐⭐</span></td><td>招标→投标→开标→评标→中标→签合同，时限数字常考</td></tr>
+        <tr><td>配置管理</td><td><span class="lvl lo">⭐</span></td><td>基线、版本控制、配置审计与变更的配合关系</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3 style="font-size:14.5px;margin-bottom:8px">考前 72 小时清单</h3>
+    <ul class="tasks">
+      <li><input type="checkbox"><span>把③的全景矩阵从头到尾"盲扫"两遍：遮住过程名，按领域×过程组回忆 49 个过程名</span></li>
+      <li><input type="checkbox"><span>重默写挣值与预测公式（EVM 一共 8 个量），做 2 道关键路径真题保持手感</span></li>
+      <li><input type="checkbox"><span>过一遍错题本中标记"反复错"的条目，抄写对应教材原文一句话</span></li>
+      <li><input type="checkbox"><span>背英语 5 分：把真题出现的 30 个项目管理术语过一遍（charter、deliverable、milestone…）</span></li>
+      <li><input type="checkbox"><span>准备考试用品、确认机考批次时间地点、早睡</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>数据来源：本地《49 个过程的 ITTO》整理表 + 公开考情 · 祝顺利通过 💪</footer>
+</div>
+
+<!-- 抽屉 -->
+<div class="drawer-mask" id="mask"></div>
+<div class="drawer" id="drawer">
+  <div class="dhead"><h3 id="dTitle"></h3><button class="x" id="dClose">✕</button></div>
+  <div class="dbody" id="dBody"></div>
+</div>
+
+<script>
+/* ===== 数据 ===== */
+const ITTO = __ITTO_JSON__;
+const GROUPS=["启动过程组","规划过程组","执行过程组","监控过程组","收尾过程组"];
+const GCLS={"启动过程组":"start","规划过程组":"plan","执行过程组":"exec","监控过程组":"mon","收尾过程组":"close"};
+const AREAS=["项目整合管理","项目范围管理","项目进度管理","项目成本管理","项目质量管理","项目资源管理","项目沟通管理","项目风险管理","项目采购管理","项目干系人管理"];
+
+/* ===== 复习计划数据 ===== */
+const PLAN=[
+ {w:"第 1 周",title:"基础认知打底",color:"#d97706",goal:"先建全局感：信息化/法规/英语是纯背诵性价比区，同时开始每天 20 分钟 ITTO 滚动记忆。",
+  tasks:["通读信息化发展、新一代信息技术（大数据/云/AI/区块链）章节并整理一页纸脑图","背招投标法、政府采购法、著作权法核心条款（时限数字做成卡片）","每天 20 分钟：按领域背过程名（本周目标：整合+范围+进度 12 个过程）","近 1 年基础知识真题做 1 套（不计时，感受题型）"],
+  mile:"周测：信息技术+法规混合 50 题正确率 ≥70%"},
+ {w:"第 2 周",title:"核心四领域（上）",color:"#2563eb",goal:"案例四大金刚中的三个：整合、范围、进度、成本。计算题公式全部在本周搞定。",
+  tasks:["精读整合/范围/进度/成本四领域教材，整理每领域『输入→工具→输出』主线索","掌握关键路径（ES/EF/LS/LF、总浮动）并做 5 道网络图计算题","掌握挣值 8 公式 + 典型/非典型预测，做 5 道 EVM 计算","本周 ITTO 滚动：+成本/质量 8 个过程（累计 20）"],
+  mile:"里程碑：EVM/CPM 计算题零失分"},
+ {w:"第 3 周",title:"支撑六领域（下）",color:"#059669",goal:"补齐剩余六领域 + 配置/变更管理，至此 49 过程全部过了一轮。",
+  tasks:["精读质量/资源/沟通/风险/采购/干系人，重点背风险应对策略与干系人参与度评估矩阵","专项：变更控制流程（CCB）+ 配置管理（基线/版本），案例最爱考","合同类型与招投标流程结合真题串记","本周 ITTO 滚动：剩余 29 个过程，周日全量自测 49 个过程名"],
+  mile:"周测：49 过程名默写 ≥45/49"},
+ {w:"第 4 周",title:"案例专项突破",color:"#7c3aed",goal:"从『会知识』到『会答题』：按题型训练答题模板。",
+  tasks:["计算专题日：EVM+CPM+三点估算混合 10 题，限时训练","找错题专题：逐句找茬模板（无计划/未评审/缺文档/越权/未监控）","理论题专题：背 10 大领域『万能理论句』（每领域 3 句）","完整做 2 套案例真题（计时 150 分钟）并对照评分标准自评"],
+  mile:"里程碑：案例真题自评 ≥45 分"},
+ {w:"第 5 周",title:"真题套卷 + 错题闭环",color:"#e11d48",goal:"全真模拟找状态，错题本闭环消灭薄弱点。",
+  tasks:["隔天一套完整真题（上午+下午连做），共 3 套，严格计时","每套做完 24 小时内完成错题归因：知识型→回教材；粗心型→标记警示","错题本二刷：只看错过的题，遮住答案重做","ITTO 矩阵盲扫 1 遍（用③的全景图自测）"],
+  mile:"里程碑：真题两科均 ≥50 分"},
+ {w:"第 6 周（考前）",title:"冲刺记忆 + 状态调整",color:"#37415c",goal:"只做三件事：背、看错题、养状态。不再学新内容。",
+  tasks:["执行『考前 72 小时清单』（见⑤）","高频考点清单（⑤）过 3 遍，公式默写 2 遍","1 套最简单的真题保持手感（不做难题打击信心）","调整生物钟到考试时段，机考环境模拟（用电脑刷题不刷手机）"],
+  mile:"状态目标：稳、熟、不慌"}
+];
+
+/* ===== 渲染计划卡片 ===== */
+const areaColors={"第 1 周":"#d97706","第 2 周":"#2563eb","第 3 周":"#059669","第 4 周":"#7c3aed","第 5 周":"#e11d48","第 6 周（考前）":"#37415c"};
+const pc=document.getElementById('planCards');
+pc.innerHTML=PLAN.map((p,i)=>`
+ <div class="card phase" style="border-left-color:${areaColors[p.w]}">
+  <h3><span class="tag" style="background:${areaColors[p.w]}1a;color:${areaColors[p.w]}">${p.w}</span>${p.title}</h3>
+  <div class="goal">${p.goal}</div>
+  <ul class="tasks">${p.tasks.map((t,j)=>`<li data-k="p${i}-${j}"><input type="checkbox"><span>${t}</span></li>`).join('')}</ul>
+  <div class="mile">🏁 ${p.mile}</div>
+ </div>`).join('');
+
+/* ===== 打卡状态 ===== */
+const KEY='ruankao_plan_v1';
+let st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function refresh(){
+ let done=0,total=0;
+ document.querySelectorAll('ul.tasks li[data-k]').forEach(li=>{
+   const k=li.dataset.k;const c=li.querySelector('input');c.checked=!!st[k];
+   li.classList.toggle('done',!!st[k]);total++;if(st[k])done++;
+ });
+ // 考前清单
+ document.querySelectorAll('#key ul.tasks li:not([data-k])').forEach((li,i)=>{});
+ const bar=document.getElementById('totalBar'),txt=document.getElementById('totalTxt');
+ const pct=total?Math.round(done/total*100):0;
+ bar.style.width=pct+'%';txt.textContent=`已完成 ${done} / ${total} 项任务（${pct}%）`;
+}
+document.querySelectorAll('ul.tasks li[data-k] input').forEach(c=>{
+ c.addEventListener('change',()=>{
+   const k=c.closest('li').dataset.k;
+   st[k]=c.checked;
+   localStorage.setItem(KEY,JSON.stringify(st));
+   refresh();
+ });
+});
+document.getElementById('resetBtn').addEventListener('click',()=>{st={};localStorage.removeItem(KEY);refresh();});
+refresh();
+
+/* ===== 矩阵 ===== */
+const keyOf={};
+ITTO.forEach(p=>{keyOf[p.area+'|'+p.process]=p});
+const mtx=document.getElementById('mtxTable');
+let h='<tr><th class="rowh" style="background:transparent"></th>'+GROUPS.map(g=>`<th class="h-${GCLS[g]}">${g.replace('过程组','')}</th>`).join('')+'</tr>';
+AREAS.forEach(a=>{
+ h+=`<tr><th class="rowh">${a.replace('项目','').replace('管理','')}</th>`;
+ GROUPS.forEach(g=>{
+   const ps=ITTO.filter(p=>p.area===a&&p.group===g);
+   h+=`<td class="cell">`+ps.map(p=>`<button class="chip c-${GCLS[g]}" onclick="showProc('${p.area}','${p.process}')">${p.process}</button>`).join('')+`</td>`;
+ });
+ h+='</tr>';
+});
+mtx.innerHTML=h;
+
+/* ===== 大纲树 ===== */
+const tree=document.getElementById('outlineTree');
+tree.innerHTML=AREAS.map(a=>{
+ const ps=ITTO.filter(p=>p.area===a);
+ return `<div class="area-block">
+  <div class="area-head" onclick="this.parentElement.classList.toggle('open')">
+    <span class="arrow">▶</span><b>${a}</b><span class="cnt">${ps.length} 个过程</span>
+    <span style="margin-left:auto;font-size:11.5px;color:#9aa2b1">点击展开/折叠</span>
+  </div>
+  <div class="proc-list">${ps.map(p=>`
+    <div class="proc-item">
+      <h4><span class="pg chip c-${GCLS[p.group]}" style="display:inline-block;width:auto;margin:0;font-size:10.5px;padding:1px 7px;border-radius:5px;cursor:default">${p.group.replace('过程组','')}</span>${p.process}</h4>
+      <div class="brief">${p.def||''}</div>
+      <button class="det" onclick="showProc('${p.area}','${p.process}')">查看 ITTO 详情 →</button>
+    </div>`).join('')}</div>
+ </div>`}).join('');
+document.querySelectorAll('.exp').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.area-block').forEach(x=>x.classList.toggle('open',b.dataset.all==='open'));
+}));
+
+/* ===== 抽屉 ===== */
+const drawer=document.getElementById('drawer'),mask=document.getElementById('mask');
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function showProc(area,proc){
+ const p=keyOf[area+'|'+proc];if(!p)return;
+ document.getElementById('dTitle').textContent=proc+'（'+p.group+' · '+p.area+'）';
+ document.getElementById('dBody').innerHTML=`
+  <div class="dsec t-def"><span class="dt">定义</span><div class="dv">${esc(p.def)}</div></div>
+  <div class="dsec t-role"><span class="dt">主要作用</span><div class="dv">${esc(p.role)}</div></div>
+  <div class="dsec t-freq"><span class="dt">开展频率</span><div class="dv">${esc(p.freq)}</div></div>
+  <div class="dsec t-in"><span class="dt">输入 Input</span><div class="dv">${esc(p.input)}</div></div>
+  <div class="dsec t-tool"><span class="dt">工具与技术 T&T</span><div class="dv">${esc(p.tools)}</div></div>
+  <div class="dsec t-out"><span class="dt">输出 Output</span><div class="dv">${esc(p.output)}</div></div>`;
+ document.body.classList.add('show-drawer');
+}
+function hideDrawer(){document.body.classList.remove('show-drawer')}
+mask.addEventListener('click',hideDrawer);
+document.getElementById('dClose').addEventListener('click',hideDrawer);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hideDrawer()});
+
+/* ===== 导航高亮 ===== */
+const secs=[...document.querySelectorAll('section')];
+const links=[...document.querySelectorAll('nav.toc a')];
+window.addEventListener('scroll',()=>{
+ let cur=secs[0];secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s});
+ links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+cur.id));
+},{passive:true});
+</script>
+</body>
+</html>
