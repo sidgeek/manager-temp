@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>软考中级·系统集成项目管理工程师 — 历年真题分类归纳子计划</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#ffffff; --ink:#1f2430; --sub:#5b6472; --line:#e4e7ef;
+  --accent:#4f5fe0; --accent-soft:#eef0ff;
+  --c-calc:#2563eb; --c-calc-bg:#eaf2ff;
+  --c-find:#e11d48; --c-find-bg:#ffeef2;
+  --c-theo:#7c3aed; --c-theo-bg:#f3eefe;
+  --c-mcq:#059669; --c-mcq-bg:#e8f8f2;
+  --c-form:#d97706; --c-form-bg:#fff7e6;
+  --c-plan:#37415c; --c-plan-bg:#eef0f5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 80px}
+header{background:linear-gradient(135deg,#2563eb 0%,#4f5fe0 55%,#7c3aed 100%);color:#fff;padding:36px 0 30px}
+header .wrap{padding-bottom:0}
+header h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+header p{margin-top:8px;font-size:14px;opacity:.92}
+header a.back{display:inline-block;margin-top:12px;font-size:12.5px;color:#fff;text-decoration:none;border:1px solid #ffffff66;border-radius:20px;padding:3px 12px}
+header a.back:hover{background:#ffffff22}
+nav.toc{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:22px}
+nav.toc .in{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:13px;padding:10px 12px;border-bottom:2.5px solid transparent}
+nav.toc a:hover,nav.toc a.on{color:var(--accent);border-color:var(--accent)}
+section{margin-top:44px;scroll-margin-top:64px}
+h2.sec{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:13px;padding:2px 9px}
+p.lead{color:var(--sub);font-size:13.5px;margin-bottom:18px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
+.stat .k{font-size:22px;font-weight:800;color:var(--accent)}
+.stat .t{font-size:12.5px;color:var(--sub);margin-top:2px}
+.stat .d{font-size:12px;color:#9aa2b1;margin-top:6px}
+.note{font-size:12.5px;color:#8a5200;background:var(--c-form-bg);border:1px solid #f3ddae;border-radius:10px;padding:10px 13px;margin-top:12px}
+/* 考点卡 */
+.topic{border-left:5px solid var(--accent);margin-bottom:14px}
+.topic h3{font-size:15.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.topic h3 .tag{font-size:11.5px;border-radius:20px;padding:1px 10px;font-weight:600}
+.tk-calc{border-left-color:var(--c-calc)} .tk-calc h3 .tag{background:var(--c-calc-bg);color:var(--c-calc)}
+.tk-find{border-left-color:var(--c-find)} .tk-find h3 .tag{background:var(--c-find-bg);color:var(--c-find)}
+.tk-theo{border-left-color:var(--c-theo)} .tk-theo h3 .tag{background:var(--c-theo-bg);color:var(--c-theo)}
+.tk-mcq{border-left-color:var(--c-mcq)} .tk-mcq h3 .tag{background:var(--c-mcq-bg);color:var(--c-mcq)}
+.tk-form{border-left-color:var(--c-form)} .tk-form h3 .tag{background:var(--c-form-bg);color:#8a5200}
+.tk-plan{border-left-color:var(--c-plan)} .tk-plan h3 .tag{background:var(--c-plan-bg);color:var(--c-plan)}
+.kblock{margin-top:10px}
+.klab{display:inline-block;font-size:11.5px;font-weight:700;color:#fff;border-radius:6px;padding:1px 10px;margin-bottom:5px}
+.klab.k1{background:#475569} .klab.k2{background:#2563eb} .klab.k3{background:#0f766e} .klab.k4{background:#c2410c}
+.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:9px 12px;white-space:pre-wrap}
+.ktxt ul{margin:0 0 0 2px;list-style:none}
+.ktxt ul li{position:relative;padding-left:14px;margin:2px 0}
+.ktxt ul li:before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:11px}
+code{background:#eef0f7;border-radius:4px;padding:0 4px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;color:#334}
+.pill{display:inline-block;font-size:11px;border-radius:5px;padding:1px 7px;color:#fff;margin-right:4px}
+.pill.hi{background:#e11d48}.pill.mid{background:#d97706}.pill.lo{background:#64748b}
+/* 表格 */
+table.kt{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:12px;overflow:hidden}
+table.kt th{background:#37415c;color:#fff;padding:9px 12px;text-align:left;font-size:12.5px}
+table.kt td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.kt tr:last-child td{border-bottom:none}
+table.kt td:first-child{font-weight:600;color:var(--accent)}
+table.track td,table.track th{font-size:12.5px}
+table.track td{color:var(--sub)}
+table.track td:first-child{color:var(--ink);white-space:nowrap}
+.fill{background:#fbfcfe}
+/* 公式卡 */
+.fbox{background:#0f172a;color:#e8eefc;border-radius:12px;padding:12px 14px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;line-height:1.9;white-space:pre-wrap;overflow-x:auto}
+.fbox b{color:#7dd3fc;font-weight:600}
+/* 任务 */
+ul.tasks{list-style:none}
+ul.tasks li{font-size:13.5px;padding:5px 0 5px 2px;border-bottom:1px dashed var(--line);display:flex;gap:8px;align-items:flex-start}
+ul.tasks li:last-child{border-bottom:none}
+ul.tasks input[type=checkbox]{margin-top:4px;accent-color:var(--accent);width:15px;height:15px;flex:none;cursor:pointer}
+ul.tasks li.done span{text-decoration:line-through;color:#9aa2b1}
+.phase{border-left:5px solid var(--accent)}
+.phase h3{font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.phase .tag{font-size:11.5px;border-radius:20px;padding:1px 10px;background:var(--accent-soft);color:var(--accent);font-weight:600}
+.phase .goal{font-size:13px;color:var(--sub);margin:6px 0 10px}
+.phase .mile{margin-top:10px;font-size:12.5px;background:var(--accent-soft);border-radius:8px;padding:6px 10px;color:var(--accent)}
+.progressbar{height:8px;background:#eceef6;border-radius:6px;overflow:hidden;margin-top:8px}
+.progressbar i{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);width:0;transition:width .4s}
+footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>软考中级 · 历年真题分类归纳子计划</h1>
+    <p>面向 2016–2025：按题型归类 → 每类给「知识点 · 公式 · 计算思路 · 规律注意点」，配套真题追踪表与刷题打卡。</p>
+    <a class="back" href="软考中级复习计划.html">← 返回主复习计划</a>
+    <nav class="toc"><div class="in">
+      <a href="#usage">① 使用说明与题型总览</a>
+      <a href="#track">② 2016–2025 真题追踪表</a>
+      <a href="#calc">③ 计算题专项</a>
+      <a href="#find">④ 找错改错专项</a>
+      <a href="#theo">⑤ 理论背诵专项</a>
+      <a href="#mcq">⑥ 单选板块专项</a>
+      <a href="#formula">⑦ 公式速查卡</a>
+      <a href="#subplan">⑧ 刷题打卡子计划</a>
+    </div></nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ 1 使用说明 ============ -->
+<section id="usage">
+  <h2 class="sec"><span class="no">①</span>使用说明与题型总览</h2>
+  <p class="lead">这套考试（系统集成项目管理工程师）的真题结构多年保持稳定：<b>案例客观规律极强</b>，把题目按题型归类后，考点与解法高度可复制。本子计划先给"题型地图"，再逐类拆解。</p>
+  <div class="note">⚠️ 数据说明：本页无法离线获取 2016–2025 各套真题的逐题原文，因此"历年真题"部分以<b>考试稳定的题型结构 + 公开考纲权重</b>归纳而成（分类体系与解法可放心使用）；具体某年某题的原文，请以官方/正规出版物为准，并用第②节追踪表逐套核对。</div>
+
+  <div class="grid g4" style="margin-top:16px">
+    <div class="card stat"><div class="k">3~4 道</div><div class="t">案例（应用技术）大题</div><div class="d">每套通常：1 计算 + 1 找错 + 1 理论/情景</div></div>
+    <div class="card stat"><div class="k">8~15 分</div><div class="t">单道计算题分值</div><div class="d">案例里分值最高、最该拿满</div></div>
+    <div class="card stat"><div class="k">75 道</div><div class="t">基础知识（单选）</div><div class="d">项目管理约 25~30 分</div></div>
+    <div class="card stat"><div class="k">4 类</div><div class="t">本页归纳的题型</div><div class="d">计算 / 找错 / 理论 / 情景</div></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3 style="font-size:14.5px;margin-bottom:8px">案例四大题型 · 频率与落点</h3>
+    <table class="kt">
+      <tr><th>题型</th><th>出现频率</th><th>案例分值</th><th>典型落点</th><th>本页专项</th></tr>
+      <tr><td>计算题</td><td>几乎每套必考</td><td>8~15</td><td>挣值 EVM、网络图 CPM、三点估算</td><td>③</td></tr>
+      <tr><td>找错改错题</td><td>几乎每套必考</td><td>8~12</td><td>十大领域流程与最佳实践</td><td>④</td></tr>
+      <tr><td>理论简答题</td><td>每套必考</td><td>6~10</td><td>过程定义、管理流程、工具技术</td><td>⑤</td></tr>
+      <tr><td>情景分析题</td><td>高频</td><td>5~8</td><td>风险应对、干系人、变更处理</td><td>④⑤</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3 style="font-size:14.5px;margin-bottom:8px">基础知识（单选）分值分布</h3>
+    <table class="kt">
+      <tr><th>模块</th><th>约分值</th><th>题型特点</th></tr>
+      <tr><td>项目管理（十大领域/49 过程）</td><td>25~30 分</td><td>与案例联动，性价比最高</td></tr>
+      <tr><td>信息化与信息技术</td><td>10~15 分</td><td>纯背诵，新概念逐年更新</td></tr>
+      <tr><td>法律法规与标准规范</td><td>5~8 分</td><td>招投标法、著作权法等，时限数字常考</td></tr>
+      <tr><td>系统集成与服务管理</td><td>5~8 分</td><td>运维、ITSS、监理、资质</td></tr>
+      <tr><td>专业英语</td><td>5 分</td><td>固定 5 题术语阅读，"送分题"</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 2 真题追踪表 ============ -->
+<section id="track">
+  <h2 class="sec"><span class="no">②</span>2016–2025 真题追踪表</h2>
+  <p class="lead">做一套、填一行：把该套案例的主题与你的薄弱点记下，形成自己的"真题数据库"。表格内容留空，由你对照真题填写（本机不自动保存，建议另存或打印）。</p>
+  <div class="card">
+    <div style="overflow-x:auto">
+    <table class="kt track">
+      <tr><th style="width:70px">年度</th><th>上半年（5 月 · 案例主题/题型）</th><th>下半年（11 月 · 案例主题/题型）</th><th style="width:120px">薄弱点 / 待回炉</th><th style="width:56px">完成</th></tr>
+      <tr><td>2016</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+      <tr><td>2017</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+      <tr><td>2018</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+      <tr><td>2019</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+      <tr><td>2020</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+      <tr><td>2021</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+      <tr><td>2022</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+      <tr><td>2023</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+      <tr><td>2024</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+      <tr><td>2025</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill" style="text-align:center">☐</td></tr>
+    </table>
+    </div>
+    <p style="font-size:12.5px;color:var(--sub);margin-top:10px">💡 填写口令：<b>主题</b>（如"挣值+变更+质量"）→ <b>失分点</b>（知识型/粗心型）→ <b>回炉动作</b>（回教材哪一章）。同一主题连续两年出现，即为必背高频。</p>
+    <p style="font-size:12.5px;color:var(--sub);margin-top:4px">说明：部分年份场次/开考安排可能有调整，请按实际拿到的真题套卷填写，"上半年/下半年"仅为占位。</p>
+  </div>
+</section>
+
+<!-- ============ 3 计算题专项 ============ -->
+<section id="calc">
+  <h2 class="sec"><span class="no">③</span>计算题专项（案例必拿分）</h2>
+  <p class="lead">计算题套路固定、结果唯一，是案例里最该拿满的部分。下面 6 类覆盖历年绝大部分计算考法，每类都按「知识点 · 公式 · 计算思路 · 规律注意点」拆解。</p>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:14.5px;margin-bottom:8px">计算题 × 过程组 × 知识领域 · 定位索引</h3>
+    <table class="kt">
+      <tr><th style="width:78px">过程组</th><th>过程</th><th style="width:104px">知识领域</th><th>计算类型</th></tr>
+      <tr><td>规划</td><td>估算活动持续时间</td><td>进度</td><td>三点估算 Te、σ</td></tr>
+      <tr><td>规划</td><td>制定进度计划</td><td>进度</td><td>CPM、关键路径、总/自由浮动、进度压缩、资源优化</td></tr>
+      <tr><td>规划</td><td>估算成本 / 制定预算</td><td>成本</td><td>类比·参数·自下而上估算、应急储备、成本基准、NPV、回收期、ROI</td></tr>
+      <tr><td>规划</td><td>规划沟通管理</td><td>沟通</td><td>沟通渠道 n(n−1)/2</td></tr>
+      <tr><td>规划</td><td>规划采购管理</td><td>采购</td><td>合同类型、合同额 / 激励费计算</td></tr>
+      <tr><td>规划</td><td>规划风险应对（定量风险分析）</td><td>风险</td><td>决策树 EMV</td></tr>
+      <tr><td>监控</td><td>控制成本</td><td>成本</td><td>EVM：CV / SV / CPI / SPI / ETC / EAC / VAC / TCPI</td></tr>
+      <tr><td>监控</td><td>控制进度</td><td>进度</td><td>SPI、进度偏差、剩余工期推算</td></tr>
+      <tr><td>监控</td><td>监控风险</td><td>风险</td><td>EMV 复核 / 更新</td></tr>
+    </table>
+    <p style="font-size:12.5px;color:var(--sub);margin-top:10px">💡 过程组分布：<b>规划组</b>负责"先算出来"（估算 / 预算 / 计划），<b>监控组</b>负责"事后算账"（挣值 / 绩效）——计算题就集中在这两个过程组。主战场是<b>进度、成本</b>两大领域；风险（EMV）、沟通（渠道数）、采购（合同）为二级。启动组、收尾组几乎不出计算，执行组极少。</p>
+    <p style="font-size:12.5px;color:var(--sub);margin-top:4px">💡 出题位置：小计算题（三点估算、沟通渠道数、EMV、NPV / 回收期）在<b>上午单选</b>也会单独出；成体系的大计算（EVM、CPM 全套、进度压缩）在<b>下午案例</b>，分值 8~15。公式两头都要准备，别只当案例题练。</p>
+  </div>
+
+  <!-- 3.1 EVM -->
+  <div class="card topic tk-calc">
+    <h3><span class="tag">3.1 高频</span>挣值分析 EVM 与完工预测</h3>
+    <div class="kblock"><span class="klab k1">知识点</span><div class="ktxt">PV 计划价值 · EV 挣值（已完成工作的<b>预算</b>价值，核心）· AC 实际成本 · BAC 完工预算。成本状况看 CV/CPI，进度状况看 SV/SPI。</div></div>
+    <div class="kblock"><span class="klab k2">公式</span>
+      <div class="fbox">CV = EV − AC            <b>（&lt;0 成本超支）</b>
+SV = EV − PV            <b>（&lt;0 进度落后）</b>
+CPI = EV / AC           <b>（&lt;1 超支，&gt;1 节约）</b>
+SPI = EV / PV           <b>（&lt;1 落后，&gt;1 超前）</b>
+ETC(典型)   = (BAC − EV) / CPI
+ETC(非典型) =  BAC − EV
+EAC = AC + ETC
+EAC(典型)   = BAC / CPI
+EAC(非典型) = AC + (BAC − EV)
+VAC = BAC − EAC
+TCPI = (BAC − EV) / (BAC − AC)</div>
+    </div>
+    <div class="kblock"><span class="klab k3">常见问题与计算思路</span>
+      <div class="ktxt"><ul>
+        <li>求 CV/SV/CPI/SPI：先找齐 PV、EV、AC → 代入；结果为负 / 小于 1 即不利。</li>
+        <li>判断状态：CPI&lt;1 且 SPI&lt;1 = 成本超支且进度落后，需说明"采取措施"。</li>
+        <li>预测 ETC/EAC：<b>第一步先判断典型还是非典型</b>再套公式。</li>
+        <li>求"完工还需多少" → 问的是 ETC；求"完工总花费" → 问的是 EAC。</li>
+        <li>TCPI：越大越难达成，用于回答"剩余工作需达到多高效率"。</li>
+      </ul></div>
+    </div>
+    <div class="kblock"><span class="klab k4">规律与注意点</span>
+      <div class="ktxt">💡 <b>典型判定口诀</b>：题干出现"按当前趋势继续 / 不采取纠正措施 / 当前绩效代表未来"→ 典型（用 CPI）；出现"采取纠正措施后按计划执行 / 剩余工作按预算效率"→ 非典型（用 BAC）。
+💡 EV 易错：EV 是"已完成工作的预算值"，<b>不要拿 AC 当 EV</b>。
+💡 题干"截至目前 / 检查点时"→ 用该时点数据，不要用全项目数据。
+💡 成本与进度可同时恶化、也可一好一坏，答题要分开写结论。</div>
+    </div>
+  </div>
+
+  <!-- 3.2 CPM -->
+  <div class="card topic tk-calc">
+    <h3><span class="tag">3.2 高频</span>关键路径 CPM / 网络图 / 浮动时间</h3>
+    <div class="kblock"><span class="klab k1">知识点</span><div class="ktxt">活动、紧前关系（FS 完成-开始、SS、FF、SF）、提前量 lead / 滞后量 lag；六个时间参数：ES、EF、LS、LF、总浮动 TF、自由浮动 FF；关键路径 = 最长路径 = 总工期。</div></div>
+    <div class="kblock"><span class="klab k2">公式</span>
+      <div class="fbox">EF = ES + 工期            LS = LF − 工期
+总浮动 TF = LS − ES = LF − EF
+自由浮动 FF = min(紧后活动的 ES) − 本活动 EF
+总工期 = 关键路径长度（最长路径）
+关键活动：TF = 0</div>
+    </div>
+    <div class="kblock"><span class="klab k3">常见问题与计算思路</span>
+      <div class="ktxt"><ul>
+        <li><b>正推</b>（左→右）：从起点算 ES、EF，多个紧前取最大值。</li>
+        <li><b>逆推</b>（右→左）：从终点算 LF、LS，多个紧后取最小值。</li>
+        <li>算 TF，把 TF=0 的活动连起来即关键路径；最长路径验证总工期。</li>
+        <li>问"延误 X 天是否影响工期"→ 看该活动 TF 是否小于 X。</li>
+        <li>有 lead/lag 时，在对应的依赖关系上加减（lead 减、lag 加）。</li>
+      </ul></div>
+    </div>
+    <div class="kblock"><span class="klab k4">规律与注意点</span>
+      <div class="ktxt">💡 关键路径<b>可能不止一条</b>，题目常埋"两条关键路径"的坑。
+💡 ES 从 0 开始还是从 1 开始，<b>以题目给的网络图约定为准</b>。
+💡 总浮动为 0 的不一定是关键活动（题目约定不同），以"最长路径"为准最稳。
+💡 压缩工期只能压关键路径上的活动；非关键活动压缩不影响总工期。
+💡 自由浮动只影响紧后活动最早开始，考点少但易考判断。</div>
+    </div>
+  </div>
+
+  <!-- 3.3 三点估算 -->
+  <div class="card topic tk-calc">
+    <h3><span class="tag">3.3 高频</span>三点估算与概率（PERT）</h3>
+    <div class="kblock"><span class="klab k1">知识点</span><div class="ktxt">用乐观值 O、最可能值 M、悲观值 P 估算工期/成本；区分三角分布与 β（PERT）分布。</div></div>
+    <div class="kblock"><span class="klab k2">公式</span>
+      <div class="fbox">β 分布(PERT 默认)：Te = (O + 4M + P) / 6
+三角分布：            Te = (O + M + P) / 3
+标准差：              σ = (P − O) / 6
+方差：                σ²
+概率区间：±1σ ≈ 68.26% ｜ ±2σ ≈ 95.46% ｜ ±3σ ≈ 99.73%</div>
+    </div>
+    <div class="kblock"><span class="klab k3">常见问题与计算思路</span>
+      <div class="ktxt"><ul>
+        <li>先判断分布：给"乐观/最可能/悲观"三值、未特别说明 → 默认 PERT（4M）。</li>
+        <li>求某工期完成的概率：先算 Te 与 σ → 换算成落在几个 σ 区间 → 查经验百分比。</li>
+        <li>多活动总工期：期望相加；标准差用方差相加再开方（σ总 = √(σ₁²+σ₂²)）。</li>
+      </ul></div>
+    </div>
+    <div class="kblock"><span class="klab k4">规律与注意点</span>
+      <div class="ktxt">💡 只有 β 分布才用 4M，"平均三点"是三角分布 (O+M+P)/3，别混。
+💡 σ 只由 P、O 决定，M 不影响离散程度。
+💡 概率题答案常给几个区间百分比选项，记住 68/95/99.7 三档即可。</div>
+    </div>
+  </div>
+
+  <!-- 3.4 进度压缩 -->
+  <div class="card topic tk-calc">
+    <h3><span class="tag">3.4 高频</span>进度压缩与资源优化</h3>
+    <div class="kblock"><span class="klab k1">知识点</span><div class="ktxt"><b>赶工</b>（加资源/加班，增成本、范围不变、风险低）；<b>快速跟进</b>（并行搭接，增风险、可能返工）；<b>资源平衡</b>（影响关键路径、延长工期）；<b>资源平滑</b>（不影响关键路径与工期）。</div></div>
+    <div class="kblock"><span class="klab k2">公式</span>
+      <div class="fbox">赶工成本斜率 = (赶工成本 − 正常成本) / (正常工期 − 赶工工期)
+选择原则：在关键路径上，优先压缩"单位时间成本最低"的活动</div>
+    </div>
+    <div class="kblock"><span class="klab k3">常见问题与计算思路</span>
+      <div class="ktxt"><ul>
+        <li>问"如何压缩到 X 天、最少增加多少成本"：只动关键路径 → 按成本斜率从小到大逐项压缩。</li>
+        <li>压缩后关键路径可能转移，需重新计算。</li>
+        <li>问"用哪种压缩方式"：保进度且不重排逻辑 → 赶工；时间紧、逻辑允许并行 → 快速跟进。</li>
+      </ul></div>
+    </div>
+    <div class="kblock"><span class="klab k4">规律与注意点</span>
+      <div class="ktxt">💡 赶工"花钱换时间"，快速跟进"用风险换时间"，二者都不会减少范围。
+💡 资源平衡 = 动关键路径 = 可能延长工期；资源平滑 = 不动关键路径 = 工期不变——这是最爱考的对比点。
+💡 压缩到极限后可能产生新的关键路径，别忘了复算。</div>
+    </div>
+  </div>
+
+  <!-- 3.5 决策树 -->
+  <div class="card topic tk-calc">
+    <h3><span class="tag">3.5 中频</span>决策树与期望货币值 EMV</h3>
+    <div class="kblock"><span class="klab k1">知识点</span><div class="ktxt">用于不确定性下的方案选择，是定量风险分析常用工具。</div></div>
+    <div class="kblock"><span class="klab k2">公式</span>
+      <div class="fbox">EMV = Σ (每种结果的概率 × 该结果的货币值)
+选择：收益型取 EMV 最大；成本型取 EMV 最小</div>
+    </div>
+    <div class="kblock"><span class="klab k3">常见问题与计算思路</span>
+      <div class="ktxt"><ul>
+        <li>画出决策树：决策节点（□）→ 机会节点（○）→ 各分支标概率与金额。</li>
+        <li>自右向左累加各机会节点的 EMV，比较方案。</li>
+        <li>常与"是否投标/是否开发某模块"结合，注意扣除固定成本。</li>
+      </ul></div>
+    </div>
+    <div class="kblock"><span class="klab k4">规律与注意点</span>
+      <div class="ktxt">💡 概率之和必须为 1，若给"成功 70%"，则失败按 30% 计。
+💡 金额含正负（收益为正、风险损失为负），别漏负号。
+💡 常与风险应对"转移/减轻"结合出小问。</div>
+    </div>
+  </div>
+
+  <!-- 3.6 成本财务 -->
+  <div class="card topic tk-calc">
+    <h3><span class="tag">3.6 中频</span>成本构成、合同与财务计算</h3>
+    <div class="kblock"><span class="klab k1">知识点</span><div class="ktxt">成本估算方法（类比/参数/自下而上/三点）、应急储备与管理储备、合同类型（总价/成本补偿/工料）、立项财务指标（NPV / 回收期 / ROI）。</div></div>
+    <div class="kblock"><span class="klab k2">公式</span>
+      <div class="fbox">成本基准 = 成本估算 + 应急储备（<b>不含管理储备</b>）
+总预算   = 成本基准 + 管理储备
+沟通渠道 = n(n − 1) / 2
+NPV：把各年现金流按折现率折现后求和，越大越好</div>
+    </div>
+    <div class="kblock"><span class="klab k3">常见问题与计算思路</span>
+      <div class="ktxt"><ul>
+        <li>问"成本基准是多少"→ 把各工作包估算加应急储备，<b>不要加管理储备</b>。</li>
+        <li>问"总预算"→ 成本基准 + 管理储备。</li>
+        <li>合同判断题：谁承担更多风险 → 总价合同风险在卖方、成本补偿在买方、工料居中。</li>
+        <li>NPV/回收期：优先选 NPV 大、回收期短的方案。</li>
+      </ul></div>
+    </div>
+    <div class="kblock"><span class="klab k4">规律与注意点</span>
+      <div class="ktxt">💡 管理储备<b>不属于成本基准</b>，动用需高层批准——高频判断题。
+💡 估算精度：类比最粗、自下而上最准也最耗时、参数估算靠模型。
+💡 合同类型题常与"风险归属"一起考，记住"总价→卖方、补偿→买方、工料→共担"。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 找错改错 ============ -->
+<section id="find">
+  <h2 class="sec"><span class="no">④</span>找错改错专项</h2>
+  <p class="lead">案例几乎每套都有"请指出存在的问题 / 如何改进"。这类题不靠死记，靠一套<b>通用找茬模板</b>＋各领域踩分点。答题一律分点、写成"问题 + 正确做法"。</p>
+
+  <div class="card topic tk-find">
+    <h3><span class="tag">通用</span>八类通用找茬模板（背下来，逐句套）</h3>
+    <div class="kblock"><span class="klab k3">找茬清单</span>
+      <div class="ktxt"><ul>
+        <li><b>无计划</b>：未编制/未评审/未批准 XX 管理计划。</li>
+        <li><b>未走流程</b>：变更未提交 CCB、未经审批、超权限决策。</li>
+        <li><b>范围蔓延</b>：擅自增加/修改需求，未走变更控制。</li>
+        <li><b>缺文档</b>：没有 XX 文件、未记录、未归档、未更新基线。</li>
+        <li><b>沟通不足</b>：未识别/未与关键干系人沟通，信息未分发。</li>
+        <li><b>未监控</b>：未做绩效测量/挣值分析、未跟踪风险、未做质量控制。</li>
+        <li><b>职责不清</b>：角色未定义、未授权、责任分配矩阵缺失。</li>
+        <li><b>验收不规范</b>：未做确认范围、未按标准验收、验收标准不清。</li>
+      </ul></div>
+    </div>
+    <div class="kblock"><span class="klab k4">规律与注意点</span>
+      <div class="ktxt">💡 从"输入 / 工具 / 输出"三角度扫：<b>该做的文件没做（输入缺）</b>、<b>该做的分析没做（工具缺）</b>、<b>该产出的东西没有（输出缺）</b>。
+💡 答案分点写，一点一个问题 + 一句正确做法，宁可多写不丢分。
+💡 案例原文里的每句话几乎都是"错点素材"，逐句过。</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3 style="font-size:14.5px;margin-bottom:8px">十大领域高频踩分点</h3>
+    <table class="kt">
+      <tr><th>领域</th><th>常考错误（问题）</th><th>应写出的正确做法</th></tr>
+      <tr><td>整合</td><td>变更未走 CCB、计划未统一、未记录问题</td><td>建立变更控制流程、制定综合计划、登记问题日志</td></tr>
+      <tr><td>范围</td><td>范围蔓延、WBS 分解不到位、需求未跟踪</td><td>定义范围、创建 WBS、需求跟踪矩阵、确认范围</td></tr>
+      <tr><td>进度</td><td>未识别关键路径、进度压缩不当</td><td>排列活动顺序、制定进度计划、合理赶工/快速跟进</td></tr>
+      <tr><td>成本</td><td>未做挣值、未建成本基准</td><td>估算成本、制定预算、控制成本（EVM）</td></tr>
+      <tr><td>质量</td><td>只测不管、无质量计划、未做质量保证</td><td>规划质量、管理质量、控制质量，用七工具</td></tr>
+      <tr><td>资源</td><td>团队冲突、未培训、责任不清</td><td>规划资源、获取/建设/管理团队、RACI、冲突解决</td></tr>
+      <tr><td>沟通</td><td>沟通渠道不畅、信息未分发</td><td>规划沟通、管理沟通、监督沟通，明确沟通矩阵</td></tr>
+      <tr><td>风险</td><td>未识别风险、无应对计划、无登记册</td><td>识别风险、定性/定量分析、规划并实施风险应对</td></tr>
+      <tr><td>采购</td><td>合同管理不善、未验收、索赔处理不当</td><td>规划采购、实施采购、控制采购</td></tr>
+      <tr><td>干系人</td><td>未识别关键干系人、未管理期望</td><td>识别干系人、规划/管理/监督干系人参与</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 5 理论背诵 ============ -->
+<section id="theo">
+  <h2 class="sec"><span class="no">⑤</span>理论背诵专项</h2>
+  <p class="lead">理论题 = "背书就能得分"，靠下面这些高频块拿分。级别：<span class="pill hi">必背</span> <span class="pill mid">熟练</span> <span class="pill lo">理解</span></p>
+
+  <div class="grid g2">
+    <div class="card topic tk-theo">
+      <h3><span class="tag">高频</span>流程类（最爱考简答）</h3>
+      <div class="kblock"><span class="klab k1">必背内容</span>
+        <div class="ktxt"><ul>
+          <li><b>变更控制流程</b>：提出申请 → 分析评估 → CCB 审批 → 实施变更 → 验证 → 更新文档/基线。</li>
+          <li><b>配置管理</b>：配置项识别 → 配置控制（基线）→ 配置状态记录 → 配置审计。</li>
+          <li><b>风险应对策略</b> —— 威胁：规避 / 转移 / 减轻 / 接受（上报）；机会：开拓 / 分享 / 提高 / 接受。</li>
+          <li><b>冲突解决方法</b>：合作（问题解决）/ 妥协 / 缓和 / 撤退 / 强迫。</li>
+          <li><b>团队发展阶段</b>：形成 → 震荡 → 规范 → 成熟 → 解散。</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="card topic tk-theo">
+      <h3><span class="tag">高频</span>定义与概念类</h3>
+      <div class="kblock"><span class="klab k1">必背内容</span>
+        <div class="ktxt"><ul>
+          <li><b>项目</b>：为创造独特产品/服务/成果而进行的临时性工作。</li>
+          <li><b>项目 vs 项目集 vs 组合</b>：组合"做正确的事"、项目集"正确地做事"。</li>
+          <li><b>事业环境因素 vs 组织过程资产</b>：前者环境/约束、后者可复用资产。</li>
+          <li><b>WBS</b>：面向可交付成果的层级分解，最底层为工作包。</li>
+          <li><b>质量七工具</b>：因果图 / 流程图 / 核查表 / 帕累托图 / 直方图 / 控制图 / 散点图。</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="card topic tk-theo">
+      <h3><span class="tag">熟练</span>工具与技术类</h3>
+      <div class="kblock"><span class="klab k1">必背内容</span>
+        <div class="ktxt"><ul>
+          <li><b>估算方法</b>：类比（粗快）、参数（模型）、自下而上（准但慢）、三点（最可能）。</li>
+          <li><b>数据表现</b>：矩阵图（规划/管理质量）、散点图（管理/控制质量）、控制图（控制质量）。</li>
+          <li><b>审计</b>出现在：管理质量、监督风险、控制采购。</li>
+          <li><b>干系人分析</b>：权力-利益方格 → 重点管理 / 令其满意 / 随时告知 / 监督。</li>
+          <li><b>组织结构项目经理权力</b>由弱到强：职能 &lt; 弱矩阵 &lt; 均衡 &lt; 强矩阵 &lt; 项目导向。</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="card topic tk-theo">
+      <h3><span class="tag">熟练</span>易混对比类</h3>
+      <div class="kblock"><span class="klab k1">必背内容</span>
+        <div class="ktxt"><ul>
+          <li><b>确认范围 vs 控制质量</b>：前者对外验收可交付成果，后者对内核实质量。</li>
+          <li><b>管理质量 vs 控制质量</b>：前者做保证、后者做检测。</li>
+          <li><b>应急储备 vs 管理储备</b>：前者应对已知风险、属成本基准；后者应对未知风险、不属基准。</li>
+          <li><b>PMO 三型</b>：支持型（低）→ 控制型（中）→ 指令型（高）。</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 单选板块 ============ -->
+<section id="mcq">
+  <h2 class="sec"><span class="no">⑥</span>单选板块专项（基础知识）</h2>
+  <p class="lead">单选占另一半江山。四个非项目管理模块是"投入少、得分稳"的性价比区，务必拿住。</p>
+
+  <div class="grid g2">
+    <div class="card topic tk-mcq">
+      <h3><span class="tag">背诵型</span>信息化与信息技术</h3>
+      <div class="kblock"><span class="klab k1">知识点</span>
+        <div class="ktxt"><ul>
+          <li>新一代信息技术：<b>大数据、云计算、物联网、人工智能、区块链、5G、工业互联网</b>的基本特征与典型应用。</li>
+          <li>信息系统生命周期：立项 → 开发 → 运维 → 消亡。</li>
+          <li>信息安全：保密性 / 完整性 / 可用性（CIA），分级保护。</li>
+          <li>信息技术服务、数字产业化与产业数字化等新概念（逐年更新）。</li>
+        </ul></div>
+      </div>
+      <div class="kblock"><span class="klab k4">注意点</span>
+        <div class="ktxt">💡 纯记忆题，"名词 + 定义 + 特征"三联记忆；新概念每年变，用最新教材口径。</div>
+      </div>
+    </div>
+    <div class="card topic tk-mcq">
+      <h3><span class="tag">背诵型</span>法律法规与标准规范</h3>
+      <div class="kblock"><span class="klab k1">知识点</span>
+        <div class="ktxt"><ul>
+          <li><b>招标投标法</b>：招标 → 投标 → 开标 → 评标 → 中标 → 签合同；各类时限与人数数字。</li>
+          <li><b>政府采购法</b>：采购方式（公开招标为主）、质疑与投诉时限。</li>
+          <li><b>著作权法 / 计算机软件保护条例</b>：软件著作权保护期、权利归属。</li>
+          <li><b>合同法</b>：要约与承诺、违约责任。</li>
+          <li>标准规范：软件工程标准、信息系统集成相关国标。</li>
+        </ul></div>
+      </div>
+      <div class="kblock"><span class="klab k4">注意点</span>
+        <div class="ktxt">💡 最爱考<b>数字</b>（天数、比例、人数、年限），做成卡片反复过。
+💡 招投标与采购流程的"先后顺序"也是高频。</div>
+      </div>
+    </div>
+    <div class="card topic tk-mcq">
+      <h3><span class="tag">背诵型</span>系统集成与服务管理</h3>
+      <div class="kblock"><span class="klab k1">知识点</span>
+        <div class="ktxt"><ul>
+          <li>信息系统运维服务（运维内容、服务级别 SLA）。</li>
+          <li>ITSS / 信息技术服务标准体系。</li>
+          <li>信息系统工程监理：旁站 / 巡视 / 平行检验 / 见证取样。</li>
+          <li>系统集成企业资质、项目经理资格等管理规定。</li>
+        </ul></div>
+      </div>
+      <div class="kblock"><span class="klab k4">注意点</span>
+        <div class="ktxt">💡 偏记忆，抓"定义 + 分类 + 职责"，与项目管理模块区分开。</div>
+      </div>
+    </div>
+    <div class="card topic tk-mcq">
+      <h3><span class="tag">送分型</span>专业英语</h3>
+      <div class="kblock"><span class="klab k1">知识点</span>
+        <div class="ktxt"><ul>
+          <li>固定 5 题，考项目管理术语的英文含义（多为选词/理解）。</li>
+          <li>高频词：charter（章程）、deliverable（可交付成果）、milestone（里程碑）、scope（范围）、stakeholder（干系人）、baseline（基线）、risk（风险）、WBS、EVM、CPM。</li>
+        </ul></div>
+      </div>
+      <div class="kblock"><span class="klab k4">注意点</span>
+        <div class="ktxt">💡 每天 10 分钟滚动背 30 个核心术语，稳拿 5 分。
+💡 英文题常是"领域概念英译"，把 ITTO 里的术语对照英文学一遍即可。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 公式速查 ============ -->
+<section id="formula">
+  <h2 class="sec"><span class="no">⑦</span>公式速查卡（打印贴墙）</h2>
+  <p class="lead">考前默写这三块：挣值、网络图、估算与概率。能默写 = 计算题不会失分。</p>
+  <div class="card topic tk-form">
+    <h3><span class="tag">默写重点</span>全部核心公式</h3>
+    <div class="kblock"><span class="klab k2">挣值 EVM</span>
+      <div class="fbox">CV = EV − AC        SV = EV − PV
+CPI = EV / AC       SPI = EV / PV
+ETC(典型) = (BAC−EV)/CPI   ETC(非典型) = BAC−EV
+EAC = AC + ETC      EAC(典型) = BAC/CPI
+EAC(非典型) = AC + (BAC−EV)
+VAC = BAC − EAC     TCPI = (BAC−EV)/(BAC−AC)</div>
+    </div>
+    <div class="kblock"><span class="klab k2">网络图 CPM</span>
+      <div class="fbox">EF = ES + 工期        LS = LF − 工期
+TF = LS − ES = LF − EF
+FF = min(紧后 ES) − 本活动 EF
+总工期 = 关键路径长度（最长路径）</div>
+    </div>
+    <div class="kblock"><span class="klab k2">估算 · 概率 · 其他</span>
+      <div class="fbox">β(PERT)：Te = (O + 4M + P)/6    σ = (P − O)/6
+三角分布：Te = (O + M + P)/3
+概率：±1σ=68.26%  ±2σ=95.46%  ±3σ=99.73%
+EMV = Σ(概率 × 结果值)
+成本基准 = 估算 + 应急储备；总预算 = 成本基准 + 管理储备
+沟通渠道 = n(n − 1)/2
+赶工成本斜率 = (赶工成本−正常成本)/(正常工期−赶工工期)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 子计划 ============ -->
+<section id="subplan">
+  <h2 class="sec"><span class="no">⑧</span>刷题打卡子计划</h2>
+  <p class="lead">与主计划并行：主计划学知识，本子计划练"按题型得分"。勾选进度保存在本机。</p>
+  <div class="grid g2" id="subCards"></div>
+  <div class="card" style="margin-top:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <h3 style="font-size:14px">子计划打卡进度</h3>
+      <button id="resetBtn" style="font-size:12px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 12px;cursor:pointer;color:var(--sub)">重置进度</button>
+    </div>
+    <div class="progressbar"><i id="totalBar"></i></div>
+    <div id="totalTxt" style="font-size:12px;color:var(--sub);margin-top:5px"></div>
+  </div>
+</section>
+
+<footer>归类依据：考试稳定题型结构 + 公开考纲权重 · 逐题原文请以官方/正规出版物为准 · 祝顺利通过 💪</footer>
+</div>
+
+<script>
+/* ===== 刷题子计划 ===== */
+const SUB=[
+ {w:"阶段 1",title:"吃透计算题",color:"#2563eb",
+  goal:"先把案例里分值最高、最稳定的计算题锁死：三个核心公式块能默写、能套用。",
+  tasks:["默写挣值 12 个公式并能判断典型/非典型","练 5 道关键路径真题（正推+逆推+浮动）","练 3 道三点估算/概率题，记住 68/95/99.7","练 2 道进度压缩成本斜率题"],
+  mile:"里程碑：计算题真题限时训练零失分"},
+ {w:"阶段 2",title:"背熟找错模板",color:"#e11d48",
+  goal:"把八类通用找茬模板 + 十大领域踩分点背到条件反射，案例拿起笔就能分点写。",
+  tasks:["背八类通用找茬模板（无计划/未走流程/范围蔓延…）","按十大领域各整理 3 条踩分点","做 3 道找错题，用模板逐句找茬并对照答案","总结自己最常漏写的 3 类错误"],
+  mile:"里程碑：找错题自评得分率 ≥70%"},
+ {w:"阶段 3",title:"理论+单选巩固",color:"#7c3aed",
+  goal:"理论题与单选是稳定得分源，靠背诵清单和术语卡拿分。",
+  tasks:["背流程类 5 大块（变更/配置/风险/冲突/团队阶段）","背易混对比（确认范围vs控制质量 等）","信息化+法规数字卡片过 2 遍","英语核心术语 30 个滚动背"],
+  mile:"里程碑：单选模拟稳定 ≥45 分"},
+ {w:"阶段 4",title:"整套真题闭环",color:"#37415c",
+  goal:"按 2016–2025 逐套实做，用追踪表记录主题与薄弱点，形成错题闭环。",
+  tasks:["每周 2 套完整案例真题（计时 150 分钟）","每套填一次第②节真题追踪表","错题归因：知识型回教材 / 粗心型做警示","考前二刷全部标记错题"],
+  mile:"里程碑：案例真题稳定 ≥50 分"}
+];
+const areaColors={"阶段 1":"#2563eb","阶段 2":"#e11d48","阶段 3":"#7c3aed","阶段 4":"#37415c"};
+const pc=document.getElementById('subCards');
+pc.innerHTML=SUB.map((p,i)=>`
+ <div class="card phase" style="border-left-color:${areaColors[p.w]}">
+  <h3><span class="tag" style="background:${areaColors[p.w]}1a;color:${areaColors[p.w]}">${p.w}</span>${p.title}</h3>
+  <div class="goal">${p.goal}</div>
+  <ul class="tasks">${p.tasks.map((t,j)=>`<li data-k="s${i}-${j}"><input type="checkbox"><span>${t}</span></li>`).join('')}</ul>
+  <div class="mile">🏁 ${p.mile}</div>
+ </div>`).join('');
+
+/* ===== 打卡状态 ===== */
+const KEY='ruankao_subplan_v1';
+let st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function refresh(){
+ let done=0,total=0;
+ document.querySelectorAll('ul.tasks li[data-k]').forEach(li=>{
+   const k=li.dataset.k;const c=li.querySelector('input');c.checked=!!st[k];
+   li.classList.toggle('done',!!st[k]);total++;if(st[k])done++;
+ });
+ const bar=document.getElementById('totalBar'),txt=document.getElementById('totalTxt');
+ const pct=total?Math.round(done/total*100):0;
+ bar.style.width=pct+'%';txt.textContent=`已完成 ${done} / ${total} 项任务（${pct}%）`;
+}
+document.querySelectorAll('ul.tasks li[data-k] input').forEach(c=>{
+ c.addEventListener('change',()=>{
+   const k=c.closest('li').dataset.k;
+   st[k]=c.checked;
+   localStorage.setItem(KEY,JSON.stringify(st));
+   refresh();
+ });
+});
+document.getElementById('resetBtn').addEventListener('click',()=>{st={};localStorage.removeItem(KEY);refresh();});
+refresh();
+
+/* ===== 导航高亮 ===== */
+const secs=[...document.querySelectorAll('section')];
+const links=[...document.querySelectorAll('nav.toc a')];
+window.addEventListener('scroll',()=>{
+ let cur=secs[0];secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s});
+ links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+cur.id));
+},{passive:true});
+</script>
+</body>
+</html>
