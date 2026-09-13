@@ -144,6 +144,55 @@ SPI  = EV / PV          <b>（&lt;1 落后，&gt;1 超前）</b>
       <tr><td>非典型</td><td>采取纠正措施后 / 剩余工作按原预算效率 / 偏差不再延续</td><td>ETC = BAC − EV<br>EAC = AC + (BAC − EV)</td></tr>
     </table>
   </div>
+  <div class="card">
+    <div class="qbox" id="eacnon" style="border-left-color:#7c3aed">
+      <div class="q"><b>🧠 举例理解 · 非典型 EAC 为什么是 AC + (BAC − EV)</b></div>
+      <span class="toggle" onclick="document.getElementById('eacnon').classList.toggle('open');this.textContent=this.textContent==='展开讲解'?'收起讲解':'展开讲解'">展开讲解</span>
+      <div class="a">
+        <b>【基础数据】</b> 总预算 BAC = 100 万；已完成 30% → EV = 30 万；实际花了 AC = 40 万（已超支 10 万）。<br>
+        CPI = EV / AC = 30 / 40 = 0.75；剩余工作量的预算值 = BAC − EV = 70 万。<br><br>
+        <b>【铁律】</b> EAC = AC + ETC 永远成立，两种算法的区别只在 ETC 怎么算。<br><br>
+        <b>① 典型（默认 · 按当前绩效继续）</b><br>
+        剩下 70 万的活，还按 0.75 的低效做 → 实际要花更多：<br>
+        ETC = (BAC − EV) / CPI = 70 / 0.75 ≈ 93.3 万<br>
+        EAC = AC + ETC = 40 + 93.3 = <b style="color:#c2410c">133.3 万</b>（继续亏）<br><br>
+        <b>② 非典型（剩余按预算效率 · 已止血）</b><br>
+        剩下 70 万的活，恢复到 1:1 正常预算 → 花了多少算多少：<br>
+        ETC = BAC − EV = 70 万（直接用预算值，不再除 CPI）<br>
+        EAC = AC + (BAC − EV) = 40 + 70 = <b style="color:#0f766e">110 万</b>（亏损封顶在 10 万）<br><br>
+        <b>【三句话记住】</b><br>
+        · 70 万是"剩下活儿值多少钱（预算口径）"，不是"还剩多少钱能花"。<br>
+        · 非典型下 EAC ≠ BAC：已超支的钱收不回来，只能止损、不再扩大。<br>
+        · 判断：题干说"剩余工作按原预算效率 / 已采取纠正措施"→ 非典型；没特别说明 → 默认典型。
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="qbox" id="tcpi" style="border-left-color:#7c3aed">
+      <div class="q"><b>🧠 举例理解 · TCPI = (BAC − EV) / (BAC − AC) 到底在算什么</b></div>
+      <span class="toggle" onclick="document.getElementById('tcpi').classList.toggle('open');this.textContent=this.textContent==='展开讲解'?'收起讲解':'展开讲解'">展开讲解</span>
+      <div class="a">
+        <b>【一句话】</b> 从现在到完工，剩下的活必须"多高效"，才能把项目按预算干完。<br><br>
+        <b>【把公式掰开】</b><br>
+        TCPI = (BAC − EV) / (BAC − AC)<br>
+        分子 BAC − EV = <b>剩下活儿值多少钱（预算口径）</b><br>
+        分母 BAC − AC = <b>口袋里还剩多少钱可以花</b><br>
+        本质：用剩下的钱干完剩下的活，每一块钱要换出多少产出。<br><br>
+        <b>【接着 BAC=100 / EV=30 / AC=40 这组算】</b><br>
+        TCPI = (100 − 30) / (100 − 40) = 70 / 60 ≈ <b style="color:#c2410c">1.17</b><br>
+        读法：剩 70 万的活、只剩 60 万可花 → 必须每 1 元做出 1.17 元产出，难度偏高。<br><br>
+        <b>【三种情形一眼判断】</b><br>
+        · TCPI &gt; 1（如 1.17）→ 已超支、预算紧，必须更高效，<b>难达成</b>。<br>
+        · TCPI = 1 → 保持节奏即可按预算完工，<b>正常</b>。<br>
+        · TCPI &lt; 1（如 0.60）→ 之前节约、预算宽，<b>轻松</b>。<br><br>
+        <b>【与 CPI 的关系（过去 vs 未来）】</b><br>
+        CPI = EV / AC → 衡量"已完成部分"的成本效率（已经发生）<br>
+        TCPI = (BAC − EV) / (BAC − AC) → 衡量"剩余部分必须达到"的成本效率（尚未发生）<br>
+        之前 CPI &lt; 1（超支），TCPI 通常 &gt; 1（后面要补回来）。<br><br>
+        <b>【速判】</b> 题目问"剩余工作要达到怎样的成本绩效才能按预算完成"→ 直接套公式，一眼看 &gt;1 / =1 / &lt;1。
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="rules">
