@@ -48,6 +48,11 @@ table.kt td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:
 table.kt tr:last-child td{border-bottom:none}
 table.kt td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
 footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
+/* ---- 返回顶部悬浮按钮 ---- */
+#toTop{position:fixed;right:22px;bottom:26px;width:44px;height:44px;border:none;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(37,99,235,.38);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s;z-index:999}
+#toTop.show{opacity:1;visibility:visible;transform:translateY(0)}
+#toTop:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(37,99,235,.5)}
+@media(max-width:600px){#toTop{right:14px;bottom:18px;width:40px;height:40px;font-size:17px}}
 </style>
 </head>
 <body>
@@ -80,6 +85,54 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
       <tr><td>FF</td><td>Finish-to-Finish</td><td>完成-完成（两者同时完成）</td></tr>
       <tr><td>SF</td><td>Start-to-Finish</td><td>开始-完成（极少用）</td></tr>
     </table>
+  </div>
+  <div class="card">
+    <div class="qbox" id="ffdep" style="border-left-color:#7c3aed">
+      <div class="q"><b>🧠 举例理解 · FF 到底指什么？两个任务必须同时完成吗</b></div>
+      <span class="toggle" onclick="document.getElementById('ffdep').classList.toggle('open');this.textContent=this.textContent==='展开讲解'?'收起讲解':'展开讲解'">展开讲解</span>
+      <div class="a">
+        <b>【先分清】</b>本页 FF 出现两次，含义完全不同：<br>
+        · 4 种依赖关系里的 FF = <b>Finish-to-Finish（完成-完成）</b>，描述依赖类型；<br>
+        · 6 个时间参数里的 FF = <b>Free Float（自由浮动时间）</b> = min(紧后 ES) − 本活动 EF。<br>
+        这里讲的是第一种。<br><br>
+        <b>【Finish-to-Finish 的含义】</b>紧后活动的"完成"挂钩紧前活动的"完成" → 紧后<b>不能早于</b>紧前完成。<br>
+        公式（无 lag）：B 的 EF ≥ A 的 EF。<br><br>
+        <b>【和 FS 对比：一个卡起点、一个卡终点】</b><br>
+        · FS 完成-开始：B 的 ES ≥ A 的 EF（钩"开始"）<br>
+        · FF 完成-完成：B 的 EF ≥ A 的 EF（钩"完成"）<br><br>
+        <b>【回答"必须同时完成吗"】</b>不是。完成时间只是"挂钩 / 对齐"，分三种情况：<br>
+        ① 紧后较短 → 被拖到与紧前同一天收尾，看起来"同时完成"（A=5、B=3 → B 的 EF=5）。<br>
+        ② 紧后更长 → 反而更晚完成，并非同时（A=3、B=5 → B 的 EF=5）。<br>
+        ③ 带 lag → B 的 EF ≥ A 的 EF + lag（如"紧前完成后 2 天内紧后也必须完成"）。<br><br>
+        <b>【直观例子】</b>A = 铺电线 5 天，B = 装灯具 2 天，关系 FF → "灯必须在电线铺完后才能装完"，B 被压到 A 完工那天收尾。<br><br>
+        <b>【口诀】</b>FS 卡住"起点"，FF 卡住"终点"；FF ≠ 同时完成，只表示"不能比紧前先完事"。
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="qbox" id="sfdep" style="border-left-color:#7c3aed">
+      <div class="q"><b>🧠 举例理解 · SF（开始-完成）是什么？为什么极少用</b></div>
+      <span class="toggle" onclick="document.getElementById('sfdep').classList.toggle('open');this.textContent=this.textContent==='展开讲解'?'收起讲解':'展开讲解'">展开讲解</span>
+      <div class="a">
+        <b>【命名规律】</b>关系名的两个字母 = <b>紧前的节点 → 紧后的节点</b>：<br>
+        · FS：紧前<b>完成</b> → 紧后<b>开始</b>（B 的 ES ≥ A 的 EF）<br>
+        · SS：紧前<b>开始</b> → 紧后<b>开始</b>（B 的 ES ≥ A 的 ES）<br>
+        · FF：紧前<b>完成</b> → 紧后<b>完成</b>（B 的 EF ≥ A 的 EF）<br>
+        · SF：紧前<b>开始</b> → 紧后<b>完成</b>（B 的 EF ≥ A 的 ES）<br><br>
+        <b>【SF 一句话】</b>紧后活动的"完成"要等到紧前活动"开始"之后 —— 紧前不启动，紧后就完不成。<br><br>
+        <b>【为什么反直觉 / 极少用】</b>正常逻辑都是"做完才能开始"（FS）。SF 是"你一开始，我才能结束"，现实中很少有"依赖别人的开始才能收尾"的事，所以四种里最冷门。<br><br>
+        <b>【经典场景 · 新旧系统切换】</b><br>
+        A = 新系统上线运行（紧前）；B = 旧系统停用下线（紧后，SF 关系）。<br>
+        含义：旧系统不能早于新系统上线就停用 → 必须等新系统一开始跑，旧系统才能下线。<br>
+        公式：B（旧系统停用）的 EF ≥ A（新系统上线）的 ES。<br>
+        目的是保证业务<b>不断档</b>：新系统没起来前，旧系统绝不能停。<br><br>
+        <b>【和另外三种的区别 · 记 3 句】</b><br>
+        · SF 是唯一"挂钩紧前的开始 + 紧后的完成"的组合，其余三种都不会同时出现"前开始 + 后完成"。<br>
+        · 它是"防中断"型约束：替代方案就位前，旧的东西不能停。<br>
+        · 软考里基本只考"认概念"——问"哪种依赖最少用"答案就是 <b>SF</b>。<br><br>
+        <b>【口诀】</b>SF = "你开始，我才结束"；反直觉 + 极少用，两个标签记住就够。
+      </div>
+    </div>
   </div>
   <div class="card">
     <h3 style="font-size:14.5px;margin-bottom:8px">6 个时间参数</h3>
@@ -193,5 +246,9 @@ FF+lag：紧后 EF = 紧前 EF + lag</div>
 
 </div>
 <footer>关键路径 CPM 专题 · 系统集成项目管理工程师 · 软考中级</footer>
+<button id="toTop" title="返回顶部" aria-label="返回顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){var b=document.getElementById('toTop');function u(){b.classList.toggle('show',window.scrollY>300);}window.addEventListener('scroll',u,{passive:true});u();})();
+</script>
 </body>
 </html>
