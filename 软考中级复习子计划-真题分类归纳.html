@@ -105,6 +105,33 @@ footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
 #toTop.show{opacity:1;visibility:visible;transform:translateY(0)}
 #toTop:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(37,99,235,.5)}
 @media(max-width:600px){#toTop{right:14px;bottom:18px;width:40px;height:40px;font-size:17px}}
+
+/* ---- 真题索引 ---- */
+.zt-note{font-size:12.5px;color:var(--sub);background:#f7f8fc;border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:16px;line-height:2}
+.zt-note b{color:var(--ink)}
+.zt-note code{background:#e8ebf5}
+.zt-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;position:sticky;top:41px;background:var(--bg);padding:8px 0;z-index:20}
+.zt-bar input{flex:1;min-width:220px;font-size:13.5px;padding:9px 13px;border:1px solid var(--line);border-radius:10px;outline:none;background:#fff;font-family:inherit}
+.zt-bar input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,95,224,.12)}
+.zt-bar .zt-stat{font-size:12.5px;color:var(--accent);font-weight:700;white-space:nowrap}
+details.zt-ch{border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:9px;overflow:hidden}
+details.zt-ch>summary{cursor:pointer;padding:11px 15px;font-size:14px;list-style:none;display:flex;align-items:center;gap:9px;flex-wrap:wrap;background:#fbfcfe;user-select:none}
+details.zt-ch>summary::-webkit-details-marker{display:none}
+details.zt-ch>summary::before{content:"▸";color:var(--accent);font-size:12px;transition:transform .15s;display:inline-block}
+details.zt-ch[open]>summary::before{transform:rotate(90deg)}
+details.zt-ch>summary:hover{background:var(--accent-soft)}
+details.zt-ch .zt-n{font-size:11.5px;background:var(--accent-soft);color:var(--accent);border-radius:20px;padding:1px 10px;font-weight:700}
+details.zt-ch .zt-hit{font-size:11.5px;color:var(--c-find);font-weight:600}
+.zbar-wrap{position:relative;background:#eceef6;border-radius:4px;height:14px;min-width:70px;overflow:hidden}
+.zbar-wrap i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+table.zt{width:100%;border-collapse:collapse;font-size:12.5px}
+table.zt thead th{position:sticky;top:0;background:#37415c;color:#fff;padding:8px 11px;text-align:left;font-size:12px;z-index:2}
+table.zt td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}
+table.zt tbody tr:last-child td{border-bottom:none}
+table.zt td:nth-child(1){white-space:nowrap;color:var(--sub)}
+table.zt td:nth-child(2){white-space:nowrap;font-weight:700;color:var(--accent)}
+table.zt tbody tr:hover td{background:#f8f9fd}
+.zt-scroll{max-height:68vh;overflow:auto;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -122,6 +149,7 @@ footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
       <a href="#mcq">⑥ 单选板块专项</a>
       <a href="#formula">⑦ 公式速查卡</a>
       <a href="#subplan">⑧ 刷题打卡子计划</a>
+      <a href="#zhenti">⑨ 真题索引（逐题）</a>
     </div></nav>
   </div>
 </header>
@@ -143,6 +171,10 @@ footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
       <a class="jump-link primary" href="软考中级复习计划.html#overview">
         <b>🏠 返回主计划 · 考情概览</b>
         <small>复习计划 · 知识矩阵 · 高频考点</small>
+      </a>
+      <a class="jump-link" href="#zhenti" style="border-color:var(--accent);background:var(--accent-soft)">
+        <b>📑 真题索引 · 逐题定位</b>
+        <small>15 考次 · 650 单选 + 57 案例</small>
       </a>
       <a class="jump-link" href="考点专题/01-EVM挣值分析.html">
         <b>① EVM 挣值分析</b>
@@ -671,6 +703,971 @@ EMV = Σ(概率 × 结果值)
   </div>
 </section>
 
+
+<!-- ============ 9 真题索引 ============ -->
+<section id="zhenti">
+  <h2 class="sec"><span class="no">⑨</span>真题索引（按笔记章节 · 逐题定位）</h2>
+  <p class="lead">把 15 个考次的 <b>650 道单选 + 57 道案例</b>，按你笔记的章节重新归位。想练哪一章，就在这里筛出来，再拿「考次 + 题号」回原卷做。</p>
+
+  <div class="zt-note">
+    <b>范围</b>：只收录你笔记覆盖的章节 —— 第 9 章「项目管理概论」（含 9.5 项目立项管理）＋ 第 11–20 章「十大知识领域」。<br>
+    <b>数据来源</b>：《2016年11月–2023年5月中项真题解析》，共 15 个考次、1110 道选择题。<br>
+    <b>题量</b>：本索引纳入 <b>650 道选择题 + 57 道案例试题</b>；未纳入的 0–8 章（信息化 / 信息技术 / 软硬件 / 信息安全等）及监理法规约 460 题。<br>
+    <b>用法</b>：先看「二、章节考频」定优先级 → 在「三、分章节索引」用搜索框筛关键词 → 拿「考次 + 题号」回 <code>真题/01</code>、<code>真题/02</code> 原卷。<br>
+    <b>说明</b>：分类由「考点关键词＋题干」自动判定，个别跨领域题可能偏差，定位后建议回看原卷对照。
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="font-size:14.5px;margin-bottom:8px">一、考次与题量总览</h3>
+    <div style="overflow-x:auto">
+<table class="kt">
+<tr><th style="width:64px">序号</th><th>考次</th><th style="width:110px">选择题题量</th><th style="width:110px">案例试题数</th></tr>
+<tr><td>1</td><td>2023.05 全国卷</td><td>73</td><td>4</td></tr>
+<tr><td>2</td><td>2022.11 全国卷</td><td>75</td><td>4</td></tr>
+<tr><td>3</td><td>2022.11 广东卷</td><td>75</td><td>4</td></tr>
+<tr><td>4</td><td>2022.05 全国卷</td><td>75</td><td>4</td></tr>
+<tr><td>5</td><td>2022.05 广东卷</td><td>73</td><td>4</td></tr>
+<tr><td>6</td><td>2021.11</td><td>74</td><td>4</td></tr>
+<tr><td>7</td><td>2021.05</td><td>73</td><td>3</td></tr>
+<tr><td>8</td><td>2020.11</td><td>74</td><td>2</td></tr>
+<tr><td>9</td><td>2019.11</td><td>75</td><td>4</td></tr>
+<tr><td>10</td><td>2019.05</td><td>74</td><td>4</td></tr>
+<tr><td>11</td><td>2018.11</td><td>75</td><td>4</td></tr>
+<tr><td>12</td><td>2018.05</td><td>75</td><td>4</td></tr>
+<tr><td>13</td><td>2017.11</td><td>75</td><td>4</td></tr>
+<tr><td>14</td><td>2017.05</td><td>72</td><td>4</td></tr>
+<tr><td>15</td><td>2016.11</td><td>72</td><td>4</td></tr>
+</table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:14.5px;margin-bottom:8px">二、章节考频与复习优先级</h3>
+<table class="kt">
+<tr><th>排名</th><th>笔记章节</th><th>单选题目数</th><th>占比</th></tr>
+<tr><td style='text-align:center;color:#e11d48;font-weight:800'>1</td><td style='font-weight:600;color:var(--ink)'>11 项目整合管理</td><td style='text-align:center'>105</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>16.2%</span><span class='zbar-wrap' style='flex:1'><i style='width:100%;background:linear-gradient(90deg,#e11d48,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#d97706;font-weight:800'>2</td><td style='font-weight:600;color:var(--ink)'>19 项目采购管理</td><td style='text-align:center'>73</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>11.2%</span><span class='zbar-wrap' style='flex:1'><i style='width:70%;background:linear-gradient(90deg,#d97706,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#7c3aed;font-weight:800'>3</td><td style='font-weight:600;color:var(--ink)'>9 项目管理概论</td><td style='text-align:center'>71</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>10.9%</span><span class='zbar-wrap' style='flex:1'><i style='width:68%;background:linear-gradient(90deg,#7c3aed,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#64748b;font-weight:800'>4</td><td style='font-weight:600;color:var(--ink)'>12 项目范围管理</td><td style='text-align:center'>56</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>8.6%</span><span class='zbar-wrap' style='flex:1'><i style='width:53%;background:linear-gradient(90deg,#64748b,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#64748b;font-weight:800'>5</td><td style='font-weight:600;color:var(--ink)'>13 项目进度管理</td><td style='text-align:center'>56</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>8.6%</span><span class='zbar-wrap' style='flex:1'><i style='width:53%;background:linear-gradient(90deg,#64748b,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#64748b;font-weight:800'>6</td><td style='font-weight:600;color:var(--ink)'>15 项目质量管理</td><td style='text-align:center'>56</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>8.6%</span><span class='zbar-wrap' style='flex:1'><i style='width:53%;background:linear-gradient(90deg,#64748b,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#64748b;font-weight:800'>7</td><td style='font-weight:600;color:var(--ink)'>18 项目风险管理</td><td style='text-align:center'>53</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>8.2%</span><span class='zbar-wrap' style='flex:1'><i style='width:50%;background:linear-gradient(90deg,#64748b,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#64748b;font-weight:800'>8</td><td style='font-weight:600;color:var(--ink)'>14 项目成本管理</td><td style='text-align:center'>52</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>8.0%</span><span class='zbar-wrap' style='flex:1'><i style='width:50%;background:linear-gradient(90deg,#64748b,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#64748b;font-weight:800'>9</td><td style='font-weight:600;color:var(--ink)'>16 项目资源管理</td><td style='text-align:center'>51</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>7.8%</span><span class='zbar-wrap' style='flex:1'><i style='width:49%;background:linear-gradient(90deg,#64748b,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#64748b;font-weight:800'>10</td><td style='font-weight:600;color:var(--ink)'>9.5 项目立项管理</td><td style='text-align:center'>45</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>6.9%</span><span class='zbar-wrap' style='flex:1'><i style='width:43%;background:linear-gradient(90deg,#64748b,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#64748b;font-weight:800'>11</td><td style='font-weight:600;color:var(--ink)'>20 项目干系人管理</td><td style='text-align:center'>18</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>2.8%</span><span class='zbar-wrap' style='flex:1'><i style='width:17%;background:linear-gradient(90deg,#64748b,#7c3aed)'></i></span></div></td></tr>
+<tr><td style='text-align:center;color:#64748b;font-weight:800'>12</td><td style='font-weight:600;color:var(--ink)'>17 项目沟通管理</td><td style='text-align:center'>14</td><td><div style='display:flex;align-items:center;gap:8px'><span style='font-weight:700;color:var(--accent);min-width:46px'>2.2%</span><span class='zbar-wrap' style='flex:1'><i style='width:13%;background:linear-gradient(90deg,#64748b,#7c3aed)'></i></span></div></td></tr>
+<tr><td></td><td style='font-weight:800'>合计</td><td style='text-align:center;font-weight:800'>650</td><td style='font-weight:800'>100%</td></tr>
+</table>
+    <p style="font-size:12.5px;color:var(--sub);margin-top:10px">💡 前 3 名（整合 105 / 采购 73 / 概论 71）合计占 38%，是案例与单选的绝对主战场，优先啃；沟通 14、干系人 18 题量小，性价比低，放在最后扫一遍即可。</p>
+  </div>
+
+  <h3 style="font-size:15px;margin:26px 0 10px">三、分章节真题索引（选择题 650 道）</h3>
+  <div class="zt-bar">
+    <input id="ztSearch" type="search" placeholder="🔍 搜索考点 / 题干关键词，如「挣值」「变更」「WBS」「马斯洛」「关键路径」…">
+    <span class="zt-stat" id="ztStat"></span>
+  </div>
+<details class='zt-ch' open>
+<summary><b style='color:var(--accent)'>9</b>&nbsp;项目管理概论<span class='zt-n'>71 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>24</td><td>—</td><td>关于项目目标的描述，不正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>25</td><td>—</td><td>关于项目管理系统的描述，正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>26</td><td>—</td><td>一个公司正在进行的项目组织结构具有如下特点： ①项目经理负责制、有明确的项目目标</td></tr>
+<tr><td>2023.05 全国卷</td><td>27</td><td>—</td><td>关于项目生命周期过程中，典型费用和人员投入水平的描述，不正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>28</td><td>—</td><td>关于项目管理过程组相互作用的描述，不正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>40</td><td>—</td><td>项目经理小赵正在负责一个营销平台项目。在一次项目例会上，测试人员提到最新测试版本</td></tr>
+<tr><td>2022.11 全国卷</td><td>10</td><td>信息系统生命周期</td><td>系统验收属于信息系统生命周期的O阶段的工作内容。</td></tr>
+<tr><td>2022.11 全国卷</td><td>24</td><td>项目成果性目标</td><td>()属于项目成果性目标。</td></tr>
+<tr><td>2022.11 全国卷</td><td>25</td><td>项目管理基本知识</td><td>关于项目管理的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>27</td><td>项目组织结构</td><td>A公司的组织结构如图所示，该组织的类型是（）。 总裁 ） /（职能部门经理）/（</td></tr>
+<tr><td>2022.11 全国卷</td><td>37</td><td>行政收尾</td><td>（）是由项目发起人或高层管理者给项目经理签发项目阶段结束或项目整体结束的书面确认</td></tr>
+<tr><td>2022.11 广东卷</td><td>10</td><td>信息系统生命周期</td><td>关于信息系统阶段的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>25</td><td>项目生命周期</td><td>在大多数项目生命周期的初始阶段，（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>26</td><td>项目组织结构</td><td>某信息系统集成项目技术要求高，而且工期非常紧，需要给予项目经理较大权限统筹安排工</td></tr>
+<tr><td>2022.05 全国卷</td><td>24</td><td>项目的特点</td><td>项目O,指每一个项目都有一个明确的开始时间和结束时间。</td></tr>
+<tr><td>2022.05 全国卷</td><td>26</td><td>项目管理过程组</td><td>在开启()的活动之前，要制定组织的业务要求文件，确定新项目的可行性并描述项目的目</td></tr>
+<tr><td>2022.05 全国卷</td><td>34</td><td>项目章程</td><td>项目章程用来体现()对项目的原则性要求，是项目经理寻求()支持的依据。</td></tr>
+<tr><td>2022.05 全国卷</td><td>37</td><td>项目收尾</td><td>（）是项目发起人或高级管理层给项目经理签发项目阶段结束或整体结束的书面确认。</td></tr>
+<tr><td>2022.05 广东卷</td><td>24</td><td>项目目标遵守的原则</td><td>项目目标要求遵守的SMART原则指（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>25</td><td>项目经理的要求</td><td>最适合做项目经理的是（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>26</td><td>PMO类型及职责</td><td>（）型PMO直接管理和控制项目，对项目的控制程度很高。</td></tr>
+<tr><td>2022.05 广东卷</td><td>27</td><td>项目管理过程组</td><td>关于项目管理过程组的描述不正确的是（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>38</td><td>5大过程组</td><td>组建项目团队属于项目管理过程组的（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>54</td><td>沟通方式</td><td>项目经理将项目例会的会议纪要以电子邮件的形成发送给主要干系人，这种沟通方式为()</td></tr>
+<tr><td>2021.11</td><td>24</td><td>项目的特点</td><td>关于项目的描述，不正确的是()。</td></tr>
+<tr><td>2021.11</td><td>26</td><td>项目组织结构</td><td>项目经理向研发部门经理申请使用项目预算费用，该组织属于()。</td></tr>
+<tr><td>2021.11</td><td>27</td><td>项目生命周期阶段的特点</td><td>关于项目生命周期描述不正确的是()。</td></tr>
+<tr><td>2021.05</td><td>11</td><td>信息系统生命周期</td><td>信息系统的生命周期中，在O阶段形成《需求规格说明书》。</td></tr>
+<tr><td>2021.05</td><td>25</td><td>项目经理的要求</td><td>关于项目经理的描述，正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>26</td><td>项目的组织结构</td><td>关于项目组织结构的描述，不正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>27</td><td>项目管理过程组</td><td>（）属于执行过程组。 ①管理干系人参与②活动排序③质量保证④范围核实⑤实施采购⑥</td></tr>
+<tr><td>2021.05</td><td>42</td><td>范围控制</td><td>项目组成员小李常驻用户现场开发，经常收到用户提出的新需求。针对有些新需求。针对有</td></tr>
+<tr><td>2021.05</td><td>53</td><td>人际关系</td><td>项目经理最常用的()技能包括领导力、影响力和有效决策。</td></tr>
+<tr><td>2020.11</td><td>24</td><td>项目的特点目标</td><td>关于项目目标和项目特点的描述，不正确的是（）。</td></tr>
+<tr><td>2020.11</td><td>25</td><td>项目经理的要求</td><td>作为一个优秀的项目经理不需要()。</td></tr>
+<tr><td>2020.11</td><td>27</td><td>项目管理过程组</td><td>关于项目管理过程组的描述，不正确的是()。</td></tr>
+<tr><td>2020.11</td><td>42</td><td>变更的流程</td><td>某软件项目执行过程中，客户希望增加几项小功能，开发人员认为很容易实现。作为项目经</td></tr>
+<tr><td>2019.11</td><td>10</td><td>生命周期</td><td>信息系统生命周期可以分为O四个阶段。</td></tr>
+<tr><td>2019.11</td><td>24</td><td>项目的定义</td><td>关于项目的描述，不正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>25</td><td>项目经理要求</td><td>关于项目经理的相关描述，不正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>27</td><td>5大过程组</td><td>在项目5个管理过程组中，计划过程组不包括()。</td></tr>
+<tr><td>2019.05</td><td>28</td><td>项目的特点</td><td>项目具有临时性、独特性与渐进明细的特点其中临时性指()。</td></tr>
+<tr><td>2019.05</td><td>29</td><td>项目组织结构</td><td>在()组织结构中，项目拥有独立的项目团队，项目经理在调用与项目相关的资源时不需要</td></tr>
+<tr><td>2019.05</td><td>31</td><td>项目管理过程组</td><td>项目管理过程中，()不完全属于监控过程组。【修】</td></tr>
+<tr><td>2019.05</td><td>37</td><td>整合者项目经理的职责</td><td>整合者是项目经理承担的重要角色之一，作为整合者，不正确的是（）。</td></tr>
+<tr><td>2019.05</td><td>49</td><td>进度赶工</td><td>某大型项目原计划6个月后交付，目前由于设备故障，人员流失和客户审核缓慢导致项目实</td></tr>
+<tr><td>2018.11</td><td>26</td><td>项目的特点</td><td>每个项目都有一个明确的开始时间和结束时间，这体现了项目的（）。</td></tr>
+<tr><td>2018.11</td><td>27</td><td>项目的组织结构</td><td>在O中，项目经理权力最小。</td></tr>
+<tr><td>2018.11</td><td>28</td><td>V模型</td><td>（）清楚地描述了测试各阶段和开发各阶段的对应关系。</td></tr>
+<tr><td>2018.11</td><td>30</td><td>项目过程组</td><td>关于项目的过程组的描述，不正确的是（）。</td></tr>
+<tr><td>2018.11</td><td>37</td><td>项目经理职责</td><td>在职能型组织中，关于项目经理的职责，不正确的是（）。</td></tr>
+<tr><td>2018.11</td><td>53</td><td>层次结构图</td><td>层次结构图用于描述项目的组织结构，常用的层次结构图不包含（）。</td></tr>
+<tr><td>2018.05</td><td>12</td><td>生命周期模型</td><td>在信息系统的生命周期中，“对企业信息系统的需求进行深入调研和分析，形成《需求规格</td></tr>
+<tr><td>2018.05</td><td>29</td><td>项目的组织结构</td><td>小王被安排担任A项目的兼职配置管理员，她发现所有项目组成员都跟她一样是兼职的，项</td></tr>
+<tr><td>2018.05</td><td>30</td><td>生命周期模型特点</td><td>信息系统项目生命周期模型中的（）适用于需求明确或团队具备行业经验，并开发过类似产</td></tr>
+<tr><td>2018.05</td><td>37</td><td>整合者的作用</td><td>（）没有体现项目经理作为整合者的作用。</td></tr>
+<tr><td>2018.05</td><td>51</td><td>三点估算的计算</td><td>A公司的某项目即将开始，项目经理估计该项目需12人天完成，如果出现问题耽搁则20</td></tr>
+<tr><td>2018.05</td><td>73</td><td>—</td><td>Project Integration Management includes</td></tr>
+<tr><td>2017.11</td><td>28</td><td>项目的目标特征</td><td>以下关于项目与项目管理的描述不正确的是()</td></tr>
+<tr><td>2017.11</td><td>29</td><td>组织结构</td><td>下图中的项目组织结构属于()。 四旧的温 / 广 . (-- _ -- _ -</td></tr>
+<tr><td>2017.11</td><td>31</td><td>5大过程组</td><td>以下关于项目管理过程组的描述不正确的是O</td></tr>
+<tr><td>2017.11</td><td>37</td><td>整合者的工作</td><td>整合者是项目经理承担的重要角色之一，作为整合者，其主要工作不包括()。</td></tr>
+<tr><td>2017.11</td><td>45</td><td>变更的流程</td><td>项目实施过程中，用户的需求可能会发生变化，例如提出新的需求，针对此状况，项目经理</td></tr>
+<tr><td>2017.11</td><td>67</td><td>风险风险分析</td><td>项目经理张工在项目风险管理过程中，使用如下公式进行风险评估： 风险值二风险发生的</td></tr>
+<tr><td>2017.05</td><td>26</td><td>项目的特点</td><td>与例行工作相比，项目具有明显的特点。其中()是指每一个项目都有一个明确的开始时间</td></tr>
+<tr><td>2017.05</td><td>27</td><td>项目的目标</td><td>项目目标包括成果性目标和()目标，后者也叫管理性目标。</td></tr>
+<tr><td>2017.05</td><td>28</td><td>组织结构</td><td>在以下类型的组织结构中，项目经理权力相对较大的是()组织.</td></tr>
+<tr><td>2017.05</td><td>58</td><td>高效会议</td><td>小王作为某项目的项目经理，决定采用投标人会议的方式选择卖方。以下做法中，正确的是</td></tr>
+<tr><td>2016.11</td><td>27</td><td>项目的特点</td><td>与组织日常的、例行的运营工作不同，项目具有一些非常明显的特点。〃没有完全一样的项</td></tr>
+<tr><td>2016.11</td><td>28</td><td>组织结构</td><td>组织文化和组织风格会对项目的执行产生深刻的影响，但具体来说在一个组织中，O对项目</td></tr>
+<tr><td>2016.11</td><td>29</td><td>V模型</td><td>V模型是多种典型的信息系统项目的生命周期模型，它标明了测试阶段与开发过程各阶段的</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>9.5</b>&nbsp;项目立项管理<span class='zt-n'>45 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>29</td><td>—</td><td>（）不属于项目可行性研究内容。</td></tr>
+<tr><td>2022.11 全国卷</td><td>28</td><td>可行性研究</td><td>项目建议书批复后，选择经验丰富的管理人员、建立良好的协作关系，制定合适的培训计划</td></tr>
+<tr><td>2022.11 全国卷</td><td>29</td><td>可行性研究</td><td>关于详细可行性研究的描述:不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>32</td><td>供应商内部立项的原因</td><td>系统集成商进行项目内部立项的目标不包括（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>28</td><td>可行性研究</td><td>()用来评价项目在实现区域经济发展目标，有效配置经济资源、改善环境等方面的效益。</td></tr>
+<tr><td>2022.11 广东卷</td><td>29</td><td>项目评估</td><td>()是项目投资前期进行决策管理的重要环节，其目的是审查项目的可行性研究的可靠性、</td></tr>
+<tr><td>2022.05 全国卷</td><td>28</td><td>项目建议书</td><td>项目建议书是()向上级主管部门提交的项目中请文件，是对拟建项目提出的总体设想。</td></tr>
+<tr><td>2022.05 全国卷</td><td>29</td><td>可行性研究</td><td>制定合理的项目实施进度计划、建立良好的协作关系、制定合适的培训计划等，这些属于项</td></tr>
+<tr><td>2022.05 全国卷</td><td>30</td><td>可行性研究</td><td>对于不同规模和类别的项目，初步可行性研究可能出现的结果为()。 ①肯定，可以直接</td></tr>
+<tr><td>2022.05 广东卷</td><td>28</td><td>项目建议书</td><td>项目建议书报送项目审批部门后，项目审批部门征求相关部门意见，并委托有资格的（）评</td></tr>
+<tr><td>2022.05 广东卷</td><td>29</td><td>可行性研究</td><td>在进行项目可行性分析时要从融资主体（企业）的角度评价股东投资收益、现金流量计划及</td></tr>
+<tr><td>2022.05 广东卷</td><td>30</td><td>项目评估</td><td>关于项目评估的描述，不正确的是（）。</td></tr>
+<tr><td>2021.11</td><td>28</td><td>项目建议书</td><td>关于项目建议书的描述不正确的是（）。</td></tr>
+<tr><td>2021.11</td><td>29</td><td>可行性研究</td><td>（）用于分析项目对政治体制、方针政策、经济结构、法律道德等的影响。</td></tr>
+<tr><td>2021.11</td><td>30</td><td>可行性研究</td><td>关于可行性研究的描述不正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>28</td><td>项目建议书</td><td>（）不属于项目建议书的主要内容。</td></tr>
+<tr><td>2021.05</td><td>29</td><td>可行性研究</td><td>在项目可行性研究内容中，O主要从资源配置的角度衡量项目的价值，评价项目在实现区域</td></tr>
+<tr><td>2021.05</td><td>30</td><td>可行性研究</td><td>（）的主要任务是投资项目或投资方向提出建议，并对各种设想的项目和投资机会做出鉴定</td></tr>
+<tr><td>2021.05</td><td>32</td><td>供应商立项</td><td>系统集成商进行项目内部立项的主要原因不包括（）。</td></tr>
+<tr><td>2020.11</td><td>28</td><td>项目建议书</td><td>关于项目建议书的描述，不正确的是()。</td></tr>
+<tr><td>2020.11</td><td>29</td><td>可研报告</td><td>项目可行性研究报告不包含()。</td></tr>
+<tr><td>2020.11</td><td>30</td><td>详细可研</td><td>O需要对项目的技术、经济、环境及社会影响等进行深入调查研究，是一项费时、费力且需</td></tr>
+<tr><td>2019.11</td><td>28</td><td>项目建议书</td><td>关于项目建议书的描述，不正确的是()。</td></tr>
+<tr><td>2019.11</td><td>29</td><td>可研报告内容</td><td>()不属于项目可行性研究报告的内容。</td></tr>
+<tr><td>2019.11</td><td>30</td><td>可研</td><td>对于不同规模和类别的项目，初步可行性研究可能出现的结果包括（）。 ①肯定，对于比</td></tr>
+<tr><td>2019.11</td><td>32</td><td>供应商立项</td><td>关于供应商项目内部立项的描述，不正确的是（）。</td></tr>
+<tr><td>2019.05</td><td>32</td><td>项目建议书</td><td>关于项目建议书的描述，不正确的是（）。</td></tr>
+<tr><td>2019.05</td><td>33</td><td>可研</td><td>项目可行性研究的内容中（）主要从资源配置的角度衡量项目的价值，项目在实现经济发展</td></tr>
+<tr><td>2019.05</td><td>34</td><td>可研</td><td>关于项目可行性研究的描述中，不正确的是（）。</td></tr>
+<tr><td>2019.05</td><td>36</td><td>供应商立项的内容</td><td>系统集成供应商在进行项目内部立项时的工作不包括（）。</td></tr>
+<tr><td>2018.11</td><td>32</td><td>项目建议书</td><td>关于项目建议书的描述，不正确的是（）。</td></tr>
+<tr><td>2018.11</td><td>33</td><td>可行性研究</td><td>可行性研究过程中，（）的内容是：从资源配置的角度量项目的价值，评价项目在实现区域</td></tr>
+<tr><td>2018.11</td><td>34</td><td>可行性研究</td><td>关于项目可行性研究阶段的描述，不正确的是（）。</td></tr>
+<tr><td>2018.11</td><td>36</td><td>供应商内部立项</td><td>供应商在进行项目内部立项时，立项内容不包括（）。</td></tr>
+<tr><td>2018.05</td><td>33</td><td>可行性研究的内容</td><td>在项目可行性研究内容中，（）主要是从资源配置的角度衡量项目的价值，评价项目在实现</td></tr>
+<tr><td>2018.05</td><td>36</td><td>供货商的立项内容</td><td>针对新中标的某政务工程项目，系统集成商在进行项目内部立项时，立项内容一般不包括（</td></tr>
+<tr><td>2017.11</td><td>32</td><td>项目建议书</td><td>以下关于项目建议书的叙述中，不正确的是()</td></tr>
+<tr><td>2017.11</td><td>33</td><td>可研</td><td>在项目可行性研究内容中，()包括制定合理的项目实施进度计划、设计合理的组织结构、</td></tr>
+<tr><td>2017.11</td><td>34</td><td>可研</td><td>以下关于项目可行性研究的叙述中，不正确的是O</td></tr>
+<tr><td>2017.11</td><td>36</td><td>内部立项的作用</td><td>当与客户签署合同之后，许多供应商会进行内部立项。内部立项的主要作用不包括()。</td></tr>
+<tr><td>2017.05</td><td>33</td><td>可研的内容</td><td>项目经理小张正在组织项目核心团队编写可行性研究报告。对多种技术方案进行比较、选择</td></tr>
+<tr><td>2017.05</td><td>34</td><td>项目可行性研究内容</td><td>某项目的立项负责人编制了一份某软件开发项目的详细可行性研究报告，目录如下：①概述</td></tr>
+<tr><td>2016.11</td><td>30</td><td>项目建议书的内容</td><td>项目建议书是项目建设单位进行项目中请时提交的文件，其中〃项目建设目标与主要建设内</td></tr>
+<tr><td>2016.11</td><td>31</td><td>项目评估</td><td>项目立项包括项目建议、项目可行性分析、项目审批、项目招投标、项目合同谈判5个阶段</td></tr>
+<tr><td>2016.11</td><td>32-33</td><td>立项的内容</td><td>系统集成在承接项目之后，一般会通过内部立项的方式将合同责任进行转移，并对这种责任</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>11</b>&nbsp;项目整合管理<span class='zt-n'>105 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>31</td><td>—</td><td>不属于项目章程的作用。</td></tr>
+<tr><td>2023.05 全国卷</td><td>32</td><td>—</td><td>()不属于制订项目管理计划的输入。</td></tr>
+<tr><td>2023.05 全国卷</td><td>33</td><td>—</td><td>()不属于监控项目工作的输入。</td></tr>
+<tr><td>2023.05 全国卷</td><td>34</td><td>—</td><td>()不属于实施整体变更控制的工具和技术。</td></tr>
+<tr><td>2023.05 全国卷</td><td>58</td><td>—</td><td>（）包含当前的基线加上对基线的变更，且其配置项被置于完全的配置管理之下。</td></tr>
+<tr><td>2023.05 全国卷</td><td>59</td><td>—</td><td>发布管理和交付活动的主要任务，不包括（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>68</td><td>—</td><td>关于变更中请的描述，不正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>69</td><td>—</td><td>关于项目验收的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 全国卷</td><td>33</td><td>项目章程</td><td>关于项目整体管理相关内容的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>34</td><td>制定项目章程的输入</td><td>制定项目章程不需要参照（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>35</td><td>项目文件和计划的区别</td><td>关于项目管理计划的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>36</td><td>CCB</td><td>关于变更控制管理流程的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>40</td><td>验收的可交付成果</td><td>关于验收的可交付成果的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 全国卷</td><td>59</td><td>配置库</td><td>某软件的配置库结构如下图，产品需求在Master上实现，软件整体完成后拉出SS分</td></tr>
+<tr><td>2022.11 全国卷</td><td>60</td><td>配置库</td><td>小张和小王同时分别处理同一个软件项目的两个不同故障，两人的修改涉及到同一个软件部</td></tr>
+<tr><td>2022.11 广东卷</td><td>34</td><td>项目章程的作用</td><td>项目章程的作用不包括()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>35</td><td>制定项目管理计划的输入</td><td>()不属于制定项目管理计划的输入。</td></tr>
+<tr><td>2022.11 广东卷</td><td>36</td><td>整体变更控制的活动</td><td>()不属于整体变更控制过程的活动。</td></tr>
+<tr><td>2022.11 广东卷</td><td>37</td><td>结束项目或者阶段</td><td>关于〃结束项目或阶段〃的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>59</td><td>配置基线</td><td>关于配置基线的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>60</td><td>配置控制活动</td><td>()不属于配置控制过程的活动。</td></tr>
+<tr><td>2022.05 全国卷</td><td>33</td><td>整合者角色</td><td>关于项目整体管理的描述，不正确的是()。</td></tr>
+<tr><td>2022.05 全国卷</td><td>35</td><td>项目管理计划</td><td>在项目执行过程中，不属于项目管理计划的是（）。 ①供方选择标准②范围基准③风险管</td></tr>
+<tr><td>2022.05 全国卷</td><td>36</td><td>整体变更控制输出</td><td>不属于“整体变更控制”过程输出的是（）。 ①工作绩效报告 ②项目质量管理计划 ③</td></tr>
+<tr><td>2022.05 全国卷</td><td>60</td><td>版本管理</td><td>配置管理员小张注意到某配置项当前版本号为0.68,他马上推断出该配置项目处于（）</td></tr>
+<tr><td>2022.05 全国卷</td><td>73</td><td>—</td><td>The project () processes include: develo</td></tr>
+<tr><td>2022.05 广东卷</td><td>33</td><td>整体管理定义</td><td>当项目各要素之间需要协调的，应进行项目O,在项目的竞争目标中寻找最佳平衡点。</td></tr>
+<tr><td>2022.05 广东卷</td><td>34</td><td>项目章程的内容</td><td>（）不属于项目章程的内容。</td></tr>
+<tr><td>2022.05 广东卷</td><td>35</td><td>制定项目管理计划的输入</td><td>制定项目管理计划的输入不包括（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>36</td><td>指导和管理项目工作输出</td><td>指导与管理项目工作过程的输出包括（）。 ①可交付成果②工作绩效数据③批准的变更请</td></tr>
+<tr><td>2022.05 广东卷</td><td>41</td><td>范围确认的工具</td><td>在项目验收过程中不宜采用()方法确定可交付成果是否符合需求和验收标准。</td></tr>
+<tr><td>2022.05 广东卷</td><td>57</td><td>变更管理</td><td>关于合同变更管理的描述，不正确的是（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>60</td><td>配置管理权限</td><td>所有配置顶的操作权限应归O严格管理。</td></tr>
+<tr><td>2021.11</td><td>14</td><td>配置标识</td><td>()活动要为识别的配置项及其版本建立基线。</td></tr>
+<tr><td>2021.11</td><td>33</td><td>项目章程</td><td>关于项目章程的描述，不正确的()。</td></tr>
+<tr><td>2021.11</td><td>34</td><td>项目管理计划</td><td>关于项目管理计划的描述，不正确的是()。</td></tr>
+<tr><td>2021.11</td><td>35</td><td>纠正预防缺陷补救措施</td><td>()是使项目工作绩效重新与项目管理计划一致而进行的有目的的活动。</td></tr>
+<tr><td>2021.11</td><td>36</td><td>整体变更控制</td><td>关于项目整体变更控制的描述，正确的是()。</td></tr>
+<tr><td>2021.11</td><td>61</td><td>配置审计</td><td>O确保了项目配置管理的有效性，体现了配置管理的最根本要求，即不允许出现任何混乱现</td></tr>
+<tr><td>2021.05</td><td>33</td><td>整理管理</td><td>关于项目整体管理的描述，不正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>34</td><td>项目章程</td><td>关于项目章程的描述，不正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>35</td><td>项目管理计划</td><td>（）不属于项目管理计划的内容。</td></tr>
+<tr><td>2021.05</td><td>37</td><td>整体变更控制</td><td>关于实施整体变更控制的描述，不正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>38</td><td>收尾的输出</td><td>项目行政收尾产生的结果不包括（）。</td></tr>
+<tr><td>2021.05</td><td>60</td><td>版本管理</td><td>关于配置管理的描述，不正确的是()。</td></tr>
+<tr><td>2021.05</td><td>61</td><td>发布管理与交付</td><td>关于发布管理和交付的描述，不正确的是()。</td></tr>
+<tr><td>2020.11</td><td>26</td><td>PM0</td><td>关于项目管理办公室(PM0)的描述，不正确的是()。</td></tr>
+<tr><td>2020.11</td><td>33</td><td>指导与管理项目工作</td><td>()的过程是为实现项目目标而领导和执行项目管理计划中所确定的工作，并实施已批准变</td></tr>
+<tr><td>2020.11</td><td>34</td><td>项目章程的作用</td><td>()不属于项目章程的作用。</td></tr>
+<tr><td>2020.11</td><td>35</td><td>项目管理计划的用途</td><td>关于项目管理计划用途的描述，不正确的是()。</td></tr>
+<tr><td>2020.11</td><td>36</td><td>实施已批准的变更</td><td>()不属于实施已批准变更的活动。</td></tr>
+<tr><td>2020.11</td><td>38</td><td>变更控制的流程</td><td>正确的变更控制管理流程是()。</td></tr>
+<tr><td>2020.11</td><td>60</td><td>配置管理</td><td>关于配置管理的描述，不正确的是（）。</td></tr>
+<tr><td>2020.11</td><td>61</td><td>发布管理与交付</td><td>（）不属于发布管理与交付活动的工作内容。</td></tr>
+<tr><td>2019.11</td><td>33</td><td>整体管理过程</td><td>项目整体管理是项目管理中一项综合性和全局性的管理工作，项目整体包括（）。</td></tr>
+<tr><td>2019.11</td><td>34</td><td>项目章程</td><td>O不是制定项目章程的输入。</td></tr>
+<tr><td>2019.11</td><td>35</td><td>项目管理计划</td><td>关于项目管理计划的描述，不正确的是（）</td></tr>
+<tr><td>2019.11</td><td>36</td><td>指导与管理项目工作输出</td><td>（）不属于指导与管理项目工作的输出。</td></tr>
+<tr><td>2019.11</td><td>38</td><td>变更控制</td><td>关于整体变更控制的描述，不正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>60</td><td>版本管理</td><td>关于配置管理的描述，不正确的是()。</td></tr>
+<tr><td>2019.11</td><td>61</td><td>发布和交付活动</td><td>()不属于发布管理与交付活动的工作内容。</td></tr>
+<tr><td>2019.11</td><td>75</td><td>—</td><td>work performance information is circulat</td></tr>
+<tr><td>2019.05</td><td>38</td><td>项目章程的内容</td><td>项目章程内容不包括（）。</td></tr>
+<tr><td>2019.05</td><td>39</td><td>项目管理计划的内容</td><td>项目管理计划的内容不包括（）。</td></tr>
+<tr><td>2019.05</td><td>40</td><td>指导与管理项目工作的输出</td><td>指导与管理项目工作过程的输出不包括（）。</td></tr>
+<tr><td>2019.05</td><td>42</td><td>变更控制的工具</td><td>整体变更控制的工具技术不包括()。</td></tr>
+<tr><td>2019.05</td><td>58</td><td>合同变更流程</td><td>合同变更一般包括以下活动： ①变更实施②变更请求审查③变更批准④变更提出 上述活</td></tr>
+<tr><td>2019.05</td><td>62</td><td>配置库</td><td>研发人员应将正在研发调试的模块、文档和数据元素存入()。</td></tr>
+<tr><td>2019.05</td><td>73</td><td>—</td><td>( ) is a process of developing adocument</td></tr>
+<tr><td>2018.11</td><td>14</td><td>配置管理</td><td>关于配置管理，不正确的是()。</td></tr>
+<tr><td>2018.11</td><td>38</td><td>项目章程的作用</td><td>O不属于项目章程的作用。</td></tr>
+<tr><td>2018.11</td><td>39</td><td>项目管理计划的内容</td><td>项目管理计划不包括()。</td></tr>
+<tr><td>2018.11</td><td>42</td><td>项目收尾</td><td>关于项目收尾的描述，不正确的是()。</td></tr>
+<tr><td>2018.11</td><td>62</td><td>配置库</td><td>关于配置库的描述，不正确的是（）。</td></tr>
+<tr><td>2018.11</td><td>73</td><td>—</td><td>Configuration management is focus on the</td></tr>
+<tr><td>2018.05</td><td>38</td><td>项目章程的内容</td><td>项目章程的内容不包括()。</td></tr>
+<tr><td>2018.05</td><td>39</td><td>项目管理计划的内容</td><td>项目管理计划的内容不包括()。</td></tr>
+<tr><td>2018.05</td><td>41</td><td>变更知识</td><td>关于项目整体变更的描述，不正确的是()。</td></tr>
+<tr><td>2018.05</td><td>42</td><td>变更知识</td><td>关于变更控制委员会（CCB）的描述，不正确的是（）。</td></tr>
+<tr><td>2018.05</td><td>62</td><td>配置库</td><td>配置库的建库模式有多种，在产品继承性较强，工具比较统一，采用并行开发的组织，一般</td></tr>
+<tr><td>2017.11</td><td>39</td><td>项目管理计划的内容</td><td>项目管理计划是说明项目将如何执行、监督和控制的文件。以下选项中，O不属于项目管理</td></tr>
+<tr><td>2017.11</td><td>40</td><td>指导项目管理工作</td><td>()指的是为确保项目工作的未来绩效符合项目管理计划而进行的有目的的活动。</td></tr>
+<tr><td>2017.11</td><td>41</td><td>变更</td><td>以下关于项目整体变更控制过程的叙述中，不正确的是()</td></tr>
+<tr><td>2017.11</td><td>42</td><td>变更</td><td>以下关于项目变更管理的叙述中，不正确的是()。</td></tr>
+<tr><td>2017.11</td><td>61</td><td>文档管理的制度</td><td>项目验收时发现项目经理签字确认的《需求规格说明书》纸质文档内容与配置服务器上的产</td></tr>
+<tr><td>2017.11</td><td>62</td><td>版本管理</td><td>某软件开发项目的《概要设计说明书》版本号为V2.13,该配置项的状态是（）。</td></tr>
+<tr><td>2017.05</td><td>36</td><td>项目章程的作用</td><td>项目章程的作用中，不包括()。</td></tr>
+<tr><td>2017.05</td><td>37</td><td>制定项目章程的内容</td><td>O不属于项目章程的内容。</td></tr>
+<tr><td>2017.05</td><td>38</td><td>项目管理计划的内容</td><td>为项目选择特定的生命周期模型一般是()中的工作。</td></tr>
+<tr><td>2017.05</td><td>39</td><td>项目验收的内容</td><td>()不属于项目验收的内容。</td></tr>
+<tr><td>2017.05</td><td>41</td><td>变更流程</td><td>在项目变更管理中，变更影响分析一般由O负责。</td></tr>
+<tr><td>2017.05</td><td>44</td><td>变更流程</td><td>下图是变更控制管理流程图，该流程图缺少（）。</td></tr>
+<tr><td>2017.05</td><td>59</td><td>变更控制系统的内容</td><td>合同变更控制系统用来规范合同变更，保证买卖双方在合同变更过程中达成一致，其内容不</td></tr>
+<tr><td>2017.05</td><td>60</td><td>配置管理员职责</td><td>编写配置管理计划、识别配置项的工作是()的职责。</td></tr>
+<tr><td>2017.05</td><td>62-63</td><td>配置库</td><td>配置库可用来存放配置项并记录与配置项相关的所有信息，是配置管理的有力工具。根据配</td></tr>
+<tr><td>2016.11</td><td>35</td><td>项目章程</td><td>以下关于项目章程的叙述中，不正确的是O。</td></tr>
+<tr><td>2016.11</td><td>37</td><td>项目管理计划</td><td>以下关于项目管理计划的叙述中，不正确的是（）。</td></tr>
+<tr><td>2016.11</td><td>38</td><td>项目管理计划</td><td>在项目进行过程中，变更控制委员会要求项目必须采用市场上刚出现的一种新技术，并且要</td></tr>
+<tr><td>2016.11</td><td>39</td><td>整体变更的流程</td><td>项目整体变更控制管理的流程是变更请求玲（）。</td></tr>
+<tr><td>2016.11</td><td>40</td><td>配置管理</td><td>配置管理和变更管理是项目管理中非常重要的组成部分，两者相比，配置管理重点关注（）</td></tr>
+<tr><td>2016.11</td><td>41</td><td>变更</td><td>以下关于整体变更控制的叙述中，不正确的是（）。</td></tr>
+<tr><td>2016.11</td><td>62</td><td>配置项状态变化</td><td>配置项的状态可分为草稿、（）、修改三种，下图体现了配置项的状态变化。 变更控制</td></tr>
+<tr><td>2016.11</td><td>63</td><td>变更流程</td><td>配置控制与变更包含着几个重要的任务，变更中请、变更评估、通报评估结果、变更实施、</td></tr>
+<tr><td>2016.11</td><td>66</td><td>配置库</td><td>在以下基于配置库的变更控制的图示中，①应为()。 【答案】D 【解析】P500此</td></tr>
+<tr><td>2016.11</td><td>74</td><td>—</td><td>In order facilitate configuration and ch</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>12</b>&nbsp;项目范围管理<span class='zt-n'>56 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>35</td><td>—</td><td>()是确定两种或两种以上变数间相互依赖的定量关系的一种统计分析方法。</td></tr>
+<tr><td>2023.05 全国卷</td><td>36</td><td>—</td><td>关于项目范围管理计划的描述，不正确的是()。</td></tr>
+<tr><td>2023.05 全国卷</td><td>37</td><td>—</td><td>关于需求收集的描述，不正确的()。</td></tr>
+<tr><td>2023.05 全国卷</td><td>38</td><td>—</td><td>关于WBS的描述，正确的是()。 ①分包出去的工作不属于WBS的范围 ②在WBS</td></tr>
+<tr><td>2023.05 全国卷</td><td>39</td><td>—</td><td>()不属于项目范围确认的工作内容。</td></tr>
+<tr><td>2022.11 全国卷</td><td>38</td><td>需求管理计划的内容</td><td>O不属于需求管理计划的内容。</td></tr>
+<tr><td>2022.11 全国卷</td><td>39</td><td>范围说明书的内容</td><td>()不属于项目范围说明书的内容。</td></tr>
+<tr><td>2022.11 全国卷</td><td>41</td><td>范围基线的变化</td><td>()不会导致项目范围基线发生变化。</td></tr>
+<tr><td>2022.11 全国卷</td><td>72</td><td>—</td><td>In (), the project scope, time, and cost</td></tr>
+<tr><td>2022.11 广东卷</td><td>38</td><td>文件分析</td><td>收集需求过程中，需要通过项目商业计划/营销文献和协议等文件来挖掘需求，此过程宜采</td></tr>
+<tr><td>2022.11 广东卷</td><td>39</td><td>WBS</td><td>关于工作分解结构(WBS)的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>40</td><td>范围确认的输入</td><td>项目范围确认的依据不包括()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>41</td><td>范围控制</td><td>不会影响项目范围控制过程的活动是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>73</td><td>—</td><td>This () is the work defined at the lowes</td></tr>
+<tr><td>2022.05 全国卷</td><td>38</td><td>范围管理计划的输入</td><td>编写范围管理计划和细化项目范围会分析一些信息，这些信息不包括（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>39</td><td>范围说明书的内容</td><td>详细的范围说明书及其引用的文档包括（）。 ①项目目标②产品范围描述③项目进度④可</td></tr>
+<tr><td>2022.05 全国卷</td><td>40</td><td>控制账户</td><td>WBS的控制账户是一个（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>41</td><td>范围确认</td><td>项目范围确认后应（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>42</td><td>范围控制的输入</td><td>在控制项目范围时，不需要用到（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>39</td><td>范围管理计划的内容</td><td>关于范围管理计划的描述，不正确的是（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>40</td><td>范围定义</td><td>关于范围定义的描述，不正确的是（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>42</td><td>范围控制的工具</td><td>()属于项目范围控制使用的工具和技术。</td></tr>
+<tr><td>2021.11</td><td>38</td><td>需求管理计划</td><td>关于范围管理相关的描述，不正确的是（）。</td></tr>
+<tr><td>2021.11</td><td>39</td><td>范围说明书内容</td><td>O严格定义了项目内包括什么和不包括什么，以防项目干系人假定某些产品或服务是项目中</td></tr>
+<tr><td>2021.11</td><td>40</td><td>WBS</td><td>关于工作分解结构的描述，正确的是（）。</td></tr>
+<tr><td>2021.11</td><td>41</td><td>范围确认</td><td>关于项目范围确认的描述，不正确的是（）。</td></tr>
+<tr><td>2021.11</td><td>42</td><td>范围控制</td><td>关于项目范围控制描述，不正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>2</td><td>资源池管理技术</td><td>()主要实现对物理资源、虚拟资源的统一管理，并根据用户需求实现虚拟资源的自动化生</td></tr>
+<tr><td>2021.05</td><td>40</td><td>WBS</td><td>关于工作分解结构的描述，不正确的是()。</td></tr>
+<tr><td>2021.05</td><td>41</td><td>范围确认</td><td>关于确认范围的描述，不正确的是()。</td></tr>
+<tr><td>2020.11</td><td>11</td><td>开发方法</td><td>信息系统开发过程中，()适合在无法全面准确提出用户需求的情况下，通过反复修改，动</td></tr>
+<tr><td>2020.11</td><td>39</td><td>范围管理计划</td><td>关于范围管理计划的描述，不正确的是()。</td></tr>
+<tr><td>2020.11</td><td>40</td><td>范围说明书的内容</td><td>范围说明书的内容不包括()。</td></tr>
+<tr><td>2020.11</td><td>41</td><td>范围确认的工具</td><td>()可用来确定可交付成果是否符合需求和验收标准。</td></tr>
+<tr><td>2020.11</td><td>56</td><td>合同类型</td><td>某项目需要在半年内完成，目前项目范围不清楚，所需资源类型可以确定。这种情况下，最</td></tr>
+<tr><td>2019.11</td><td>39</td><td>WBS</td><td>关于工作分解结构WBS和工作包的描述不正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>40</td><td>范围说明书</td><td>（）不属于项目范围说明书的内容。</td></tr>
+<tr><td>2019.11</td><td>41</td><td>范围确认</td><td>范围确认的主要作用是（）。</td></tr>
+<tr><td>2019.11</td><td>42</td><td>需求变更</td><td>在项目实施过程中，客户提出新的功能需求时，正确的做法是（）。</td></tr>
+<tr><td>2019.05</td><td>30</td><td>生命周期模型</td><td>公司计划开发一个新的信息系统，该系统需求不明确，事先不能定义需求，需要经过多期开</td></tr>
+<tr><td>2019.05</td><td>41</td><td>变更的流程</td><td>项目执行过程中，客户要求对项目范围进行修改，项目经理首先应该（）。</td></tr>
+<tr><td>2019.05</td><td>43</td><td>范围说明书的内容</td><td>()不属于项目范围说明书的内容。</td></tr>
+<tr><td>2019.05</td><td>44</td><td>范围确认的工具</td><td>()是在确认范围中使用的工具与技术。</td></tr>
+<tr><td>2019.05</td><td>45</td><td>范围控制</td><td>关于范围控制的描述不正确的是()。</td></tr>
+<tr><td>2019.05</td><td>74</td><td>—</td><td>( ) is a process of developing adetailed</td></tr>
+<tr><td>2018.11</td><td>41</td><td>需求变更</td><td>在项目执行的过程中，一名干系人确定了一个新需求，该需求对项目是否成功起到关键的作</td></tr>
+<tr><td>2018.11</td><td>43</td><td>范围定义</td><td>关于项目范围定义的描述，不正确的是（）。</td></tr>
+<tr><td>2018.11</td><td>45</td><td>范围变更</td><td>当范围变更导致成本基线发生变化时，项目经理需要做的工作不包括（）。</td></tr>
+<tr><td>2018.05</td><td>43</td><td>WBS</td><td>关于工作分解结构（WBS）的描述，不正确的是（）。</td></tr>
+<tr><td>2018.05</td><td>45</td><td>范围控制</td><td>在项目实施过程中，用户的环境（业务环境、组织架构等）可能会发生变化，对项目的需求</td></tr>
+<tr><td>2017.11</td><td>38</td><td>项目章程的内容</td><td>项目章程的主要内容包括()。 ①项目目的或批准项目的理由 ②项目的主要风险 ③项</td></tr>
+<tr><td>2017.11</td><td>43</td><td>WBS</td><td>以下关于工作分解结构(WBS)的叙述中，不正确的是()。</td></tr>
+<tr><td>2017.11</td><td>44</td><td>群体决策技术</td><td>在项目范围确认时，经常会使用群体决策技术，在以下群体决策技术中，()是根据群体中</td></tr>
+<tr><td>2017.05</td><td>43</td><td>范围定义的工具和技术</td><td>在范围定义的工具和技术中，（）通过产品分解、系统分析、价值工程等技术厘清产品范围</td></tr>
+<tr><td>2017.05</td><td>46</td><td>范围确认的方法</td><td>确认项目范围是验收项目可交付成果的过程，其中使用的方法是（）。</td></tr>
+<tr><td>2017.05</td><td>73</td><td>—</td><td>For anyinformation system to serve its p</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>13</b>&nbsp;项目进度管理<span class='zt-n'>56 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>42</td><td>—</td><td>某项目工期乐观估算需要20天完成，最可能23天完成，最差情况下需要30天完成，则</td></tr>
+<tr><td>2023.05 全国卷</td><td>44</td><td>—</td><td>不能作为控制进度过程的输入。</td></tr>
+<tr><td>2023.05 全国卷</td><td>74</td><td>—</td><td>The project manager can arrange the proj</td></tr>
+<tr><td>2022.11 全国卷</td><td>42</td><td>里程碑</td><td>关于进度管理的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 全国卷</td><td>43</td><td>活动之间的依赖关系</td><td>关于活动排序的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 全国卷</td><td>44</td><td>PERT计算</td><td>某活动的最乐观时间为6天，最可能时间为9天，最悲观时间为12天，则该活动持续时间</td></tr>
+<tr><td>2022.11 全国卷</td><td>45</td><td>资源平衡和资源平滑</td><td>关于进度管理，不正确的是()。</td></tr>
+<tr><td>2022.11 全国卷</td><td>66</td><td>PERT三点估算</td><td>某项目成本估算区间如图所示(单位:万元)，则在84万元内完成项目的可能性为()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>42</td><td>活动</td><td>关于进度管理的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>43</td><td>双代号网络图</td><td>关于双代号网络图的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>44</td><td>应急储备</td><td>关于进度管理的描述，正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>45</td><td>网络图计算</td><td>某项目的网络图如下，活动C的自由浮动时间为O天。</td></tr>
+<tr><td>2022.05 全国卷</td><td>43</td><td>活动定义的作用</td><td>项目进度管理中“定义活动”过程的主要作用不包含（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>44</td><td>活动之间的依赖关系</td><td>关于项目活动之间依赖关系的描述，不正确的是（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>45</td><td>网络图的计算</td><td>下图中活动C的总浮动时间和自由浮动时间分别为（）。 HI</td></tr>
+<tr><td>2022.05 全国卷</td><td>46</td><td>控制进度的工具</td><td>控制项目进度时常用的技术不包括（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>49</td><td>资金限制平衡</td><td>通过在项目计划中添加强制日期解决资金计划和支出之间的差异，属于（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>43</td><td>规划进度管理的输入</td><td>()不属于规划项目进度管理的输入。</td></tr>
+<tr><td>2022.05 广东卷</td><td>44-45</td><td>网络图计算</td><td>下图(单位:周)为某项目的进度网络图，项目各项工作顺序及工作时长如图所示，活动D</td></tr>
+<tr><td>2022.05 广东卷</td><td>46</td><td>缩短工期的办法</td><td>当前某项目处于进度滞后，成本节约的状态，为了保证项目按时保质完成，后续应优先采取</td></tr>
+<tr><td>2021.11</td><td>43</td><td>定义活动的输出</td><td>“定义活动”过程的输出不包括（）。</td></tr>
+<tr><td>2021.11</td><td>45-46</td><td>网络图计算</td><td>某项目包含ABCDEFGHIJ共10个活动，各活动历时与逻辑关系如下表所示，施工</td></tr>
+<tr><td>2021.05</td><td>43</td><td>活动与工作包</td><td>关于活动和里程碑的描述，不正确是()。</td></tr>
+<tr><td>2021.05</td><td>44-45</td><td>单代号网络图</td><td>某项目的网络图如下，活动B的自由浮动时间为(1)天，该项目的关键路径有(2)条。</td></tr>
+<tr><td>2021.05</td><td>46</td><td>关键链法</td><td>()比较剩余缓冲时间与所需缓冲时间，有助于确定进度状态。</td></tr>
+<tr><td>2021.05</td><td>49</td><td>三点估算</td><td>()通过考虑估算中的不确定性与风险，使用三种估算值来界定活动期望完成工期的近似区</td></tr>
+<tr><td>2021.05</td><td>74</td><td>—</td><td>() is a measure of schedule performance</td></tr>
+<tr><td>2020.11</td><td>43</td><td>项目章程</td><td>项目章程中规定的项目审批要求和O,会影响项目的进度管理。</td></tr>
+<tr><td>2020.11</td><td>44-45</td><td>网络图</td><td>下图(单位：周)为某项目实施的单代号网络图，活动E的总浮动时间与自由浮动时间为(</td></tr>
+<tr><td>2020.11</td><td>46</td><td>缩短工期的办法</td><td>在缩短工期时，不正确的措施是（）。</td></tr>
+<tr><td>2019.11</td><td>43</td><td>进度管理计划</td><td>关于项目进度管理计划的描述，正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>44</td><td>网络图</td><td>关于箭线图的描述不正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>45</td><td>网络图计算</td><td>某项目的网络图如下，活动D是自由浮动时间为O天</td></tr>
+<tr><td>2019.11</td><td>46</td><td>缩短工期的方法</td><td>()不是常用的缩短项目工期的方法。</td></tr>
+<tr><td>2019.05</td><td>46</td><td>前导图四种依赖关系</td><td>前导图法可以描述四种关键活动类型的依赖关系，对于接班同事A到岗，交班同事B才可以</td></tr>
+<tr><td>2019.05</td><td>47-48</td><td>网络图</td><td>下图为某规划的进度网络图(单位：周)，在实际实施过程中活动B-E比计划延迟了 2</td></tr>
+<tr><td>2019.05</td><td>51</td><td>三点估算</td><td>某公司组织专家对项目成本进行评估，得到如下结论：最可能成本为10万元，最乐观成本</td></tr>
+<tr><td>2018.11</td><td>40</td><td>项目管理信息系统</td><td>()不属于项目管理信息系统的子系统。</td></tr>
+<tr><td>2018.11</td><td>46</td><td>规划进度管理的输入</td><td>规划项目进度管理是为实施项目进度管理制定政策、程序。并形成文档化的项目进度管理计</td></tr>
+<tr><td>2018.11</td><td>47</td><td>网络图的计算</td><td>下图某工程单代号网络图中，活动B的总浮动时间为O天。 【答案】D 【解析】P31</td></tr>
+<tr><td>2018.11</td><td>48</td><td>网络图</td><td>某工程由8个活动组成，其各活动情况如下表所示，该工程关键路径为（）。 活动 紧前</td></tr>
+<tr><td>2018.11</td><td>49</td><td>进度控制</td><td>关于项目控制进度过程，不正确的是（）。</td></tr>
+<tr><td>2018.05</td><td>46</td><td>规划进度管理的输出</td><td>（）属于规划项目进程过程的输出。</td></tr>
+<tr><td>2018.05</td><td>47</td><td>网络图</td><td>某项目的双代号网络图如下所示，该项目的工期为()。 【答案】C 【解析】P313</td></tr>
+<tr><td>2018.05</td><td>48</td><td>制定进度计划的工具和技术</td><td>关于制定进度计划的工具和技术的描述，不正确的是()。</td></tr>
+<tr><td>2018.05</td><td>49</td><td>进度控制的内容</td><td>()属于控制进度的工作内容。</td></tr>
+<tr><td>2017.11</td><td>46</td><td>规划进度管理的输入</td><td>()不是规划项目进度管理的输入。</td></tr>
+<tr><td>2017.11</td><td>47</td><td>网络图</td><td>下图中(单位：天)关于活动H和活动I之间的关系描述正确的是()。</td></tr>
+<tr><td>2017.11</td><td>48</td><td>关键链法</td><td>项目经理小李在制定进度计划时采用下图所示的工具，该工具是（）。 ＞活动A f 活</td></tr>
+<tr><td>2017.11</td><td>49</td><td>关键路径、资源平衡和资源平滑</td><td>在制定进度计划时，可以采用多种工具与技术，如关键路径法、资源平衡技术、资源平滑技</td></tr>
+<tr><td>2017.11</td><td>65</td><td>质量控制</td><td>在进度管理中常用的活动网络图，如计划评审技术(PERT),关键路径法等，也可以应</td></tr>
+<tr><td>2017.05</td><td>42</td><td>进度压缩工具和技术</td><td>通过增加资源来压缩进度工期的技术称为（）。</td></tr>
+<tr><td>2017.05</td><td>45</td><td>网络图</td><td>下面的箭线图中（活动的时间单位：周），活动G最多可以推延（）周而不会影响项目的完</td></tr>
+<tr><td>2017.05</td><td>74</td><td>—</td><td>( )is a project management technique for</td></tr>
+<tr><td>2016.11</td><td>42</td><td>进度压缩</td><td>在项目进度管理中，对项目进度压缩是一种常用的方法，其中将正常情况下按照顺序进行的</td></tr>
+<tr><td>2016.11</td><td>43</td><td>进度压缩</td><td>进行活动历时压缩时，项目经理可以对关键路径上的活动增加资源，这时必须进一步考虑(</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>14</b>&nbsp;项目成本管理<span class='zt-n'>52 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>45</td><td>—</td><td>关于制订成本管理计划的描述，正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>46</td><td>—</td><td>关于成本估算和成本预算的描述，不正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>47</td><td>—</td><td>项目组正在对一个全新领域的项目进行成本预算，前期通过类比得出了项目的总体估算，以</td></tr>
+<tr><td>2023.05 全国卷</td><td>48</td><td>—</td><td>下表是某项目截止3月20日的成本执行（绩效）情况: 活动编号 活动 计戈U值（P</td></tr>
+<tr><td>2022.11 全国卷</td><td>46</td><td>成本的类型</td><td>关于成本管理，不正确的是()。</td></tr>
+<tr><td>2022.11 全国卷</td><td>48</td><td>管理储备</td><td>关于成本预算和成本基准的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>49</td><td>挣值计算</td><td>下表给出了某信息化建设项目到2022年9月1日为止的成本执行（绩效）数据。如果当</td></tr>
+<tr><td>2022.11 全国卷</td><td>50</td><td>资源分解结构</td><td>（）是一种层次结构图，有助于跟踪项目成本，能够与组织的会计系统协调一致。</td></tr>
+<tr><td>2022.11 广东卷</td><td>46</td><td>成本类型</td><td>关于成本的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>47</td><td>成本估算</td><td>关于成本估算的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>48</td><td>成本估算和预算</td><td>关于成本估算和预算的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>49</td><td>挣值计算</td><td>某项目到2022年6月30日的部分成本执行（绩效）数据如下表，据此判断该项目（）</td></tr>
+<tr><td>2022.05 全国卷</td><td>47</td><td>成本失控的原因</td><td>在项目成本控制过程中，采用的成本估算方法不恰当引发成本失控，是由于（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>48</td><td>成本管理计划的内容</td><td>在O中应明确项目所采用的挣值规则。</td></tr>
+<tr><td>2022.05 全国卷</td><td>50</td><td>挣值计算</td><td>如果项目的成本预算是1000万，当前的实际成本是500万，挣值是450万，则该项</td></tr>
+<tr><td>2022.05 全国卷</td><td>75</td><td>—</td><td>() is the process of monitoring the stat</td></tr>
+<tr><td>2022.05 广东卷</td><td>47</td><td>成本类型</td><td>（）是一种历史成本，对现有决策而言是不可控成本。</td></tr>
+<tr><td>2022.05 广东卷</td><td>48</td><td>成本管理计划的内容</td><td>（）不属于成本管理计划的内容。</td></tr>
+<tr><td>2022.05 广东卷</td><td>49</td><td>自上而下估算</td><td>在项目成估算技术中，自上而下估算的准确性及其本身所需的成本，通常取决于（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>50</td><td>挣值计算</td><td>某项目进行到40天的时候，实际进度为计划的90%,实际成本为110万元，计划成本</td></tr>
+<tr><td>2021.11</td><td>47</td><td>成本的类型</td><td>关于成本的描述，不正确()。</td></tr>
+<tr><td>2021.11</td><td>48</td><td>制定成本管理计划的输入</td><td>制定成本管理计划的依据不包括()。</td></tr>
+<tr><td>2021.11</td><td>49</td><td>参数估算</td><td>()的准确性取决于模型的成熟度和基础数据的可靠性。</td></tr>
+<tr><td>2021.11</td><td>50</td><td>挣值计算</td><td>某项目活动A的成本估算为1000元，总工期为10天，项目经理在施工第8天晚上查看</td></tr>
+<tr><td>2021.05</td><td>47</td><td>成本管理的过程</td><td>()过程合计各个活动或工作包的估算成本，以建立成本基线。</td></tr>
+<tr><td>2021.05</td><td>48</td><td>成本管理计划</td><td>关于成本管理计划的描述，不正确的是()。</td></tr>
+<tr><td>2021.05</td><td>50</td><td>挣值计算</td><td>某软件开发项目到2021年3月1日为止的成本绩效数据如下: 活动编号 活动 完成</td></tr>
+<tr><td>2021.05</td><td>58</td><td>合同的类型</td><td>()向卖方支付为完成工作而发生的全部合法实际成本，除此之外还向卖方支付一笔费用作</td></tr>
+<tr><td>2020.11</td><td>47</td><td>成本类型</td><td>关于成本的描述，不正确的是（）。</td></tr>
+<tr><td>2020.11</td><td>48</td><td>成本管理计划的内容</td><td>成本管理计划中不包括（）。</td></tr>
+<tr><td>2020.11</td><td>49</td><td>参数估算</td><td>（）利用历史数据之间的统计关系和其它变量进行项目成本估算。</td></tr>
+<tr><td>2020.11</td><td>50</td><td>挣值计算</td><td>某项目计划工期60天。当项目进行到50天的时候，成本绩效指数为80%,实际成本为</td></tr>
+<tr><td>2019.11</td><td>47</td><td>成本类型</td><td>关于成本的描述，正确的是()。</td></tr>
+<tr><td>2019.11</td><td>48</td><td>成本估算</td><td>关于成本估算的描述，不正确的是()。</td></tr>
+<tr><td>2019.11</td><td>49</td><td>成本估算</td><td>关于成本估算相关技术的描述，正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>50</td><td>挣值分析计算</td><td>下表给出了某信息化建设项目到2019年8月1日为止的成本执行（绩效数据，如果当前</td></tr>
+<tr><td>2019.05</td><td>50</td><td>成本类型</td><td>关于成本类型的描述，不正确的是（）。</td></tr>
+<tr><td>2019.05</td><td>52</td><td>挣值分析</td><td>关于进度偏差、成本偏差的描述，不正确的是（）。</td></tr>
+<tr><td>2019.05</td><td>75</td><td>—</td><td>( ) is a process of monitoring thestatus</td></tr>
+<tr><td>2018.11</td><td>50</td><td>成本类型</td><td>投资者赵某可以选择股票和储蓄存款两种投资方式。他于2017年1月1日用2万元购进</td></tr>
+<tr><td>2018.11</td><td>51</td><td>成本估算的工具和技术</td><td>关于项目成本估算所采用的技术和工具，不正确的是（）。</td></tr>
+<tr><td>2018.11</td><td>52</td><td>挣值的计算</td><td>某工程项目，完工预算为2000万元。到目前为止，由于某些特殊原因，实际支出800</td></tr>
+<tr><td>2018.05</td><td>50</td><td>成本类型</td><td>成本分类是指根据成本核算和成本管理的不同要求，将成本分成不同的类别。其中，项目团</td></tr>
+<tr><td>2018.05</td><td>75</td><td>—</td><td>() is the sum of all budgets established</td></tr>
+<tr><td>2017.11</td><td>50</td><td>成本类型</td><td>不随生产量、工作量或时间的变化而变化的非重复成本属于（）。</td></tr>
+<tr><td>2017.11</td><td>51</td><td>成本估算的工具和技术</td><td>在进行项目成本估算时，可以使用多种技术和工具，其中，O相对于其他估算技术来说，成</td></tr>
+<tr><td>2017.11</td><td>52</td><td>挣值分析</td><td>下表给出某信息化建设项目到2017年9月1日为止的成本执行(绩效)数据，基于该数</td></tr>
+<tr><td>2017.11</td><td>75</td><td>—</td><td>( ) is the approved version of the time-</td></tr>
+<tr><td>2017.05</td><td>48</td><td>成本类型</td><td>在管理项目及投资决策过程中，需要考虑很多成本因差，比如人员的工资、项目过程中需要</td></tr>
+<tr><td>2016.11</td><td>44</td><td>成本的类型</td><td>在北方的冬季，一般企业都会给员工发放采暖费。对于项目管理来说，企业支付的这部分成</td></tr>
+<tr><td>2016.11</td><td>45</td><td>挣值分析</td><td>某个项目的预算是3000万元，工期为5个月。现在过去了 3个月，实际成本是180</td></tr>
+<tr><td>2016.11</td><td>46</td><td>挣值分析</td><td>挣值管理是项目监控的重要手段，EAC二AC+BAC-EV公式所计算的是项目的()</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>15</b>&nbsp;项目质量管理<span class='zt-n'>56 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>60</td><td>—</td><td>质量管理过程用到的工具技术中，用于规划质量管理过程。</td></tr>
+<tr><td>2023.05 全国卷</td><td>61</td><td>—</td><td>不属于项目质量测量指标的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>62</td><td>—</td><td>（）不属于质量控制的输出。</td></tr>
+<tr><td>2023.05 全国卷</td><td>73</td><td>—</td><td>() is the input of project quality manag</td></tr>
+<tr><td>2022.11 全国卷</td><td>47</td><td>质量成本</td><td>关于项目成本相关内容的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>61</td><td>控制图</td><td>()反映了可允许的最大值和最小值。</td></tr>
+<tr><td>2022.11 全国卷</td><td>62</td><td>质量保证</td><td>关于实施质量保证的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 全国卷</td><td>63</td><td>质量控制的输出</td><td>()不是质量控制的输出。</td></tr>
+<tr><td>2022.11 全国卷</td><td>65</td><td>影响图</td><td>()是用图形方式表示变量与结果间的因果关系、事件时间顺序及其他关系。</td></tr>
+<tr><td>2022.11 全国卷</td><td>74</td><td>—</td><td>() refers to the management of the overa</td></tr>
+<tr><td>2022.11 广东卷</td><td>61</td><td>质量测量指标</td><td>关于质量管理的描述，正确的是()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>62</td><td>规划质量管理工具</td><td>()是规划质量管理的工具。</td></tr>
+<tr><td>2022.11 广东卷</td><td>63</td><td>质量控制</td><td>某耳机制造商每生产100个耳机就抽取10个进行全面质量检查，此活动()。</td></tr>
+<tr><td>2022.05 全国卷</td><td>56</td><td>合同不明确情况处理</td><td>合同生效后，当事人就质量、价款或者报酬、履行地点等内容没有约定或者约定不明确的，</td></tr>
+<tr><td>2022.05 全国卷</td><td>62</td><td>质量管理概念</td><td>关于质量管理概念的描述，不正确的是（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>63</td><td>质量成本的分类</td><td>质量成本中（）属于非一致性成本。</td></tr>
+<tr><td>2022.05 全国卷</td><td>64</td><td>7种质量管理工具</td><td>O是一种特殊形式条形图，用于描述集中趋势，分散程度和统计分布形状。</td></tr>
+<tr><td>2022.05 广东卷</td><td>37</td><td>根本原因分析</td><td>O不能用于根本原因分析。</td></tr>
+<tr><td>2022.05 广东卷</td><td>62</td><td>质量管理依据</td><td>项目质量是应顾客需求进行的，不同顾客有着不同的质量要求，()是项目质量管理的主要</td></tr>
+<tr><td>2022.05 广东卷</td><td>63</td><td>试验设计</td><td>在规划项目质量管理中，O可以了解产品和流程的最优状态，找到显著影响产品或流程状态</td></tr>
+<tr><td>2021.11</td><td>62</td><td>质量管理理论</td><td>()提出了统计过程控制(SPC)的理论。</td></tr>
+<tr><td>2021.11</td><td>63</td><td>质量管理工具</td><td>质量工具中，()中数据点的时间会对图形分布有影响。</td></tr>
+<tr><td>2021.11</td><td>64</td><td>质量审计</td><td>关于质量审计目标的描述，不正确的是()。</td></tr>
+<tr><td>2021.11</td><td>73</td><td>—</td><td>The highest level of quality management</td></tr>
+<tr><td>2021.05</td><td>39</td><td>标杆对照</td><td>O将实际或计划的做法与其他组织的做法进行比较，以便识别最佳实践，形成改进意见，并</td></tr>
+<tr><td>2021.05</td><td>57</td><td>直方图</td><td>()是一种特殊形式的条形图，用于描述集中趋势、分散程度。</td></tr>
+<tr><td>2021.05</td><td>62</td><td>质量管理的过程</td><td>质量管理是指确定质量方针、目标和责任，并通过质量体系中的质量规划、质量保证、()</td></tr>
+<tr><td>2021.05</td><td>63</td><td>质量成本</td><td>下列质量活动所产生的成本，()属于非一致性成本。</td></tr>
+<tr><td>2020.11</td><td>62</td><td>质量管理理论</td><td>质量管理相关技术中，（）强调质量问题是生产和经营系统的问题，强调最高管理层对质量</td></tr>
+<tr><td>2020.11</td><td>63</td><td>质量成本</td><td>某电池生产厂商为了保证产品的质量，在每一批电池出厂前做的破坏性测试所产生的成本属</td></tr>
+<tr><td>2020.11</td><td>64</td><td>7种质量工具</td><td>某制造商面临大量产品退货，产品经理怀疑是采购和货物分类流程存在问题，此时应该采用</td></tr>
+<tr><td>2020.11</td><td>73</td><td>—</td><td>() is a graph that shows the relationshi</td></tr>
+<tr><td>2019.11</td><td>62</td><td>全面质量管理</td><td>O将质量控制扩展到产品生命周期全过程。</td></tr>
+<tr><td>2019.11</td><td>63</td><td>质量成本</td><td>某电池生产厂商为了保证产品的质量，在每一块电池出厂前做破坏性测试所产生的成本属于</td></tr>
+<tr><td>2019.11</td><td>64</td><td>7种质量工具</td><td>某制造商面临大量产品退货，/产品经理怀疑是采购和货物分类流程存在问题，此时应该采</td></tr>
+<tr><td>2019.11</td><td>73</td><td>—</td><td>the ( ) is a graph that shows the relati</td></tr>
+<tr><td>2019.05</td><td>63</td><td>质量管理过程</td><td>质量管理通过质量体系中的质量规划、质量保证、质量控制和()的实现。</td></tr>
+<tr><td>2019.05</td><td>64</td><td>质量规划工具</td><td>质量管理工具或技术中，()用图形方式显示变更的推力和阻力。</td></tr>
+<tr><td>2019.05</td><td>65</td><td>质量控制七种工具</td><td>关于质量管理七种工具的描述.不正确的是()。</td></tr>
+<tr><td>2018.11</td><td>63</td><td>质量管理的阶段</td><td>质量管理的阶段，大致经历了手工艺人时代、质量检验阶段、统计质量控制阶段和（）四个</td></tr>
+<tr><td>2018.11</td><td>64</td><td>规划成本管理的工具和技术</td><td>针对规划质量管理的工具和技术，不正确的是（）。</td></tr>
+<tr><td>2018.11</td><td>65</td><td>规划质量管理的输出</td><td>O属于规划质量管理的输出。</td></tr>
+<tr><td>2018.11</td><td>74</td><td>—</td><td>Quality management ensures that an organ</td></tr>
+<tr><td>2018.11</td><td>75</td><td>—</td><td>In a project plan, when the project mana</td></tr>
+<tr><td>2018.05</td><td>63</td><td>质量的特点</td><td>“某型号手机，主打商务智能，无线充电、价格低廉，像素高续航强”。()属于对质量的</td></tr>
+<tr><td>2018.05</td><td>64</td><td>质量规划的工具和技术</td><td>生产过程中，需要通过统计返工和废品的比率来进行质量管理，这种方法在质量管理中属于</td></tr>
+<tr><td>2018.05</td><td>65</td><td>帕累托图</td><td>某项目的质量管理人员在统计产品缺陷时，绘制了如下统计图，并将结果反馈至项目经理，</td></tr>
+<tr><td>2017.11</td><td>63</td><td>全面质量管理</td><td>质量管理发展过程中，从()开始，质量管理从“对已完成产品的事后检验”提前到“对产</td></tr>
+<tr><td>2017.11</td><td>64</td><td>质量规划的工具和技术</td><td>()属于质量管理中规划质量过程的工具和技术。</td></tr>
+<tr><td>2017.11</td><td>73</td><td>—</td><td>The seven basic quality tools are used w</td></tr>
+<tr><td>2017.05</td><td>50</td><td>质量控制的工具和技术</td><td>在质量管理中，()可以识别造成大多数问题的少数重要原因。</td></tr>
+<tr><td>2017.05</td><td>51</td><td>质量控制的工具和技术</td><td>下图是（）。</td></tr>
+<tr><td>2016.11</td><td>47</td><td>质量规划的工具和技术</td><td>规划质量管理的过程中可以用到多种工具和技术。O是一种统计方法，用来识别哪些因素会</td></tr>
+<tr><td>2016.11</td><td>48</td><td>质量审计</td><td>以下关于质量审计的叙述中，不正确的是（）。</td></tr>
+<tr><td>2016.11</td><td>49</td><td>质量控制的工具和技术</td><td>在质量管理中，可以使用（）判断一个过程是否处于控制状态还是处于失控状态。</td></tr>
+<tr><td>2016.11</td><td>50</td><td>质量控制的工具和技术</td><td>某项目组的测试团队对项目的功能及性能进行全面测试，来保证项目的可交付成果及工作满</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>16</b>&nbsp;项目资源管理<span class='zt-n'>51 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>49</td><td>—</td><td>关于项目管理团队的理解，不正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>50</td><td>—</td><td>项目经理小李发现，由于近期2周都在连续加班，团队成员抱怨很大，甚至还有个别成员临</td></tr>
+<tr><td>2023.05 全国卷</td><td>51</td><td>—</td><td>冲突在项目管理中不可避免，()有助于减少冲突的数量。</td></tr>
+<tr><td>2022.11 全国卷</td><td>51</td><td>虚拟团队</td><td>关于虚拟团队的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>52</td><td>冲突解决的办法</td><td>()是冲突的各方协商并且寻找一种能够使冲突各方都有一定程度满意、但冲突各方没有任</td></tr>
+<tr><td>2022.11 全国卷</td><td>73</td><td>—</td><td>Project () includes making choices about</td></tr>
+<tr><td>2022.11 全国卷</td><td>75</td><td>—</td><td>() is not the communication technical th</td></tr>
+<tr><td>2022.11 广东卷</td><td>27</td><td>软技能</td><td>有效的项目管理团队需要理解和使用专门知识包括项目管理知识体系，应用领域知识、环境</td></tr>
+<tr><td>2022.11 广东卷</td><td>33</td><td>整体管理</td><td>项目人力资源管理、风险管理、采购管理在()协调下实现项目目标。</td></tr>
+<tr><td>2022.11 广东卷</td><td>50</td><td>项目经理权利</td><td>关于人力资源管理的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>51</td><td>X和丫理论</td><td>关于X理论和Y理论的描述不正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>52</td><td>冲突解决的办法</td><td>（）是集合多方的观点和意见，得出一个多数人接受和承诺的冲突解决方案。</td></tr>
+<tr><td>2022.11 广东卷</td><td>75</td><td>—</td><td>The () phase is where the team members m</td></tr>
+<tr><td>2022.05 全国卷</td><td>25</td><td>一把手原则</td><td>项目执行过程中，需要确定一个负责重大决策或协调工作的组织机构，体现了项目管理的(</td></tr>
+<tr><td>2022.05 全国卷</td><td>52</td><td>组建项目团队的输出</td><td>（）不属于组建项目团队的成果。</td></tr>
+<tr><td>2022.05 全国卷</td><td>53</td><td>冲突管理</td><td>关于冲突管理的描述。不正确的是（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>51</td><td>资源日历</td><td>()不能反映团队成员个人与其承担工作之间的联系。</td></tr>
+<tr><td>2022.05 广东卷</td><td>52</td><td>人员配备管理计划</td><td>() 一起确定了每个项目团队成员的工作时间段。</td></tr>
+<tr><td>2022.05 广东卷</td><td>53</td><td>团队建设5阶段</td><td>某项目团队成员开始执行分配任务，遇到困难的团队成员之间发生争执，互相指责，并怀疑</td></tr>
+<tr><td>2021.11</td><td>51</td><td>编制人力资源管理计划的工具和技术</td><td>编制人力资源管理计划的工具与技术不包括()。</td></tr>
+<tr><td>2021.11</td><td>52</td><td>资源日历</td><td>()用来确定项目进行的各个阶段到位的项目团队成员可以在项目上工作的时间。</td></tr>
+<tr><td>2021.11</td><td>53</td><td>冲突解决的办法</td><td>项目执行过程中，团队成员小王与小张针对一个问题产生了激烈的争吵，项目经理为了保持</td></tr>
+<tr><td>2021.05</td><td>24</td><td>项目的定义</td><td>（）不是一个项目。</td></tr>
+<tr><td>2021.05</td><td>51</td><td>责任分批矩阵</td><td>()最直观的反应了团队成员个人与其承担的工作之间的联系。</td></tr>
+<tr><td>2021.05</td><td>52</td><td>获取人力资源的依据</td><td>()不是获取项目人力资源的依据。</td></tr>
+<tr><td>2021.05</td><td>73</td><td>—</td><td>The ( ) is a hierarchical docomposition</td></tr>
+<tr><td>2020.11</td><td>51</td><td>资源日历</td><td>()列出了每种资源在可用工作日和工作班次的安排。</td></tr>
+<tr><td>2020.11</td><td>52</td><td>集中办公</td><td>()方式可以帮助项目团队成员增进沟通，快速形成凝聚力。</td></tr>
+<tr><td>2020.11</td><td>53</td><td>团队建设阶段</td><td>某项目团队成员的文化与语言背景不同，经过一段时间磨合，成员之间开始建立信任，矛盾</td></tr>
+<tr><td>2019.11</td><td>51</td><td>矩阵图</td><td>（）反映了团队成员个人与其承担的工作之间的联系。</td></tr>
+<tr><td>2019.11</td><td>52</td><td>虚拟团队</td><td>关于虚拟团队的描述，不正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>53</td><td>冲突解决方法</td><td>()指的是集合多方的观点和意见，得出一个多数人接受和承诺的冲突解决的方案。</td></tr>
+<tr><td>2019.05</td><td>53</td><td>RAM</td><td>关于责任分配矩阵(RAM)的描述，不正确的是()。</td></tr>
+<tr><td>2019.05</td><td>54</td><td>丫理论</td><td>()属于人力资源管理中的Y理论。</td></tr>
+<tr><td>2019.05</td><td>55</td><td>沟通渠道</td><td>项目团队中原来有5名成员，后来又有4人加入项目.与之前相比项目成员之间沟通渠道增</td></tr>
+<tr><td>2018.11</td><td>44</td><td>全体决策技术</td><td>某项目团队针对三个方案进行投票，支持A方案的人有35%,支持B方案的人有40%,</td></tr>
+<tr><td>2018.11</td><td>54</td><td>团队管理</td><td>关于项目团队管理，不正确的是（）。</td></tr>
+<tr><td>2018.05</td><td>44</td><td>群体决策技术</td><td>项目经理组织所有团队成员对三个技术方案进行投票：团队成员中的45%选择方案甲；3</td></tr>
+<tr><td>2018.05</td><td>53</td><td>人力资源管理计划</td><td>在编制项目管理计划过程中，项目管理的其他分领域计划也在同步编制。作为项目经理，编</td></tr>
+<tr><td>2018.05</td><td>54</td><td>领导方式</td><td>项目经理常用领导力、影响力和有效决策等人际关系技能来管理团队，根据项目管理的领导</td></tr>
+<tr><td>2018.05</td><td>74</td><td>—</td><td>In project management and systems engine</td></tr>
+<tr><td>2017.11</td><td>53</td><td>责任分配矩阵</td><td>以下关于编制人力资源计划的工具和技术的叙述中，不正确的是()。</td></tr>
+<tr><td>2017.11</td><td>54</td><td>团队管理的工具和技术</td><td>可以通过多种方法实现对项目团队的管理，随着远程通讯方式的快速发展，虚拟团队成为了</td></tr>
+<tr><td>2017.11</td><td>59</td><td>合同的类型</td><td>对于提供长期(一般为3年)涉外人力资源外包服务的软件企业，面对国际金融汇率波动较</td></tr>
+<tr><td>2017.05</td><td>52</td><td>责任分配矩阵</td><td>当需要确保每一个工作包只有一个明确的责任人，而且每一个项目团队成员都非常清楚自己</td></tr>
+<tr><td>2017.05</td><td>75</td><td>—</td><td>Human resource management is the managem</td></tr>
+<tr><td>2016.11</td><td>36</td><td>引导技术</td><td>引导技术是指团队领导者诱发团队成员积极参与团队活动的方法，来帮助团队和个人完成相</td></tr>
+<tr><td>2016.11</td><td>52</td><td>人员配备管理计划</td><td>描述项目团队成员在项目中何时，以何种方式，以及在项目中工作持续时日等相关信息的是</td></tr>
+<tr><td>2016.11</td><td>53</td><td>团队建设的阶段</td><td>项目团队形成要经历5个阶段，其中经过一段时间的磨合，团队成员之间已经相互熟悉和了</td></tr>
+<tr><td>2016.11</td><td>54</td><td>冲突管理</td><td>成功的冲突管理可以大大地提高团队生产力并促进积极的工作关系。以下关于冲突的叙述中</td></tr>
+<tr><td>2016.11</td><td>75</td><td>—</td><td>Human resource management is the managem</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>17</b>&nbsp;项目沟通管理<span class='zt-n'>14 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2022.11 全国卷</td><td>53</td><td>沟通方式</td><td>关于沟通方式的描述，正确的是()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>53</td><td>沟通方式</td><td>沟通方式中控制力最弱，参与程度最强的是（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>54</td><td>沟通渠道</td><td>（）是即时性强的混合沟通渠道。</td></tr>
+<tr><td>2021.11</td><td>54</td><td>沟通方式</td><td>关于沟通管理的描述，不正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>36</td><td>指导和管理项目工作</td><td>（）通常以开工会议（kiCk-off meeting）为开始标志。</td></tr>
+<tr><td>2021.05</td><td>54</td><td>管理沟通的输入</td><td>“管理沟通”过程的输入不包括()。</td></tr>
+<tr><td>2020.11</td><td>54</td><td>沟通方式</td><td>召开视频会议属于()沟通。</td></tr>
+<tr><td>2019.11</td><td>26</td><td>PM0</td><td>()是PM0应具备的特征。 ①负责制定项目管理方法，最佳实践和标准 ②对所有项目</td></tr>
+<tr><td>2019.11</td><td>54</td><td>沟通表达方式</td><td>关于沟通表达方式的描述，不正确的是()。</td></tr>
+<tr><td>2018.11</td><td>55</td><td>沟通管理的工具</td><td>关于管理沟通的工具，不正确的是（）。</td></tr>
+<tr><td>2018.05</td><td>55</td><td>沟通管理的目标</td><td>沟通过程管理的最终目标是（）。</td></tr>
+<tr><td>2017.11</td><td>55</td><td>控制沟通的工具和技术</td><td>以下()不是控制沟通的技术和方法。</td></tr>
+<tr><td>2017.05</td><td>53</td><td>沟通管理计划</td><td>在实施某项目时，由于地域限制，必须建立一个虚拟团队，此时制定（）就显得更加重要。</td></tr>
+<tr><td>2017.05</td><td>54</td><td>沟通方式</td><td>在沟通过程中，当发送方自认为已经掌握了足够的信息，有了自己的想法且不需要进一步听</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>18</b>&nbsp;项目风险管理<span class='zt-n'>53 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>55</td><td>—</td><td>一般来讲，()关注的始终是如何使投资具有最丰厚和深远的回报，同时又将风险控制到最</td></tr>
+<tr><td>2023.05 全国卷</td><td>63</td><td>—</td><td>对于那些未知但又无法主动管理的风险，需要进行（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>64</td><td>—</td><td>不属于风险识别的原则。</td></tr>
+<tr><td>2023.05 全国卷</td><td>65</td><td>—</td><td>（）不属于风险控制的工具或技术。</td></tr>
+<tr><td>2022.11 全国卷</td><td>64</td><td>风险的常识</td><td>关于风险的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 全国卷</td><td>67</td><td>风险应对措施</td><td>风险应对措施必须与O相匹配。</td></tr>
+<tr><td>2022.11 广东卷</td><td>64</td><td>规划风险管理</td><td>关于规划风险管理过程的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>65</td><td>风险识别的输入</td><td>O不属于识别风险的输入。</td></tr>
+<tr><td>2022.11 广东卷</td><td>67</td><td>风险应对策略</td><td>某互联网公司专利专员的如下工作中，()属于针对机会的应对策略。</td></tr>
+<tr><td>2022.11 广东卷</td><td>74</td><td>—</td><td>Monitor Risk is not the process of () th</td></tr>
+<tr><td>2022.05 全国卷</td><td>65</td><td>风险的分类</td><td>()属于投机风险。</td></tr>
+<tr><td>2022.05 全国卷</td><td>66</td><td>定性风险分析工具</td><td>关于定性风险分析工具与技术的描述，不正确的是()。</td></tr>
+<tr><td>2022.05 全国卷</td><td>67</td><td>控制风险的输入</td><td>()不属于控制风险的输入。</td></tr>
+<tr><td>2022.05 全国卷</td><td>71</td><td>—</td><td>A grid for mpping the probability of occ</td></tr>
+<tr><td>2022.05 广东卷</td><td>65</td><td>风险识别输入</td><td>O不属于“识别风险”过程的输入。</td></tr>
+<tr><td>2022.05 广东卷</td><td>67</td><td>风险审计</td><td>风险审计属于()过程的工具与技术。</td></tr>
+<tr><td>2022.05 广东卷</td><td>74</td><td>—</td><td>( ) is a way to organize experts to reac</td></tr>
+<tr><td>2021.11</td><td>65</td><td>风险的特点</td><td>由于信息的不对称，未来风险事件发生与否难以预测，指的是风险的()。</td></tr>
+<tr><td>2021.11</td><td>66</td><td>风险识别的工具和技术</td><td>关于识别风险的工具与技术的描述，正确的是()。</td></tr>
+<tr><td>2021.11</td><td>67</td><td>风险应对措施</td><td>在规划风险应对措施时，（）策略通常适用于高影响的、严重的消极风险。</td></tr>
+<tr><td>2021.11</td><td>74</td><td>—</td><td>In china, the security protection level</td></tr>
+<tr><td>2021.05</td><td>64</td><td>7种质量工具</td><td>()也称系统图，可用于表现诸如WBS、RBS (风险分解结构)和OBS (组织分</td></tr>
+<tr><td>2021.05</td><td>65</td><td>风险的特性</td><td>风险性质会因时空各种因素变化而有所变化，这体现了风险的（）。</td></tr>
+<tr><td>2021.05</td><td>66</td><td>定量风险分析</td><td>关于风险分析的描述，不正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>68</td><td>敏感性分析</td><td>（）有助于确定那些风险对项目具有最大的潜在影响。</td></tr>
+<tr><td>2020.11</td><td>65</td><td>风险识别</td><td>关于风险识别的描述，不正确的是（）。</td></tr>
+<tr><td>2020.11</td><td>66</td><td>风险登记册</td><td>O不属于定性风险分析的输出。</td></tr>
+<tr><td>2020.11</td><td>67</td><td>风险控制</td><td>某项目发生一个已知风险，尽管团队之前针对该风险做过减轻措施，但是并不成功，项目经</td></tr>
+<tr><td>2020.11</td><td>74</td><td>—</td><td>() is the process of identifying individ</td></tr>
+<tr><td>2019.11</td><td>65</td><td>风险识别</td><td>关于风险识别的描述，不正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>66</td><td>定性风险分析输出</td><td>O不属于风险定性分析的输出。</td></tr>
+<tr><td>2019.11</td><td>67</td><td>风险控制</td><td>某项目发生一个已知风险，尽管团队之前针对该风险做过减轻措施，但是并不成功，接下项</td></tr>
+<tr><td>2019.11</td><td>74</td><td>—</td><td>() is the process of identifying individ</td></tr>
+<tr><td>2019.05</td><td>11</td><td>基于风险方法审计步骤</td><td>基于风险方法进行信息系统审计的步骤是()。 ①决定哪些系统影响关键功能和资产 ②</td></tr>
+<tr><td>2019.05</td><td>59</td><td>自制/外购分析</td><td>关于“自制/外购”分析的描述不正确的是()。</td></tr>
+<tr><td>2019.05</td><td>66</td><td>风险的特点</td><td>()不属于项目风险的特性。</td></tr>
+<tr><td>2019.05</td><td>67</td><td>SWOT分析</td><td>()从项目的优势、劣势、机会和威胁角度对项目风险进行分析与管理。</td></tr>
+<tr><td>2019.05</td><td>68</td><td>风险应对措施</td><td>风险应对策略中，()可用于应对积极风险。</td></tr>
+<tr><td>2018.11</td><td>66</td><td>风险识别的原则</td><td>()不是风险识别的原则。</td></tr>
+<tr><td>2018.11</td><td>67</td><td>定量风险分析的工具和技术</td><td>()属于定量风险分析的工具和技术。</td></tr>
+<tr><td>2018.11</td><td>68</td><td>控制风险</td><td>有关控制风险的描述，不正确的是()。</td></tr>
+<tr><td>2018.05</td><td>31</td><td>风险的特征</td><td>人们对风险事件都有一定的承受能力，当O时，人们愿意承担的风险越大。</td></tr>
+<tr><td>2018.05</td><td>66</td><td>风险识别的输出</td><td>风险识别的输出是O</td></tr>
+<tr><td>2018.05</td><td>67</td><td>定性风险分析的工具和技术</td><td>在进行项目风险定性分析时，可能会涉及到（）</td></tr>
+<tr><td>2018.05</td><td>68</td><td>风险审计</td><td>O是检查并记录风险应对措施在处理已识别风险及其根源方面的有效性，以及风险管理过程</td></tr>
+<tr><td>2017.11</td><td>66</td><td>风险识别的输出</td><td>识别风险过程的主要输出就是风险登记册，风险登记册始于识别风险过程，在项目实施过程</td></tr>
+<tr><td>2017.11</td><td>68</td><td>定量风险分析的输出</td><td>风险相关的项目文件随着定量风险分析产生的信息而更新，O不是在定量风险分析过程中产</td></tr>
+<tr><td>2017.11</td><td>74</td><td>—</td><td>() is the process of implementing risk r</td></tr>
+<tr><td>2017.05</td><td>65</td><td>风险的类别</td><td>项目面临的各种风险中，()对客户的影响最为深远。</td></tr>
+<tr><td>2017.05</td><td>66</td><td>风险预测</td><td>风险预测从两个方面来评估风险，即()和风险发生可能带来的后果。</td></tr>
+<tr><td>2016.11</td><td>64</td><td>风险应对计划</td><td>公司任命小李作为项目A的项目经理。由于小李不能计划所有不测事件，他设立了一个应急</td></tr>
+<tr><td>2016.11</td><td>65</td><td>规划风险的工具和技术</td><td>规划风险应对是针对项目目标，制订提高机会、降低威胁的方案和措施的过程。()不是规</td></tr>
+<tr><td>2016.11</td><td>67</td><td>控制风险的工具和技术</td><td>控制风险是在整个项目中实施风险应对计划、跟踪已识别的风险、监督残余风险、识别新风</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>19</b>&nbsp;项目采购管理<span class='zt-n'>73 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>30</td><td>—</td><td>关于合同谈判的描述，不正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>56</td><td>—</td><td>关于采购谈判的描述，不正确的是（）。</td></tr>
+<tr><td>2023.05 全国卷</td><td>57</td><td>—</td><td>关于控制采购的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>30</td><td>招投标</td><td>关于中标候选人的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>31</td><td>招投标</td><td>招标过程中，招标人自收到异议之日起（）日内作出答复；作出答复前，应当暂停招标投标</td></tr>
+<tr><td>2022.11 全国卷</td><td>55</td><td>合同类型</td><td>关于合同类型的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>56</td><td>合同变更</td><td>关于合同变更的描述，不正确的是（）。</td></tr>
+<tr><td>2022.11 全国卷</td><td>57</td><td>编制采购管理计划的输入</td><td>（）不是编制采购管理计划的输入。</td></tr>
+<tr><td>2022.11 全国卷</td><td>58</td><td>招投标</td><td>关于投标的描述，正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>30</td><td>招投标</td><td>关于项目招投标的描述，不正确的是()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>31</td><td>招投标</td><td>评标委员会由具有高级职称或同等专业水平的技术、经济等相关领域专家，招标人和招标机</td></tr>
+<tr><td>2022.11 广东卷</td><td>32</td><td>合同技术谈判</td><td>合同技术谈判的内容不包括()。</td></tr>
+<tr><td>2022.11 广东卷</td><td>55</td><td>合同类型</td><td>关于合同的描述不正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>56</td><td>合同管理</td><td>关于合同管理的描述正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>57</td><td>采购管理计划</td><td>关于编制采购管理计划过程的描述正确的是（）。</td></tr>
+<tr><td>2022.11 广东卷</td><td>58</td><td>结束采购的工具和技术</td><td>（）不属于结束采购时使用的工具和技术。</td></tr>
+<tr><td>2022.05 全国卷</td><td>5</td><td>供应链类型</td><td>（）供应链是供应链网状结构中最基础的结构，例如化工、造纸、纺织等生产中间产品的企</td></tr>
+<tr><td>2022.05 全国卷</td><td>10</td><td>信息系统建设和服务能力5个等级</td><td>依据《信息系统建设和服务能力评估体系能力要求》，在信息系统建设和服务能力评估体系</td></tr>
+<tr><td>2022.05 全国卷</td><td>31</td><td>招投标</td><td>对技术复杂或者无法精确拟定技术规格的项目，招标人可以分两阶段进行招标，其中不属于</td></tr>
+<tr><td>2022.05 全国卷</td><td>32</td><td>招投标</td><td>开标时，由专业的负责人进行O,其主要目的是公布投标报价，若有其他内容则看招标文件</td></tr>
+<tr><td>2022.05 全国卷</td><td>58</td><td>采购谈判</td><td>关于采购谈判的描述，不正确的是（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>59</td><td>结束采购的输出</td><td>结束采购的成果不包括（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>31</td><td>招投标</td><td>招标人采用资格预审办法对招标人进行资格审查的，应当在开标后由（）按照招标文件规定</td></tr>
+<tr><td>2022.05 广东卷</td><td>32</td><td>招投标</td><td>关于招投标的描述，不正确的是（）。</td></tr>
+<tr><td>2022.05 广东卷</td><td>56</td><td>合同类型</td><td>某项目要求尽快开展工作，但是项目涉及的某些经济技术指标尚未确定，该项目最好签订（</td></tr>
+<tr><td>2022.05 广东卷</td><td>58</td><td>编制采购计划的输入</td><td>（）不属于编制采购计划的输入。</td></tr>
+<tr><td>2022.05 广东卷</td><td>59</td><td>建议书评价技术</td><td>关于实施采购过程中采用工具和技术的描述，不正确的是（）。</td></tr>
+<tr><td>2021.11</td><td>31</td><td>招投标</td><td>关于项目招投标的描述，正确的是（）。</td></tr>
+<tr><td>2021.11</td><td>32</td><td>招投标</td><td>关于招投标相关的描述，不正确的是（）。</td></tr>
+<tr><td>2021.11</td><td>56</td><td>合同的类型</td><td>对项目内容、技术经济指标未确定的项目适宜采用（）。</td></tr>
+<tr><td>2021.11</td><td>57</td><td>合同变更</td><td>关于合同管理描述不正确（）。</td></tr>
+<tr><td>2021.11</td><td>58</td><td>加权算法</td><td>在选择潜在卖方是，基于既定加权标准对进行卖方打分，则卖方得分（）。 评分项 权重</td></tr>
+<tr><td>2021.11</td><td>59</td><td>实施采购的输入</td><td>实施采购过程的依据包括()。</td></tr>
+<tr><td>2021.05</td><td>31</td><td>招投标</td><td>关于项目招投标的描述，不正确的是（）。</td></tr>
+<tr><td>2021.05</td><td>59</td><td>控制采购</td><td>关于控制采购过程的工具和技术的描述，不正确的是()。</td></tr>
+<tr><td>2020.11</td><td>31</td><td>招投标</td><td>O,该行为属于招标人与投标人串通投标。</td></tr>
+<tr><td>2020.11</td><td>57</td><td>合同管理</td><td>关于合同管理的描述，不正确的是（）。</td></tr>
+<tr><td>2020.11</td><td>58</td><td>自制/外购分析</td><td>当O时，项目不应从外部进行采购。</td></tr>
+<tr><td>2020.11</td><td>59</td><td>采购谈判</td><td>关于采购谈判的描述，不正确的是（）。</td></tr>
+<tr><td>2019.11</td><td>31</td><td>招投标法</td><td>根据2019年修订的《中华人民共和国招投标法实施条例》招标文件要求中标人要提交履</td></tr>
+<tr><td>2019.11</td><td>56</td><td>合同类型</td><td>成本补偿合同不适用于()的项目。</td></tr>
+<tr><td>2019.11</td><td>57</td><td>合同变更</td><td>关于合同变更的描述，不正确的是()。</td></tr>
+<tr><td>2019.11</td><td>58</td><td>自制/外购分析</td><td>“自制/外购”分析过程中，()时，项目不应从外部进行采购。</td></tr>
+<tr><td>2019.11</td><td>59</td><td>采购谈判</td><td>关于采购谈判的描述，不正确的是()。</td></tr>
+<tr><td>2019.05</td><td>35</td><td>招投标法</td><td>依据《中华人民共和国招投标法》，不正确的是（）。</td></tr>
+<tr><td>2019.05</td><td>57</td><td>合同类型</td><td>()的项目不适合使用总价合同。</td></tr>
+<tr><td>2019.05</td><td>60</td><td>控制采购的工具</td><td>()不属于控制采购过程的工具与技术。</td></tr>
+<tr><td>2018.11</td><td>35</td><td>招投标</td><td>关于项目招投标的描述，不正确的是（）。</td></tr>
+<tr><td>2018.11</td><td>57</td><td>合同的类型</td><td>关于项目合同的分类，正确的是()。</td></tr>
+<tr><td>2018.11</td><td>58</td><td>合同变更</td><td>合同变更的处理由()来完成。</td></tr>
+<tr><td>2018.11</td><td>59</td><td>编制采购管理计划的输入</td><td>项目经理赵某负责公司的大数据分析平台项目，搭建该平台需要大规模的计算能力。经过市</td></tr>
+<tr><td>2018.11</td><td>60</td><td>控制采购的输入</td><td>控制采购的输入不包括（）。</td></tr>
+<tr><td>2018.05</td><td>34</td><td>招投标知识</td><td>在O时。可以不进行招标。</td></tr>
+<tr><td>2018.05</td><td>35</td><td>在招投标知识</td><td>关于项目招投标的说法，不正确的是（）。</td></tr>
+<tr><td>2018.05</td><td>57</td><td>合同类型</td><td>（）类合同的适用范围比较宽，风险可以得到合理的分摊，但在履行中需要注意双方对实际</td></tr>
+<tr><td>2018.05</td><td>58</td><td>合同变更的原则</td><td>合同变更处理的首要原则是（）。</td></tr>
+<tr><td>2018.05</td><td>59</td><td>采购计划</td><td>采购人员按照（）的安排实施采购活动。</td></tr>
+<tr><td>2018.05</td><td>60</td><td>采购控制</td><td>关于控制采购的描述，不正确的是（）。</td></tr>
+<tr><td>2017.11</td><td>35</td><td>招投标</td><td>以下关于项目招投标的叙述中，正确的是()</td></tr>
+<tr><td>2017.11</td><td>58</td><td>合同管理的阶段</td><td>某系统集成商中标一个县政府办公系统的开发项目，在合同执行过程中，县政府提出在办公</td></tr>
+<tr><td>2017.11</td><td>60</td><td>工作说明书</td><td>以下关于说明书（SOW）的叙述中，不正确的是（）。</td></tr>
+<tr><td>2017.11</td><td>70</td><td>政府采购的形式</td><td>以下关于政府采购的说法，不正确的是（）。</td></tr>
+<tr><td>2017.05</td><td>57</td><td>合同的类型</td><td>以下关于不同项目合同类型的叙述中，不正确的是（）。</td></tr>
+<tr><td>2017.05</td><td>61</td><td>索赔的流程</td><td>某项目因甲方不能提供实施环境，严重影响了项目进度，为此项目组按下列流程提出了索赔</td></tr>
+<tr><td>2017.05</td><td>67</td><td>决策树的计算</td><td>某项目承包者预计该项目有0.5的概率获利200000美元，0.3的概率亏损500</td></tr>
+<tr><td>2017.05</td><td>70</td><td>合同价款</td><td>通过招标过程确定中标人后，实施合同内的合同价款应为()。</td></tr>
+<tr><td>2016.11</td><td>34</td><td>招投标法</td><td>以下关于开标与评标的叙述中，不正确的是（）。</td></tr>
+<tr><td>2016.11</td><td>56</td><td>合同管理</td><td>以下关于合同管理的叙述中，不正确的是（）。</td></tr>
+<tr><td>2016.11</td><td>57</td><td>索赔违约责任</td><td>根据合同违约管理的有关规定，以下叙述中，不正确的是（）。</td></tr>
+<tr><td>2016.11</td><td>58</td><td>索赔的流程</td><td>合同索赔是合同管理的一项重要内容。合同索赔流程的正确步骤是（）。 ①发出索赔通知</td></tr>
+<tr><td>2016.11</td><td>59</td><td>实施采购的工具和技术</td><td>实施采购过程中往往需要综合采用多种方法，来保证采购能够顺利进行。（）不属于实施采</td></tr>
+<tr><td>2016.11</td><td>60</td><td>控制采购</td><td>采购过程需要进行控制，以发现采购计划与实施采购过程中的偏差。以下关于采购控制的叙</td></tr>
+<tr><td>2016.11</td><td>68</td><td>竞争性谈判</td><td>依据《中华人民共和国政府采购法（2014年修订）》，采用竞争性谈判方式采购的，应</td></tr>
+</tbody></table></div>
+</details>
+<details class='zt-ch'>
+<summary><b style='color:var(--accent)'>20</b>&nbsp;项目干系人管理<span class='zt-n'>18 题</span><span class='zt-hit'></span></summary>
+<div class='zt-scroll'><table class='zt'>
+<thead><tr><th style='width:128px'>考次</th><th style='width:52px'>题号</th><th style='width:158px'>考点</th><th>题干摘要</th></tr></thead>
+<tbody>
+<tr><td>2023.05 全国卷</td><td>52</td><td>—</td><td>不是直接的项目参与者，但是可能对项目的实施具有潜在的影响力的干系人,被称为()。</td></tr>
+<tr><td>2022.11 全国卷</td><td>54</td><td>干系人分类模型</td><td>O根据干系人主动参与项目程度以及改变项目计划执行的能力进行分组。</td></tr>
+<tr><td>2022.11 广东卷</td><td>54</td><td>干系人管理</td><td>关于干系人管理的描述不正确的是（）。</td></tr>
+<tr><td>2022.05 全国卷</td><td>55</td><td>权力/利益方格</td><td>张主任是某集成项目的关键客户，对项目的验收有一票否决权，但他对项目的的进度似乎不</td></tr>
+<tr><td>2022.05 全国卷</td><td>74</td><td>—</td><td>() includes the process for incorporatin</td></tr>
+<tr><td>2022.05 广东卷</td><td>55</td><td>权利/利益方格</td><td>依据权利/利益方格，对单位内部生产核心部件的干系人应采取管理策略是（）。</td></tr>
+<tr><td>2021.11</td><td>55</td><td>权利/利益方格</td><td>根据权利/利益方格，对于权利高利益低干系人的管理方式应该是（）。</td></tr>
+<tr><td>2021.05</td><td>55</td><td>识别干系人的输入</td><td>()不属于识别项目干系人的输入。</td></tr>
+<tr><td>2020.11</td><td>55</td><td>权利/利益方格</td><td>根据干系人权力/利益方格分析，某手机厂商对于其品牌的忠实粉丝及未来潜在用户，应该</td></tr>
+<tr><td>2019.11</td><td>55</td><td>干系人分类模型</td><td>对项目干系人进行分类时，常用的分类方法不包括()。</td></tr>
+<tr><td>2019.05</td><td>56</td><td>干系人管理过程</td><td>识别项目干系人的活动按时间先后排序正确的是()。 ①对干系人分类②识别干系人及其</td></tr>
+<tr><td>2018.11</td><td>29</td><td>47个过程</td><td>识别干系人是项目（）的活动。</td></tr>
+<tr><td>2018.11</td><td>56</td><td>权利利益方格</td><td>下图干系人权力和利益的描述，不正确的是()。 离 根 力 低 低 通 高</td></tr>
+<tr><td>2018.05</td><td>56</td><td>项目干系人管理</td><td>关于干系人管理的描述。不正确的是（）。</td></tr>
+<tr><td>2017.11</td><td>56</td><td>权利利益方格</td><td>在进行项目干系人分析时，经常用到权力/利益分析法，对待属于第A区域的项目干系人，</td></tr>
+<tr><td>2017.05</td><td>55</td><td>权力/利益方格</td><td>权力/利益方格根据干系人权力的大小，以及利益大小（或项目关注度）对干系人进行分类</td></tr>
+<tr><td>2017.05</td><td>56</td><td>干系人管理计划</td><td>某项目经理在编制干系人管理计划，绘制的如下表格是（）。 干系入 不知晓 抵制 巾</td></tr>
+<tr><td>2016.11</td><td>55</td><td>项目干系人管理</td><td>管理项目干系人参与过程的主要作用是()。</td></tr>
+</tbody></table></div>
+</details>
+
+  <h3 style="font-size:15px;margin:26px 0 10px">四、案例分析索引（57 道案例试题）</h3>
+  <p class="lead" style="margin-bottom:10px">每个考次的 4 道案例（少数考次 2–3 道），按「试题 · 分值 · 涉及领域 · 问题摘要」列出，可直接对回笔记本堂章节。</p>
+<details class='zt-ch'>
+<summary><b>2023.05 全国卷</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>18分</td><td>9.5 项目立项管理</td><td>【问题1】（8分） 结合案例，请指出项目在立项管理和需求管理方面存在的问题。 【问题2】（5分） 请简述需求文件包含的主要内容。  / 【问题3】(5分) 结合案例，判断下列说法的正误(填写在答题纸对应栏内，正确〃V〃，错误〃X〃) (1)项目建议书也可与可行性研究</td></tr>
+<tr><td>试题二</td><td>20分</td><td>13 项目进度管理</td><td>【问题1】(5分) (1)结合案例:请写出项目关键路径，并计算项目工期 (2)如果活动L工期拖延10天，对整个工期是否有影响，请说 / 【问题2】(8分) 假设项目总成本为100万，按进度计划平均分摊到项目活动中。工程执行到第40天结束，项目经理发现已 经完成了 3 / 【问题3】(7分) 若要求该</td></tr>
+<tr><td>试题三</td><td>20分</td><td>11 项目整合管理</td><td>【问题1】(10分) 结合案例，请指出项目A在配置管理中存在的问题。 【问题2】(6分) 结合案例填写下表，为每个角色指派合适的工 / 【问题3】(4分) 判断下列说法的正误(填写在答题纸的对应栏内，正确的填写“ J”，错误的填写“X”) (1)信息系统相关信息(文</td></tr>
+<tr><td>试题四</td><td>17分</td><td>18 项目风险管理</td><td>【问题1】(8分) 请结合案例，请指出本项目的两个方案分别存在哪些风险。 【问题2】(5分) 请写出“控制风险”过程的目的。 【问</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2022.11 全国卷</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>18分</td><td>15 项目质量管理</td><td>【问题1】(8分) (1)结合案例，如果你是质量经理，流程图、核查表、帕累托图可以帮助你检查案例中的哪些质量问题？ (2)除了以上 / 【问题2】(6分) (1)请指出质量成本中一致性成本和非一致性成本都包含哪些成本； (2)案例中提到的质量活动涉及的成本属于哪类质 / 【问题3】(4分) 判断下列</td></tr>
+<tr><td>试题二</td><td>22分</td><td>13 项目进度管理</td><td>【问题1】（5分） 请计算项目的工期及关键路径，并说明活动E最晚应在哪天开始，依据是什么？ -40 - 【问题2】(8分) 第9日 / 【问题3】(9分) 假设每位工程师均可胜任各项工作，在不影响工期的前提下，可重新安排有关活动的顺序以减少项目所需人 数。此种情况下</td></tr>
+<tr><td>试题三</td><td>17分</td><td>19 项目采购管理</td><td>【问题1】(9分) 请指出本案例中招投标过程中存在的问题。 【问题2】(4分) 请写出“采购管理”包含的主要过程。 【问题3】(4</td></tr>
+<tr><td>试题四</td><td>18分</td><td>16 项目资源管理</td><td>【问题1】(8分) 项目经理具备5种基本的权力。请结合案例，补充完成下表。 项目经理的权利 张伟行驶权利的具体活动 合法的权利 制 / 【问题2】(6分) 请指出张伟提出的4项激励措施，分别针对马斯洛需要层次理论中的哪个层次。 措施1： O 措施2: O 措施3:  / 【问题3】(4分) 判断下列</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2022.11 广东卷</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>18分</td><td>15 项目质量管理</td><td>【问题1】（9分） （1）结合案例，请指出小安在此项目中的工作是质量保证还是质量控制？ （2）指出本案例中质量管理方面存在的问题并 / 【问题2】（6分） 请分别指出实施质量保证和质量控制二者在工作内容上的区别。 【问题3】（3分） 判断下列选项的正误（填写在答题纸</td></tr>
+<tr><td>试题二</td><td>21分</td><td>14 项目成本管理</td><td>【问题1】（9分） 为了实施项目的过程跟踪，项目经理制定了如下过程跟踪表，请补齐表中的数据（PV/EV/AC值保留整数,SPI/C / 【问题2】（4分） 请说明第4周时项目的绩效情况，并说明理由。 【问题3】（3分） 第4周时，项目经理准备采取如下措施，请指出各措 / 【问题4】（5分） 第4周时</td></tr>
+<tr><td>试题三</td><td>16分</td><td>19 项目采购管理</td><td>【问题1】（5分） 请分析案例，指出案例中工作说明书缺少的哪些主要内容。 【问题2】（6分） 如果A公司用招标的方式寻找合作方，请 / 【问题3】（5分） 请将①〜⑤处的答案填写在答题纸的对应栏内。 （1）按照采购管理过程，该项目处于①阶段。 （2）公司招标过程涉及</td></tr>
+<tr><td>试题四</td><td>19分</td><td>17 项目沟通管理</td><td>【问题1】（10分） 结合案例，请指出张伟在项目沟通管理与干系人管理中存在的向题。 【问题2】（6分） 结合案例，请采用权力利益方 / 【问题3】（3分） 请将下面①〜③处的答案填写在答题纸的对应栏内。 案例中沟通的方式，会议属于①；电子邮件属于②；在线知识库属于③</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2022.05 全国卷</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>15分</td><td>12 项目范围管理</td><td>【问题1】(5分) 请简述创建工作分解结构的过程。 【问题2】(10分) 结合案例： (1)请写出常用的两种WBS的表示形式。(2</td></tr>
+<tr><td>试题二</td><td>19分</td><td>13 项目进度管理</td><td>【问题1】（7分） 结合案例： （1）请绘制项目的双代号网络图。 （2）请确定项目的关键路径及工期。 【问题2】（4分） 请计算活 / 【问题3】（6分） 请判断项目在第4周周末时的进度与成本绩效，并说明原因。 【问题4】（2分） 项目经理认为目前项目出现进度的问题</td></tr>
+<tr><td>试题三</td><td>17分</td><td>16 项目资源管理</td><td>【问题1】(6分) 结合案例，请指出小王在人力资源管理方面存在的问题。 【问题2】(7分) (1)请写出常用的冲突管理解决方法。  / 【问题3】(4分) 判断下列选项的正误(填写在答题纸的对应栏内，正确的选项填写〃V〃，错误的选项填写以〃)。 (1)虚拟团队模式使</td></tr>
+<tr><td>试题四</td><td>12分</td><td>18 项目风险管理</td><td>【问题2】（8分） 结合案例： （1）分析下表列出的风险，并补充完成每个风险的风险等级。 风险类别 风险 发生概率 影响程度 风险 / 【问题3】（4分） 请将下面（1）〜（4）的答案填写在答题纸的对应栏内。 风险登记册的编制始于）过程，在项目实施过程中供（2）过程 / 【问题1】 （1）分别用到了</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2022.05 广东卷</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>18分</td><td>15 项目质量管理</td><td>【问题1】（4分） 结合案例，请指出质量经理在查找质量问题时所采用的工具与技术，该工具与技术主要应用于哪个质量管理 过程？ 【问题 / 【问题3】（5分） 结合案例，请写出QA在执行质量控制过程中输出的质量控制成果。 【问题4】（5分） 请将下列表中质量管理技术简称</td></tr>
+<tr><td>试题二</td><td>21分</td><td>13 项目进度管理</td><td>【问题1】（2分） 结合案例，确定项目的关键路径。 【问题2】（4分） 不考虑间接费用和人力资源，项目经理想通过赶工的方式提前一天 / 【问题3】（8分） （1）如果活动B拖延4天，项目工期会拖延几天？请说明理由。 （2）基于（1）,项目的关键路径是否发生变化？请说 / 【问题4】（7分） 请根据案</td></tr>
+<tr><td>试题三</td><td>17分</td><td>18 项目风险管理</td><td>【问题1】(10分) 结合案例，请指出项目风险管理中存在的问题。 【问题2】(4分)。 请简述消极风险(威胁)和积极风险(机会)的 / 【问题3】(3分) 请将下面(1)~(3)处的答案填写在答题纸的对应栏内。 按照风险产生的原因对风险进行分类，可分为(1)社会风险</td></tr>
+<tr><td>试题四</td><td>19分</td><td>11 项目整合管理</td><td>【问题1】(10分) 结合案例，请分别简述项目在配置管理和测试过程存在的问题。 【问题2】(3分) 请指出功能配置审计需要验证哪些 / 【问题3】(6分) 请将下面(1)-(3)处答案填写在答题纸的对应栏内。典型的配置库可以分为(1)种类型，(2)又称主库, 包含当</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2021.11</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>18分</td><td>18 项目风险管理</td><td>【问题1】(10分) 结合案例，请指出小张在项目风险管理各个过程中存在的问题。 【问题2】(5分) 请指出以上案例中提到的应对措施 / 【问题3】(3分) 请将下面(1) ~ (3)的答案填写在答题纸的对应栏内。 风险具有一些特性。其中，(1)指风险是一种不以人的意</td></tr>
+<tr><td>试题二</td><td>20分</td><td>13 项目进度管理</td><td>【问题1】（5分） （1）请采用三点估算法估算各个子任务的工期 （2 ）请分别计算系统实施和系统测试两个任务的标准差。 【问题2】 / 【问题3】（4分） 如果项目从第7周开始不会再发生类似的偏差，请计算此项目的完工估算EAC和完工偏差VACo 【问题4】（2分）</td></tr>
+<tr><td>试题三</td><td>17分</td><td>15 项目质量管理</td><td>【问题1】（5分） 请结合案例，小张按照项目管理计划进行质量控制，依据是否充分?如果不充分，请补充其他依据。 【问题2】（7分）  / 【问题3】（5分） 判断下列选项的正误（填写在答题纸的对应栏内，正确的选项填写“ J”，错误的选项填写“X"） （1）菲利普-克劳</td></tr>
+<tr><td>试题四</td><td>20分</td><td>17 项目沟通管理</td><td>【问题1】（12分） （1）结合案例，请补充干系人清单 （2）请指出张伟沟通管理中存在的问题。 —129 - 【问题2】(4分)  / 【问题3】(4分) 在下图的权力/利益矩阵中，针对(1)区域的干 系人，项目经理应该“重点管理，及时报告”，采 取有力的行动其满意</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2021.05</b><span class='zt-n'>3 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>18分</td><td>15 项目质量管理</td><td>【问题1】（6分） 结合案例，请简要分析小张在做质量规划时存在的问题。 【问题2】（7分） 请写出常用的七种质量管理工具，并指出在 / 【问题3】（5分） 请将下面①-⑤的答案填写在答题纸的对应栏内 （1）实施①过程的主要作用是促进质量过程改进 （2）测量指标的可允</td></tr>
+<tr><td>试题二</td><td>18分</td><td>14 项目成本管理</td><td>【问题1】（6分） 请计算出目前项目的PV, EV, AC （采用50/50规则计算挣值即工作开始记作完成50%,工作完成记作完成 / 【问题2】（8分） （1）请计算该项目的CV、SV、CPI、SPIo （2）基于以上结果请判断项目当前的执行状况。 【问题3】（4</td></tr>
+<tr><td>试题四</td><td>20分</td><td>12 项目范围管理</td><td>【问题1】(8分) 结合案例，请指出该项目在范围管理过程中存在的问题。 【问题2】(6分) 请列出项目范围管理的主要过程。 【问题</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2020.11</b><span class='zt-n'>2 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>18分</td><td>15 项目质量管理</td><td>【问题1】(10分) 结合案例，请指出本项目质量管理过程中存在的问题。 【问题2】(5分) 请简述规划质量管理过程的输入 【问题3</td></tr>
+<tr><td>试题二</td><td>20分</td><td>9 项目管理概论</td><td>【问题1】（6分） 结合案例，请将图中的编号①〜⑥填写在答题纸的对应栏内。 【问题2】（6分） 结合案例，请计算项目在检查日期时的 / 【问题3】（4分） 结合案例，针对问题2的分析结果，项目经理应该采取哪些措施 【问题4】（4分） 结合案例，如果项目在检查日期时的</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2019.11</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>17分</td><td>11 项目整合管理</td><td>【问题1】（7分） 结合案例，从项目管理角度，简要分析项目所存在的问题。 【问题2】（6分） 结合案例，判断下列选项的正误（填写在 / 【问题3】（4分） 请简要叙述项目整体管理中监控项目工作的输出。 —183 -</td></tr>
+<tr><td>试题二</td><td>20分</td><td>13 项目进度管理</td><td>【问题1】(5分) 请采用合适的方法估算各个任务的工期，并计算项目的总工期和关键路径。 【问题2】(3分) 分别给出CDE三项活动 / 【问题3】(7分) 请计算并分析该项目第13天晚上时的执行绩效情况。 【问题4】(5分) 针对项目目前的绩效情况，项目经理应该采取</td></tr>
+<tr><td>试题三</td><td>20分</td><td>16 项目资源管理</td><td>【问题1】（6分） （1）请简述一般项目团队建设的五个阶段及其特点。 （2）请说明案例中项目团队当前所处的阶段。 【问题2】（4分 / 【问题3】（10分） （1）请简述成功的项目团队的特点。 （2）对照成功项目团队的特点，指出案例中存在的问题，并写出改进措施。</td></tr>
+<tr><td>试题四</td><td>18分</td><td>信息安全 ⚠非笔记章节</td><td>【问题1】(8分) 根据以上检查记录，请指出该机房在信息安全管理方面存在的问题，并说明原因(将错误编号及原因填写在 答题纸对应表格 / 【问题2】(4分) 信息系统安全的属性包括保密性、完整性、可用性和不可抵赖性。请说明各属性的含义。 【问题3】(6分) 请列举机房</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2019.05</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>20分</td><td>15 项目质量管理</td><td>【问题1】（5分） 在本案例中，张工完成质量管理规划后，应该输出哪些内容？ 【问题2】（3分） 结合案例，请指出张工对质量与等级的 / 【问题3】（8分） 请对张工设计的成本分类表格的内容进行判断（正确打J,错误打X） 【问题4】（4分） ①（）是将实际或计划的项目</td></tr>
+<tr><td>试题二</td><td>17分</td><td>14 项目成本管理</td><td>【问题1】（6分） 基于以上案例，项目经理得到了单代号网络图，请将以下图补充完整。 【问题2】（5分） 基于补充后的网络图， （1 / 【问题3】（6分） 请计算项目当前的PV、EV、A C.CV、SV为并评价项目进度和成本绩效。</td></tr>
+<tr><td>试题三</td><td>18分</td><td>19 项目采购管理</td><td>【问题1】(4分) 按项目管理过程。请将下面(1) ~ (4)处的各答案填写在答题纸的对应框内。 采购管理过程包括(1)、(2)、 / 【问题2】(8分) 结和案例简要说明小张在采购过程中存在的问题。 【问题3】(6分) 简要叙述供应商选择需要考虑的因素。</td></tr>
+<tr><td>试题四</td><td>20分</td><td>18 项目风险管理</td><td>【问题1】(10分) 结合以上案例，请指出A公司在项目风险管理中存在的问题？ 【问题2】(4分) 如果你是该项目的项目经理，针对新 / 【问题3】(6分) 结合本案例，判断选项的正误(正确的填写“ 错误的填写“X”) L定量风险分析是评估并综合分析风险的概率和影响，</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2018.11</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>18分</td><td>16 项目资源管理</td><td>【问题1】(8分) 结合案例，请简要分析造成项目目前状况的原因。 【问题2】(5分) 请简述项目管理办公室的职责 【问题3】(5分</td></tr>
+<tr><td>试题二</td><td>17分</td><td>19 项目采购管理</td><td>【问题1】(12分) 结合以上案例，请指出以上招投标及项目实施过程中存在的问题。 【问题2】(3分) 采购文件为实施采购、控制采购 / 【问题3】(2分) 从候选答案中选择一个正确选项，将该选项编号填入答题纸对应栏内 (1)下的卖方100%承担成本超支的风险 (2)</td></tr>
+<tr><td>试题三</td><td>21分</td><td>14 项目成本管理</td><td>【问题1】（10分） 请计算项目当前的成本偏差CV、进度偏差SV成本绩效指数CPI、进度绩效指数SPI,并指出该项目的成本和 进度 / 【问题2】（3分） 项目经理对项目偏差产生的原因进行了详细分析，预期未来还会发生类似偏差如果项目要按期完成，请估算 项目的ETC（ / 【问题3】（2分） 假如此时</td></tr>
+<tr><td>试题四</td><td>19分</td><td>15 项目质量管理</td><td>【问题1】(10分) 结合案例，分析该项目中质量问题产生的原因。 【问题2】(5分) 请简述质量控制过程的输入。 【问题3】(4分</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2018.05</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>20分</td><td>11 项目整合管理</td><td>【问题1】(8分) 在本案例中，除了因合同条款不明确导致的频繁变更外，还有哪些因素造成了小王目前的困境？ 【问题2】(4分) 结合 / 【问题3】(4分) 简要说明变更控制的主要步骤。 【问题4】(4分) 基于案例，请判断以下描述是否正确(填写在答题纸的对应栏内，正</td></tr>
+<tr><td>试题二</td><td>17分</td><td>13 项目进度管理</td><td>【问题1】（6分） 基于以上案例，简要叙述最优的活动步骤安排。 【问题2】（7分） 基于以上案例，请计算项目的完工时间（详细写出每 / 【问题3】（4分） 在制订项目计划的过程中，往往受到资源条件的限制，经常采用资源平衡和资源平滑方法， 请简要描述二者的区别。</td></tr>
+<tr><td>试题三</td><td>18分</td><td>16 项目资源管理</td><td>【问题1】（8分） 结合案例，请指出本项目在人力资源管理方面存在的问题。 【问题2】（6分） 基于以上案例： （1）判断当前项目团 / 【问题3】（4分） 结合案例，从候选答案中选择一个正确答案，将该选项的编号填入答题纸对应栏内。 （1）项目经理根据工作任务和团队人</td></tr>
+<tr><td>试题四</td><td>20分</td><td>18 项目风险管理</td><td>【问题1】(4分) 请指出张伟在项目风险管理方面做的好的地方。 【问题2】(8分) 张伟在项目风险管理方面还有哪些待改进之处？ 【 / 【问题4】(4分) 关于风险管理，判断下列描述是否正确(填写在答题纸的对应栏内，正确的选项填写〃V〃， 错误的选项填写〃x〃)：</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2017.11</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>20分</td><td>11 项目整合管理</td><td>【问题1】（8分） 结合上述案例，请指出项目经理柳工制定的变更管理流程存在哪些问题。 【问题2】（3分） 基于以上案例，请指出项目 / 【问题3】（3分） 基于以上案例，请阐述变更过程中包含的配置管理活动。 【问题4】（6分） 请阐述变更管理的工作流程。</td></tr>
+<tr><td>试题二</td><td>18分</td><td>13 项目进度管理</td><td>【问题1】（3分） 假设活动E的最乐观时间为1天,最可能时间为4天,最悲观时间为7天，请用三点估算法计算活动E的 持续时间。 【问 / 【问题3】（4分） 基于问题2的计算结果，请计算： （1）该项目的关键路径： （2）该项目的总工期。 【问题4】（5分） 请指出缩</td></tr>
+<tr><td>试题三</td><td>17分</td><td>11 项目整合管理</td><td>【问题1】（5分） 结合案例，项目经理齐工对小王提出的问题的解释是否恰当？请从项目总结会的规范要求角度，说明理由。 【问题2】（5 / 【问题3】（2分） 请将下面（1）-（2）处的答案填写在答题纸的对应栏内 结合案例，你认为系统集成项目收尾管理工作通常包含（1）项 / 【问题4】（5分） 结合案例</td></tr>
+<tr><td>试题四</td><td>20分</td><td>20 项目干系人管理</td><td>【问题1】(4分) 下图为该项目干系人的权力/利益方格示意图： 结合案例中小李制定的干系人名册，请指出该项目需要”重点管理”的干  / 【问题2】(4分) 请指出小李在项目沟通管理和干系人管理方面做的好的地方。 【问题3】(8分) 在项目沟通管理和干系人管理方面：  / 【问题4】(4分) 判断下列</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2017.05</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>18分</td><td>9 项目管理概论</td><td>【问题1】（6分） 综合上述案例，请帮助项目经理张工计算该项目的评估结果（包括合计得分和归一化结果）。 【问题2】（4分） 基于以 / 【问题3】（8分） 请指出项目论证应包括哪几个方面？ —297 -</td></tr>
+<tr><td>试题二</td><td>18分</td><td>13 项目进度管理</td><td>【问题2】(8分) (1)计算活动B、C、D的总体时差 (2)计算活动B、C、D的自由时差 (3)计算活动D、G的最迟开始时间 【 / 【问题4】(5分) —298 - 请简要说明什么是接驳缓冲和项目缓冲。如果采取关键链法对该项目进行进度管理，则接驳缓冲应该设置在</td></tr>
+<tr><td>试题三</td><td>19分</td><td>18 项目风险管理</td><td>【问题1】(10分) 请指出该项目经理在项目风险管理方面存在哪些问题？ 【问题2】(4分) 针对该项目的情况，请指出项目中存在的具 / 【问题3】(5分) 在(1) ~ (5)中填写恰当内容(从候选答案中选择一个正确选项，将该选项编号填入答题纸对应栏内)。 项目经理</td></tr>
+<tr><td>试题四</td><td>16分</td><td>16 项目资源管理</td><td>【问题1】(6分) 结合以上案例，请指出以上招标过程中的问题。 【问题2】(6分) 假设你是A公司负责本次招标的人员，在招标过程中 / 【问题3】(4分) 结合本案例，判断下列选项的正误(填写在答题纸的对应栏内，正确的选项填写〃V〃，错误的选项填写〃x〃) (1)招</td></tr>
+</tbody></table>
+</details>
+<details class='zt-ch'>
+<summary><b>2016.11</b><span class='zt-n'>4 道案例</span><span class='zt-hit'></span></summary>
+<table class='zt'>
+<thead><tr><th style='width:76px'>试题</th><th style='width:62px'>分值</th><th style='width:150px'>涉及领域</th><th>问题摘要</th></tr></thead>
+<tbody>
+<tr><td>试题一</td><td>20分</td><td>14 项目成本管理</td><td>【问题1】（5分） （1）请指出该项目的关键路径。 （2）请计算该项目的总工期。 （3）请计算活动C的总浮动时间和自由浮动时间。  / 【问题2】（3分） 假设该项目无应急储备，管理储备为10000元，计算该项目的完工预算BAC和总预算。 【问题3】（6分） 按照项 / 【问题4】（6分） 在项目第</td></tr>
+<tr><td>试题二</td><td>20分</td><td>19 项目采购管理</td><td>【问题1】（3分） 老李直接决定将项目外包的做法是否合适？为什么？ 【问题2】（3分） 判断下列选项的正误（填写在答题纸的对应栏内 / 【问题3】（8分） （1）该项目的合同应采用哪一种合同对于甲方比较有利？为什么？ （2）C公司和D公司的联合体是否符合投标要求？为 / 【问题4】（6分） 请说明在</td></tr>
+<tr><td>试题三</td><td>17分</td><td>11 项目整合管理</td><td>【问题1】（6分） 请结合以上案例，简要说明配置管理的目标和主要活动。 【问题2】（8分） 请说明杨工在配置管理中存在的问题。 【</td></tr>
+<tr><td>试题四</td><td>18分</td><td>15 项目质量管理</td><td>【问题1】(8分) 结合以上案例，请指出该质量管理计划制定和实施过程中存在的问题。 【问题2】(5分) 结合以上案例，请指出QA的 / 【问题3】(5分) 结合以上案例，你认为设计评审会议应该由谁组织？为什么？</td></tr>
+</tbody></table>
+</details>
+</section>
+
 <footer>归类依据：考试稳定题型结构 + 公开考纲权重 · 逐题原文请以官方/正规出版物为准 · 祝顺利通过 💪</footer>
 </div>
 
@@ -736,8 +1733,36 @@ window.addEventListener('scroll',()=>{
  links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+cur.id));
 },{passive:true});
 
+<<<<<<< HEAD
 /* ===== 返回顶部 ===== */
 (function(){var b=document.getElementById('toTop');function u(){b.classList.toggle('show',window.scrollY>300);}window.addEventListener('scroll',u,{passive:true});u();})();
+=======
+/* ===== 真题索引：关键词筛选 ===== */
+(function(){
+ const box=document.getElementById('ztSearch'), stat=document.getElementById('ztStat');
+ if(!box) return;
+ const all=function(){return document.querySelectorAll('#zhenti details.zt-ch');};
+ function run(){
+  const q=box.value.trim().toLowerCase();
+  let shown=0,total=0;
+  all().forEach(function(d){
+   let hit=0;
+   d.querySelectorAll('tbody tr').forEach(function(tr){
+    total++;
+    const ok=!q||tr.textContent.toLowerCase().indexOf(q)>=0;
+    tr.style.display=ok?'':'none';
+    if(ok)hit++;
+   });
+   const lab=d.querySelector('.zt-hit');
+   if(q){d.open=hit>0;lab.textContent=hit>0?(hit+' 条命中'):'无命中';if(hit>0)shown+=hit;}
+   else{lab.textContent='';}
+  });
+  stat.textContent=q?('命中 '+shown+' / '+total+' 题'):'';
+ }
+ box.addEventListener('input',run);
+ box.addEventListener('search',run);
+})();
+>>>>>>> 4a50b50e5a6e58a608ad88961bcc9f1054cdb95d
 </script>
 <button id="toTop" title="返回顶部" aria-label="返回顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
