@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>③ 三点估算与概率 · 软考中级计算题专题</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5b6472;--line:#e4e7ef;--accent:#2563eb;--accent-soft:#eaf2ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
+header{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:30px 0 26px}
+header .wrap{padding-bottom:0}
+header h1{font-size:23px;font-weight:700}
+header p{margin-top:6px;font-size:13.5px;opacity:.92}
+header a.back{display:inline-block;margin-top:10px;font-size:12.5px;color:#fff;text-decoration:none;border:1px solid #ffffff66;border-radius:20px;padding:3px 12px}
+nav.toc{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:16px}
+nav.toc .in{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:12.5px;padding:9px 10px;border-bottom:2.5px solid transparent}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent)}
+section{margin-top:34px;scroll-margin-top:60px}
+h2.sec{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:8px}
+h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:12.5px;padding:2px 9px}
+p.lead{color:var(--sub);font-size:13.5px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:13px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
+.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:9px 12px;white-space:pre-wrap}
+.ktxt ul{margin:0;list-style:none}
+.ktxt ul li{position:relative;padding-left:14px;margin:2px 0}
+.ktxt ul li:before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:11px}
+.fbox{background:#0f172a;color:#e8eefc;border-radius:12px;padding:12px 14px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;line-height:1.9;white-space:pre-wrap;overflow-x:auto}
+.fbox b{color:#7dd3fc;font-weight:600}
+.qbox{background:#fff;border-left:4px solid var(--accent);padding:12px 14px;border-radius:0 10px 10px 0;margin-top:8px}
+.qbox .q{font-size:13px;color:var(--ink)}
+.qbox .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub);display:none}
+.qbox.open .a{display:block}
+.toggle{display:inline-block;margin-top:6px;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:1px 10px;cursor:pointer}
+.toggle:hover{background:var(--accent);color:#fff}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:8px}
+.related a{display:block;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;text-decoration:none;color:var(--ink);font-size:12.5px}
+.related a:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.related a small{display:block;color:var(--sub);font-size:11.5px;margin-top:2px}
+table.kt{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden}
+table.kt th{background:#37415c;color:#fff;padding:8px 11px;text-align:left;font-size:12.5px}
+table.kt td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+table.kt tr:last-child td{border-bottom:none}
+table.kt td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
+footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>③ 三点估算与概率 · 计算题专题</h1>
+    <p>PERT β 分布 · 标准差与方差 · 工期/成本的不确定性估计</p>
+    <a class="back" href="../软考中级复习计划.html#hub">← 返回主计划 · 📍 跳转枢纽（一键直达 8 大考点）</a>
+    <nav class="toc"><div class="in">
+      <a href="#overview">① 知识地图</a>
+      <a href="#formula">② 公式速查</a>
+      <a href="#approach">③ 计算思路</a>
+      <a href="#rules">④ 规律注意点</a>
+      <a href="#example">⑤ 例题演练</a>
+      <a href="#links">⑥ 关联专题</a>
+    </div></nav>
+  </div>
+</header>
+<div class="wrap">
+
+<section id="overview">
+  <h2 class="sec"><span class="no">①</span>知识地图</h2>
+  <p class="lead">当单个活动的工期或成本不确定时，用"乐观 / 最可能 / 悲观"三值估算期望值与离散程度，是单选 + 案例都爱考的"小计算"。</p>
+  <div class="card">
+    <h3 style="font-size:14.5px;margin-bottom:8px">三值估算 · O / M / P</h3>
+    <table class="kt">
+      <tr><th>符号</th><th>含义</th><th>备注</th></tr>
+      <tr><td>O</td><td>Optimistic · 乐观值</td><td>一切顺利时的最短工期/最低成本</td></tr>
+      <tr><td>M</td><td>Most likely · 最可能值</td><td>经验上看最可能出现的工期/成本</td></tr>
+      <tr><td>P</td><td>Pessimistic · 悲观值</td><td>最不利情况下的最长工期/最高成本</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14.5px;margin-bottom:8px">两种分布</h3>
+    <div class="ktxt"><ul>
+      <li><b>β 分布（PERT 默认）</b>：Te = (O + 4M + P) / 6，对最可能值赋予最高权重。</li>
+      <li><b>三角分布</b>：Te = (O + M + P) / 3，三值平均。<b>题干未特别说明 → 默认 β</b>。</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="formula">
+  <h2 class="sec"><span class="no">②</span>公式速查</h2>
+  <div class="fbox"><b>期望值</b>
+β 分布(PERT 默认)：Te = (O + 4M + P) / 6
+三角分布：          Te = (O + M + P) / 3
+
+<b>离散程度</b>
+标准差：              σ = (P − O) / 6
+方差：                σ² = [(P − O) / 6]²
+
+<b>概率区间（标准正态近似）</b>
+Te ± 1σ ≈ 68.26%
+Te ± 2σ ≈ 95.46%
+Te ± 3σ ≈ 99.73%
+
+<b>多活动总工期</b>
+总期望 = Σ Teᵢ
+总方差 = Σ σᵢ²
+总标准差 = √(Σ σᵢ²)</div>
+</section>
+
+<section id="approach">
+  <h2 class="sec"><span class="no">③</span>计算思路</h2>
+  <div class="card">
+    <h3 style="font-size:14.5px;margin-bottom:8px">题型 1：求期望工期 / 标准差</h3>
+    <div class="ktxt"><ul>
+      <li>先判断是 β 分布还是三角分布（题干通常默认 β）。</li>
+      <li>代入公式算 Te 和 σ。</li>
+      <li>单活动完工概率题：用 Z = (T − Te) / σ 查表。</li>
+    </ul></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14.5px;margin-bottom:8px">题型 2：求"某工期完成的概率"</h3>
+    <div class="ktxt"><ul>
+      <li>先算 Te、σ。</li>
+      <li>Z = (目标工期 T − Te) / σ，Z 为正表示目标工期比期望大（更宽松）。</li>
+      <li>查正态分布表，得出 P(T ≤ 目标) 的概率。</li>
+      <li>选项常给 50%、68.27%、84.13%、90%、95.46%、97.73% 等，<b>记住 68/95/99.7 三档</b>。</li>
+    </ul></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14.5px;margin-bottom:8px">题型 3：多活动路径总工期概率</h3>
+    <div class="ktxt"><ul>
+      <li>路径期望 = 各活动期望相加。</li>
+      <li>路径方差 = 各活动方差相加（注意：标准差不能直接相加，要先平方）。</li>
+      <li>路径 σ = √(σ₁² + σ₂² + ...)。</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="rules">
+  <h2 class="sec"><span class="no">④</span>规律与注意点</h2>
+  <div class="card">
+    <div class="ktxt">💡 <b>默认 β 分布</b>：题干只给"乐观/最可能/悲观"三值，<b>没说就是 β</b>，别用三角分布。
+💡 <b>4M 权重的意义</b>：最可能值出现概率最高，故权重最大；只有 β 才有 4M。
+💡 <b>σ 只由 P、O 决定</b>：与 M 无关，<b>M 不影响离散程度</b>。
+💡 <b>多活动 σ 不能直接相加</b>：方差相加再开方，是高频易错点。
+💡 <b>概率区间</b>：±1σ ≈ 68.27%，±2σ ≈ 95.46%，±3σ ≈ 99.73%。选项中其他百分比（50%、84.13%、97.73%）对应 Z = 0、1、2。
+💡 <b>Z &gt; 0 表示目标工期 &gt; 期望</b>：此时完成概率 &gt; 50%。</div>
+  </div>
+</section>
+
+<section id="example">
+  <h2 class="sec"><span class="no">⑤</span>例题演练</h2>
+
+  <div class="card">
+    <div class="qbox" id="q1">
+      <div class="q"><b>例题 1</b>：某活动 O=6 天、M=9 天、P=18 天。求期望工期 Te 和标准差 σ。</div>
+      <span class="toggle" onclick="document.getElementById('q1').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <div class="a">
+        Te = (O + 4M + P) / 6 = (6 + 36 + 18) / 6 = 60 / 6 = <b>10 天</b><br>
+        σ = (P − O) / 6 = (18 − 6) / 6 = <b>2 天</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="qbox" id="q2">
+      <div class="q"><b>例题 2</b>：某关键路径由 4 个活动串行组成，每个活动的 σ 分别为 2、3、1、2 天。求整条路径的标准差，并求在 Te 基础上加 4 天完工的概率。</div>
+      <span class="toggle" onclick="document.getElementById('q2').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <div class="a">
+        路径方差 = 2² + 3² + 1² + 2² = 4 + 9 + 1 + 4 = 18<br>
+        路径 σ = √18 ≈ <b>4.24 天</b><br>
+        Z = 4 / 4.24 ≈ 0.94，查表对应概率 ≈ <b>82.3%</b><br>
+        （粗略按 ±1σ ≈ 68%，Z=0.94 略大于 1，对应概率介于 68% 和 84% 之间）
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="links">
+  <h2 class="sec"><span class="no">⑥</span>关联专题</h2>
+  <div class="related">
+    <a href="02-关键路径CPM.html"><b>② 关键路径 CPM</b><small>把三值估算填入活动工期</small></a>
+    <a href="05-EMV决策树.html"><b>⑤ EMV 决策树</b><small>概率在风险量化中的另一种用法</small></a>
+  </div>
+</section>
+
+</div>
+<footer>三点估算与概率专题 · 系统集成项目管理工程师 · 软考中级</footer>
+</body>
+</html>

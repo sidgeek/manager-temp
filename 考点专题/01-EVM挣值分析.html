@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>① EVM 挣值分析 · 软考中级计算题专题</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5b6472;--line:#e4e7ef;--accent:#2563eb;--accent-soft:#eaf2ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
+header{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:30px 0 26px}
+header .wrap{padding-bottom:0}
+header h1{font-size:23px;font-weight:700}
+header p{margin-top:6px;font-size:13.5px;opacity:.92}
+header a.back{display:inline-block;margin-top:10px;font-size:12.5px;color:#fff;text-decoration:none;border:1px solid #ffffff66;border-radius:20px;padding:3px 12px}
+nav.toc{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:16px}
+nav.toc .in{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:12.5px;padding:9px 10px;border-bottom:2.5px solid transparent}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent)}
+section{margin-top:34px;scroll-margin-top:60px}
+h2.sec{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:8px}
+h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:12.5px;padding:2px 9px}
+p.lead{color:var(--sub);font-size:13.5px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:13px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
+.kblock{margin-top:8px}
+.klab{display:inline-block;font-size:11.5px;font-weight:700;color:#fff;border-radius:6px;padding:1px 10px;margin-bottom:5px}
+.klab.k1{background:#475569}.klab.k2{background:#2563eb}.klab.k3{background:#0f766e}.klab.k4{background:#c2410c}
+.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:9px 12px;white-space:pre-wrap}
+.ktxt ul{margin:0;list-style:none}
+.ktxt ul li{position:relative;padding-left:14px;margin:2px 0}
+.ktxt ul li:before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:11px}
+.fbox{background:#0f172a;color:#e8eefc;border-radius:12px;padding:12px 14px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;line-height:1.9;white-space:pre-wrap;overflow-x:auto}
+.fbox b{color:#7dd3fc;font-weight:600}
+.qbox{background:#fff;border-left:4px solid var(--accent);padding:12px 14px;border-radius:0 10px 10px 0;margin-top:8px}
+.qbox .q{font-size:13px;color:var(--ink)}
+.qbox .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub);display:none}
+.qbox.open .a{display:block}
+.toggle{display:inline-block;margin-top:6px;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:1px 10px;cursor:pointer}
+.toggle:hover{background:var(--accent);color:#fff}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:8px}
+.related a{display:block;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;text-decoration:none;color:var(--ink);font-size:12.5px}
+.related a:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.related a small{display:block;color:var(--sub);font-size:11.5px;margin-top:2px}
+table.kt{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden}
+table.kt th{background:#37415c;color:#fff;padding:8px 11px;text-align:left;font-size:12.5px}
+table.kt td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+table.kt tr:last-child td{border-bottom:none}
+table.kt td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
+footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>① EVM 挣值分析 · 计算题专题</h1>
+    <p>案例题必拿分王者 · 8 个基础指标 + 4 个预测指标 · 区分典型 / 非典型是核心</p>
+    <a class="back" href="../软考中级复习计划.html#hub">← 返回主计划 · 📍 跳转枢纽（一键直达 8 大考点）</a>
+    <nav class="toc"><div class="in">
+      <a href="#overview">① 知识地图</a>
+      <a href="#formula">② 公式速查</a>
+      <a href="#approach">③ 计算思路</a>
+      <a href="#rules">④ 规律注意点</a>
+      <a href="#example">⑤ 例题演练</a>
+      <a href="#links">⑥ 关联专题</a>
+    </div></nav>
+  </div>
+</header>
+<div class="wrap">
+
+<section id="overview">
+  <h2 class="sec"><span class="no">①</span>知识地图</h2>
+  <p class="lead">挣值管理（EVM）把「范围 · 进度 · 成本」三个维度整合到一个坐标系里：8 个指标描述现状 + 4 个指标预测未来。</p>
+  <div class="card">
+    <h3 style="font-size:14.5px;margin-bottom:8px">4 个基础数据（先找齐再算）</h3>
+    <table class="kt">
+      <tr><th>缩写</th><th>全称</th><th>含义</th></tr>
+      <tr><td>PV</td><td>Planned Value</td><td>计划价值 · 到某时点计划应完成工作的<b>预算</b>成本</td></tr>
+      <tr><td>EV</td><td>Earned Value</td><td>挣值 · 到某时点实际完成工作的<b>预算</b>成本（核心）</td></tr>
+      <tr><td>AC</td><td>Actual Cost</td><td>实际成本 · 到某时点已完成工作的<b>实际</b>花费</td></tr>
+      <tr><td>BAC</td><td>Budget At Completion</td><td>完工预算 · 整个项目的总预算</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14.5px;margin-bottom:8px">4 个绩效指标（描述"现状"）</h3>
+    <div class="ktxt"><ul>
+      <li><b>CV = EV − AC</b>：成本偏差，&lt;0 超支</li>
+      <li><b>SV = EV − PV</b>：进度偏差，&lt;0 落后</li>
+      <li><b>CPI = EV / AC</b>：成本绩效指数，&lt;1 超支 / &gt;1 节约</li>
+      <li><b>SPI = EV / PV</b>：进度绩效指数，&lt;1 落后 / &gt;1 超前</li>
+    </ul></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14.5px;margin-bottom:8px">4 个预测指标（回答"未来"）</h3>
+    <div class="ktxt"><ul>
+      <li><b>ETC</b>：完工尚需成本 Estimate To Complete</li>
+      <li><b>EAC</b>：完工时总成本 Estimate At Completion = AC + ETC</li>
+      <li><b>VAC</b>：完工偏差 = BAC − EAC</li>
+      <li><b>TCPI</b>：剩余工作需达到的绩效指数（&gt;1 较难达成）</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="formula">
+  <h2 class="sec"><span class="no">②</span>公式速查</h2>
+  <p class="lead">建议截图保存到手机，刷题时随查随用。</p>
+  <div class="fbox"><b>绩效（现状）</b>
+CV   = EV − AC          <b>（&lt;0 超支）</b>
+SV   = EV − PV          <b>（&lt;0 落后）</b>
+CPI  = EV / AC          <b>（&lt;1 超支，&gt;1 节约）</b>
+SPI  = EV / PV          <b>（&lt;1 落后，&gt;1 超前）</b>
+
+<b>预测（未来 · 关键看典型/非典型）</b>
+典型（按当前绩效继续）：
+  ETC = (BAC − EV) / CPI
+  EAC = BAC / CPI
+非典型（剩余按预算效率）：
+  ETC = BAC − EV
+  EAC = AC + (BAC − EV)
+通用：
+  VAC = BAC − EAC
+  TCPI = (BAC − EV) / (BAC − AC)</div>
+</section>
+
+<section id="approach">
+  <h2 class="sec"><span class="no">③</span>计算思路 · 5 步法</h2>
+  <div class="card">
+    <div class="ktxt"><ul>
+      <li><b>第 1 步 · 找齐 PV、EV、AC、BAC</b>：题干常以"截至第 N 周末"或表格给出，按公式所需提取即可。</li>
+      <li><b>第 2 步 · 算绩效指标</b>：CV / SV / CPI / SPI，代入即可；<b>EV 永远是"预算"</b>，不要拿 AC 当 EV。</li>
+      <li><b>第 3 步 · 写结论</b>：CPI&lt;1 且 SPI&lt;1 = 成本超支且进度落后 → "项目需采取纠偏措施"。</li>
+      <li><b>第 4 步 · 判断典型 / 非典型</b>：题干关键词是分水岭（见下表）。</li>
+      <li><b>第 5 步 · 套公式求预测值</b>：问"还需多少"→ ETC；问"完工总花费"→ EAC；问"还差多少预算"→ VAC。</li>
+    </ul></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14.5px;margin-bottom:8px">典型 vs 非典型 · 关键词对照</h3>
+    <table class="kt">
+      <tr><th>类型</th><th>题干关键词</th><th>公式选择</th></tr>
+      <tr><td>典型</td><td>按当前趋势继续 / 不采取纠正措施 / 当前绩效代表未来 / 剩余工作也按当前效率</td><td>ETC = (BAC − EV) / CPI<br>EAC = BAC / CPI</td></tr>
+      <tr><td>非典型</td><td>采取纠正措施后 / 剩余工作按原预算效率 / 偏差不再延续</td><td>ETC = BAC − EV<br>EAC = AC + (BAC − EV)</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="rules">
+  <h2 class="sec"><span class="no">④</span>规律与注意点</h2>
+  <div class="card">
+    <div class="ktxt">💡 <b>EV 易错</b>：EV = "已完成工作的预算价值"，与 AC（实际花费）口径不同。<b>不要把 AC 当 EV 用</b>。
+💡 <b>"截至某检查日"</b>的题：只取该时点的 PV/EV/AC，不要套用整个项目的数据。
+💡 <b>成本与进度可一好一坏</b>：CPI&gt;1 同时 SPI&lt;1 = 节约但落后，结论要<b>分别写</b>，不能笼统说"项目状态良好"。
+💡 <b>TCPI 越大越难达成</b>：&gt;1 意味着剩余工作要"超额效率"才能不超支；=1 表示刚好按预算完成；&lt;1 表示宽松。
+💡 <b>VAC</b>：正值=剩余预算能撑住，负值=必超支。
+💡 <b>答题四件套</b>：① 列数据 ② 算指标 ③ 写结论 ④ 提建议（加强成本/进度控制、必要时调整资源或赶工）。</div>
+  </div>
+</section>
+
+<section id="example">
+  <h2 class="sec"><span class="no">⑤</span>例题演练</h2>
+  <p class="lead">以下为根据历年考试规律改编的仿真题，覆盖典型 / 非典型两类，点击可展开答案。</p>
+
+  <div class="card">
+    <div class="qbox" id="q1">
+      <div class="q"><b>例题 1（典型）</b>：某项目 BAC = 100 万。第 5 周末统计得 PV = 50 万、EV = 45 万、AC = 60 万。假设项目按当前绩效继续，请判断当前状态，并求 EAC 与 VAC。</div>
+      <span class="toggle" onclick="document.getElementById('q1').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <div class="a">
+        CV = EV − AC = 45 − 60 = <b>−15 万</b>（超支）<br>
+        SV = EV − PV = 45 − 50 = <b>−5 万</b>（落后）<br>
+        CPI = EV / AC = 45 / 60 = <b>0.75</b>（成本绩效差）<br>
+        SPI = EV / PV = 45 / 50 = <b>0.9</b>（进度落后）<br>
+        典型 → EAC = BAC / CPI = 100 / 0.75 ≈ <b>133.33 万</b><br>
+        VAC = BAC − EAC = 100 − 133.33 = <b>−33.33 万</b><br>
+        <b>结论：项目成本超支、进度落后，需采取纠偏措施（如赶工、加强成本控制）。</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="qbox" id="q2">
+      <div class="q"><b>例题 2（非典型）</b>：某项目 BAC = 200 万，截至第 8 周末 PV=80 万、EV=70 万、AC=90 万。管理层决定采取纠正措施，剩余工作按原预算效率执行。求 ETC、EAC、TCPI。</div>
+      <span class="toggle" onclick="document.getElementById('q2').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <div class="a">
+        非典型（剩余按预算效率）→ ETC = BAC − EV = 200 − 70 = <b>130 万</b><br>
+        EAC = AC + ETC = 90 + 130 = <b>220 万</b><br>
+        VAC = BAC − EAC = 200 − 220 = <b>−20 万</b>（完工将超支 20 万）<br>
+        TCPI = (BAC − EV) / (BAC − AC) = 130 / 110 ≈ <b>1.18</b><br>
+        <b>结论：剩余工作需达到 1.18 的效率才能按预算完成，难度较高。</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="links">
+  <h2 class="sec"><span class="no">⑥</span>关联专题</h2>
+  <div class="related">
+    <a href="02-关键路径CPM.html"><b>② 关键路径 CPM</b><small>SV / SPI 与浮动时间联动</small></a>
+    <a href="04-进度压缩与资源优化.html"><b>④ 进度压缩与资源优化</b><small>成本超支后用赶工/快速跟进救场</small></a>
+    <a href="05-EMV决策树.html"><b>⑤ EMV 决策树</b><small>另一种"算账"思路：风险量化</small></a>
+    <a href="07-NPV与投资回收期.html"><b>⑦ NPV 与投资回收期</b><small>立项阶段的财务评价</small></a>
+  </div>
+</section>
+
+</div>
+<footer>EVM 挣值分析专题 · 系统集成项目管理工程师 · 软考中级</footer>
+</body>
+</html>

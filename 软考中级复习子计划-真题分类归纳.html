@@ -86,6 +86,19 @@ ul.tasks li.done span{text-decoration:line-through;color:#9aa2b1}
 .phase .mile{margin-top:10px;font-size:12.5px;background:var(--accent-soft);border-radius:8px;padding:6px 10px;color:var(--accent)}
 .progressbar{height:8px;background:#eceef6;border-radius:6px;overflow:hidden;margin-top:8px}
 .progressbar i{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);width:0;transition:width .4s}
+/* ---- 快速跳转总入口 ---- */
+.jump-card{border:2px solid var(--accent);background:linear-gradient(135deg,#eaf2ff 0%,#ffffff 60%);border-radius:14px;padding:16px 18px;margin:0 0 16px;box-shadow:0 4px 16px rgba(37,99,235,.1)}
+.jump-card .jt{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.jump-card .jt h3{font-size:16px;margin:0}
+.jump-card .jt span{font-size:12px;color:var(--sub)}
+.jump-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:10px}
+.jump-link{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 13px;text-decoration:none;transition:.15s}
+.jump-link:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.12)}
+.jump-link b{font-size:13px;color:var(--accent);display:block}
+.jump-link small{font-size:11.5px;color:var(--sub);display:block;margin-top:3px}
+.jump-link.primary{background:linear-gradient(135deg,#2563eb,#7c3aed);border-color:transparent}
+.jump-link.primary b,.jump-link.primary small{color:#fff}
+.jump-link.primary small{opacity:.85}
 footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
 </style>
 </head>
@@ -114,6 +127,52 @@ footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
 <section id="usage">
   <h2 class="sec"><span class="no">①</span>使用说明与题型总览</h2>
   <p class="lead">这套考试（系统集成项目管理工程师）的真题结构多年保持稳定：<b>案例客观规律极强</b>，把题目按题型归类后，考点与解法高度可复制。本子计划先给"题型地图"，再逐类拆解。</p>
+
+  <!-- 快速跳转总入口 -->
+  <div class="jump-card">
+    <div class="jt">
+      <h3>🧭 快速跳转总入口</h3>
+      <span>主计划 ⇄ 子计划 ⇄ 8 大考点专题 · 一键直达，不必层层翻找</span>
+    </div>
+    <div class="jump-wrap">
+      <a class="jump-link primary" href="软考中级复习计划.html#overview">
+        <b>🏠 返回主计划 · 考情概览</b>
+        <small>复习计划 · 知识矩阵 · 高频考点</small>
+      </a>
+      <a class="jump-link" href="考点专题/01-EVM挣值分析.html">
+        <b>① EVM 挣值分析</b>
+        <small>案例必拿分 · 8 指标 + 4 预测</small>
+      </a>
+      <a class="jump-link" href="考点专题/02-关键路径CPM.html">
+        <b>② 关键路径 CPM</b>
+        <small>网络图 · 浮动时间 · 关键路径</small>
+      </a>
+      <a class="jump-link" href="考点专题/03-三点估算与概率.html">
+        <b>③ 三点估算与概率</b>
+        <small>PERT β · σ · 68/95/99.7</small>
+      </a>
+      <a class="jump-link" href="考点专题/04-进度压缩与资源优化.html">
+        <b>④ 进度压缩与资源优化</b>
+        <small>赶工 vs 快速跟进 · 平衡 vs 平滑</small>
+      </a>
+      <a class="jump-link" href="考点专题/05-EMV决策树.html">
+        <b>⑤ EMV 决策树</b>
+        <small>定量风险 · 期望货币值</small>
+      </a>
+      <a class="jump-link" href="考点专题/06-沟通渠道数.html">
+        <b>⑥ 沟通渠道数</b>
+        <small>单选高频 · n(n−1)/2</small>
+      </a>
+      <a class="jump-link" href="考点专题/07-NPV与投资回收期.html">
+        <b>⑦ NPV 与投资回收期</b>
+        <small>立项财务指标 · 折现</small>
+      </a>
+      <a class="jump-link" href="考点专题/08-合同类型与合同计算.html">
+        <b>⑧ 合同类型与合同计算</b>
+        <small>总价 · 成本补偿 · 工料</small>
+      </a>
+    </div>
+  </div>
   <div class="note">⚠️ 数据说明：本页无法离线获取 2016–2025 各套真题的逐题原文，因此"历年真题"部分以<b>考试稳定的题型结构 + 公开考纲权重</b>归纳而成（分类体系与解法可放心使用）；具体某年某题的原文，请以官方/正规出版物为准，并用第②节追踪表逐套核对。</div>
 
   <div class="grid g4" style="margin-top:16px">
@@ -350,6 +409,47 @@ NPV：把各年现金流按折现率折现后求和，越大越好</div>
 💡 估算精度：类比最粗、自下而上最准也最耗时、参数估算靠模型。
 💡 合同类型题常与"风险归属"一起考，记住"总价→卖方、补偿→买方、工料→共担"。</div>
     </div>
+  </div>
+
+  <!-- 3.7 专题跳转索引 -->
+  <div class="card" style="border:2px dashed var(--accent);background:var(--accent-soft);margin-top:18px">
+    <h3 style="font-size:14.5px;margin-bottom:6px">📚 专题跳转索引 · 8 个常见考点独立文档</h3>
+    <p style="font-size:13px;color:var(--ink);margin-bottom:14px">每个考点一个独立 HTML，含「知识地图 · 公式速查 · 计算思路 · 规律 · 例题 · 关联专题」，可来回跳转。</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+      <a href="考点专题/01-EVM挣值分析.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none" onmouseover="this.style.borderColor='var(--accent)';this.style.background='#fff'" onmouseout="this.style.borderColor='var(--line)';this.style.background='#fff'">
+        <div style="font-size:13px;font-weight:700;color:var(--accent)">① EVM 挣值分析</div>
+        <div style="font-size:11.5px;color:var(--sub);margin-top:3px">案例必拿分 · 8 指标 + 4 预测</div>
+      </a>
+      <a href="考点专题/02-关键路径CPM.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none" onmouseover="this.style.borderColor='var(--accent)';this.style.background='#fff'" onmouseout="this.style.borderColor='var(--line)';this.style.background='#fff'">
+        <div style="font-size:13px;font-weight:700;color:var(--accent)">② 关键路径 CPM</div>
+        <div style="font-size:11.5px;color:var(--sub);margin-top:3px">网络图 · 浮动时间 · 关键路径</div>
+      </a>
+      <a href="考点专题/03-三点估算与概率.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none" onmouseover="this.style.borderColor='var(--accent)';this.style.background='#fff'" onmouseout="this.style.borderColor='var(--line)';this.style.background='#fff'">
+        <div style="font-size:13px;font-weight:700;color:var(--accent)">③ 三点估算与概率</div>
+        <div style="font-size:11.5px;color:var(--sub);margin-top:3px">PERT β · σ · 68/95/99.7</div>
+      </a>
+      <a href="考点专题/04-进度压缩与资源优化.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none" onmouseover="this.style.borderColor='var(--accent)';this.style.background='#fff'" onmouseout="this.style.borderColor='var(--line)';this.style.background='#fff'">
+        <div style="font-size:13px;font-weight:700;color:var(--accent)">④ 进度压缩与资源优化</div>
+        <div style="font-size:11.5px;color:var(--sub);margin-top:3px">赶工 vs 快速跟进 · 平衡 vs 平滑</div>
+      </a>
+      <a href="考点专题/05-EMV决策树.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none" onmouseover="this.style.borderColor='var(--accent)';this.style.background='#fff'" onmouseout="this.style.borderColor='var(--line)';this.style.background='#fff'">
+        <div style="font-size:13px;font-weight:700;color:var(--accent)">⑤ EMV 决策树</div>
+        <div style="font-size:11.5px;color:var(--sub);margin-top:3px">定量风险 · 期望货币值</div>
+      </a>
+      <a href="考点专题/06-沟通渠道数.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none" onmouseover="this.style.borderColor='var(--accent)';this.style.background='#fff'" onmouseout="this.style.borderColor='var(--line)';this.style.background='#fff'">
+        <div style="font-size:13px;font-weight:700;color:var(--accent)">⑥ 沟通渠道数</div>
+        <div style="font-size:11.5px;color:var(--sub);margin-top:3px">单选高频 · n(n−1)/2</div>
+      </a>
+      <a href="考点专题/07-NPV与投资回收期.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none" onmouseover="this.style.borderColor='var(--accent)';this.style.background='#fff'" onmouseout="this.style.borderColor='var(--line)';this.style.background='#fff'">
+        <div style="font-size:13px;font-weight:700;color:var(--accent)">⑦ NPV 与投资回收期</div>
+        <div style="font-size:11.5px;color:var(--sub);margin-top:3px">立项财务指标 · 折现</div>
+      </a>
+      <a href="考点专题/08-合同类型与合同计算.html" style="display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none" onmouseover="this.style.borderColor='var(--accent)';this.style.background='#fff'" onmouseout="this.style.borderColor='var(--line)';this.style.background='#fff'">
+        <div style="font-size:13px;font-weight:700;color:var(--accent)">⑧ 合同类型与合同计算</div>
+        <div style="font-size:11.5px;color:var(--sub);margin-top:3px">总价 · 成本补偿 · 工料</div>
+      </a>
+    </div>
+    <p style="font-size:12.5px;color:var(--sub);margin-top:14px">💡 三层跳转：<b>主计划 ⇄ 子计划 ⇄ 专题页</b>，每页都有"返回子计划"和"关联专题"链接，不丢上下文。</p>
   </div>
 </section>
 

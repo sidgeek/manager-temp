@@ -105,6 +105,29 @@ body.show-drawer .drawer-mask{display:block}
 .dsec.t-def .dt{background:#475569}.dsec.t-role .dt{background:#0f766e}
 .dsec.t-freq .dt{background:#b45309}.dsec.t-in .dt{background:#2563eb}
 .dsec.t-tool .dt{background:#7c3aed}.dsec.t-out .dt{background:#e11d48}
+/* ---- 快速跳转总入口 ---- */
+.jump-card{border:2px solid var(--accent);background:linear-gradient(135deg,#eef0ff 0%,#ffffff 60%);border-radius:14px;padding:16px 18px;margin-bottom:16px;box-shadow:0 4px 16px rgba(79,95,224,.1)}
+.jump-card .jt{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.jump-card .jt h3{font-size:16px;margin:0}
+.jump-card .jt span{font-size:12px;color:var(--sub)}
+.jump-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:10px}
+.jump-link{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 13px;text-decoration:none;transition:.15s}
+.jump-link:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,95,224,.12)}
+.jump-link b{font-size:13px;color:var(--accent);display:block}
+.jump-link small{font-size:11.5px;color:var(--sub);display:block;margin-top:3px}
+.jump-link.primary{background:linear-gradient(135deg,#4f5fe0,#7c3aed);border-color:transparent}
+.jump-link.primary b,.jump-link.primary small{color:#fff}
+.jump-link.primary small{opacity:.85}
+/* ---- 跳转枢纽（与 ① 平级的独立区块） ---- */
+.hub-card{border:2px solid var(--accent);background:linear-gradient(135deg,#eef0ff 0%,#f7f3ff 100%);border-radius:14px;padding:20px 22px 18px;margin-bottom:18px;box-shadow:0 8px 24px rgba(79,95,224,.16);position:relative;overflow:hidden}
+.hub-card::before{content:"";position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%);pointer-events:none}
+.hub-badge{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(90deg,#4f5fe0,#7c3aed);padding:4px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.5px;position:relative;z-index:1}
+.hub-title{font-size:19px;margin:0 0 6px;color:var(--ink);position:relative;z-index:1}
+.hub-sub{font-size:13px;color:var(--sub);margin:0 0 14px;position:relative;z-index:1}
+.hub-card .jump-wrap{margin-top:0;position:relative;z-index:1}
+/* nav 中的"跳转枢纽"高亮项 */
+.hubnav{background:linear-gradient(90deg,#4f5fe0,#7c3aed)!important;color:#fff!important;border-radius:8px;padding:6px 12px!important;font-weight:600;box-shadow:0 2px 8px rgba(79,95,224,.28)}
+.hubnav:hover{filter:brightness(1.08);transform:translateY(-1px)}
 footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
 </style>
 </head>
@@ -114,6 +137,7 @@ footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
     <h1>软考中级 · 系统集成项目管理工程师 — 重点复习计划</h1>
     <p>大纲 → 细节 一页打通：知识全景矩阵 · 49 过程 ITTO 速查 · 六周分阶段计划（可勾选进度）· 高频考点清单</p>
     <nav class="toc"><div class="in">
+      <a href="#hub" class="hubnav">🧭 跳转枢纽</a>
       <a href="#overview">① 考情概览</a>
       <a href="#plan">② 复习计划与依赖</a>
       <a href="#matrix">③ 知识全景矩阵</a>
@@ -157,6 +181,53 @@ footer{margin-top:56px;text-align:center;font-size:12px;color:#9aa2b1}
         <tr><td>理论背诵题</td><td>背 ITTO 口诀 + 各领域核心概念定义</td></tr>
         <tr><td>情境分析题</td><td>套用"识别问题→引用理论→给出措施"三段式</td></tr>
       </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 跳转枢纽（与 ① 平级） ============ -->
+<section id="hub">
+  <div class="hub-card">
+    <div class="hub-badge">📍 导航枢纽</div>
+    <h2 class="hub-title">🧭 一键直达 · 主计划 ⇄ 子计划 ⇄ 8 大考点专题</h2>
+    <p class="hub-sub">从任何一处都能直达，不必层层翻找。点击下方任意卡片跳转，专题页内可"返回主计划 ↩︎"。</p>
+    <div class="jump-wrap">
+      <a class="jump-link primary" href="软考中级复习子计划-真题分类归纳.html">
+        <b>📘 真题分类归纳子计划</b>
+        <small>2016–2025 归类 · 计算/找错/理论/单选</small>
+      </a>
+      <a class="jump-link" href="考点专题/01-EVM挣值分析.html">
+        <b>① EVM 挣值分析</b>
+        <small>案例必拿分 · 8 指标 + 4 预测</small>
+      </a>
+      <a class="jump-link" href="考点专题/02-关键路径CPM.html">
+        <b>② 关键路径 CPM</b>
+        <small>网络图 · 浮动时间 · 关键路径</small>
+      </a>
+      <a class="jump-link" href="考点专题/03-三点估算与概率.html">
+        <b>③ 三点估算与概率</b>
+        <small>PERT β · σ · 68/95/99.7</small>
+      </a>
+      <a class="jump-link" href="考点专题/04-进度压缩与资源优化.html">
+        <b>④ 进度压缩与资源优化</b>
+        <small>赶工 vs 快速跟进 · 平衡 vs 平滑</small>
+      </a>
+      <a class="jump-link" href="考点专题/05-EMV决策树.html">
+        <b>⑤ EMV 决策树</b>
+        <small>定量风险 · 期望货币值</small>
+      </a>
+      <a class="jump-link" href="考点专题/06-沟通渠道数.html">
+        <b>⑥ 沟通渠道数</b>
+        <small>单选高频 · n(n−1)/2</small>
+      </a>
+      <a class="jump-link" href="考点专题/07-NPV与投资回收期.html">
+        <b>⑦ NPV 与投资回收期</b>
+        <small>立项财务指标 · 折现</small>
+      </a>
+      <a class="jump-link" href="考点专题/08-合同类型与合同计算.html">
+        <b>⑧ 合同类型与合同计算</b>
+        <small>总价 · 成本补偿 · 工料</small>
+      </a>
     </div>
   </div>
 </section>
