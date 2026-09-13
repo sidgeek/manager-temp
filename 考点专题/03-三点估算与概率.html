@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>③ 三点估算与概率 · 软考中级计算题专题</title>
 <style>
 :root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5b6472;--line:#e4e7ef;--accent:#2563eb;--accent-soft:#eaf2ff}
@@ -22,10 +25,10 @@ section{margin-top:34px;scroll-margin-top:60px}
 h2.sec{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:8px}
 h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:12.5px;padding:2px 9px}
 p.lead{color:var(--sub);font-size:13.5px;margin-bottom:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:13px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
-.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:9px 12px;white-space:pre-wrap}
-.ktxt ul{margin:0;list-style:none}
-.ktxt ul li{position:relative;padding-left:14px;margin:2px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
+.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:8px;padding:5px 11px;white-space:pre-wrap;line-height:1.3}
+.ktxt ul{margin:0;padding:0;list-style:none}
+.ktxt ul li{position:relative;padding-left:12px;margin:0;line-height:1.35}
 .ktxt ul li:before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:11px}
 .fbox{background:#0f172a;color:#e8eefc;border-radius:12px;padding:12px 14px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;line-height:1.9;white-space:pre-wrap;overflow-x:auto}
 .fbox b{color:#7dd3fc;font-weight:600}
@@ -126,6 +129,20 @@ Te ± 3σ ≈ 99.73%
       <li>选项常给 50%、68.27%、84.13%、90%、95.46%、97.73% 等，<b>记住 68/95/99.7 三档</b>。</li>
     </ul></div>
   </div>
+  <div class="card" style="border-left:4px solid var(--accent);background:linear-gradient(135deg,#f0f6ff,#ffffff)">
+    <h3 style="font-size:14.5px;margin-bottom:8px">🔑 关键原理 · 求完工概率的"Z 三步走"</h3>
+    <div class="ktxt">第①步 标准化：Z = (目标工期 T − 期望 Te) / σ
+第②步 查标准正态分布表 Φ(Z)（累积概率）
+第③步 Φ(Z) 即"在目标工期 T 内完工"的概率
+
+Z 是"几个标准差"的意思：
+  Z = 0    → 50.00%（正好等于 Te，一半一半）
+  Z = 1    → 84.13%
+  Z = 1.65 → 95.05%
+  Z = 2    → 97.73%
+  Z &lt; 0（少给时间）→ 概率 &lt; 50%，容易延期
+💡 软考精度：Z 保留 2 位小数、概率直接查表得出，不自己算。</div>
+  </div>
   <div class="card">
     <h3 style="font-size:14.5px;margin-bottom:8px">题型 3：多活动路径总工期概率</h3>
     <div class="ktxt"><ul>
@@ -133,6 +150,18 @@ Te ± 3σ ≈ 99.73%
       <li>路径方差 = 各活动方差相加（注意：标准差不能直接相加，要先平方）。</li>
       <li>路径 σ = √(σ₁² + σ₂² + ...)。</li>
     </ul></div>
+  </div>
+  <div class="card" style="border-left:4px solid var(--accent);background:linear-gradient(135deg,#f0f6ff,#ffffff)">
+    <h3 style="font-size:14.5px;margin-bottom:8px">🔑 关键原理 · 为什么多活动 σ 要"先平方再开方"</h3>
+    <div class="ktxt">串行路径的总工期 = 各活动工期之和，且各活动相互独立；
+独立随机变量满足<b>方差可加性</b>：Var(A+B+…) = Var(A) + Var(B) + …
+故：
+  总方差 σ² = σ₁² + σ₂² + σ₃² + …（<b>方差可直接相加</b>）
+  总标准差 σ = √(σ₁² + σ₂² + …)（<b>先加方差、再开方</b>）
+
+💡 物理直觉：σ² 是"波动能量"（可叠加），σ 是"波动振幅"（不能直接相加，波峰波谷会互相抵消）。
+⚠️ 前提：活动相互独立。若完全正相关（严格前后依赖无缓冲），才可用 σ 直接相加。
+⚠️ 易错：把 σ 直接相加会显著高估不确定性（本例 2+3+1+2 = 8 天 ≠ 正确 √18 ≈ 4.24 天）。</div>
   </div>
 </section>
 
@@ -142,9 +171,10 @@ Te ± 3σ ≈ 99.73%
     <div class="ktxt">💡 <b>默认 β 分布</b>：题干只给"乐观/最可能/悲观"三值，<b>没说就是 β</b>，别用三角分布。
 💡 <b>4M 权重的意义</b>：最可能值出现概率最高，故权重最大；只有 β 才有 4M。
 💡 <b>σ 只由 P、O 决定</b>：与 M 无关，<b>M 不影响离散程度</b>。
-💡 <b>多活动 σ 不能直接相加</b>：方差相加再开方，是高频易错点。
-💡 <b>概率区间</b>：±1σ ≈ 68.27%，±2σ ≈ 95.46%，±3σ ≈ 99.73%。选项中其他百分比（50%、84.13%、97.73%）对应 Z = 0、1、2。
-💡 <b>Z &gt; 0 表示目标工期 &gt; 期望</b>：此时完成概率 &gt; 50%。</div>
+💡 <b>多活动 σ 不能直接相加</b>：独立活动"先加方差、再开方"，σ = √(Σσᵢ²)，是高频易错点。
+💡 <b>概率区间是"通用档位"</b>：±1σ ≈ 68.27%，±2σ ≈ 95.46%，±3σ ≈ 99.73%。这组值来自<b>标准正态分布</b>，与 β / 三角分布无关——多活动总和趋近正态（中心极限定理），故两种分布都用同一组。其他常用档：Z = 0 → 50%、1 → 84.13%、2 → 97.73%。
+💡 <b>Z 三步走</b>：先算 Z = (T − Te) / σ，再查表 Φ(Z)，即得完工概率；Z &gt; 0 表示目标工期 &gt; 期望，完成概率 &gt; 50%。
+💡 <b>软考精度约定</b>：σ² 用整数相加后再开方；Z 保留 2 位小数；概率直接查标准正态表，不自己算。</div>
   </div>
 </section>
 
@@ -167,10 +197,13 @@ Te ± 3σ ≈ 99.73%
       <div class="q"><b>例题 2</b>：某关键路径由 4 个活动串行组成，每个活动的 σ 分别为 2、3、1、2 天。求整条路径的标准差，并求在 Te 基础上加 4 天完工的概率。</div>
       <span class="toggle" onclick="document.getElementById('q2').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
       <div class="a">
+        <b>① 求路径标准差</b>（方差相加 → 再开方，不能直接加 σ）：<br>
         路径方差 = 2² + 3² + 1² + 2² = 4 + 9 + 1 + 4 = 18<br>
-        路径 σ = √18 ≈ <b>4.24 天</b><br>
-        Z = 4 / 4.24 ≈ 0.94，查表对应概率 ≈ <b>82.3%</b><br>
-        （粗略按 ±1σ ≈ 68%，Z=0.94 略大于 1，对应概率介于 68% 和 84% 之间）
+        路径 σ = √18 ≈ <b>4.24 天</b><br><br>
+        <b>② 求 Te 加 4 天的完工概率</b>（Z 三步走：标准化 → 查表）：<br>
+        T = Te + 4，故 Z = (T − Te) / σ = 4 / 4.24 ≈ <b>0.94</b><br>
+        查标准正态表：Φ(0.94) ≈ <b>82.3%</b><br>
+        （Z = 0.94 略小于 1，概率落在 Φ(0)=50% 与 Φ(1)=84.13% 之间，约 82.3%）
       </div>
     </div>
   </div>
