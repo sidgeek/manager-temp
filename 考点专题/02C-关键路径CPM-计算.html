@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>② 关键路径 CPM · 计算篇（正推逆推）</title>
+<link rel="stylesheet" href="assets/common.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>② 关键路径 CPM · 计算篇</h1>
+    <p>正推 → 逆推 → 求 TF · 关键路径判定 · 规律与失分点</p>
+    <a class="back" href="../软考中级复习计划.html#hub">← 返回主计划 · 📍 跳转枢纽（一键直达 8 大考点）</a>
+    <nav class="toc"><div class="in">
+      <a href="#approach">① 正推逆推</a>
+      <a href="#rules">② 规律与注意点</a>
+      <a href="#parts">册 分册导航</a>
+      <a href="#links">关 关联专题</a>
+    </div></nav>
+  </div>
+</header>
+<div class="wrap">
+
+<section id="approach">
+  <h2 class="sec"><span class="no">①</span>正推 · 逆推 · 浮动时间</h2>
+  <div class="card">
+    <h3>正推（Forward Pass）· 算 ES / EF</h3>
+    <div class="ktxt"><ul>
+      <li>从起点开始，逐个活动计算；起点活动 ES = 0。</li>
+      <li>EF = ES + 工期。</li>
+      <li>某活动有多个紧前时，ES 取所有紧前 EF 中的<b>最大值</b>（FS 关系）。</li>
+    </ul></div>
+  </div>
+  <div class="card">
+    <h3>逆推（Backward Pass）· 算 LS / LF</h3>
+    <div class="ktxt"><ul>
+      <li>从终点开始，逐个活动逆推；终点活动 LF = 总工期（或正推 EF）。</li>
+      <li>LS = LF − 工期。</li>
+      <li>某活动有多个紧后时，LF 取所有紧后 LS 中的<b>最小值</b>。</li>
+    </ul></div>
+  </div>
+  <div class="card">
+    <h3>浮动时间与关键路径</h3>
+    <div class="ktxt"><ul>
+      <li>TF = LS − ES（或 LF − EF），<b>TF = 0 的活动为关键活动</b>。</li>
+      <li>把所有 TF=0 的活动连起来 = 关键路径；路径总长 = 总工期。</li>
+      <li>FF 反映"本活动延误多少天不会影响紧后最早开始"，<b>FF ≤ TF</b>。</li>
+      <li>问"延误 X 天是否影响总工期" → 看该活动 TF 是否 &lt; X。</li>
+    </ul></div>
+  </div>
+  <div class="card">
+    <h3>关键路径怎么判断（两种方法）</h3>
+    <div class="ktxt"><ul>
+      <li><b>方法一 · 路径列举法</b>（适合活动少的小题）：列出起点 → 终点的<b>所有路径</b> → 每条路径工期相加 → <b>最长的那条就是关键路径</b>，其长度 = 总工期。</li>
+      <li><b>方法二 · 时间参数法</b>（通用，推荐）：先正推算 ES/EF、再逆推算 LS/LF → 求 <b>TF = LS − ES</b> → 把所有 <b>TF = 0</b> 的活动首尾相连 = 关键路径。</li>
+      <li><b>关键路径的性质</b>：① 是耗时最长的路径，长度即总工期；② <b>可能不止一条</b>（多条并列最长）；③ 路径上任一活动延误，<b>必然</b>导致总工期延误；④ 只有压缩关键路径上的活动才能缩短工期。</li>
+      <li><b>易错点</b>：关键路径是"最长"不是"最短"；活动数多时别硬套列举法（组合爆炸），直接上时间参数法。</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="rules">
+  <h2 class="sec"><span class="no">②</span>规律与注意点</h2>
+  <div class="card">
+    <div class="ktxt">💡 <b>关键路径可能不止一条</b>：题目常埋"两条关键路径"的坑，TF=0 的活动必须<b>全部</b>连起来。
+💡 <b>ES 起点</b>：多数题目约定从 0 开始，但部分题目从 1 开始，<b>以题图为准</b>，别生搬硬套。
+💡 <b>压缩只动关键路径</b>：压缩非关键活动不影响总工期；压缩后关键路径可能转移，需重新计算。
+💡 <b>FF 易错</b>：FF 是"影响紧后最早开始"，不是"影响总工期"；二者混淆是常见失分点。
+💡 <b>虚拟活动（虚工作）</b>：用虚线箭头表示，<b>工期为 0</b>，仅表示逻辑依赖关系。
+💡 <b>lead / lag</b>：lead 表示提前（SS 提前 X 天开始），lag 表示滞后（FS 滞后 X 天开始）。</div>
+  </div>
+  <div class="card">
+    <h3>特殊情况与转换陷阱（高频失分点）</h3>
+    <div class="ktxt">🟥 <b>多起点 / 多终点</b>：表里若有<b>多个</b>活动都没有紧前，画图常加一个<b>虚拟起点</b>统一挂接；多个活动都没有紧后，加一个<b>虚拟终点</b>。双代号尤其要求<b>起点、终点各只有一个</b>。
+🟥 <b>编号规则（双代号）</b>：节点编号必须 <b>i &lt; j</b>（箭头从小号指向大号）；<b>两个节点间只能有一条箭线</b>，出现多条必须用虚活动拆开。
+🟥 <b>不允许回路</b>：依赖关系不能成环（A→B→A），一旦画成环，多半是"紧前 / 紧后"方向看反了。
+🟥 <b>紧前 vs 紧后方向</b>：表写"紧前"→ 箭线<b>从紧前出发指向本活动</b>；若给的是"紧后"，方向正好相反 —— <b>这是最容易画反的坑</b>。
+🟥 <b>起点从 0 还是 1 开始</b>：多数题从 0，部分教材从 1，<b>以题图 / 题意为准</b>，且整题保持一致。
+🟥 <b>工期可为 0</b>：除虚活动外，少数"里程碑式活动"工期也可能是 0，别当成错误。
+🟥 <b>关键路径会转移</b>：压缩某条关键路径后，原本非关键的路径可能变成新的关键路径，<b>必须重新正推逆推</b>。
+🟥 <b>中段活动也可能关键</b>：不要只看路径总长，用 <b>TF = 0</b> 判断最稳妥。</div>
+  </div>
+</section>
+
+<section id="parts">
+  <h2 class="sec"><span class="no">册</span>本专题分册</h2>
+  <div class="related">
+    <a href="02-关键路径CPM.html"><b>① 基础篇</b><small>依赖关系 · 时间参数 · 七格图</small></a>
+    <a href="02B-关键路径CPM-网络图.html"><b>② 网络图篇</b><small>单/双代号 · 时标图 · 表格转图</small></a>
+    <a href="02C-关键路径CPM-计算.html" class="cur"><b>③ 计算篇</b><small>正推逆推 · 浮动时间 · 判定</small></a>
+    <a href="02D-关键路径CPM-演练.html"><b>④ 演练篇</b><small>例题 · 真题</small></a>
+  </div>
+</section>
+
+<section id="links">
+  <h2 class="sec"><span class="no">关</span>关联专题</h2>
+  <div class="related">
+    <a href="01-EVM挣值分析.html"><b>① EVM 挣值分析</b><small>SV / SPI 描述进度偏差</small></a>
+    <a href="03-三点估算与概率.html"><b>③ 三点估算与概率</b><small>关键路径总工期的概率分布</small></a>
+    <a href="04-进度压缩与资源优化.html"><b>④ 进度压缩与资源优化</b><small>压缩只动关键路径上的活动</small></a>
+  </div>
+</section>
+
+</div>
+<footer>关键路径 CPM 专题 · 系统集成项目管理工程师 · 软考中级</footer>
+<button id="toTop" title="返回顶部" aria-label="返回顶部">↑</button>
+<script src="assets/common.js"></script>
+</body>
+</html>

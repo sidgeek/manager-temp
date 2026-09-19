@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>② 关键路径 CPM · 演练篇（例题与真题）</title>
+<link rel="stylesheet" href="assets/common.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>② 关键路径 CPM · 演练篇</h1>
+    <p>手算例题 + 广东 2022 下真题 · 自由浮动时间</p>
+    <a class="back" href="../软考中级复习计划.html#hub">← 返回主计划 · 📍 跳转枢纽（一键直达 8 大考点）</a>
+    <nav class="toc"><div class="in">
+      <a href="#example">① 例题演练</a>
+      <a href="#parts">册 分册导航</a>
+      <a href="#links">关 关联专题</a>
+    </div></nav>
+  </div>
+</header>
+<div class="wrap">
+
+<section id="example">
+  <h2 class="sec"><span class="no">①</span>例题演练</h2>
+  <div class="card">
+    <div class="qbox" id="q1">
+      <div class="q"><b>例题</b>：某项目有 A→C、B→C、A→D、B→D、C→E、D→E 六个 FS 关系。A=3 天、B=4 天、C=5 天、D=6 天、E=2 天。求总工期、关键路径、各活动 TF。</div>
+      <span class="toggle" data-target="q1">显示答案</span>
+      <div class="a">
+        <b>正推：</b><br>
+        A：ES=0, EF=3<br>
+        B：ES=0, EF=4<br>
+        C：ES=max(3,4)=4, EF=9<br>
+        D：ES=max(3,4)=4, EF=10<br>
+        E：ES=max(9,10)=10, EF=12<br>
+        总工期 = <b>12 天</b><br><br>
+        <b>逆推：</b><br>
+        E：LF=12, LS=10<br>
+        C：LF=min(LS of E)=10, LS=5<br>
+        D：LF=min(LS of E)=10, LS=4<br>
+        B：LF=min(LS of C, LS of D)=min(5,4)=4, LS=0<br>
+        A：LF=min(LS of C, LS of D)=min(5,4)=4, LS=1<br><br>
+        <b>TF：</b><br>
+        A：LS−ES=1−0=1<br>
+        B：0−0=0<br>
+        C：5−4=1<br>
+        D：4−4=0<br>
+        E：10−10=0<br><br>
+        <b>关键路径：B → D → E</b>（总工期 4+6+2=12 天 ✓）
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>真题演练 · 广东 2022 下第 45 题（自由浮动）</h3>
+    <div class="qbox" id="gz22q45" style="border-left-color:#2563eb">
+      <div class="q">
+        <b>题目</b>：某项目网络图如下（七格图形式），求活动 C 的自由浮动时间为多少天？<br><br>
+        <div class="dgm">
+          <div class="dgm-t">七格网络图 · 读取 ES / 工期 / EF（上排三格）</div>
+          <svg viewBox="0 0 500 210" role="img" aria-label="广东2022下第45题网络图">
+            <defs>
+              <marker id="qarr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/>
+              </marker>
+            </defs>
+
+            <g transform="translate(20,90)">
+              <rect width="60" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <line x1="0" y1="16" x2="60" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="0" y1="36" x2="60" y2="36" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="0" x2="20" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="0" x2="40" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="36" x2="20" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="36" x2="40" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <text x="10" y="11" text-anchor="middle" font-size="8" fill="#1f2430">0</text>
+              <text x="30" y="11" text-anchor="middle" font-size="8" fill="#1f2430">3</text>
+              <text x="50" y="11" text-anchor="middle" font-size="8" fill="#1f2430">3</text>
+              <text x="30" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">A</text>
+              <text x="30" y="46" text-anchor="middle" font-size="8" fill="#5b6472">3</text>
+            </g>
+
+            <g transform="translate(110,25)">
+              <rect width="60" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <line x1="0" y1="16" x2="60" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="0" y1="36" x2="60" y2="36" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="0" x2="20" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="0" x2="40" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="36" x2="20" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="36" x2="40" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <text x="10" y="11" text-anchor="middle" font-size="8" fill="#1f2430">3</text>
+              <text x="30" y="11" text-anchor="middle" font-size="8" fill="#1f2430">5</text>
+              <text x="50" y="11" text-anchor="middle" font-size="8" fill="#1f2430">8</text>
+              <text x="30" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">B</text>
+              <text x="10" y="47" text-anchor="middle" font-size="8" fill="#1f2430">4</text>
+              <text x="30" y="47" text-anchor="middle" font-size="8" fill="#1f2430">1</text>
+              <text x="50" y="47" text-anchor="middle" font-size="8" fill="#1f2430">9</text>
+            </g>
+
+            <g transform="translate(110,90)">
+              <rect width="60" height="52" rx="5" fill="#fff7ed" stroke="#c2410c" stroke-width="1.8"/>
+              <line x1="0" y1="16" x2="60" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="0" y1="36" x2="60" y2="36" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="0" x2="20" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="0" x2="40" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="36" x2="20" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="36" x2="40" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <text x="10" y="11" text-anchor="middle" font-size="8" fill="#1f2430">3</text>
+              <text x="30" y="11" text-anchor="middle" font-size="8" fill="#1f2430">6</text>
+              <text x="50" y="11" text-anchor="middle" font-size="8" fill="#1f2430">9</text>
+              <text x="30" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#c2410c">C</text>
+            </g>
+
+            <g transform="translate(110,155)">
+              <rect width="60" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <line x1="0" y1="16" x2="60" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="0" y1="36" x2="60" y2="36" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="0" x2="20" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="0" x2="40" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="36" x2="20" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="36" x2="40" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <text x="10" y="11" text-anchor="middle" font-size="8" fill="#1f2430">3</text>
+              <text x="30" y="11" text-anchor="middle" font-size="8" fill="#1f2430">4</text>
+              <text x="50" y="11" text-anchor="middle" font-size="8" fill="#1f2430">7</text>
+              <text x="30" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">D</text>
+            </g>
+
+            <g transform="translate(210,25)">
+              <rect width="60" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <line x1="0" y1="16" x2="60" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="0" y1="36" x2="60" y2="36" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="0" x2="20" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="0" x2="40" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="36" x2="20" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="36" x2="40" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <text x="10" y="11" text-anchor="middle" font-size="8" fill="#1f2430">8</text>
+              <text x="30" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">E</text>
+            </g>
+
+            <g transform="translate(210,135)">
+              <rect width="60" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <line x1="0" y1="16" x2="60" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="0" y1="36" x2="60" y2="36" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="0" x2="20" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="0" x2="40" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="36" x2="20" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="36" x2="40" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <text x="10" y="11" text-anchor="middle" font-size="8" fill="#1f2430">9</text>
+              <text x="30" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">F</text>
+              <text x="30" y="46" text-anchor="middle" font-size="8" fill="#1f2430">0</text>
+            </g>
+
+            <g transform="translate(310,90)">
+              <rect width="60" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <line x1="0" y1="16" x2="60" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="0" y1="36" x2="60" y2="36" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="0" x2="20" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="0" x2="40" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="36" x2="20" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="36" x2="40" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <text x="10" y="11" text-anchor="middle" font-size="8" fill="#1f2430">13</text>
+              <text x="30" y="11" text-anchor="middle" font-size="8" fill="#1f2430">2</text>
+              <text x="50" y="11" text-anchor="middle" font-size="8" fill="#1f2430">15</text>
+              <text x="30" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">G</text>
+              <text x="10" y="47" text-anchor="middle" font-size="8" fill="#1f2430">13</text>
+              <text x="30" y="47" text-anchor="middle" font-size="8" fill="#1f2430">0</text>
+              <text x="50" y="47" text-anchor="middle" font-size="8" fill="#1f2430">15</text>
+            </g>
+
+            <g transform="translate(410,90)">
+              <rect width="60" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <line x1="0" y1="16" x2="60" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="0" y1="36" x2="60" y2="36" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="0" x2="20" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="0" x2="40" y2="16" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="20" y1="36" x2="20" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="40" y1="36" x2="40" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+              <text x="10" y="11" text-anchor="middle" font-size="8" fill="#1f2430">15</text>
+              <text x="30" y="11" text-anchor="middle" font-size="8" fill="#1f2430">3</text>
+              <text x="50" y="11" text-anchor="middle" font-size="8" fill="#1f2430">18</text>
+              <text x="30" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">H</text>
+              <text x="10" y="47" text-anchor="middle" font-size="8" fill="#1f2430">15</text>
+              <text x="30" y="47" text-anchor="middle" font-size="8" fill="#1f2430">0</text>
+              <text x="50" y="47" text-anchor="middle" font-size="8" fill="#1f2430">18</text>
+            </g>
+
+            <line x1="80" y1="116" x2="110" y2="51" stroke="#2563eb" stroke-width="1.6" marker-end="url(#qarr)"/>
+            <line x1="80" y1="116" x2="110" y2="116" stroke="#2563eb" stroke-width="1.6" marker-end="url(#qarr)"/>
+            <line x1="80" y1="116" x2="110" y2="181" stroke="#2563eb" stroke-width="1.6" marker-end="url(#qarr)"/>
+            <line x1="170" y1="51" x2="210" y2="51" stroke="#2563eb" stroke-width="1.6" marker-end="url(#qarr)"/>
+            <line x1="170" y1="116" x2="210" y2="161" stroke="#2563eb" stroke-width="1.6" marker-end="url(#qarr)"/>
+            <line x1="170" y1="116" x2="310" y2="116" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#qarr)"/>
+            <line x1="170" y1="181" x2="210" y2="161" stroke="#2563eb" stroke-width="1.6" marker-end="url(#qarr)"/>
+            <line x1="270" y1="51" x2="310" y2="100" stroke="#2563eb" stroke-width="1.6" marker-end="url(#qarr)"/>
+            <line x1="270" y1="161" x2="310" y2="134" stroke="#2563eb" stroke-width="1.6" marker-end="url(#qarr)"/>
+            <line x1="370" y1="116" x2="410" y2="116" stroke="#2563eb" stroke-width="1.6" marker-end="url(#qarr)"/>
+          </svg>
+          <div class="dgm-c">橙色框为<strong>活动 C</strong>；紫色箭头为 C→G 的依赖。七格节点统一 60×52，单格约 20px，整体紧凑。</div>
+        </div>
+        <p style="margin-top:10px;font-size:13px;line-height:1.8">
+          <b>A. 0</b>　　B. 1　　C. 2　　D. 3
+        </p>
+      </div>
+      <span class="toggle" data-target="gz22q45">显示答案</span>
+      <div class="a">
+        <b>公式</b>：自由浮动 FF = min(紧后活动的 ES) − 本活动 EF<br><br>
+        活动 C 有两个紧后活动：<b>F 的 ES = 9</b>（看 F 左上角），<b>G 的 ES = 13</b>（看 G 左上角）。<br>
+        FF(C) = min(9, 13) − C 的 EF(9) = <b>0 天</b>。<br><br>
+        所以答案选 <b>A. 0</b>。<br><br>
+        <b>易错点</b>：不要只看 G 的 ES = 13，自由浮动取的是<b>所有紧后活动里最小的 ES</b>。F 的 ES 正好等于 C 的 EF，所以 C 一天也拖不得。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parts">
+  <h2 class="sec"><span class="no">册</span>本专题分册</h2>
+  <div class="related">
+    <a href="02-关键路径CPM.html"><b>① 基础篇</b><small>依赖关系 · 时间参数 · 七格图</small></a>
+    <a href="02B-关键路径CPM-网络图.html"><b>② 网络图篇</b><small>单/双代号 · 时标图 · 表格转图</small></a>
+    <a href="02C-关键路径CPM-计算.html"><b>③ 计算篇</b><small>正推逆推 · 浮动时间 · 判定</small></a>
+    <a href="02D-关键路径CPM-演练.html" class="cur"><b>④ 演练篇</b><small>例题 · 真题</small></a>
+  </div>
+</section>
+
+<section id="links">
+  <h2 class="sec"><span class="no">关</span>关联专题</h2>
+  <div class="related">
+    <a href="01-EVM挣值分析.html"><b>① EVM 挣值分析</b><small>SV / SPI 描述进度偏差</small></a>
+    <a href="03-三点估算与概率.html"><b>③ 三点估算与概率</b><small>关键路径总工期的概率分布</small></a>
+    <a href="04-进度压缩与资源优化.html"><b>④ 进度压缩与资源优化</b><small>压缩只动关键路径上的活动</small></a>
+  </div>
+</section>
+
+</div>
+<footer>关键路径 CPM 专题 · 系统集成项目管理工程师 · 软考中级</footer>
+<button id="toTop" title="返回顶部" aria-label="返回顶部">↑</button>
+<script src="assets/common.js"></script>
+</body>
+</html>

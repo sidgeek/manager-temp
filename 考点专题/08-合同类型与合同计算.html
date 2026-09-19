@@ -7,53 +7,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>⑧ 合同类型与合同计算 · 软考中级计算题专题</title>
-<style>
-:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5b6472;--line:#e4e7ef;--accent:#2563eb;--accent-soft:#eaf2ff}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
-header{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:30px 0 26px}
-header .wrap{padding-bottom:0}
-header h1{font-size:23px;font-weight:700}
-header p{margin-top:6px;font-size:13.5px;opacity:.92}
-header a.back{display:inline-block;margin-top:10px;font-size:12.5px;color:#fff;text-decoration:none;border:1px solid #ffffff66;border-radius:20px;padding:3px 12px}
-nav.toc{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:16px}
-nav.toc .in{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto}
-nav.toc a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:12.5px;padding:9px 10px;border-bottom:2.5px solid transparent}
-nav.toc a:hover{color:var(--accent);border-color:var(--accent)}
-section{margin-top:34px;scroll-margin-top:60px}
-h2.sec{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:8px}
-h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:12.5px;padding:2px 9px}
-p.lead{color:var(--sub);font-size:13.5px;margin-bottom:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
-.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:8px;padding:5px 11px;white-space:pre-wrap;line-height:1.3}
-.ktxt ul{margin:0;padding:0;list-style:none}
-.ktxt ul li{position:relative;padding-left:12px;margin:0;line-height:1.35}
-.ktxt ul li:before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:11px}
-.fbox{background:#0f172a;color:#e8eefc;border-radius:12px;padding:12px 14px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;line-height:1.9;white-space:pre-wrap;overflow-x:auto}
-.fbox b{color:#7dd3fc;font-weight:600}
-.qbox{background:#fff;border-left:4px solid var(--accent);padding:12px 14px;border-radius:0 10px 10px 0;margin-top:8px}
-.qbox .q{font-size:13px;color:var(--ink)}
-.qbox .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub);display:none}
-.qbox.open .a{display:block}
-.toggle{display:inline-block;margin-top:6px;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:1px 10px;cursor:pointer}
-.toggle:hover{background:var(--accent);color:#fff}
-.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:8px}
-.related a{display:block;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;text-decoration:none;color:var(--ink);font-size:12.5px}
-.related a:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.related a small{display:block;color:var(--sub);font-size:11.5px;margin-top:2px}
-table.kt{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden}
-table.kt th{background:#37415c;color:#fff;padding:8px 11px;text-align:left;font-size:12.5px}
-table.kt td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
-table.kt tr:last-child td{border-bottom:none}
-table.kt td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
-footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
-/* ---- 返回顶部悬浮按钮 ---- */
-#toTop{position:fixed;right:22px;bottom:26px;width:44px;height:44px;border:none;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(37,99,235,.38);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s;z-index:999}
-#toTop.show{opacity:1;visibility:visible;transform:translateY(0)}
-#toTop:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(37,99,235,.5)}
-@media(max-width:600px){#toTop{right:14px;bottom:18px;width:40px;height:40px;font-size:17px}}
-</style>
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/common.css">
 </head>
 <body>
 <header>
@@ -77,7 +32,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
   <h2 class="sec"><span class="no">①</span>知识地图</h2>
   <p class="lead">合同类型决定了"成本超支谁承担"——这是单选判断题和案例分析的共同核心。</p>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">3 大类合同</h3>
+    <h3>3 大类合同</h3>
     <table class="kt">
       <tr><th>大类</th><th>细分</th><th>风险承担</th><th>适用场景</th></tr>
       <tr><td>总价合同<br>FP</td><td>FFP 固定总价<br>FPIF 固定价+激励<br>FPIFP 完全固定</td><td><b>卖方承担更多</b><br>超支由卖方消化</td><td>范围清晰 · 风险小 · 工期短</td></tr>
@@ -108,7 +63,7 @@ CPIF：实际成本 + 激励费，<b>买方承担成本，卖方争取激励</b>
 <section id="approach">
   <h2 class="sec"><span class="no">③</span>计算思路</h2>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">题型 1：判断合同类型</h3>
+    <h3>题型 1：判断合同类型</h3>
     <div class="ktxt"><ul>
       <li>范围清晰 + 风险小 → 总价（FP / FFP）。</li>
       <li>范围不清 + 风险大 → 成本补偿（CPFF / CPIF）。</li>
@@ -117,7 +72,7 @@ CPIF：实际成本 + 激励费，<b>买方承担成本，卖方争取激励</b>
     </ul></div>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">题型 2：FPIF 实际付款计算</h3>
+    <h3>题型 2：FPIF 实际付款计算</h3>
     <div class="ktxt"><ul>
       <li>先判断实际成本 vs 目标成本，决定激励方向。</li>
       <li>差额 × 分摊比例 = 激励/分摊金额。</li>
@@ -125,7 +80,7 @@ CPIF：实际成本 + 激励费，<b>买方承担成本，卖方争取激励</b>
     </ul></div>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">题型 3：合同类型与风险归属</h3>
+    <h3>题型 3：合同类型与风险归属</h3>
     <div class="ktxt"><ul>
       <li>总价合同：卖方承担成本风险，买方承担范围风险。</li>
       <li>成本补偿：买方承担成本风险。</li>
@@ -153,7 +108,7 @@ CPIF：实际成本 + 激励费，<b>买方承担成本，卖方争取激励</b>
   <div class="card">
     <div class="qbox" id="q1">
       <div class="q"><b>例题 1（FPIF）</b>：某 FPIF 合同目标成本 100 万，目标利润 10 万，激励/分摊比例 80/20（卖方/买方）。实际成本 90 万。买方应付款多少？</div>
-      <span class="toggle" onclick="document.getElementById('q1').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <span class="toggle" data-target="q1">显示答案</span>
       <div class="a">
         实际成本 90 &lt; 目标成本 100 → 卖方<b>赚激励</b>。<br>
         差额 = 100 − 90 = 10 万<br>
@@ -167,7 +122,7 @@ CPIF：实际成本 + 激励费，<b>买方承担成本，卖方争取激励</b>
   <div class="card">
     <div class="qbox" id="q2">
       <div class="q"><b>例题 2（FPIF 超支）</b>：同例 1，实际成本变 120 万。买方付款多少？</div>
-      <span class="toggle" onclick="document.getElementById('q2').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <span class="toggle" data-target="q2">显示答案</span>
       <div class="a">
         实际成本 120 &gt; 目标成本 100 → 卖方<b>承担分摊</b>。<br>
         差额 = 120 − 100 = 20 万<br>
@@ -189,9 +144,7 @@ CPIF：实际成本 + 激励费，<b>买方承担成本，卖方争取激励</b>
 
 </div>
 <footer>合同类型与合同计算专题 · 系统集成项目管理工程师 · 软考中级</footer>
-<button id="toTop" title="返回顶部" aria-label="返回顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<script>
-(function(){var b=document.getElementById('toTop');function u(){b.classList.toggle('show',window.scrollY>300);}window.addEventListener('scroll',u,{passive:true});u();})();
-</script>
+<button id="toTop" title="返回顶部" aria-label="返回顶部">↑</button>
+<script src="assets/common.js"></script>
 </body>
 </html>

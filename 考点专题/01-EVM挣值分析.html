@@ -7,56 +7,12 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>① EVM 挣值分析 · 软考中级计算题专题</title>
+<link rel="stylesheet" href="assets/common.css">
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5b6472;--line:#e4e7ef;--accent:#2563eb;--accent-soft:#eaf2ff}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
-header{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:30px 0 26px}
-header .wrap{padding-bottom:0}
-header h1{font-size:23px;font-weight:700}
-header p{margin-top:6px;font-size:13.5px;opacity:.92}
-header a.back{display:inline-block;margin-top:10px;font-size:12.5px;color:#fff;text-decoration:none;border:1px solid #ffffff66;border-radius:20px;padding:3px 12px}
-nav.toc{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:16px}
-nav.toc .in{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto}
-nav.toc a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:12.5px;padding:9px 10px;border-bottom:2.5px solid transparent}
-nav.toc a:hover{color:var(--accent);border-color:var(--accent)}
-section{margin-top:34px;scroll-margin-top:60px}
-h2.sec{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:8px}
-h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:12.5px;padding:2px 9px}
-p.lead{color:var(--sub);font-size:13.5px;margin-bottom:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
+/* ---- 本页私有样式（通用样式见 assets/common.css） ---- */
 .kblock{margin-top:8px}
 .klab{display:inline-block;font-size:11.5px;font-weight:700;color:#fff;border-radius:6px;padding:1px 10px;margin-bottom:5px}
-.klab.k1{background:#475569}.klab.k2{background:#2563eb}.klab.k3{background:#0f766e}.klab.k4{background:#c2410c}
-.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:8px;padding:5px 11px;white-space:pre-wrap;line-height:1.3}
-.ktxt ul{margin:0;padding:0;list-style:none}
-.ktxt ul li{position:relative;padding-left:12px;margin:0;line-height:1.35}
-.ktxt ul li:before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:11px}
-.fbox{background:#0f172a;color:#e8eefc;border-radius:12px;padding:12px 14px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;line-height:1.9;white-space:pre-wrap;overflow-x:auto}
-.fbox b{color:#7dd3fc;font-weight:600}
-.qbox{background:#fff;border-left:4px solid var(--accent);padding:12px 14px;border-radius:0 10px 10px 0;margin-top:8px}
-.qbox .q{font-size:13px;color:var(--ink)}
-.qbox .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub);display:none}
-.qbox.open .a{display:block}
-.toggle{display:inline-block;margin-top:6px;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:1px 10px;cursor:pointer}
-.toggle:hover{background:var(--accent);color:#fff}
-.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:8px}
-.related a{display:block;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;text-decoration:none;color:var(--ink);font-size:12.5px}
-.related a:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.related a small{display:block;color:var(--sub);font-size:11.5px;margin-top:2px}
-table.kt{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden}
-table.kt th{background:#37415c;color:#fff;padding:8px 11px;text-align:left;font-size:12.5px}
-table.kt td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
-table.kt tr:last-child td{border-bottom:none}
-table.kt td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
-footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
-/* ---- 返回顶部悬浮按钮 ---- */
-#toTop{position:fixed;right:22px;bottom:26px;width:44px;height:44px;border:none;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(37,99,235,.38);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s;z-index:999}
-#toTop.show{opacity:1;visibility:visible;transform:translateY(0)}
-#toTop:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(37,99,235,.5)}
-@media(max-width:600px){#toTop{right:14px;bottom:18px;width:40px;height:40px;font-size:17px}}
-</style>
+.klab.k1{background:#475569}.klab.k2{background:#2563eb}.klab.k3{background:#0f766e}.klab.k4{background:#c2410c}</style>
 </head>
 <body>
 <header>
@@ -80,7 +36,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
   <h2 class="sec"><span class="no">①</span>知识地图</h2>
   <p class="lead">挣值管理（EVM）把「范围 · 进度 · 成本」三个维度整合到一个坐标系里：8 个指标描述现状 + 4 个指标预测未来。</p>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">4 个基础数据（先找齐再算）</h3>
+    <h3>4 个基础数据（先找齐再算）</h3>
     <table class="kt">
       <tr><th>缩写</th><th>全称</th><th>含义</th></tr>
       <tr><td>PV</td><td>Planned Value</td><td>计划价值 · 到某时点计划应完成工作的<b>预算</b>成本</td></tr>
@@ -90,7 +46,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
     </table>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">4 个绩效指标（描述"现状"）</h3>
+    <h3>4 个绩效指标（描述"现状"）</h3>
     <div class="ktxt"><ul>
       <li><b>CV = EV − AC</b>：成本偏差，&lt;0 超支</li>
       <li><b>SV = EV − PV</b>：进度偏差，&lt;0 落后</li>
@@ -99,7 +55,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
     </ul></div>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">4 个预测指标（回答"未来"）</h3>
+    <h3>4 个预测指标（回答"未来"）</h3>
     <div class="ktxt"><ul>
       <li><b>ETC</b>：完工尚需成本 Estimate To Complete</li>
       <li><b>EAC</b>：完工时总成本 Estimate At Completion = AC + ETC</li>
@@ -142,7 +98,7 @@ SPI  = EV / PV          <b>（&lt;1 落后，&gt;1 超前）</b>
     </ul></div>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">典型 vs 非典型 · 关键词对照</h3>
+    <h3>典型 vs 非典型 · 关键词对照</h3>
     <table class="kt">
       <tr><th>类型</th><th>题干关键词</th><th>公式选择</th></tr>
       <tr><td>典型</td><td>按当前趋势继续 / 不采取纠正措施 / 当前绩效代表未来 / 剩余工作也按当前效率</td><td>ETC = (BAC − EV) / CPI<br>EAC = BAC / CPI</td></tr>
@@ -152,7 +108,7 @@ SPI  = EV / PV          <b>（&lt;1 落后，&gt;1 超前）</b>
   <div class="card">
     <div class="qbox" id="eacnon" style="border-left-color:#7c3aed">
       <div class="q"><b>🧠 举例理解 · 非典型 EAC 为什么是 AC + (BAC − EV)</b></div>
-      <span class="toggle" onclick="document.getElementById('eacnon').classList.toggle('open');this.textContent=this.textContent==='展开讲解'?'收起讲解':'展开讲解'">展开讲解</span>
+      <span class="toggle" data-target="eacnon" data-open="展开讲解" data-close="收起讲解">展开讲解</span>
       <div class="a">
         <b>【基础数据】</b> 总预算 BAC = 100 万；已完成 30% → EV = 30 万；实际花了 AC = 40 万（已超支 10 万）。<br>
         CPI = EV / AC = 30 / 40 = 0.75；剩余工作量的预算值 = BAC − EV = 70 万。<br><br>
@@ -175,7 +131,7 @@ SPI  = EV / PV          <b>（&lt;1 落后，&gt;1 超前）</b>
   <div class="card">
     <div class="qbox" id="tcpi" style="border-left-color:#7c3aed">
       <div class="q"><b>🧠 举例理解 · TCPI = (BAC − EV) / (BAC − AC) 到底在算什么</b></div>
-      <span class="toggle" onclick="document.getElementById('tcpi').classList.toggle('open');this.textContent=this.textContent==='展开讲解'?'收起讲解':'展开讲解'">展开讲解</span>
+      <span class="toggle" data-target="tcpi" data-open="展开讲解" data-close="收起讲解">展开讲解</span>
       <div class="a">
         <b>【一句话】</b> 从现在到完工，剩下的活必须"多高效"，才能把项目按预算干完。<br><br>
         <b>【把公式掰开】</b><br>
@@ -219,7 +175,7 @@ SPI  = EV / PV          <b>（&lt;1 落后，&gt;1 超前）</b>
   <div class="card">
     <div class="qbox" id="q1">
       <div class="q"><b>例题 1（典型）</b>：某项目 BAC = 100 万。第 5 周末统计得 PV = 50 万、EV = 45 万、AC = 60 万。假设项目按当前绩效继续，请判断当前状态，并求 EAC 与 VAC。</div>
-      <span class="toggle" onclick="document.getElementById('q1').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <span class="toggle" data-target="q1">显示答案</span>
       <div class="a">
         CV = EV − AC = 45 − 60 = <b>−15 万</b>（超支）<br>
         SV = EV − PV = 45 − 50 = <b>−5 万</b>（落后）<br>
@@ -235,7 +191,7 @@ SPI  = EV / PV          <b>（&lt;1 落后，&gt;1 超前）</b>
   <div class="card">
     <div class="qbox" id="q2">
       <div class="q"><b>例题 2（非典型）</b>：某项目 BAC = 200 万，截至第 8 周末 PV=80 万、EV=70 万、AC=90 万。管理层决定采取纠正措施，剩余工作按原预算效率执行。求 ETC、EAC、TCPI。</div>
-      <span class="toggle" onclick="document.getElementById('q2').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <span class="toggle" data-target="q2">显示答案</span>
       <div class="a">
         非典型（剩余按预算效率）→ ETC = BAC − EV = 200 − 70 = <b>130 万</b><br>
         EAC = AC + ETC = 90 + 130 = <b>220 万</b><br>
@@ -259,9 +215,7 @@ SPI  = EV / PV          <b>（&lt;1 落后，&gt;1 超前）</b>
 
 </div>
 <footer>EVM 挣值分析专题 · 系统集成项目管理工程师 · 软考中级</footer>
-<button id="toTop" title="返回顶部" aria-label="返回顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<script>
-(function(){var b=document.getElementById('toTop');function u(){b.classList.toggle('show',window.scrollY>300);}window.addEventListener('scroll',u,{passive:true});u();})();
-</script>
+<button id="toTop" title="返回顶部" aria-label="返回顶部">↑</button>
+<script src="assets/common.js"></script>
 </body>
 </html>

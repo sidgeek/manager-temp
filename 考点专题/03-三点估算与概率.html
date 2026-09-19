@@ -7,53 +7,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>③ 三点估算与概率 · 软考中级计算题专题</title>
-<style>
-:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5b6472;--line:#e4e7ef;--accent:#2563eb;--accent-soft:#eaf2ff}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
-header{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:30px 0 26px}
-header .wrap{padding-bottom:0}
-header h1{font-size:23px;font-weight:700}
-header p{margin-top:6px;font-size:13.5px;opacity:.92}
-header a.back{display:inline-block;margin-top:10px;font-size:12.5px;color:#fff;text-decoration:none;border:1px solid #ffffff66;border-radius:20px;padding:3px 12px}
-nav.toc{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:16px}
-nav.toc .in{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto}
-nav.toc a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:12.5px;padding:9px 10px;border-bottom:2.5px solid transparent}
-nav.toc a:hover{color:var(--accent);border-color:var(--accent)}
-section{margin-top:34px;scroll-margin-top:60px}
-h2.sec{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:8px}
-h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:12.5px;padding:2px 9px}
-p.lead{color:var(--sub);font-size:13.5px;margin-bottom:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
-.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:8px;padding:5px 11px;white-space:pre-wrap;line-height:1.3}
-.ktxt ul{margin:0;padding:0;list-style:none}
-.ktxt ul li{position:relative;padding-left:12px;margin:0;line-height:1.35}
-.ktxt ul li:before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:11px}
-.fbox{background:#0f172a;color:#e8eefc;border-radius:12px;padding:12px 14px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;line-height:1.9;white-space:pre-wrap;overflow-x:auto}
-.fbox b{color:#7dd3fc;font-weight:600}
-.qbox{background:#fff;border-left:4px solid var(--accent);padding:12px 14px;border-radius:0 10px 10px 0;margin-top:8px}
-.qbox .q{font-size:13px;color:var(--ink)}
-.qbox .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub);display:none}
-.qbox.open .a{display:block}
-.toggle{display:inline-block;margin-top:6px;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:1px 10px;cursor:pointer}
-.toggle:hover{background:var(--accent);color:#fff}
-.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:8px}
-.related a{display:block;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;text-decoration:none;color:var(--ink);font-size:12.5px}
-.related a:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.related a small{display:block;color:var(--sub);font-size:11.5px;margin-top:2px}
-table.kt{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden}
-table.kt th{background:#37415c;color:#fff;padding:8px 11px;text-align:left;font-size:12.5px}
-table.kt td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
-table.kt tr:last-child td{border-bottom:none}
-table.kt td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
-footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
-/* ---- 返回顶部悬浮按钮 ---- */
-#toTop{position:fixed;right:22px;bottom:26px;width:44px;height:44px;border:none;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(37,99,235,.38);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s;z-index:999}
-#toTop.show{opacity:1;visibility:visible;transform:translateY(0)}
-#toTop:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(37,99,235,.5)}
-@media(max-width:600px){#toTop{right:14px;bottom:18px;width:40px;height:40px;font-size:17px}}
-</style>
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/common.css">
 </head>
 <body>
 <header>
@@ -77,7 +32,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
   <h2 class="sec"><span class="no">①</span>知识地图</h2>
   <p class="lead">当单个活动的工期或成本不确定时，用"乐观 / 最可能 / 悲观"三值估算期望值与离散程度，是单选 + 案例都爱考的"小计算"。</p>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">三值估算 · O / M / P</h3>
+    <h3>三值估算 · O / M / P</h3>
     <table class="kt">
       <tr><th>符号</th><th>含义</th><th>备注</th></tr>
       <tr><td>O</td><td>Optimistic · 乐观值</td><td>一切顺利时的最短工期/最低成本</td></tr>
@@ -86,7 +41,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
     </table>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">两种分布</h3>
+    <h3>两种分布</h3>
     <div class="ktxt"><ul>
       <li><b>β 分布（PERT 默认）</b>：Te = (O + 4M + P) / 6，对最可能值赋予最高权重。</li>
       <li><b>三角分布</b>：Te = (O + M + P) / 3，三值平均。<b>题干未特别说明 → 默认 β</b>。</li>
@@ -118,7 +73,7 @@ Te ± 3σ ≈ 99.73%
 <section id="approach">
   <h2 class="sec"><span class="no">③</span>计算思路</h2>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">题型 1：求期望工期 / 标准差</h3>
+    <h3>题型 1：求期望工期 / 标准差</h3>
     <div class="ktxt"><ul>
       <li>先判断是 β 分布还是三角分布（题干通常默认 β）。</li>
       <li>代入公式算 Te 和 σ。</li>
@@ -126,7 +81,7 @@ Te ± 3σ ≈ 99.73%
     </ul></div>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">题型 2：求"某工期完成的概率"</h3>
+    <h3>题型 2：求"某工期完成的概率"</h3>
     <div class="ktxt"><ul>
       <li>先算 Te、σ。</li>
       <li>Z = (目标工期 T − Te) / σ，Z 为正表示目标工期比期望大（更宽松）。</li>
@@ -135,7 +90,7 @@ Te ± 3σ ≈ 99.73%
     </ul></div>
   </div>
   <div class="card" style="border-left:4px solid var(--accent);background:linear-gradient(135deg,#f0f6ff,#ffffff)">
-    <h3 style="font-size:14.5px;margin-bottom:8px">🔑 关键原理 · 求完工概率的"Z 三步走"</h3>
+    <h3>🔑 关键原理 · 求完工概率的"Z 三步走"</h3>
     <div class="ktxt">第①步 标准化：Z = (目标工期 T − 期望 Te) / σ
 第②步 查标准正态分布表 Φ(Z)（累积概率）
 第③步 Φ(Z) 即"在目标工期 T 内完工"的概率
@@ -149,7 +104,7 @@ Z 是"几个标准差"的意思：
 💡 软考精度：Z 保留 2 位小数、概率直接查表得出，不自己算。</div>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">题型 3：多活动路径总工期概率</h3>
+    <h3>题型 3：多活动路径总工期概率</h3>
     <div class="ktxt"><ul>
       <li>路径期望 = 各活动期望相加。</li>
       <li>路径方差 = 各活动方差相加（注意：标准差不能直接相加，要先平方）。</li>
@@ -157,7 +112,7 @@ Z 是"几个标准差"的意思：
     </ul></div>
   </div>
   <div class="card" style="border-left:4px solid var(--accent);background:linear-gradient(135deg,#f0f6ff,#ffffff)">
-    <h3 style="font-size:14.5px;margin-bottom:8px">🔑 关键原理 · 为什么多活动 σ 要"先平方再开方"</h3>
+    <h3>🔑 关键原理 · 为什么多活动 σ 要"先平方再开方"</h3>
     <div class="ktxt">串行路径的总工期 = 各活动工期之和，且各活动相互独立；
 独立随机变量满足<b>方差可加性</b>：Var(A+B+…) = Var(A) + Var(B) + …
 故：
@@ -189,7 +144,7 @@ Z 是"几个标准差"的意思：
   <div class="card">
     <div class="qbox" id="q1">
       <div class="q"><b>例题 1</b>：某活动 O=6 天、M=9 天、P=18 天。求期望工期 Te 和标准差 σ。</div>
-      <span class="toggle" onclick="document.getElementById('q1').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <span class="toggle" data-target="q1">显示答案</span>
       <div class="a">
         Te = (O + 4M + P) / 6 = (6 + 36 + 18) / 6 = 60 / 6 = <b>10 天</b><br>
         σ = (P − O) / 6 = (18 − 6) / 6 = <b>2 天</b>
@@ -200,7 +155,7 @@ Z 是"几个标准差"的意思：
   <div class="card">
     <div class="qbox" id="q2">
       <div class="q"><b>例题 2</b>：某关键路径由 4 个活动串行组成，每个活动的 σ 分别为 2、3、1、2 天。求整条路径的标准差，并求在 Te 基础上加 4 天完工的概率。</div>
-      <span class="toggle" onclick="document.getElementById('q2').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
+      <span class="toggle" data-target="q2">显示答案</span>
       <div class="a">
         <b>① 求路径标准差</b>（方差相加 → 再开方，不能直接加 σ）：<br>
         路径方差 = 2² + 3² + 1² + 2² = 4 + 9 + 1 + 4 = 18<br>
@@ -224,9 +179,7 @@ Z 是"几个标准差"的意思：
 
 </div>
 <footer>三点估算与概率专题 · 系统集成项目管理工程师 · 软考中级</footer>
-<button id="toTop" title="返回顶部" aria-label="返回顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<script>
-(function(){var b=document.getElementById('toTop');function u(){b.classList.toggle('show',window.scrollY>300);}window.addEventListener('scroll',u,{passive:true});u();})();
-</script>
+<button id="toTop" title="返回顶部" aria-label="返回顶部">↑</button>
+<script src="assets/common.js"></script>
 </body>
 </html>

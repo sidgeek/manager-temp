@@ -1,0 +1,81 @@
+/* ==========================================================
+   软考中级专题 · 通用样式 common.css
+   所有专题页共用，页面私有样式请写在本页 <style> 里，不要改这里
+   如需全局调整（主题色、卡片、图形规范）只改本文件即可全站生效
+   ========================================================== */
+
+/* ---- 主题变量 ---- */
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5b6472;--line:#e4e7ef;--accent:#2563eb;--accent-soft:#eaf2ff;--hdr1:#2563eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+
+/* ---- 布局 / 页头 / 导航 ---- */
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
+header{background:linear-gradient(135deg,var(--hdr1),#7c3aed);color:#fff;padding:30px 0 26px}
+header .wrap{padding-bottom:0}
+header h1{font-size:23px;font-weight:700}
+header p{margin-top:6px;font-size:13.5px;opacity:.92}
+header a.back{display:inline-block;margin-top:10px;font-size:12.5px;color:#fff;text-decoration:none;border:1px solid #ffffff66;border-radius:20px;padding:3px 12px}
+nav.toc{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:16px}
+nav.toc .in{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:12.5px;padding:9px 10px;border-bottom:2.5px solid transparent}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent)}
+section{margin-top:34px;scroll-margin-top:60px}
+h2.sec{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:8px}
+h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:12.5px;padding:2px 9px}
+h2.sec .no.hot{background:#c2410c}
+p.lead{color:var(--sub);font-size:13.5px;margin-bottom:14px}
+footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
+
+/* ---- 卡片 / 正文块 ---- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
+.card h3{font-size:14.5px;margin-bottom:8px}
+.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:8px;padding:5px 11px;white-space:pre-wrap;line-height:1.3}
+.ktxt ul{margin:0;padding:0;list-style:none}
+.ktxt ul li{position:relative;padding-left:12px;margin:0;line-height:1.35}
+.ktxt ul li:before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:11px}
+
+/* ---- 公式块 ---- */
+.fbox{background:#0f172a;color:#e8eefc;border-radius:12px;padding:12px 14px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;line-height:1.9;white-space:pre-wrap;overflow-x:auto}
+.fbox b{color:#7dd3fc;font-weight:600}
+
+/* ---- 例题 / 答案折叠 ---- */
+.qbox{background:#fff;border-left:4px solid var(--accent);padding:12px 14px;border-radius:0 10px 10px 0;margin-top:8px}
+.qbox .q{font-size:13px;color:var(--ink)}
+.qbox .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub);display:none}
+.qbox.open .a{display:block}
+.toggle{display:inline-block;margin-top:6px;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:1px 10px;cursor:pointer}
+.toggle:hover{background:var(--accent);color:#fff}
+
+/* ---- 关联专题 / 分册导航 ---- */
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:8px}
+.related a{display:block;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;text-decoration:none;color:var(--ink);font-size:12.5px}
+.related a:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.related a small{display:block;color:var(--sub);font-size:11.5px;margin-top:2px}
+.related a.cur{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+
+/* ---- 表格 ---- */
+table.kt{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden}
+table.kt th{background:#37415c;color:#fff;padding:8px 11px;text-align:left;font-size:12.5px}
+table.kt td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+table.kt tr:last-child td{border-bottom:none}
+table.kt td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
+
+/* ---- 网络图示意图 ----
+   图形尺寸规范：避免图过大 / 太空 / 太挤，后续新增图请按此基准
+   · 七格图单格：20px；节点整体约 60×52
+   · 单代号活动框：56×36，圆角 8
+   · 起止圆：半径 16
+   · 水平间距 24-32，垂直层间距 52-64
+   · SVG 最大可视高度 190px，保持比例缩放 */
+.dgm{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fbfcff}
+.dgm-t{font-size:12.5px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.dgm svg{width:100%;height:auto;display:block;max-height:190px}
+.dgm svg text{font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.dgm-c{font-size:12px;color:var(--sub);margin-top:4px;line-height:1.5}
+
+/* ---- 返回顶部悬浮按钮 ---- */
+#toTop{position:fixed;right:22px;bottom:26px;width:44px;height:44px;border:none;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(37,99,235,.38);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s;z-index:999}
+#toTop.show{opacity:1;visibility:visible;transform:translateY(0)}
+#toTop:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(37,99,235,.5)}
+@media(max-width:600px){#toTop{right:14px;bottom:18px;width:40px;height:40px;font-size:17px}}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>⑨ 案例题常考考点 · 高频领域篇</title>
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/case-09.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>⑨ 案例题常考考点 · 高频领域篇</h1>
+    <p>进度（9 次）· 质量（9 次）· 整合（7 次）— 占分最高的三大领域</p>
+    <a class="back" href="../软考中级复习计划.html#hub">← 返回主计划 · 📍 跳转枢纽（一键直达 9 大考点）</a>
+    <nav class="toc"><div class="in">
+      <a href="#sched">① 进度</a>
+      <a href="#qual">② 质量</a>
+      <a href="#intg">③ 整合</a>
+      <a href="#parts">册 分册导航</a>
+      <a href="#links">关 关联专题</a>
+    </div></nav>
+  </div>
+</header>
+<div class="wrap">
+
+<section id="sched">
+  <h2 class="sec"><span class="no hot">①</span>进度管理 · 9 次 / 175 分（每次必考）</h2>
+  <p class="lead">计算 + 找错双高频。计算部分详见 <a href="02-关键路径CPM.html" style="color:var(--accent)">② 关键路径 CPM</a>、<a href="03-三点估算与概率.html" style="color:var(--accent)">③ 三点估算</a>、<a href="04-进度压缩与资源优化.html" style="color:var(--accent)">④ 进度压缩</a>。</p>
+
+  <div class="card">
+    <h3>计算必背公式</h3>
+    <div class="fbox"><b>六时标（先正推、后逆推）</b>
+正推：ES(首活动) = 0        EF = ES + 工期
+      多紧前活动 → ES = <b>MAX</b>(所有紧前 EF)
+逆推：LF(末活动) = 总工期    LS = LF − 工期
+      多紧后活动 → LF = <b>MIN</b>(所有紧后 LS)
+
+总浮动 TF = LS − ES = LF − EF        <b>TF = 0（或最小）→ 关键活动</b>
+自由浮动 FF = MIN(紧后活动 ES) − 本活动 EF
+
+<b>三点估算 PERT</b>
+期望工期 Te = (To + 4×Tm + Tp) / 6
+标准差   σ  = (Tp − To) / 6
+项目总工期 T = Σ Te      项目总标准差 = √(Σ σ²)
+概率：±1σ = 68.26%    ±2σ = 95.46%    ±3σ = 99.73%
+
+<b>进度压缩</b>   赶工 = 加资源 → 加成本    快速跟进 = 并行 → 加风险
+<b>资源优化</b>   资源平衡 = 改关键路径（工期变长）    资源平滑 = 不改关键路径</div>
+  </div>
+
+  <div class="card">
+    <h3>「进度方面存在的问题」找错清单</h3>
+    <ol class="mist">
+      <li><b>未制定进度管理计划</b><span>／无进度基准，无法衡量偏差</span></li>
+      <li><b>活动定义不完整</b><span>遗漏活动（常见：漏测试、漏上线、漏培训、漏数据迁移）</span></li>
+      <li><b>活动排序错误</b><span>依赖关系（FS/SS/FF/SF）没理清，漏掉强制性依赖</span></li>
+      <li><b>工期估算不准</b><span>凭经验拍脑袋，未用三点估算、未参考历史数据、未做专家判断</span></li>
+      <li><b>未识别关键路径</b><span>精力平均分配，没盯住关键活动</span></li>
+      <li><b>关键路径上资源不足</b><span>却去优化非关键路径的活动</span></li>
+      <li><b>进度压缩方法选择不当</b><span>盲目赶工不看成本斜率；盲目并行不看返工风险</span></li>
+      <li><b>未做资源平衡/资源平滑</b><span>人员严重过载、同一人同时被多个活动占满</span></li>
+      <li><b>进度监控缺失</b><span>没有定期检查点，问题暴露太晚</span></li>
+      <li><b>出现延期后未及时纠偏</b><span>未采取纠正措施或纠正措施无效</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="qual">
+  <h2 class="sec"><span class="no hot">②</span>质量管理 · 9 次 / 164 分（最好套模板）</h2>
+
+  <div class="card">
+    <h3>三过程 + QA/QC 辨析（填空常考）</h3>
+    <table class="kt">
+      <tr><th></th><th>管理质量 QA（质量保证）</th><th>控制质量 QC（质量控制）</th></tr>
+      <tr><td>关注</td><td><b>过程</b>、体系、过程改进</td><td><b>可交付成果</b>、是否达标</td></tr>
+      <tr><td>时机</td><td>全过程（事前 / 事中）</td><td>事后检查、验收前</td></tr>
+      <tr><td>手段</td><td>质量审计、过程分析</td><td>检查、测试、统计抽样、核查表</td></tr>
+      <tr><td>输出</td><td>变更请求、质量报告</td><td><b>核实的可交付成果</b>、质量控制测量结果</td></tr>
+      <tr><td>口诀</td><td colspan="2">「QA 管过程防未病，QC 管结果查已病」</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>七种基本质量工具（年年考填空）</h3>
+    <div class="ktxt"><ul>
+      <li><b>因果图</b>（鱼骨图 / 石川图）—— 找根本原因</li>
+      <li><b>流程图</b> —— 展示过程步骤与可能出问题的环节</li>
+      <li><b>核查表</b>（计数表）—— 收集数据、统计缺陷频次</li>
+      <li><b>帕累托图</b> —— 按频次排序 + 累计百分比，<b>80/20 法则找"少数关键原因"</b></li>
+      <li><b>直方图</b> —— 特殊形式条形图，描述集中趋势、分散程度、分布形状</li>
+      <li><b>控制图</b> —— 判断过程是否<b>受控</b>（上下控制界限、连续 7 点在均值同侧判异常）</li>
+      <li><b>散点图</b> —— 看两个变量之间的相关性</li>
+    </ul></div>
+  </div>
+
+  <div class="card">
+    <h3>质量成本（判断分类常考）</h3>
+    <div class="grid2">
+      <div class="ktxt"><b style="color:#0f766e">一致性成本（主动投入）</b><ul>
+        <li>预防成本：培训、评审、过程改进、质量规划</li>
+        <li>评估成本：测试、检查、破坏性测试、计量设备</li>
+      </ul></div>
+      <div class="ktxt"><b style="color:#dc2626">非一致性成本（被动损失）</b><ul>
+        <li>内部失败：返工、废品、停工（交付前发现）</li>
+        <li>外部失败：保修、退货、投诉、诉讼（交付后发现）</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>「质量管理方面存在的问题」找错清单</h3>
+    <ol class="mist tl">
+      <li><b>未制定质量管理计划</b><span>或计划未经评审、未明确质量测量指标与验收标准</span></li>
+      <li><b>QA 与 QC 职责混淆</b><span>把"检查"当成"保证"，只做测试不做过程改进</span></li>
+      <li><b>QA 缺乏独立性</b><span>由开发人员兼任、或向项目经理汇报（QA 应保持独立，向高层/PMO 汇报）</span></li>
+      <li><b>未做质量审计</b><span>无法验证质量过程的合规性</span></li>
+      <li><b>未做技术评审 / 设计评审</b><span>或评审会由被评审者本人组织（应独立组织）</span></li>
+      <li><b>质量测量指标不明确</b><span>需求不可度量，验收无标准</span></li>
+      <li><b>重检验轻预防</b><span>一致性成本投入不足，只在末期"救火"</span></li>
+      <li><b>质量责任不清</b><span>无责任分配矩阵，出了问题互相推诿</span></li>
+      <li><b>发现缺陷未做根本原因分析</b><span>只改表面现象，同类问题反复出现</span></li>
+      <li><b>缺陷修复后未回归验证</b><span>变更/返工后未确认是否真正解决</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="intg">
+  <h2 class="sec"><span class="no hot">③</span>整合管理 · 7 次 / 130 分（变更 · 配置 · 收尾）</h2>
+  <p class="lead">整合管理的案例题就这三个壳，其中<b>配置管理近三年明显升温</b>（2023.05、2022.05 广东、2016.11 均考）。</p>
+
+  <div class="card">
+    <h3>A · 变更管理</h3>
+    <div class="klab k4">八步流程 · 填空题原句</div>
+    <div class="ktxt"><ul>
+      <li>① 提出与接受<b>变更申请</b></li>
+      <li>② 对变更的<b>初审</b></li>
+      <li>③ 变更<b>方案论证</b></li>
+      <li>④ <b>CCB（变更控制委员会）审查批准</b></li>
+      <li>⑤ 发出变更通知并<b>实施</b></li>
+      <li>⑥ 变更实施的<b>监控</b></li>
+      <li>⑦ 变更<b>效果评估</b></li>
+      <li>⑧ 判断变更后项目是否已<b>纳入正常轨道</b></li>
+    </ul></div>
+    <div class="klab k1" style="margin-top:10px">找错清单</div>
+    <ol class="mist or">
+      <li><b>无变更控制流程</b><span>或流程不规范、未定义 CCB 职责</span></li>
+      <li><b>变更未书面化</b><span>口头、电话、即时消息一句话就改了，无变更请求单</span></li>
+      <li><b>变更未经 CCB 审批就实施</b><span>项目经理或开发人员擅自修改 <span style="color:#dc2626">（最常见）</span></span></li>
+      <li><b>未做变更影响分析</b><span>没评估对范围/进度/成本/质量/风险/合同的影响</span></li>
+      <li><b>变更未通知干系人</b><span>客户、团队、供应商不知情</span></li>
+      <li><b>变更后未更新计划与基准</b><span>文档、进度基准、成本基准未同步</span></li>
+      <li><b>无变更日志</b><span>变更无记录，无法追溯、无法统计</span></li>
+      <li><b>变更后未验证确认</b><span>改完就走，没确认是否达到预期</span></li>
+      <li><b>变更频繁的根因未解决</b><span>追溯到：需求未确认、范围不明确、合同条款含糊</span></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>B · 配置管理（近几年超高频）</h3>
+    <div class="klab k2">6 项活动</div>
+    <div class="ktxt">制定配置管理计划 → <b>配置项标识</b> → <b>配置项控制</b> → <b>配置状态报告</b> → <b>配置审计</b> → 发布管理与交付</div>
+    <div class="klab k2" style="margin-top:10px">三库对照（判断题常考）</div>
+    <table class="kt" style="margin-top:6px">
+      <tr><th>库</th><th>别名</th><th>存放内容</th><th>权限</th></tr>
+      <tr><td>开发库</td><td>动态库 / 工作库</td><td>开发中、未评审的半成品</td><td>开发者自己可改</td></tr>
+      <tr><td>受控库</td><td><b>主库</b></td><td><b>已评审通过、成为基线的配置项</b></td><td><b>严格受控，须审批</b></td></tr>
+      <tr><td>产品库</td><td>静态库 / 发行库</td><td>已定型、可交付的产品</td><td>只读</td></tr>
+    </table>
+    <div class="klab k2" style="margin-top:10px">版本号规则</div>
+    <div class="ktxt"><ul>
+      <li><b>草稿</b>：<b>0.x</b>（如 0.68 —— 处于草稿状态）</li>
+      <li><b>正式</b>：<b>x.y</b>（如 V2.1 —— y 为小版本号，一般 y ∈ 0–9）</li>
+      <li><b>修改</b>：<b>x.yz</b>（如 V2.13 —— 正在修改中）</li>
+      <li>配置审计两种：<b>功能配置审计</b>（符合功能需求吗）+ <b>物理配置审计</b>（东西齐不齐、一致吗）</li>
+    </ul></div>
+    <div class="klab k1" style="margin-top:10px">找错清单</div>
+    <ol class="mist or">
+      <li><b>未制定配置管理计划</b></li>
+      <li><b>未识别配置项</b><span>／未给配置项编号、未定义命名规则</span></li>
+      <li><b>三库未建或混用</b><span>开发库与受控库不分、直接改主库</span></li>
+      <li><b>未建立基线</b><span>无需求基线 / 设计基线 / 产品基线</span></li>
+      <li><b>版本管理混乱</b><span>文档版本与实物不一致、历史版本未保留</span></li>
+      <li><b>权限管理失控</b><span>人人都可读写受控库</span></li>
+      <li><b>变更不走配置控制流程</b><span>改了不申请、不记录、不评审</span></li>
+      <li><b>未做配置审计</b><span>功能审计 + 物理审计都缺</span></li>
+      <li><b>无专职配置管理员</b><span>或由开发人员兼职</span></li>
+      <li><b>未做配置状态报告</b><span>配置项当前状态无人知晓</span></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>C · 项目收尾（2017.11 考过）</h3>
+    <div class="ktxt"><ul>
+      <li>收尾两类：<b>合同收尾</b>（结清合同、完成验收）+ <b>行政收尾</b>（管理收尾）</li>
+      <li>行政收尾核心：确认可交付成果已交付验收 → <b>项目档案归档</b> → <b>经验教训总结</b> → <b>释放资源</b> → <b>最终产品移交</b></li>
+      <li><b>项目总结会</b>：应在项目正式结束前召开；参加者含全体成员与主要干系人；讨论技术绩效、管理绩效、人员绩效、经验教训、遗留问题</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="parts">
+  <h2 class="sec"><span class="no hot">册</span>本专题分册</h2>
+  <div class="related">
+    <a href="09-案例题常考考点.html"><b>① 方法篇</b><small>考频地图 · 三大题型 · 找错万能模板</small></a>
+    <a href="09B-案例题-高频领域.html" class="cur"><b>② 高频领域篇</b><small>进度 · 质量 · 整合</small></a>
+    <a href="09C-案例题-中频速查篇.html"><b>③ 中频速查篇</b><small>风险 · 采购 · 资源 · 挣值 · 其余</small></a>
+  </div>
+</section>
+
+<section id="links">
+  <h2 class="sec"><span class="no hot">关</span>关联专题</h2>
+  <div class="related">
+    <a href="01-EVM挣值分析.html"><b>① EVM 挣值分析</b><small>案例必拿分 · 8 指标 + 4 预测</small></a>
+    <a href="02-关键路径CPM.html"><b>② 关键路径 CPM</b><small>网络图 · 浮动时间 · 关键路径</small></a>
+    <a href="03-三点估算与概率.html"><b>③ 三点估算与概率</b><small>PERT β · σ · 68/95/99.7</small></a>
+    <a href="04-进度压缩与资源优化.html"><b>④ 进度压缩与资源优化</b><small>赶工 vs 快速跟进 · 平衡 vs 平滑</small></a>
+    <a href="05-EMV决策树.html"><b>⑤ EMV 决策树</b><small>定量风险 · 期望货币值</small></a>
+    <a href="06-沟通渠道数.html"><b>⑥ 沟通渠道数</b><small>n(n−1)/2 · 单选高频</small></a>
+    <a href="07-NPV与投资回收期.html"><b>⑦ NPV 与投资回收期</b><small>立项财务指标</small></a>
+    <a href="08-合同类型与合同计算.html"><b>⑧ 合同类型与合同计算</b><small>总价 · 成本补偿 · 工料</small></a>
+  </div>
+</section>
+
+</div>
+<footer>案例题常考考点专题 · 系统集成项目管理工程师 · 软考中级</footer>
+<button id="toTop" title="返回顶部" aria-label="返回顶部">↑</button>
+<script src="assets/common.js"></script>
+</body>
+</html>

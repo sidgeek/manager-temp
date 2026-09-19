@@ -6,74 +6,20 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>② 关键路径 CPM · 软考中级计算题专题</title>
-<style>
-:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5b6472;--line:#e4e7ef;--accent:#2563eb;--accent-soft:#eaf2ff}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
-header{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:30px 0 26px}
-header .wrap{padding-bottom:0}
-header h1{font-size:23px;font-weight:700}
-header p{margin-top:6px;font-size:13.5px;opacity:.92}
-header a.back{display:inline-block;margin-top:10px;font-size:12.5px;color:#fff;text-decoration:none;border:1px solid #ffffff66;border-radius:20px;padding:3px 12px}
-nav.toc{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:16px}
-nav.toc .in{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto}
-nav.toc a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:12.5px;padding:9px 10px;border-bottom:2.5px solid transparent}
-nav.toc a:hover{color:var(--accent);border-color:var(--accent)}
-section{margin-top:34px;scroll-margin-top:60px}
-h2.sec{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:8px}
-h2.sec .no{background:var(--accent);color:#fff;border-radius:8px;font-size:12.5px;padding:2px 9px}
-p.lead{color:var(--sub);font-size:13.5px;margin-bottom:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(20,25,50,.04)}
-.ktxt{font-size:13px;color:var(--ink);background:#f7f8fc;border:1px solid var(--line);border-radius:8px;padding:5px 11px;white-space:pre-wrap;line-height:1.3}
-.ktxt ul{margin:0;padding:0;list-style:none}
-.ktxt ul li{position:relative;padding-left:12px;margin:0;line-height:1.35}
-.ktxt ul li:before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:11px}
-.fbox{background:#0f172a;color:#e8eefc;border-radius:12px;padding:12px 14px;font-family:"Consolas","Courier New",monospace;font-size:12.5px;line-height:1.9;white-space:pre-wrap;overflow-x:auto}
-.fbox b{color:#7dd3fc;font-weight:600}
-.qbox{background:#fff;border-left:4px solid var(--accent);padding:12px 14px;border-radius:0 10px 10px 0;margin-top:8px}
-.qbox .q{font-size:13px;color:var(--ink)}
-.qbox .a{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub);display:none}
-.qbox.open .a{display:block}
-.toggle{display:inline-block;margin-top:6px;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:1px 10px;cursor:pointer}
-.toggle:hover{background:var(--accent);color:#fff}
-.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:8px}
-.related a{display:block;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;text-decoration:none;color:var(--ink);font-size:12.5px}
-.related a:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.related a small{display:block;color:var(--sub);font-size:11.5px;margin-top:2px}
-table.kt{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden}
-table.kt th{background:#37415c;color:#fff;padding:8px 11px;text-align:left;font-size:12.5px}
-table.kt td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
-table.kt tr:last-child td{border-bottom:none}
-table.kt td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
-footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
-/* ---- 网络图示意图 ---- */
-.dgm{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fbfcff}
-.dgm-t{font-size:12.5px;font-weight:700;color:var(--accent);margin-bottom:4px}
-.dgm svg{width:100%;height:auto;display:block}
-.dgm svg text{font-family:"PingFang SC","Microsoft YaHei",sans-serif}
-.dgm-c{font-size:12px;color:var(--sub);margin-top:4px;line-height:1.5}
-/* ---- 返回顶部悬浮按钮 ---- */
-#toTop{position:fixed;right:22px;bottom:26px;width:44px;height:44px;border:none;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(37,99,235,.38);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s;z-index:999}
-#toTop.show{opacity:1;visibility:visible;transform:translateY(0)}
-#toTop:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(37,99,235,.5)}
-@media(max-width:600px){#toTop{right:14px;bottom:18px;width:40px;height:40px;font-size:17px}}
-</style>
+<title>② 关键路径 CPM · 基础篇（概念与七格图）</title>
+<link rel="stylesheet" href="assets/common.css">
 </head>
 <body>
 <header>
   <div class="wrap">
-    <h1>② 关键路径 CPM · 计算题专题</h1>
-    <p>网络图与时间参数 · 关键路径 = 最长路径 = 总工期 · 浮动时间是高频考点</p>
+    <h1>② 关键路径 CPM · 基础篇</h1>
+    <p>依赖关系 · 6 个时间参数 · 七格图填法 · 公式速查</p>
     <a class="back" href="../软考中级复习计划.html#hub">← 返回主计划 · 📍 跳转枢纽（一键直达 8 大考点）</a>
     <nav class="toc"><div class="in">
       <a href="#overview">① 知识地图</a>
       <a href="#formula">② 公式速查</a>
-      <a href="#approach">③ 计算思路</a>
-      <a href="#rules">④ 规律注意点</a>
-      <a href="#example">⑤ 例题演练</a>
-      <a href="#links">⑥ 关联专题</a>
+      <a href="#parts">册 分册导航</a>
+      <a href="#links">关 关联专题</a>
     </div></nav>
   </div>
 </header>
@@ -83,7 +29,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
   <h2 class="sec"><span class="no">①</span>知识地图</h2>
   <p class="lead">关键路径法（CPM）通过 6 个时间参数描述每个活动，再把所有 TF=0 的活动串起来 = 关键路径 = 项目总工期。</p>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">4 种活动依赖关系</h3>
+    <h3>4 种活动依赖关系</h3>
     <table class="kt">
       <tr><th>类型</th><th>英文</th><th>说明</th></tr>
       <tr><td>FS</td><td>Finish-to-Start</td><td>完成-开始（最常用，前者完成后后者才能开始）</td></tr>
@@ -93,7 +39,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
     </table>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">依赖关系的 4 种性质（成因）· 别和 FS/SS/FF/SF 混</h3>
+    <h3>依赖关系的 4 种性质（成因）· 别和 FS/SS/FF/SF 混</h3>
     <table class="kt">
       <tr><th>性质</th><th>别称</th><th>含义</th><th>例子</th></tr>
       <tr><td>强制依赖</td><td>硬逻辑</td><td>客观规律 / 合同要求，<b>不能改</b></td><td>先打地基才能盖楼</td></tr>
@@ -110,7 +56,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
   <div class="card">
     <div class="qbox" id="ffdep" style="border-left-color:#7c3aed">
       <div class="q"><b>🧠 举例理解 · FF 到底指什么？两个任务必须同时完成吗</b></div>
-      <span class="toggle" onclick="document.getElementById('ffdep').classList.toggle('open');this.textContent=this.textContent==='展开讲解'?'收起讲解':'展开讲解'">展开讲解</span>
+      <span class="toggle" data-target="ffdep" data-open="展开讲解" data-close="收起讲解">展开讲解</span>
       <div class="a">
         <b>【先分清】</b>本页 FF 出现两次，含义完全不同：<br>
         · 4 种依赖关系里的 FF = <b>Finish-to-Finish（完成-完成）</b>，描述依赖类型；<br>
@@ -133,7 +79,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
   <div class="card">
     <div class="qbox" id="sfdep" style="border-left-color:#7c3aed">
       <div class="q"><b>🧠 举例理解 · SF（开始-完成）是什么？为什么极少用</b></div>
-      <span class="toggle" onclick="document.getElementById('sfdep').classList.toggle('open');this.textContent=this.textContent==='展开讲解'?'收起讲解':'展开讲解'">展开讲解</span>
+      <span class="toggle" data-target="sfdep" data-open="展开讲解" data-close="收起讲解">展开讲解</span>
       <div class="a">
         <b>【命名规律】</b>关系名的两个字母 = <b>紧前的节点 → 紧后的节点</b>：<br>
         · FS：紧前<b>完成</b> → 紧后<b>开始</b>（B 的 ES ≥ A 的 EF）<br>
@@ -156,7 +102,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
     </div>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">提前量（Lead）· 滞后量（Lag）</h3>
+    <h3>提前量（Lead）· 滞后量（Lag）</h3>
     <div class="ktxt"><ul>
       <li><b>滞后量 Lag</b>：后活动必须<b>等一段</b>才能开始/完成，记作 <b>+X 天</b>。例：FS + 3 天 → 紧前完成后要等 3 天，紧后才能开始（养护、审批、固化期）。</li>
       <li><b>提前量 Lead</b>：后活动可以<b>提前</b>开始/完成，记作 <b>−X 天</b>。例：FS − 2 天 → 紧前完成前 2 天，紧后就能开始（搭接 Overlap）。</li>
@@ -172,7 +118,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
     </ul></div>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">6 个时间参数</h3>
+    <h3>6 个时间参数</h3>
     <table class="kt">
       <tr><th>缩写</th><th>含义</th><th>推算方向</th></tr>
       <tr><td>ES</td><td>Earliest Start · 最早开始</td><td>正推（左→右）</td></tr>
@@ -184,7 +130,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
     </table>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">总时差 TF vs 自由时差 FF · 别再混</h3>
+    <h3>总时差 TF vs 自由时差 FF · 别再混</h3>
     <table class="kt">
       <tr><th>对比项</th><th>总时差 TF（Total Float）</th><th>自由时差 FF（Free Float）</th></tr>
       <tr><td>公式</td><td>TF = LS − ES = LF − EF</td><td>FF = min(紧后 ES) − 本活动 EF</td></tr>
@@ -200,7 +146,7 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
     </ul></div>
   </div>
   <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">七格图（单代号节点框）· 6 个时间参数怎么摆</h3>
+    <h3>七格图（单代号节点框）· 6 个时间参数怎么摆</h3>
     <div class="ktxt"><ul>
       <li>别名：<b>节点图 / 活动节点框 / 单代号节点</b>，是单代号网络图（PDM）里表示<b>一个活动</b>的方框。</li>
       <li>作用：把「<b>网络图</b>」与「<b>6 个时间参数</b>」<b>二合一</b>——一个框同时装下各参数与工期，是软考手算最实用的模板。</li>
@@ -209,61 +155,49 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
     </ul></div>
     <div class="dgm">
       <div class="dgm-t">① 空白七格图 · 每个格放什么</div>
-      <svg viewBox="0 0 260 240" role="img" aria-label="空白七格图">
-        <rect x="30" y="15" width="200" height="200" rx="6" fill="#fff" stroke="#2563eb" stroke-width="2"></rect>
-        <line x1="30" y1="73" x2="230" y2="73" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="30" y1="118" x2="230" y2="118" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="97" y1="15" x2="97" y2="118" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="163" y1="15" x2="163" y2="118" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="97" y1="118" x2="97" y2="215" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="163" y1="118" x2="163" y2="215" stroke="#2563eb" stroke-width="1.4"></line>
-        <text x="63" y="38" text-anchor="middle" font-size="10.5" fill="#1f2430">最早开始时间</text>
-        <text x="63" y="51" text-anchor="middle" font-size="9" fill="#8792a6">（左上）</text>
-        <text x="63" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">ES</text>
-        <text x="130" y="38" text-anchor="middle" font-size="10.5" fill="#1f2430">活动工期</text>
-        <text x="130" y="51" text-anchor="middle" font-size="9" fill="#8792a6">（中上）</text>
-        <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">D</text>
-        <text x="196" y="38" text-anchor="middle" font-size="10.5" fill="#1f2430">最早完成时间</text>
-        <text x="196" y="51" text-anchor="middle" font-size="9" fill="#8792a6">（右上）</text>
-        <text x="196" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">EF</text>
-        <text x="130" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">活动名称</text>
-        <text x="63" y="138" text-anchor="middle" font-size="10.5" fill="#1f2430">最晚开始时间</text>
-        <text x="63" y="151" text-anchor="middle" font-size="9" fill="#8792a6">（左下）</text>
-        <text x="63" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#2563eb">LS</text>
-        <text x="130" y="138" text-anchor="middle" font-size="10.5" fill="#1f2430">总时差</text>
-        <text x="130" y="151" text-anchor="middle" font-size="9" fill="#8792a6">（中下）</text>
-        <text x="130" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#7c3aed">TF</text>
-        <text x="196" y="138" text-anchor="middle" font-size="10.5" fill="#1f2430">最晚完成时间</text>
-        <text x="196" y="151" text-anchor="middle" font-size="9" fill="#8792a6">（右下）</text>
-        <text x="196" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#2563eb">LF</text>
+      <svg viewBox="0 0 150 120" role="img" aria-label="空白七格图">
+        <rect x="15" y="8" width="120" height="100" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.6"></rect>
+        <line x1="15" y1="42" x2="135" y2="42" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="15" y1="74" x2="135" y2="74" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="55" y1="8" x2="55" y2="74" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="95" y1="8" x2="95" y2="74" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="55" y1="74" x2="55" y2="108" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="95" y1="74" x2="95" y2="108" stroke="#2563eb" stroke-width="1.2"></line>
+        <text x="35" y="19" text-anchor="middle" font-size="8" fill="#8792a6">左上</text>
+        <text x="35" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#2563eb">ES</text>
+        <text x="75" y="19" text-anchor="middle" font-size="8" fill="#8792a6">中上</text>
+        <text x="75" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2430">工期</text>
+        <text x="115" y="19" text-anchor="middle" font-size="8" fill="#8792a6">右上</text>
+        <text x="115" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#2563eb">EF</text>
+        <text x="75" y="62" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">活动</text>
+        <text x="35" y="86" text-anchor="middle" font-size="8" fill="#8792a6">左下</text>
+        <text x="35" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="#2563eb">LS</text>
+        <text x="75" y="86" text-anchor="middle" font-size="8" fill="#8792a6">中下</text>
+        <text x="75" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">TF</text>
+        <text x="115" y="86" text-anchor="middle" font-size="8" fill="#8792a6">右下</text>
+        <text x="115" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="#2563eb">LF</text>
       </svg>
-      <div class="dgm-c"><b>顶行</b>（左→中→右）：<b>ES / 工期 D / EF</b>；<b>中行整行</b>：<b>活动名称</b>；<b>底行</b>（左→中→右）：<b>LS / 总时差 TF / LF</b>。中列三格（中上-工期、中行-名称、中下-TF）也是关键之一。</div>
+      <div class="dgm-c"><b>顶行</b>：ES / 工期 / EF；<b>中行</b>：活动名称；<b>底行</b>：LS / TF / LF。一格约 20px，整体紧凑不空。</div>
     </div>
     <div class="dgm">
       <div class="dgm-t">② 填好数据的例子（活动 C · TF=1，非关键）</div>
-      <svg viewBox="0 0 260 240" role="img" aria-label="七格图填写示例">
-        <rect x="30" y="15" width="200" height="200" rx="6" fill="#fff" stroke="#2563eb" stroke-width="2"></rect>
-        <line x1="30" y1="73" x2="230" y2="73" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="30" y1="118" x2="230" y2="118" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="97" y1="15" x2="97" y2="118" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="163" y1="15" x2="163" y2="118" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="97" y1="118" x2="97" y2="215" stroke="#2563eb" stroke-width="1.4"></line>
-        <line x1="163" y1="118" x2="163" y2="215" stroke="#2563eb" stroke-width="1.4"></line>
-        <text x="63" y="39" text-anchor="middle" font-size="9" fill="#8792a6">ES 最早开始</text>
-        <text x="63" y="66" text-anchor="middle" font-size="19" font-weight="700" fill="#2563eb">4</text>
-        <text x="130" y="39" text-anchor="middle" font-size="9" fill="#8792a6">D 工期</text>
-        <text x="130" y="66" text-anchor="middle" font-size="19" font-weight="700" fill="#1f2430">5</text>
-        <text x="196" y="39" text-anchor="middle" font-size="9" fill="#8792a6">EF 最早完成</text>
-        <text x="196" y="66" text-anchor="middle" font-size="19" font-weight="700" fill="#2563eb">9</text>
-        <text x="130" y="102" text-anchor="middle" font-size="20" font-weight="700" fill="#1f2430">C</text>
-        <text x="63" y="139" text-anchor="middle" font-size="9" fill="#8792a6">LS 最晚开始</text>
-        <text x="63" y="183" text-anchor="middle" font-size="21" font-weight="700" fill="#2563eb">5</text>
-        <text x="130" y="139" text-anchor="middle" font-size="9" fill="#8792a6">TF 总时差</text>
-        <text x="130" y="183" text-anchor="middle" font-size="21" font-weight="700" fill="#dc2626">1</text>
-        <text x="196" y="139" text-anchor="middle" font-size="9" fill="#8792a6">LF 最晚完成</text>
-        <text x="196" y="183" text-anchor="middle" font-size="21" font-weight="700" fill="#2563eb">10</text>
+      <svg viewBox="0 0 150 120" role="img" aria-label="七格图填写示例">
+        <rect x="15" y="8" width="120" height="100" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.6"></rect>
+        <line x1="15" y1="42" x2="135" y2="42" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="15" y1="74" x2="135" y2="74" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="55" y1="8" x2="55" y2="74" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="95" y1="8" x2="95" y2="74" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="55" y1="74" x2="55" y2="108" stroke="#2563eb" stroke-width="1.2"></line>
+        <line x1="95" y1="74" x2="95" y2="108" stroke="#2563eb" stroke-width="1.2"></line>
+        <text x="35" y="31" text-anchor="middle" font-size="14" font-weight="700" fill="#2563eb">4</text>
+        <text x="75" y="31" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">5</text>
+        <text x="115" y="31" text-anchor="middle" font-size="14" font-weight="700" fill="#2563eb">9</text>
+        <text x="75" y="62" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2430">C</text>
+        <text x="35" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#2563eb">5</text>
+        <text x="75" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#dc2626">1</text>
+        <text x="115" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#2563eb">10</text>
       </svg>
-      <div class="dgm-c">以活动 C（工期 5）为例：<b>顶行</b>：ES=4、D=5、EF=9（正推）；<b>中行</b>：C（活动名称）；<b>底行</b>：LS=5、TF=1、LF=10（逆推）。<b>TF = LS − ES = 1 ≠ 0</b> → <b>非关键活动</b>；<b>TF=0</b> 才是关键活动（本题 B、D、E 的 TF=0）。</div>
+      <div class="dgm-c">活动 C（工期 5）：顶行 ES=4、D=5、EF=9；中行 C；底行 LS=5、TF=1、LF=10。TF≠0 → 非关键。</div>
     </div>
     <div class="ktxt" style="margin-top:8px"><ul>
       <li><b>填图顺序（正推 → 逆推 → 求 TF）</b>：</li>
@@ -272,162 +206,6 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa2b1}
       <li>③ <b>逆推</b>填底行：终点 LF = 总工期；多紧后取<b>最小 LS</b>；<b>LS = LF − 工期</b>（右→左做减法）。</li>
       <li>④ 算 <b>TF = LS − ES = LF − EF</b> 填底行中格；<b>TF=0 → 关键活动</b>。</li>
       <li>⑤ 把所有 <b>TF=0</b> 的活动首尾相连 = <b>关键路径</b>；需要时再算 FF = min(紧后 ES) − 本活动 EF。</li>
-    </ul></div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">进度网络图分类（单代号 vs 双代号）</h3>
-    <table class="kt">
-      <tr><th>方法</th><th>别称</th><th>图形表示</th><th>特点</th></tr>
-      <tr><td>PDM</td><td>前导图法 / <b>单代号网络图（AON）</b></td><td>节点 = 活动；箭线 = 依赖关系</td><td><b>最常用</b>；支持 FS / SS / FF / SF 四种关系；<b>无虚活动</b></td></tr>
-      <tr><td>ADM</td><td>箭线图法 / <b>双代号网络图（AOA）</b></td><td>箭线 = 活动；节点 = 事件（时点）</td><td>需用<b>虚箭线</b>表逻辑；一般只支持 FS；节点编号要求 i &lt; j</td></tr>
-    </table>
-    <div class="ktxt" style="margin-top:8px"><ul>
-      <li>软考计算题<b>绝大多数用单代号（PDM）</b>：看图先认"活动写在圈里还是箭线上"。</li>
-      <li>其他图：<b>时标网络图</b>（横轴为时间，可直接读出浮动时间）、<b>甘特图 / 横道图</b>（直观但看不出依赖与关键路径）、<b>里程碑图</b>（只标关键时点）。</li>
-    </ul></div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">时标网络图 · 怎么一眼读出浮动时间</h3>
-    <div class="ktxt"><ul>
-      <li><b>时标网络图</b>：横轴是<b>时间刻度</b>，箭线的水平长度 = 工期，节点落在时间刻度上。</li>
-      <li><b>读关键路径</b>：<b>全程没有波形线</b>的路径就是关键路径。</li>
-      <li><b>读自由时差</b>：箭线末端带的<b>波形线长度 = 自由时差 FF</b>。</li>
-      <li><b>总时差 TF</b> 不能直接读，要沿路径累加剩余；<b>波形线之和最小</b>的那条路径 = 关键路径。</li>
-      <li><b>优势</b>：不用算 6 个参数，肉眼看波形线就能找关键路径、读浮动，是双代号网络图最直观的变形。</li>
-    </ul></div>
-    <div class="dgm">
-      <div class="dgm-t">示意 · 紫色波形线 = 自由时差</div>
-      <svg viewBox="0 0 560 150" role="img" aria-label="时标网络图示意">
-        <line x1="55" y1="130" x2="520" y2="130" stroke="#8792a6" stroke-width="1.2"></line>
-        <text x="55" y="145" text-anchor="middle" font-size="10" fill="#8792a6">0</text>
-        <text x="110" y="145" text-anchor="middle" font-size="10" fill="#8792a6">1</text>
-        <text x="165" y="145" text-anchor="middle" font-size="10" fill="#8792a6">2</text>
-        <text x="220" y="145" text-anchor="middle" font-size="10" fill="#8792a6">3</text>
-        <text x="275" y="145" text-anchor="middle" font-size="10" fill="#8792a6">4</text>
-        <text x="330" y="145" text-anchor="middle" font-size="10" fill="#8792a6">5</text>
-        <text x="385" y="145" text-anchor="middle" font-size="10" fill="#8792a6">6</text>
-        <text x="440" y="145" text-anchor="middle" font-size="10" fill="#8792a6">7</text>
-        <text x="495" y="145" text-anchor="middle" font-size="10" fill="#8792a6">8</text>
-        <rect x="55" y="30" width="220" height="30" rx="6" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.6"></rect>
-        <text x="165" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">A 4</text>
-        <rect x="275" y="30" width="220" height="30" rx="6" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.6"></rect>
-        <text x="385" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">B 4</text>
-        <rect x="55" y="85" width="165" height="30" rx="6" fill="#fff" stroke="#2563eb" stroke-width="1.6"></rect>
-        <text x="137" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2430">C 3</text>
-        <path d="M220,100 q8,-7 16,0 q8,7 16,0 q8,-7 16,0 q6,4 7,0" fill="none" stroke="#7c3aed" stroke-width="1.8"></path>
-        <text x="250" y="76" text-anchor="middle" font-size="10.5" fill="#7c3aed">FF=1（波形线）</text>
-        <circle cx="55" cy="72" r="4" fill="#2563eb"></circle>
-        <circle cx="273" cy="72" r="4" fill="#2563eb"></circle>
-        <circle cx="497" cy="45" r="4" fill="#2563eb"></circle>
-      </svg>
-      <div class="dgm-c">上方 <b>A→B 全程无波形线</b> → 在关键路径上；下方 <b>C</b> 末端出现紫色波形线，长度 = <b>自由时差 FF = 1 天</b> → C 拖 1 天不影响 B 的最早开始。</div>
-    </div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">单代号 vs 双代号 · 同一道题，两种画法</h3>
-    <div class="ktxt"><ul>
-      <li><b>题目</b>：A = 3 天、B = 4 天，<b>A、B 都完成</b>才能开始 C = 2 天。求总工期与关键路径。</li>
-    </ul></div>
-    <div class="dgm">
-      <div class="dgm-t">① 单代号网络图（PDM / AON）—— 活动写在「节点」里</div>
-      <svg viewBox="0 0 500 230" role="img" aria-label="单代号网络图示例">
-        <defs>
-          <marker id="ah1" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
-            <path d="M0,0 L9,4.5 L0,9 z" fill="#2563eb"></path>
-          </marker>
-        </defs>
-        <line x1="58" y1="108" x2="101" y2="62" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ah1)"></line>
-        <line x1="58" y1="122" x2="101" y2="163" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ah1)"></line>
-        <line x1="197" y1="58" x2="254" y2="95" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ah1)"></line>
-        <line x1="197" y1="164" x2="254" y2="128" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ah1)"></line>
-        <line x1="350" y1="111" x2="404" y2="111" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ah1)"></line>
-        <circle cx="40" cy="115" r="22" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.8"></circle>
-        <text x="40" y="120" text-anchor="middle" font-size="13" fill="#2563eb">开始</text>
-        <rect x="105" y="32" width="90" height="46" rx="10" fill="#fff" stroke="#2563eb" stroke-width="1.8"></rect>
-        <text x="150" y="53" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">A</text>
-        <text x="150" y="69" text-anchor="middle" font-size="11.5" fill="#5b6472">3 天</text>
-        <rect x="105" y="142" width="90" height="46" rx="10" fill="#fff" stroke="#2563eb" stroke-width="1.8"></rect>
-        <text x="150" y="163" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">B</text>
-        <text x="150" y="179" text-anchor="middle" font-size="11.5" fill="#5b6472">4 天</text>
-        <rect x="258" y="88" width="90" height="46" rx="10" fill="#fff" stroke="#2563eb" stroke-width="1.8"></rect>
-        <text x="303" y="109" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">C</text>
-        <text x="303" y="125" text-anchor="middle" font-size="11.5" fill="#5b6472">2 天</text>
-        <circle cx="430" cy="111" r="22" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.8"></circle>
-        <text x="430" y="116" text-anchor="middle" font-size="13" fill="#2563eb">结束</text>
-      </svg>
-      <div class="dgm-c">节点 = 活动（圈里写活动名 + 工期），箭线 = 依赖关系。A、B 各自连到 C，一眼看出"C 要等 A、B 都完成"。</div>
-    </div>
-    <div class="dgm">
-      <div class="dgm-t">② 双代号网络图（ADM / AOA）—— 活动写在「箭线」上</div>
-      <svg viewBox="0 0 520 240" role="img" aria-label="双代号网络图示例">
-        <defs>
-          <marker id="ah2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
-            <path d="M0,0 L9,4.5 L0,9 z" fill="#2563eb"></path>
-          </marker>
-          <marker id="ah3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
-            <path d="M0,0 L9,4.5 L0,9 z" fill="#7c3aed"></path>
-          </marker>
-        </defs>
-        <line x1="58" y1="112" x2="179" y2="63" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ah2)"></line>
-        <text x="108" y="76" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2563eb">A 3</text>
-        <line x1="60" y1="120" x2="340" y2="120" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ah2)"></line>
-        <text x="200" y="139" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2563eb">B 4</text>
-        <line x1="219" y1="63" x2="341" y2="112" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#ah3)"></line>
-        <text x="295" y="80" text-anchor="middle" font-size="12.5" font-weight="700" fill="#7c3aed">虚 0</text>
-        <line x1="380" y1="120" x2="459" y2="120" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ah2)"></line>
-        <text x="420" y="139" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2563eb">C 2</text>
-        <circle cx="40" cy="120" r="20" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.8"></circle>
-        <text x="40" y="125" text-anchor="middle" font-size="13" fill="#1f2430">1</text>
-        <circle cx="200" cy="55" r="20" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.8"></circle>
-        <text x="200" y="60" text-anchor="middle" font-size="13" fill="#1f2430">2</text>
-        <circle cx="360" cy="120" r="20" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.8"></circle>
-        <text x="360" y="125" text-anchor="middle" font-size="13" fill="#1f2430">3</text>
-        <circle cx="480" cy="120" r="20" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.8"></circle>
-        <text x="480" y="125" text-anchor="middle" font-size="13" fill="#1f2430">4</text>
-      </svg>
-      <div class="dgm-c">箭线 = 活动（线上写活动名 + 工期），节点 = 事件（只是时点，不干活）。C 要等 A、B 都完成，但 A 结束在节点 2、B 结束在节点 3 —— 靠一条<b>虚线（虚活动，0 天）</b>把节点 2 的逻辑"汇"到节点 3，C 才能正确地等两边。</div>
-    </div>
-    <div class="dgm">
-      <div class="dgm-t">③ 两种画法对比结论</div>
-      <div class="ktxt"><ul>
-        <li>两条路径：A→C = 3 + 2 = 5 天；<b>B→C = 4 + 2 = 6 天</b>。</li>
-        <li>取最长 → 总工期 <b>6 天</b>，关键路径 <b>B → C</b>（两种图画出来结果完全一致）。</li>
-        <li>区别只在"画法"：单代号<b>活动在圈里</b>，双代号<b>活动在箭上</b>；双代号多出的虚活动只是"接线员"，本身不耗时。</li>
-        <li>软考里<b>看活动写在哪里</b>就能判定是单代号还是双代号，计算逻辑完全通用。</li>
-      </ul></div>
-    </div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">虚活动（虚工作）· 双代号网络图专用</h3>
-    <div class="ktxt"><ul>
-      <li>只在<b>双代号网络图（ADM/AOA）</b>中出现，用<b>虚箭线</b>表示，<b>工期 = 0</b>、不消耗资源。</li>
-      <li>作用一：表达<b>实际不存在的逻辑依赖</b>（图面画不出"两个紧前都完成才能开始某活动"时靠它连接）。</li>
-      <li>作用二：<b>避免编号歧义</b>——两个相邻节点间不能有多条同向箭线，否则无法区分活动。</li>
-      <li>易错：虚活动<b>不是真实工作</b>，算路径长度时计 <b>0</b>，但它是逻辑链上的必经环节。</li>
-    </ul></div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">项目总工期的概念</h3>
-    <div class="ktxt"><ul>
-      <li>定义：在满足所有依赖关系的前提下，完成整个项目所需的<b>最短时间</b>。</li>
-      <li>公式：<b>总工期 = 关键路径的长度</b> = 从起点到终点<b>最长</b>那条路径的时长。</li>
-      <li>为什么取"最长"？多条路径并行推进时，项目必须等<b>最慢</b>的那条走完才算结束。</li>
-      <li>注意：总工期 <b>≠ 所有活动工期之和</b>（并行活动会重复相加），也 <b>≠ 最短路径</b>。</li>
-      <li>正推法中<b>终点活动的 EF = 总工期</b>；关键路径一旦转移，总工期可能随之改变。</li>
-    </ul></div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">CPM / PERT / 关键链 三种方法辨析</h3>
-    <table class="kt">
-      <tr><th>方法</th><th>工期取值</th><th>侧重点</th><th>特点</th></tr>
-      <tr><td>CPM 关键路径法</td><td><b>确定</b>值（单一工期）</td><td>时间-成本权衡</td><td>求最长路径 = 总工期；可压缩赶工</td></tr>
-      <tr><td>PERT 计划评审</td><td><b>三点估算</b>（乐观/最可能/悲观）</td><td>概率 / 不确定性</td><td>算期望工期与标准差，求"按期完工概率"</td></tr>
-      <tr><td>关键链 CCM</td><td>考虑<b>资源约束</b></td><td>资源受限下的进度</td><td>把安全时间集中为<b>缓冲</b>（项目缓冲 PB、接驳缓冲 FB）</td></tr>
-    </table>
-    <div class="ktxt" style="margin-top:8px"><ul>
-      <li><b>CPM vs PERT 一句话</b>：CPM 是"<b>确定的</b>"（工期给定），PERT 是"<b>概率的</b>"（工期用三点估算 + 概率）。</li>
-      <li>关键路径法假设"<b>资源无限</b>"；一旦资源受限，就用<b>关键链法（CCM）</b>，靠<b>缓冲</b>管理风险，而非给每个活动留安全时间。</li>
-      <li>三种方法找"关键路径"思路一致：<b>最长（或最紧）的那条链</b>决定总工期。</li>
     </ul></div>
   </div>
 </section>
@@ -446,167 +224,18 @@ FS+lag：紧后 ES = 紧前 EF + lag
 FF+lag：紧后 EF = 紧前 EF + lag</div>
 </section>
 
-<section id="approach">
-  <h2 class="sec"><span class="no">③</span>计算思路 · 建模 → 正推 → 逆推</h2>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">第 0 步 · 输入形式与建模（先读懂题，再画图）</h3>
-    <div class="ktxt"><ul>
-      <li><b>形式一 · 紧前关系表</b>（<b>最常见</b>）：给一张表，列为「活动 | 工期 | 紧前活动」，需要你自己<b>转成网络图</b>。</li>
-      <li><b>形式二 · 直接给网络图</b>：给单代号或双代号图，让你算时间参数 / 关键路径，<b>不用转换</b>，直接正推逆推。</li>
-      <li><b>形式三 · 文字描述</b>：用文字说"A 完成后 B、C 才能开始"，等价于表格，先<b>转成表</b>再画图。</li>
-      <li><b>其他</b>：甘特图 / 横道图、里程碑图、已给部分时间参数（ES / EF…）让你补全。</li>
-    </ul></div>
-    <div class="ktxt" style="margin-top:8px"><ul>
-      <li><b>表格 → 网络图 三步转换</b>：</li>
-      <li>① 找出<b>没有紧前</b>的活动 → 全部挂到「开始」（起点组）。</li>
-      <li>② 逐个活动：从它的<b>每一个紧前活动</b>各引一条箭线指向它（多个紧前要全部连，别漏）。</li>
-      <li>③ 找出<b>没有紧后</b>的活动 → 全部汇到「结束」（终点组）。</li>
-      <li><b>大坑</b>：表格给的是"紧前"还是"紧后"要看清楚，<b>方向别画反</b>（紧前 = 箭头从它出发指向当前活动）。</li>
-    </ul></div>
-    <div class="dgm">
-      <div class="dgm-t">转换示例 · 从紧前关系表到单代号网络图</div>
-      <table class="kt">
-        <tr><th>活动</th><th>工期</th><th>紧前活动</th></tr>
-        <tr><td>A</td><td>2</td><td>—（无）</td></tr>
-        <tr><td>B</td><td>3</td><td>A</td></tr>
-        <tr><td>C</td><td>4</td><td>A</td></tr>
-        <tr><td>D</td><td>2</td><td>B</td></tr>
-        <tr><td>E</td><td>3</td><td>C</td></tr>
-        <tr><td>F</td><td>2</td><td>D、E</td></tr>
-      </table>
-      <svg viewBox="0 0 620 250" role="img" aria-label="表格转换示例网络图" style="margin-top:8px">
-        <defs>
-          <marker id="ahc" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
-            <path d="M0,0 L9,4.5 L0,9 z" fill="#2563eb"></path>
-          </marker>
-        </defs>
-        <line x1="52" y1="125" x2="88" y2="125" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ahc)"></line>
-        <line x1="148" y1="118" x2="202" y2="62" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ahc)"></line>
-        <line x1="148" y1="132" x2="202" y2="188" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ahc)"></line>
-        <line x1="260" y1="53" x2="318" y2="53" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ahc)"></line>
-        <line x1="260" y1="191" x2="318" y2="191" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ahc)"></line>
-        <line x1="376" y1="60" x2="444" y2="108" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ahc)"></line>
-        <line x1="376" y1="184" x2="444" y2="142" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ahc)"></line>
-        <line x1="502" y1="125" x2="562" y2="125" stroke="#2563eb" stroke-width="1.8" marker-end="url(#ahc)"></line>
-        <circle cx="34" cy="125" r="18" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.8"></circle>
-        <text x="34" y="130" text-anchor="middle" font-size="12" fill="#2563eb">开始</text>
-        <rect x="92" y="103" width="56" height="44" rx="9" fill="#fff" stroke="#2563eb" stroke-width="1.8"></rect>
-        <text x="120" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2430">A</text>
-        <text x="120" y="138" text-anchor="middle" font-size="11" fill="#5b6472">2</text>
-        <rect x="204" y="31" width="56" height="44" rx="9" fill="#fff" stroke="#2563eb" stroke-width="1.8"></rect>
-        <text x="232" y="50" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2430">B</text>
-        <text x="232" y="66" text-anchor="middle" font-size="11" fill="#5b6472">3</text>
-        <rect x="204" y="169" width="56" height="44" rx="9" fill="#fff" stroke="#2563eb" stroke-width="1.8"></rect>
-        <text x="232" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2430">C</text>
-        <text x="232" y="204" text-anchor="middle" font-size="11" fill="#5b6472">4</text>
-        <rect x="320" y="31" width="56" height="44" rx="9" fill="#fff" stroke="#2563eb" stroke-width="1.8"></rect>
-        <text x="348" y="50" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2430">D</text>
-        <text x="348" y="66" text-anchor="middle" font-size="11" fill="#5b6472">2</text>
-        <rect x="320" y="169" width="56" height="44" rx="9" fill="#fff" stroke="#2563eb" stroke-width="1.8"></rect>
-        <text x="348" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2430">E</text>
-        <text x="348" y="204" text-anchor="middle" font-size="11" fill="#5b6472">3</text>
-        <rect x="446" y="103" width="56" height="44" rx="9" fill="#fff" stroke="#2563eb" stroke-width="1.8"></rect>
-        <text x="474" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2430">F</text>
-        <text x="474" y="138" text-anchor="middle" font-size="11" fill="#5b6472">2</text>
-        <circle cx="584" cy="125" r="18" fill="#eaf2ff" stroke="#2563eb" stroke-width="1.8"></circle>
-        <text x="584" y="130" text-anchor="middle" font-size="12" fill="#2563eb">结束</text>
-      </svg>
-      <div class="dgm-c">转换后：A 无紧前 → 挂在「开始」；B、C 的紧前都是 A；D 紧跟 B、E 紧跟 C；F 的紧前是 D、E → 两条箭线都连到 F；F 无紧后 → 汇到「结束」。两条路径 A-B-D-F = 9 天、A-C-E-F = <b>11 天</b> → 关键路径 <b>A→C→E→F</b>。</div>
-    </div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">正推（Forward Pass）· 算 ES / EF</h3>
-    <div class="ktxt"><ul>
-      <li>从起点开始，逐个活动计算；起点活动 ES = 0。</li>
-      <li>EF = ES + 工期。</li>
-      <li>某活动有多个紧前时，ES 取所有紧前 EF 中的<b>最大值</b>（FS 关系）。</li>
-    </ul></div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">逆推（Backward Pass）· 算 LS / LF</h3>
-    <div class="ktxt"><ul>
-      <li>从终点开始，逐个活动逆推；终点活动 LF = 总工期（或正推 EF）。</li>
-      <li>LS = LF − 工期。</li>
-      <li>某活动有多个紧后时，LF 取所有紧后 LS 中的<b>最小值</b>。</li>
-    </ul></div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">浮动时间与关键路径</h3>
-    <div class="ktxt"><ul>
-      <li>TF = LS − ES（或 LF − EF），<b>TF = 0 的活动为关键活动</b>。</li>
-      <li>把所有 TF=0 的活动连起来 = 关键路径；路径总长 = 总工期。</li>
-      <li>FF 反映"本活动延误多少天不会影响紧后最早开始"，<b>FF ≤ TF</b>。</li>
-      <li>问"延误 X 天是否影响总工期" → 看该活动 TF 是否 &lt; X。</li>
-    </ul></div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">关键路径怎么判断（两种方法）</h3>
-    <div class="ktxt"><ul>
-      <li><b>方法一 · 路径列举法</b>（适合活动少的小题）：列出起点 → 终点的<b>所有路径</b> → 每条路径工期相加 → <b>最长的那条就是关键路径</b>，其长度 = 总工期。</li>
-      <li><b>方法二 · 时间参数法</b>（通用，推荐）：先正推算 ES/EF、再逆推算 LS/LF → 求 <b>TF = LS − ES</b> → 把所有 <b>TF = 0</b> 的活动首尾相连 = 关键路径。</li>
-      <li><b>关键路径的性质</b>：① 是耗时最长的路径，长度即总工期；② <b>可能不止一条</b>（多条并列最长）；③ 路径上任一活动延误，<b>必然</b>导致总工期延误；④ 只有压缩关键路径上的活动才能缩短工期。</li>
-      <li><b>易错点</b>：关键路径是"最长"不是"最短"；活动数多时别硬套列举法（组合爆炸），直接上时间参数法。</li>
-    </ul></div>
-  </div>
-</section>
-
-<section id="rules">
-  <h2 class="sec"><span class="no">④</span>规律与注意点</h2>
-  <div class="card">
-    <div class="ktxt">💡 <b>关键路径可能不止一条</b>：题目常埋"两条关键路径"的坑，TF=0 的活动必须<b>全部</b>连起来。
-💡 <b>ES 起点</b>：多数题目约定从 0 开始，但部分题目从 1 开始，<b>以题图为准</b>，别生搬硬套。
-💡 <b>压缩只动关键路径</b>：压缩非关键活动不影响总工期；压缩后关键路径可能转移，需重新计算。
-💡 <b>FF 易错</b>：FF 是"影响紧后最早开始"，不是"影响总工期"；二者混淆是常见失分点。
-💡 <b>虚拟活动（虚工作）</b>：用虚线箭头表示，<b>工期为 0</b>，仅表示逻辑依赖关系。
-💡 <b>lead / lag</b>：lead 表示提前（SS 提前 X 天开始），lag 表示滞后（FS 滞后 X 天开始）。</div>
-  </div>
-  <div class="card">
-    <h3 style="font-size:14.5px;margin-bottom:8px">特殊情况与转换陷阱（高频失分点）</h3>
-    <div class="ktxt">🟥 <b>多起点 / 多终点</b>：表里若有<b>多个</b>活动都没有紧前，画图常加一个<b>虚拟起点</b>统一挂接；多个活动都没有紧后，加一个<b>虚拟终点</b>。双代号尤其要求<b>起点、终点各只有一个</b>。
-🟥 <b>编号规则（双代号）</b>：节点编号必须 <b>i &lt; j</b>（箭头从小号指向大号）；<b>两个节点间只能有一条箭线</b>，出现多条必须用虚活动拆开。
-🟥 <b>不允许回路</b>：依赖关系不能成环（A→B→A），一旦画成环，多半是"紧前 / 紧后"方向看反了。
-🟥 <b>紧前 vs 紧后方向</b>：表写"紧前"→ 箭线<b>从紧前出发指向本活动</b>；若给的是"紧后"，方向正好相反 —— <b>这是最容易画反的坑</b>。
-🟥 <b>起点从 0 还是 1 开始</b>：多数题从 0，部分教材从 1，<b>以题图 / 题意为准</b>，且整题保持一致。
-🟥 <b>工期可为 0</b>：除虚活动外，少数"里程碑式活动"工期也可能是 0，别当成错误。
-🟥 <b>关键路径会转移</b>：压缩某条关键路径后，原本非关键的路径可能变成新的关键路径，<b>必须重新正推逆推</b>。
-🟥 <b>中段活动也可能关键</b>：不要只看路径总长，用 <b>TF = 0</b> 判断最稳妥。</div>
-  </div>
-</section>
-
-<section id="example">
-  <h2 class="sec"><span class="no">⑤</span>例题演练</h2>
-  <div class="card">
-    <div class="qbox" id="q1">
-      <div class="q"><b>例题</b>：某项目有 A→C、B→C、A→D、B→D、C→E、D→E 六个 FS 关系。A=3 天、B=4 天、C=5 天、D=6 天、E=2 天。求总工期、关键路径、各活动 TF。</div>
-      <span class="toggle" onclick="document.getElementById('q1').classList.toggle('open');this.textContent=this.textContent==='显示答案'?'隐藏答案':'显示答案'">显示答案</span>
-      <div class="a">
-        <b>正推：</b><br>
-        A：ES=0, EF=3<br>
-        B：ES=0, EF=4<br>
-        C：ES=max(3,4)=4, EF=9<br>
-        D：ES=max(3,4)=4, EF=10<br>
-        E：ES=max(9,10)=10, EF=12<br>
-        总工期 = <b>12 天</b><br><br>
-        <b>逆推：</b><br>
-        E：LF=12, LS=10<br>
-        C：LF=min(LS of E)=10, LS=5<br>
-        D：LF=min(LS of E)=10, LS=4<br>
-        B：LF=min(LS of C, LS of D)=min(5,4)=4, LS=0<br>
-        A：LF=min(LS of C, LS of D)=min(5,4)=4, LS=1<br><br>
-        <b>TF：</b><br>
-        A：LS−ES=1−0=1<br>
-        B：0−0=0<br>
-        C：5−4=1<br>
-        D：4−4=0<br>
-        E：10−10=0<br><br>
-        <b>关键路径：B → D → E</b>（总工期 4+6+2=12 天 ✓）
-      </div>
-    </div>
+<section id="parts">
+  <h2 class="sec"><span class="no">册</span>本专题分册</h2>
+  <div class="related">
+    <a href="02-关键路径CPM.html" class="cur"><b>① 基础篇</b><small>依赖关系 · 时间参数 · 七格图</small></a>
+    <a href="02B-关键路径CPM-网络图.html"><b>② 网络图篇</b><small>单/双代号 · 时标图 · 表格转图</small></a>
+    <a href="02C-关键路径CPM-计算.html"><b>③ 计算篇</b><small>正推逆推 · 浮动时间 · 判定</small></a>
+    <a href="02D-关键路径CPM-演练.html"><b>④ 演练篇</b><small>例题 · 真题</small></a>
   </div>
 </section>
 
 <section id="links">
-  <h2 class="sec"><span class="no">⑥</span>关联专题</h2>
+  <h2 class="sec"><span class="no">关</span>关联专题</h2>
   <div class="related">
     <a href="01-EVM挣值分析.html"><b>① EVM 挣值分析</b><small>SV / SPI 描述进度偏差</small></a>
     <a href="03-三点估算与概率.html"><b>③ 三点估算与概率</b><small>关键路径总工期的概率分布</small></a>
@@ -616,9 +245,7 @@ FF+lag：紧后 EF = 紧前 EF + lag</div>
 
 </div>
 <footer>关键路径 CPM 专题 · 系统集成项目管理工程师 · 软考中级</footer>
-<button id="toTop" title="返回顶部" aria-label="返回顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<script>
-(function(){var b=document.getElementById('toTop');function u(){b.classList.toggle('show',window.scrollY>300);}window.addEventListener('scroll',u,{passive:true});u();})();
-</script>
+<button id="toTop" title="返回顶部" aria-label="返回顶部">↑</button>
+<script src="assets/common.js"></script>
 </body>
 </html>
