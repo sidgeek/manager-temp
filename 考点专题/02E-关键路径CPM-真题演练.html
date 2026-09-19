@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>② 关键路径 CPM · 真题演练篇</title>
+<link rel="stylesheet" href="assets/common.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>② 关键路径 CPM · 真题演练篇</h1>
+    <p>全国/广东历年真题 · 总浮动 · 自由浮动 · 关键路径判定</p>
+    <a class="back" href="02-关键路径CPM.html">← 返回关键路径 CPM 专题</a>
+    <nav class="toc"><div class="in">
+      <a href="#real">① 真题演练</a>
+      <a href="#parts">册 分册导航</a>
+      <a href="#links">关 关联专题</a>
+    </div></nav>
+  </div>
+</header>
+<div class="wrap">
+
+<section id="real">
+  <h2 class="sec"><span class="no">①</span>真题演练</h2>
+
+  <div class="card">
+    <h3>真题演练 · 2021 下第 45-46 题（总浮动 + 工期）</h3>
+    <div class="qbox" id="zg21q4546">
+      <div class="q">
+        <b>题目</b>：某项目包含 A~J 共 10 个活动，各活动历时与逻辑关系如下表。施工过程中，活动 B 延期 2 天。问：B 的自由活动时间与总活动时间分别为（45）天，工期是（46）天。
+        <table class="kt" style="margin-top:10px">
+          <tr><th>活动</th><th>历时（天）</th><th>前置活动</th><th>活动</th><th>历时（天）</th><th>前置活动</th></tr>
+          <tr><td>A</td><td>2</td><td>—</td><td>F</td><td>4</td><td>C、D</td></tr>
+          <tr><td>B</td><td>2</td><td>A</td><td>G</td><td>4</td><td>E、F</td></tr>
+          <tr><td>C</td><td>3</td><td>A</td><td>H</td><td>3</td><td>G</td></tr>
+          <tr><td>D</td><td>4</td><td>A</td><td>I</td><td>2</td><td>G</td></tr>
+          <tr><td>E</td><td>3</td><td>B</td><td>J</td><td>1</td><td>H、I</td></tr>
+        </table>
+        <p style="margin-top:10px;font-size:13px;line-height:1.8">
+          （45）A. 0，1　　B. 1，2　　C. 2，2　　D. 1，1<br>
+          （46）A. 17　　　B. 18　　　C. 19　　　D. 20
+        </p>
+      </div>
+      <span class="toggle" data-target="zg21q4546">显示答案</span>
+      <div class="a">
+        <b>正推法（ES / EF）</b>：
+        <table class="kt" style="margin-top:8px">
+          <tr><th>活动</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th><th>J</th></tr>
+          <tr><td>ES</td><td>0</td><td>2</td><td>2</td><td>2</td><td>4</td><td>6</td><td>10</td><td>14</td><td>14</td><td>17</td></tr>
+          <tr><td>EF</td><td>2</td><td>4</td><td>5</td><td>6</td><td>7</td><td>10</td><td>14</td><td>17</td><td>16</td><td>18</td></tr>
+        </table>
+        <br><b>逆推法（LS / LF）</b>：
+        <table class="kt" style="margin-top:8px">
+          <tr><th>活动</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th><th>J</th></tr>
+          <tr><td>LS</td><td>0</td><td>5</td><td>3</td><td>2</td><td>7</td><td>6</td><td>10</td><td>14</td><td>15</td><td>17</td></tr>
+          <tr><td>LF</td><td>2</td><td>7</td><td>6</td><td>6</td><td>10</td><td>10</td><td>14</td><td>17</td><td>17</td><td>18</td></tr>
+        </table>
+        <br><b>关键路径</b>：<code style="background:#e2e8f0;padding:2px 6px;border-radius:4px">A → D → F → G → H → J</code>，<b>总工期 = 18 天</b>。
+        <br><br><b>浮动时间</b>：
+        <ul style="margin:6px 0 0 18px;font-size:13px;line-height:1.8">
+          <li>自由浮动 FF(B) = ES(E) − EF(B) = 4 − 4 = <b>0 天</b></li>
+          <li>总浮动 TF(B) = LF(B) − EF(B) = 7 − 4 = <b>3 天</b></li>
+          <li>B 已延期 2 天，剩余总浮动 = 3 − 2 = <b>1 天</b>；自由浮动仍为 0 天。</li>
+        </ul>
+        <br>⚡ <b>速算法（不用逆推全表）</b>：枚举 6 条路径 → 关键路径 A-D-F-G-H-J = 18 天；经过 B 的最长路径 A-B-E-G-H-J = 15 天 → <b>TF(B) = 18 − 15 = 3</b>。详见<a href="02C-关键路径CPM-计算.html#approach">计算篇 · 总浮动速算法</a>。
+        <br><br><b>结论</b>：（45）选 <b>A. 0，1</b>；（46）选 <b>B. 18</b>。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>真题演练 · 2021 上第 44-45 题（自由浮动 + 关键路径条数）</h3>
+    <div class="qbox" id="zg21s4445">
+      <div class="q">
+        <b>题目</b>：某项目的单代号网络图（七格图）如下。活动 B 的自由浮动时间为（44）天，该项目的关键路径有（45）条。
+        <div class="dgm">
+          <div class="dgm-t">七格网络图 · 上排 ES / 工期 / EF，下排 LS / TF / LF（空格 = 题目留空待推算）</div>
+          <svg viewBox="0 0 420 250" role="img" aria-label="2021上第44-45题七格网络图">
+            <defs>
+              <marker id="arr21" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 z" fill="#1f2430"/>
+              </marker>
+            </defs>
+
+            <g transform="translate(20,100)">
+              <rect width="54" height="54" fill="#fff" stroke="#1f2430" stroke-width="1.2"/>
+              <line x1="0" y1="18" x2="54" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="0" y1="36" x2="54" y2="36" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="0" x2="18" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="0" x2="36" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="36" x2="18" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="36" x2="36" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <text x="9" y="13" text-anchor="middle" font-size="10" fill="#1f2430">0</text>
+              <text x="27" y="13" text-anchor="middle" font-size="10" fill="#1f2430">2</text>
+              <text x="45" y="13" text-anchor="middle" font-size="10" fill="#1f2430">2</text>
+              <text x="27" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">A</text>
+              <text x="9" y="49" text-anchor="middle" font-size="10" fill="#1f2430">0</text>
+              <text x="27" y="49" text-anchor="middle" font-size="10" fill="#1f2430">0</text>
+              <text x="45" y="49" text-anchor="middle" font-size="10" fill="#1f2430">2</text>
+            </g>
+
+            <g transform="translate(110,30)">
+              <rect width="54" height="54" fill="#fff" stroke="#1f2430" stroke-width="1.2"/>
+              <line x1="0" y1="18" x2="54" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="0" y1="36" x2="54" y2="36" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="0" x2="18" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="0" x2="36" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="36" x2="18" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="36" x2="36" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <text x="9" y="13" text-anchor="middle" font-size="10" fill="#1f2430">2</text>
+              <text x="27" y="13" text-anchor="middle" font-size="10" fill="#1f2430">3</text>
+              <text x="45" y="13" text-anchor="middle" font-size="10" fill="#1f2430">5</text>
+              <text x="27" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">B</text>
+            </g>
+
+            <g transform="translate(110,100)">
+              <rect width="54" height="54" fill="#fff" stroke="#1f2430" stroke-width="1.2"/>
+              <line x1="0" y1="18" x2="54" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="0" y1="36" x2="54" y2="36" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="0" x2="18" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="0" x2="36" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="36" x2="18" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="36" x2="36" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <text x="9" y="13" text-anchor="middle" font-size="10" fill="#1f2430">2</text>
+              <text x="27" y="13" text-anchor="middle" font-size="10" fill="#1f2430">4</text>
+              <text x="45" y="13" text-anchor="middle" font-size="10" fill="#1f2430">6</text>
+              <text x="27" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">C</text>
+            </g>
+
+            <g transform="translate(110,170)">
+              <rect width="54" height="54" fill="#fff" stroke="#1f2430" stroke-width="1.2"/>
+              <line x1="0" y1="18" x2="54" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="0" y1="36" x2="54" y2="36" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="0" x2="18" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="0" x2="36" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="36" x2="18" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="36" x2="36" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <text x="9" y="13" text-anchor="middle" font-size="10" fill="#1f2430">2</text>
+              <text x="27" y="13" text-anchor="middle" font-size="10" fill="#1f2430">5</text>
+              <text x="45" y="13" text-anchor="middle" font-size="10" fill="#1f2430">7</text>
+              <text x="27" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">D</text>
+              <text x="9" y="49" text-anchor="middle" font-size="10" fill="#1f2430">2</text>
+              <text x="27" y="49" text-anchor="middle" font-size="10" fill="#1f2430">0</text>
+              <text x="45" y="49" text-anchor="middle" font-size="10" fill="#1f2430">7</text>
+            </g>
+
+            <g transform="translate(210,30)">
+              <rect width="54" height="54" fill="#fff" stroke="#1f2430" stroke-width="1.2"/>
+              <line x1="0" y1="18" x2="54" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="0" y1="36" x2="54" y2="36" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="0" x2="18" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="0" x2="36" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="36" x2="18" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="36" x2="36" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <text x="9" y="13" text-anchor="middle" font-size="10" fill="#1f2430">5</text>
+              <text x="27" y="13" text-anchor="middle" font-size="10" fill="#1f2430">6</text>
+              <text x="45" y="13" text-anchor="middle" font-size="10" fill="#1f2430">11</text>
+              <text x="27" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">E</text>
+            </g>
+
+            <g transform="translate(210,110)">
+              <rect width="54" height="54" fill="#fff" stroke="#1f2430" stroke-width="1.2"/>
+              <line x1="0" y1="18" x2="54" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="0" y1="36" x2="54" y2="36" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="0" x2="18" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="0" x2="36" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="36" x2="18" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="36" x2="36" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <text x="27" y="13" text-anchor="middle" font-size="10" fill="#1f2430">4</text>
+              <text x="27" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">F</text>
+            </g>
+
+            <g transform="translate(320,100)">
+              <rect width="54" height="54" fill="#fff" stroke="#1f2430" stroke-width="1.2"/>
+              <line x1="0" y1="18" x2="54" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="0" y1="36" x2="54" y2="36" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="0" x2="18" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="0" x2="36" y2="18" stroke="#1f2430" stroke-width="1"/>
+              <line x1="18" y1="36" x2="18" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <line x1="36" y1="36" x2="36" y2="54" stroke="#1f2430" stroke-width="1"/>
+              <text x="9" y="13" text-anchor="middle" font-size="10" fill="#1f2430">11</text>
+              <text x="27" y="13" text-anchor="middle" font-size="10" fill="#1f2430">2</text>
+              <text x="45" y="13" text-anchor="middle" font-size="10" fill="#1f2430">13</text>
+              <text x="27" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2430">G</text>
+              <text x="9" y="49" text-anchor="middle" font-size="10" fill="#1f2430">11</text>
+              <text x="27" y="49" text-anchor="middle" font-size="10" fill="#1f2430">0</text>
+              <text x="45" y="49" text-anchor="middle" font-size="10" fill="#1f2430">13</text>
+            </g>
+
+            <line x1="74" y1="127" x2="110" y2="57" stroke="#1f2430" stroke-width="1.2" marker-end="url(#arr21)"/>
+            <line x1="74" y1="127" x2="110" y2="127" stroke="#1f2430" stroke-width="1.2" marker-end="url(#arr21)"/>
+            <line x1="74" y1="127" x2="110" y2="197" stroke="#1f2430" stroke-width="1.2" marker-end="url(#arr21)"/>
+            <line x1="164" y1="57" x2="210" y2="57" stroke="#1f2430" stroke-width="1.2" marker-end="url(#arr21)"/>
+            <line x1="164" y1="127" x2="210" y2="137" stroke="#1f2430" stroke-width="1.2" marker-end="url(#arr21)"/>
+            <line x1="164" y1="197" x2="210" y2="137" stroke="#1f2430" stroke-width="1.2" marker-end="url(#arr21)"/>
+            <line x1="264" y1="57" x2="320" y2="109" stroke="#1f2430" stroke-width="1.2" marker-end="url(#arr21)"/>
+            <line x1="264" y1="137" x2="320" y2="145" stroke="#1f2430" stroke-width="1.2" marker-end="url(#arr21)"/>
+          </svg>
+          <div class="dgm-c">标准七格图：上排 ES / 工期 / EF，中行活动名，下排 LS / TF / LF；空白格为题目留空、需自行推算。</div>
+        </div>
+        <p style="margin-top:10px;font-size:13px;line-height:1.8">
+          （44）A. 0　　B. 1　　C. 2　　D. 3<br>
+          （45）A. 4　　B. 3　　C. 2　　D. 1
+        </p>
+      </div>
+      <span class="toggle" data-target="zg21s4445">显示答案</span>
+      <div class="a">
+        <b>（44）活动 B 的自由浮动时间 —— 秒判 0，不需要任何工期</b>
+        <ul style="margin:6px 0 0 18px;font-size:13px;line-height:1.8">
+          <li>B 的紧后活动是 E，而 <b>E 的唯一紧前活动就是 B</b>（B → E 独占）。</li>
+          <li>所以 E 的最早开始完全由 B 决定：ES(E) = EF(B)。</li>
+          <li>FF(B) = ES(E) − EF(B) = <b>0</b>。</li>
+        </ul>
+        <br>⚡ <b>通用秒判规则</b>：若活动 X 存在某个紧后活动 Y，且 <b>Y 的唯一紧前就是 X</b>，则 X 一定"驱动"了 Y，必推出 <b>FF(X) = 0</b>。<br>
+        这与 X 本身是否在关键路径上无关，也完全不需要知道工期。
+        <br><br><b>（45）关键路径条数 —— 判定逻辑</b>
+        <ul style="margin:6px 0 0 18px;font-size:13px;line-height:1.8">
+          <li>题图已标 <b>D 的 TF = 0</b> → D 是关键活动。D 的紧前是 A、紧后是 F，故 <b>A → D → F → G 必定是一条关键路径</b>（F 也被 D 驱动成关键活动）。</li>
+          <li>还剩两条候选，各只需比一次工期和：
+            <ul>
+              <li><b>A → C → F → G</b> 是否也是关键路径？看 <code>DU(C) 是否等于 DU(D)</code>（两者都从 A 出发并汇入 F）。相等则 C 也关键，+1 条。</li>
+              <li><b>A → B → E → G</b> 是否也是关键路径？看 <code>DU(B) + DU(E) 是否等于 DU(D) + DU(F)</code>。相等则 B、E 也关键，+1 条。</li>
+            </ul>
+          </li>
+          <li>因此：关键路径条数 = 1 +（C 关键 ? 1 : 0）+（B、E 关键 ? 1 : 0），取值只可能是 <b>1 / 2 / 3</b>。</li>
+        </ul>
+        <br><br><b>完整七格参数表（推算后）</b>：
+        <table class="kt" style="margin-top:8px">
+          <tr><th>活动</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr>
+          <tr><td>ES</td><td>0</td><td>2</td><td>2</td><td>2</td><td>5</td><td>7</td><td>11</td></tr>
+          <tr><td>工期</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>4</td><td>2</td></tr>
+          <tr><td>EF</td><td>2</td><td>5</td><td>6</td><td>7</td><td>11</td><td>11</td><td>13</td></tr>
+          <tr><td>LS</td><td>0</td><td>2</td><td>3</td><td>2</td><td>5</td><td>7</td><td>11</td></tr>
+          <tr><td>TF</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>LF</td><td>2</td><td>5</td><td>7</td><td>7</td><td>11</td><td>11</td><td>13</td></tr>
+        </table>
+        <br><b>正推要点</b>：F 的 ES = max(EF_C, EF_D) = max(6, 7) = <b>7</b>，EF = 7 + 4 = 11；G 的 ES = max(EF_E, EF_F) = max(11, 11) = 11。<b>总工期 = 13 天</b>。
+        <br><br><b>（45）确定答案：关键路径 = 2 条</b>
+        <ul style="margin:6px 0 0 18px;font-size:13px;line-height:1.8">
+          <li>枚举三条路径：A-B-E-G = 2+3+6+2 = <b>13</b>；A-D-F-G = 2+5+4+2 = <b>13</b>；A-C-F-G = 2+4+4+2 = <b>12</b>。</li>
+          <li>最长为 13，故关键路径共 <b>2 条</b>：<code>A → B → E → G</code> 与 <code>A → D → F → G</code>。</li>
+          <li>C 的 TF = 1（非关键），所以 A-C-F-G 这条<b>不是</b>关键路径。</li>
+        </ul>
+        <br><b>结论</b>：（44）选 <b>A. 0</b>；（45）选 <b>C. 2</b>。
+        <br><br>❗ <b>易错提醒</b>：不要看到"A、D、G 的 TF = 0"就以为只有 1 条关键路径。TF = 0 只说明该活动在<b>某条</b>关键路径上；关键路径的<b>条数</b>必须由各分支的工期对比决定。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>真题演练 · 2020 下第 44-45 题（总浮动 + 自由浮动 + 最短工期）</h3>
+    <div class="qbox" id="zg20q4445">
+      <div class="q">
+        <b>题目</b>：下图（单位：周）为某项目实施的单代号网络图，活动 E 的总浮动时间与自由浮动时间为（44），该项目的最短工期为（45）。
+        <table class="kt" style="margin-top:10px">
+          <tr><th>活动</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th></tr>
+          <tr><td>历时（周）</td><td>2</td><td>15</td><td>8</td><td>7</td><td>12</td><td>12</td><td>8</td><td>2</td></tr>
+        </table>
+        <p style="margin-top:10px;font-size:13px;line-height:1.8">
+          <b>依赖关系</b>：A → B、C、D；B → H；C → E、G；D → F；E → H；F → G；G → H。<br>
+          （44）A. 5，0　　B. 7，5　　C. 7，7　　D. 7，0<br>
+          （45）A. 31　　　B. 30　　　C. 20　　　D. 19
+        </p>
+      </div>
+      <span class="toggle" data-target="zg20q4445">显示答案</span>
+      <div class="a">
+        <b>枚举路径法</b>：起点 A → 终点 H 共 4 条路径。
+        <table class="kt" style="margin-top:8px">
+          <tr><th>路径</th><th>长度（周）</th></tr>
+          <tr><td>A → B → H</td><td>2 + 15 + 2 = 19</td></tr>
+          <tr><td>A → C → E → H</td><td>2 + 8 + 12 + 2 = 24</td></tr>
+          <tr><td>A → C → G → H</td><td>2 + 8 + 8 + 2 = 20</td></tr>
+          <tr><td><b>A → D → F → G → H</b></td><td><b>2 + 7 + 12 + 8 + 2 = 31（关键路径）</b></td></tr>
+        </table>
+        <br>（45）<b>最短工期 = 31 周，选 A</b>。
+        <br><br><b>活动 E 的浮动时间</b>：
+        <ul style="margin:6px 0 0 18px;font-size:13px;line-height:1.8">
+          <li><b>总浮动 TF(E)</b> = 总工期 − 经过 E 的最长路径 = 31 − 24 = <b>7 周</b></li>
+          <li><b>自由浮动 FF(E)</b> = ES(H) − EF(E) = 29 − 22 = <b>7 周</b></li>
+          <li>其中：EF(E) = ES(A) + DU(C) + DU(E) = 2 + 8 + 12 = 22；ES(H) = EF(G) = 2 + 7 + 12 + 8 = 29。</li>
+        </ul>
+        <br><b>结论</b>：（44）选 <b>C. 7，7</b>；（45）选 <b>A. 31</b>。
+        <br><br>⚡ <b>关键发现</b>：本题 E 的 TF = FF = 7，说明 E 虽然不在关键路径上，但它延迟 7 周内都不会影响 H 的最早开始，也不会影响总工期；超过 7 周才会影响。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parts">
+  <h2 class="sec"><span class="no">册</span>本专题分册</h2>
+  <div class="related">
+    <a href="02-关键路径CPM.html"><b>① 基础篇</b><small>依赖关系 · 时间参数 · 七格图</small></a>
+    <a href="02B-关键路径CPM-网络图.html"><b>② 网络图篇</b><small>单/双代号 · 时标图 · 表格转图</small></a>
+    <a href="02C-关键路径CPM-计算.html"><b>③ 计算篇</b><small>正推逆推 · 浮动时间 · 判定</small></a>
+    <a href="02D-关键路径CPM-演练.html"><b>④ 演练篇</b><small>例题 · 读图</small></a>
+    <a href="02E-关键路径CPM-真题演练.html" class="cur"><b>⑤ 真题演练篇</b><small>历年综合真题</small></a>
+  </div>
+</section>
+
+<section id="links">
+  <h2 class="sec"><span class="no">关</span>关联专题</h2>
+  <div class="related">
+    <a href="01-EVM挣值分析.html"><b>① EVM 挣值分析</b><small>SV / SPI 描述进度偏差</small></a>
+    <a href="03-三点估算与概率.html"><b>③ 三点估算与概率</b><small>关键路径总工期的概率分布</small></a>
+    <a href="04-进度压缩与资源优化.html"><b>④ 进度压缩与资源优化</b><small>压缩只动关键路径上的活动</small></a>
+  </div>
+</section>
+
+</div>
+<footer>关键路径 CPM 专题 · 系统集成项目管理工程师 · 软考中级</footer>
+<button id="toTop" title="返回顶部" aria-label="返回顶部">↑</button>
+<script src="assets/common.js"></script>
+</body>
+</html>
