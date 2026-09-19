@@ -61,6 +61,33 @@
       <li><b>易错点</b>：关键路径是"最长"不是"最短"；活动数多时别硬套列举法（组合爆炸），直接上时间参数法。</li>
     </ul></div>
   </div>
+  <div class="card">
+    <h3>⚡ 总浮动速算法（不逆推全表，考场首选）</h3>
+    <div class="ktxt">
+      <b style="font-size:14px">核心公式</b>：
+      <div style="background:#eef2ff;border-left:3px solid var(--accent);padding:8px 12px;margin:8px 0;border-radius:6px;font-size:14px">
+        <b>TF(X) = 总工期 − 经过 X 的最长路径长度</b>
+      </div>
+      只需两步，<b>不用算任何 LS / LF</b>：<br>
+      ① 枚举起点 → 终点的所有路径，最长的那条 = 关键路径，其长度 = 总工期；<br>
+      ② 在这些路径里挑出<b>经过目标活动 X 的最长那条</b>，两者相减即得 TF(X)。
+    </div>
+    <div class="ktxt" style="margin-top:8px">
+      <b>实例（2021 下 45-46 题）</b>：6 条路径分别为
+      A-B-E-G-H-J = 15、A-B-E-G-I-J = 14、A-C-F-G-H-J = 17、A-C-F-G-I-J = 16、<b>A-D-F-G-H-J = 18（关键路径）</b>、A-D-F-G-I-J = 17。<br>
+      经过 B 的最长路径 = 15 → <b>TF(B) = 18 − 15 = 3 天</b>，与全表逆推结果一致，却省掉了 10 个活动的 LS/LF。
+    </div>
+    <div class="ktxt" style="margin-top:8px">
+      <b>FF 同理也只算局部</b>：FF(X) = min(紧后活动的 ES) − 本活动 EF。只需把 X 和它的紧后活动正推出来即可，<b>不必求全表 EF</b>。上例 FF(B) = ES(E) − EF(B) = 4 − 4 = 0。
+    </div>
+    <div class="ktxt" style="margin-top:8px">
+      🟥 <b>浮动是"链共享"，不是"人手一份"</b>（高频陷阱）：<b>同一条非关键链上的所有活动共用同一份总浮动</b>。上例 B 与 E 同在 A→B→E 链上，<b>TF 都是 3</b>；B 用掉 2 天，E 也<b>只剩 1 天</b>，绝不是 3 + 3 = 6。
+    </div>
+    <div class="ktxt" style="margin-top:8px">
+      🟦 <b>分支差异法（更快）</b>：找到该链的<b>分叉点</b>与<b>汇合点</b>，用「长支 − 短支」直接得该链浮动。<br>
+      上例：分叉点是 A 完成（第 2 天），汇合点是 G 开始。长支 D+F = 8，短支 B+E = 5，差 = <b>3 天</b>，即 B、E 共用的浮动。
+    </div>
+  </div>
 </section>
 
 <section id="rules">
