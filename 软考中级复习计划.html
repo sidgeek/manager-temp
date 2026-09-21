@@ -82,6 +82,15 @@ td.cell{vertical-align:top;background:var(--card);border:1px solid var(--line);b
 .proc-item .brief{font-size:12px;color:var(--sub);margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .proc-item button.det{margin-top:7px;font-size:12px;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;font-family:inherit}
 .proc-item button.det:hover{text-decoration:underline}
+/* ---- 领域额外笔记 ---- */
+.area-extra{margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.area-extra h5{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.area-extra .tag{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:600}
+.area-extra .sub{font-size:13px;font-weight:700;color:var(--ink);margin:10px 0 4px}
+.area-extra .sub:first-child{margin-top:0}
+.area-extra ul{margin:0 0 8px 18px;font-size:12.5px;color:var(--ink);line-height:1.8}
+.area-extra p{font-size:12.5px;color:var(--sub);line-height:1.7;margin-bottom:8px}
+.area-extra .kw{font-weight:700;color:#2563eb}
 /* ---- 高频考点 ---- */
 table.kt{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:12px;overflow:hidden}
 table.kt th{background:#37415c;color:#fff;padding:9px 12px;text-align:left;font-size:12.5px}
@@ -996,7 +1005,9 @@ ITTO.forEach(p=>{keyOf[p.area+'|'+p.process]=p});
 const mtx=document.getElementById('mtxTable');
 let h='<tr><th class="rowh" style="background:transparent"></th>'+GROUPS.map(g=>`<th class="h-${GCLS[g]}">${g.replace('过程组','')}</th>`).join('')+'</tr>';
 AREAS.forEach(a=>{
- h+=`<tr><th class="rowh">${a.replace('项目','').replace('管理','')}</th>`;
+ const label=a.replace('项目','').replace('管理','');
+ const areaClick=AREA_EXTRA[a]?` style="cursor:pointer" onclick="showAreaExtra('${a}')" title="点击查看${label}领域速记"`:'';
+ h+=`<tr><th class="rowh"${areaClick}>${label}</th>`;
  GROUPS.forEach(g=>{
    const ps=ITTO.filter(p=>p.area===a&&p.group===g);
    h+=`<td class="cell">`+ps.map(p=>`<button class="chip c-${GCLS[g]}" onclick="showProc('${p.area}','${p.process}')">${p.process}</button>`).join('')+`</td>`;
@@ -1006,6 +1017,54 @@ AREAS.forEach(a=>{
 mtx.innerHTML=h;
 
 /* ===== 大纲树 ===== */
+const AREA_EXTRA={
+"项目范围管理":`
+  <div class="area-extra">
+    <h5><span class="tag">范围领域速记</span>输出文档与核心内容</h5>
+    <div class="sub">范围管理计划（口诀：说明书、创建 WBS、基准、成果）</div>
+    <ul>
+      <li>制定项目范围说明书</li>
+      <li>根据详细项目范围说明书创建 WBS</li>
+      <li>确定如何审批和维护范围基准</li>
+      <li>正式验收已完成的项目与可交付成果</li>
+    </ul>
+    <div class="sub">需求管理计划（口诀：需指配）<span class="kw">关键词：需求，指标，配置</span></div>
+    <ul>
+      <li>如何规划、跟踪和报告各种需求活动</li>
+      <li>配置管理活动</li>
+      <li>需求优先级排序过程</li>
+      <li>测量指标及使用指标的理由</li>
+      <li>反映哪些需求属性将被列入跟踪矩阵等</li>
+    </ul>
+    <div class="sub">需求文件（口诀：整明认鞋跟）</div>
+    <p>明确的（可测量和可测试的）、可跟踪的、完整的、相互协调的，且主要干系人愿意认可的需求，才能作为基准。</p>
+    <div class="sub">需求跟踪矩阵主要内容</div>
+    <p>过程：需求（业务、高层级）→ 设计 → 开发 → 测试；结果：目标 ← 结果</p>
+    <ul>
+      <li>业务需要、机会、目的和目标</li>
+      <li>高层级需求到详细需求等</li>
+      <li>产品设计</li>
+      <li>产品开发</li>
+      <li>测试策略和测试场景</li>
+      <li>项目目标</li>
+      <li>项目范围和 WBS 可交付成果</li>
+    </ul>
+    <div class="sub">项目范围说明书（口诀：设成约，述求除表姐）（2 述 2 标）</div>
+    <ul>
+      <li>假设条件</li>
+      <li>可交付成果</li>
+      <li>制约因素</li>
+      <li>项目范围描述</li>
+      <li>产品范围描述</li>
+      <li>项目需求</li>
+      <li>除外责任</li>
+      <li>项目目标</li>
+      <li>验收标准</li>
+      <li>项目边界（最终）</li>
+    </ul>
+  </div>`
+};
+
 const tree=document.getElementById('outlineTree');
 tree.innerHTML=AREAS.map(a=>{
  const ps=ITTO.filter(p=>p.area===a);
@@ -1020,6 +1079,7 @@ tree.innerHTML=AREAS.map(a=>{
       <div class="brief">${p.def||''}</div>
       <button class="det" onclick="showProc('${p.area}','${p.process}')">查看 ITTO 详情 →</button>
     </div>`).join('')}</div>
+  ${AREA_EXTRA[a]||''}
  </div>`}).join('');
 document.querySelectorAll('.exp').forEach(b=>b.addEventListener('click',()=>{
  document.querySelectorAll('.area-block').forEach(x=>x.classList.toggle('open',b.dataset.all==='open'));
@@ -1038,6 +1098,12 @@ function showProc(area,proc){
   <div class="dsec t-in"><span class="dt">输入 Input</span><div class="dv">${esc(p.input)}</div></div>
   <div class="dsec t-tool"><span class="dt">工具与技术 T&T</span><div class="dv">${esc(p.tools)}</div></div>
   <div class="dsec t-out"><span class="dt">输出 Output</span><div class="dv">${esc(p.output)}</div></div>`;
+ document.body.classList.add('show-drawer');
+}
+function showAreaExtra(area){
+ const html=AREA_EXTRA[area];if(!html)return;
+ document.getElementById('dTitle').textContent=area+' · 领域速记';
+ document.getElementById('dBody').innerHTML=html;
  document.body.classList.add('show-drawer');
 }
 function hideDrawer(){document.body.classList.remove('show-drawer')}
