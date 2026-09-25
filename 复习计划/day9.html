@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 9 · 项目采购管理</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#b45309 0%,#d97706 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(180,83,9,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.stage-tag{display:inline-block;font-size:11px;font-weight:700;background:#fff7e6;color:#8a5200;border:1px solid #f3ddae;border-radius:20px;padding:3px 10px;margin-left:8px}
+.process-list{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.process-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;align-items:flex-start}
+.process-item .num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+.process-item .body{flex:1}
+.process-item .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.process-item h4{font-size:14px;font-weight:700;margin:0}
+.process-item .tag{display:inline-block;font-size:11px;font-weight:700;background:#fff7e6;color:#b45309;border-radius:20px;padding:3px 10px}
+.process-item p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.chain-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.chain-box h5{font-size:13px;font-weight:700;margin-bottom:12px}
+.chain-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chain-flow .item{background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#b45309;font-weight:600}
+.chain-flow .arrow{color:#9aa2b1;font-size:13px}
+.chain-box p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.duo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+@media(max-width:800px){.duo-grid{grid-template-columns:1fr}}
+.duo-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+.duo-card .who{font-size:12px;font-weight:700;color:#b45309;margin-bottom:4px}
+.duo-card p{font-size:12px;color:var(--sub);line-height:1.6;margin:0}
+.sow-box{background:#fff7e6;border:1px solid #f3ddae;border-radius:10px;padding:12px;font-size:12px;color:#8a5200;line-height:1.7}
+.sow-box b{color:#b45309}
+.quote{background:var(--card);border-left:4px solid #b45309;border-radius:0 14px 14px 0;padding:16px;margin:22px 0;font-size:14px;font-weight:700;color:var(--ink);font-style:italic}
+.review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.review-grid{grid-template-columns:1fr}}
+.review-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.review-card h5{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.review-card table{width:100%;font-size:12px;border-collapse:collapse}
+.review-card th,.review-card td{text-align:left;padding:6px 8px;border-bottom:1px dashed var(--line)}
+.review-card th{background:#f7f8fc;color:var(--ink);font-weight:600}
+.review-card tr:last-child td{border-bottom:none}
+.review-card ul{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px;margin:0}
+.review-card li{margin:4px 0}
+.score-big{font-size:30px;font-weight:800;color:#b45309;margin:4px 0 2px}
+.score-cap{font-size:11.5px;color:var(--sub)}
+.error-table{width:100%;font-size:12px;border-collapse:collapse}
+.error-table th,.error-table td{text-align:left;padding:8px 10px;border-bottom:1px dashed var(--line);vertical-align:top}
+.error-table th{background:#f7f8fc;color:var(--ink);font-weight:600;width:90px}
+.error-table td{color:var(--sub);line-height:1.7}
+.error-table tr:last-child td{border-bottom:none}
+.error-table .wrong{color:#be123c;margin-right:6px}
+.error-table .right{color:#047857;font-weight:600}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tag-row span{background:#fff7e6;border:1px solid #f3ddae;color:#b45309;border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600}
+.day-next{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:16px;padding:18px 22px;text-decoration:none;margin:24px 0}
+.day-next h4{margin:0 0 6px;font-size:15px}
+.day-next .items{display:flex;gap:8px;flex-wrap:wrap}
+.day-next .items .it{font-size:11.5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 10px}
+.day-next .right{font-size:13px;opacity:.9}
+.back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 9</h1>
+      <p class="day-sub">项目采购管理 | 一份合同的生命周期</p>
+      <p class="day-motto">签订合同 ≠ 采购管理结束。</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">采购管理专题 · 9/10</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day9.html" class="on">Day 9 · 采购管理</a>
+  <a href="day9-contract.html">Day 9 · 三类合同</a>
+  <a href="day9-rfx.html">Day 9 · RFI/RFQ/RFP</a>
+  <a href="day9-case.html">Day 9 · 案例题</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day9','采购管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>采购管理：一份合同的生命周期</h2>
+<div class="process-list">
+  <div class="process-item">
+    <div class="num">01</div>
+    <div class="body">
+      <div class="title-row"><h4>规划采购管理</h4><span class="tag">签约前</span><span class="tag">Plan Procurement Management</span></div>
+      <p>决定采购什么、何时采购、怎样采购。</p>
+      <div class="duo-grid">
+        <div class="duo-card">
+          <div class="who">自制</div>
+          <p>自己完成，更可控。</p>
+        </div>
+        <div class="duo-card">
+          <div class="who">外购</div>
+          <p>从外部获取，更高效。</p>
+        </div>
+      </div>
+      <div class="sow-box"><b>SOW · Statement of Work · 工作说明书：</b>写清采购对象、范围、要求与验收依据。</div>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">02</div>
+    <div class="body">
+      <div class="title-row"><h4>实施采购</h4><span class="tag">签约时</span><span class="tag">Conduct Procurements</span></div>
+      <p>发布采购文件 → 获取卖方应答 → 评审并选择卖方 → 授予合同。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">03</div>
+    <div class="body">
+      <div class="title-row"><h4>控制采购</h4><span class="tag">签约后</span><span class="tag">Control Procurements</span></div>
+      <p>监督合同履行 → 管理变更 → 处理索赔 → 完成合同收尾。</p>
+    </div>
+  </div>
+</div>
+
+<div class="quote">签订合同 ≠ 采购管理结束；合同的价值在于履行，而不只是签订。</div>
+
+<h2 class="section-title"><span class="no">02</span>学习复盘</h2>
+<div class="review-grid">
+  <div class="review-card">
+    <h5>今天的真实表现</h5>
+    <div class="score-big">18 / 18</div>
+    <div class="score-cap">选择题 · 当天识别正确</div>
+    <div class="score-big" style="margin-top:12px">4 / 4</div>
+    <div class="score-cap">定点补考 · 针对薄弱点完成定点补考</div>
+  </div>
+  <div class="review-card">
+    <h5>首轮进度</h5>
+    <div class="score-big">9 / 10 · 90%</div>
+    <div class="score-cap">按计划推进，聚焦下一章</div>
+    <ul style="margin-top:12px">
+      <li>正确只是起点，更重要的是完整的表达</li>
+      <li><b>首次闭卷：存在遗漏</b>，已定位问题，进行针对性补考</li>
+    </ul>
+  </div>
+  <div class="review-card" style="grid-column:1 / -1">
+    <h5>错误修复记录</h5>
+    <table class="error-table">
+      <tr><th>错误一</th><td><span class="wrong">SOW 忘记：只记得缩写，未能写出全称及核心内容</span><br><span class="right">SOW / Statement of Work / 工作说明书：明确采购工作的范围、要求与验收依据</span></td></tr>
+      <tr><th>错误二</th><td><span class="wrong">合同风险只写来源，未说明谁承担：只写风险来自哪里，未进一步说明在合同机制下通常由谁承担较多风险</span><br><span class="right">既要看风险来自哪里，也要说明合同机制下买卖双方通常谁承担较多风险；避免绝对化，结合合同类型具体分析</span></td></tr>
+    </table>
+  </div>
+  <div class="review-card" style="grid-column:1 / -1">
+    <h5>其他补考范围</h5>
+    <ul>
+      <li><b>RFQ / RFP：</b>补全全称，梳理并记住两个缩写的英文全称。</li>
+      <li><b>合同加价：</b>补核实、分析、审批、书面变更、执行，理清合同加价的完整流程与关键控制点。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="quote">选择题全对，不能替代闭卷完整表达。</div>
+
+<a href="day9-contract.html" class="day-next">
+  <div>
+    <h4>继续 Day 9：三类合同 · 钱究竟怎么付</h4>
+    <div class="items">
+      <span class="it">固定总价</span>
+      <span class="it">成本补偿</span>
+      <span class="it">工料合同</span>
+    </div>
+  </div>
+  <div class="right">继续学习 →</div>
+</a>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 8 · 沟通渠道计算</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(124,58,237,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.hero-card h3{font-size:20px;font-weight:800;color:var(--ink);margin:0 0 10px}
+.hero-card p{font-size:13px;color:var(--sub);line-height:1.7;margin:0}
+.formula-box{background:#f3eefe;border:1px solid #ddd3f8;border-radius:14px;padding:18px;margin-bottom:22px;text-align:center}
+.formula-box .f{font-size:30px;font-weight:800;color:#6d28d9;letter-spacing:1px}
+.formula-box p{font-size:12px;color:var(--sub);margin:10px 0 0;line-height:1.7}
+.channel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:800px){.channel-grid{grid-template-columns:1fr}}
+.channel-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.channel-card h5{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.channel-card .big{font-size:22px;font-weight:800;color:#6d28d9}
+.channel-card table{width:100%;font-size:12px;border-collapse:collapse;margin-top:8px}
+.channel-card th,.channel-card td{text-align:left;padding:5px 8px;border-bottom:1px dashed var(--line)}
+.channel-card th{background:#f7f8fc;color:var(--ink);font-weight:600}
+.diff-box{background:#fff7e6;border:1px solid #f3ddae;border-radius:14px;padding:16px;margin-bottom:22px}
+.diff-box h5{font-size:13px;font-weight:700;color:#8a5200;margin-bottom:8px}
+.diff-box p{font-size:12px;color:#8a5200;line-height:1.8;margin:0}
+.comm-table{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px;overflow-x:auto}
+.comm-table table{width:100%;font-size:12px;border-collapse:collapse;min-width:560px}
+.comm-table th,.comm-table td{text-align:left;padding:10px 12px;border-bottom:1px dashed var(--line);vertical-align:top}
+.comm-table th{background:#f7f8fc;color:var(--ink);font-weight:700}
+.comm-table tr:last-child td{border-bottom:none}
+.comm-table td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+.comm-table td b{color:#6d28d9}
+.memory-box{background:#e8f8f2;border:1px solid #bfeadd;border-radius:10px;padding:12px 14px;margin-bottom:22px;font-size:13px;color:#047857;line-height:1.8;font-weight:600}
+.quote{background:var(--card);border-left:4px solid #7c3aed;border-radius:0 14px 14px 0;padding:16px;margin:22px 0;font-size:14px;font-weight:700;color:var(--ink);font-style:italic}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 8</h1>
+      <p class="day-sub">沟通渠道计算 | C = n×(n−1)÷2 · 三种沟通方式</p>
+      <p class="day-motto">项目多加 3 个人，沟通渠道增加了 18 条？</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">沟通管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day8.html">Day 8 · 沟通管理</a>
+  <a href="day8-channel.html" class="on">Day 8 · 渠道计算</a>
+  <a href="day8-case.html">Day 8 · 案例题</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day8','沟通管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>沟通渠道计算公式</h2>
+<div class="hero-card">
+  <h3>沟通复杂度，不会随着人数等比例增加</h3>
+  <p>人数每增加一点，潜在的沟通关系数量会呈近似平方级增长。</p>
+</div>
+<div class="formula-box">
+  <div class="f">C = n × (n − 1) ÷ 2</div>
+  <p><b>C</b>：潜在沟通渠道数量　·　<b>n</b>：参与沟通的人数</p>
+</div>
+
+<div class="channel-grid">
+  <div class="channel-card">
+    <h5>原团队 · 5 人</h5>
+    <div class="big">10 条</div>
+    <table>
+      <tr><th>节点数</th><td>5</td></tr>
+      <tr><th>完整连线数</th><td>10</td></tr>
+      <tr><th>计算</th><td>5 × 4 ÷ 2 = <b>10 条</b></td></tr>
+    </table>
+  </div>
+  <div class="channel-card">
+    <h5>增加后 · 8 人</h5>
+    <div class="big">28 条</div>
+    <table>
+      <tr><th>节点数</th><td>8</td></tr>
+      <tr><th>完整连线数</th><td>28</td></tr>
+      <tr><th>计算</th><td>8 × 7 ÷ 2 = <b>28 条</b></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="diff-box">
+  <h5>28 − 10 = 18 条：人数增加 3 人，潜在沟通渠道增加 18 条</h5>
+  <p><b>为什么会增加这么多？</b>新增成员不仅要与所有原有成员沟通，新增成员之间也会产生新的沟通关系。<br>
+  新增渠道数 = 增加后渠道数 − 原团队渠道数。<br>
+  注意：<b>潜在渠道数 ≠ 实际消息数量</b>。</p>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>三种常见的沟通方式</h2>
+<div class="comm-table">
+  <table>
+    <tr><th>方式</th><th>定义</th><th>常见形式</th><th>特点</th></tr>
+    <tr><td>互动式沟通<br><b>Interactive Communication</b></td><td>双方或多方实时交换信息</td><td>会议、电话、即时讨论</td><td>实时交流</td></tr>
+    <tr><td>推式沟通<br><b>Push Communication</b></td><td>主动将信息发送给指定接收者</td><td>邮件、通知、项目简报</td><td>主动发送</td></tr>
+    <tr><td>拉式沟通<br><b>Pull Communication</b></td><td>接收者根据需要自行获取信息</td><td>知识库、文档平台、资料库</td><td>自行获取</td></tr>
+  </table>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>考试最容易错的地方</h2>
+<div class="memory-box">
+  推式沟通：发出去 ≠ 对方已理解。<br>
+  渠道数量：潜在关系 ≠ 实际消息数量。
+</div>
+
+<div class="quote">沟通管理管的不是"消息发了多少"，而是"信息有没有被正确理解"。</div>
+
+<a class="back-link" href="day8.html">← 返回 Day 8 · 沟通管理</a>
+
+</div>
+</body>
+</html>

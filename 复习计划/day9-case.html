@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 9 · 采购案例 · 口头同意加价</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#b45309 0%,#d97706 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(180,83,9,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.case-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:22px}
+.material-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;align-items:flex-start}
+.material-item .num{font-size:14px;font-weight:800;color:#f3c98b;flex:none;width:70px}
+.material-item p{font-size:12.5px;color:var(--sub);line-height:1.7;margin:0}
+.material-item b{color:var(--ink)}
+.warn-inline{color:#be123c;font-weight:700}
+.steps{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.step{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;align-items:flex-start}
+.step .num{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+.step h5{font-size:13px;font-weight:700;margin:0 0 4px;color:var(--ink)}
+.step p{font-size:12px;color:var(--sub);line-height:1.6;margin:0}
+.error-table{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.error-table table{width:100%;font-size:12px;border-collapse:collapse}
+.error-table th,.error-table td{text-align:left;padding:8px 10px;border-bottom:1px dashed var(--line);vertical-align:top}
+.error-table th{background:#f7f8fc;color:var(--ink);font-weight:600;width:56px}
+.error-table tr:last-child td{border-bottom:none}
+.boundary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px}
+@media(max-width:800px){.boundary-grid{grid-template-columns:1fr}}
+.boundary-card{background:#fff7e6;border:1px solid #f3ddae;border-radius:12px;padding:14px}
+.boundary-card h5{font-size:12.5px;font-weight:700;color:#8a5200;margin-bottom:8px}
+.boundary-card p{font-size:12px;color:#8a5200;line-height:1.7;margin:0}
+.memory-box{background:#fff1f2;border:1px solid #fecdd3;border-radius:10px;padding:12px 14px;margin-bottom:22px;font-size:13px;color:#be123c;line-height:1.8;font-weight:600}
+.flow-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flow .item{background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#b45309;font-weight:600}
+.flow .arrow{color:#9aa2b1;font-size:13px}
+.quote{background:var(--card);border-left:4px solid #b45309;border-radius:0 14px 14px 0;padding:16px;margin:22px 0;font-size:14px;font-weight:700;color:var(--ink);font-style:italic}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+.day-next{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:16px;padding:18px 22px;text-decoration:none;margin:24px 0}
+.day-next h4{margin:0 0 6px;font-size:15px}
+.day-next .items{display:flex;gap:8px;flex-wrap:wrap}
+.day-next .items .it{font-size:11.5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 10px}
+.day-next .right{font-size:13px;opacity:.9}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 9</h1>
+      <p class="day-sub">采购案例 | 口头同意加价，错在哪里</p>
+      <p class="day-motto">口头同意不能替代必要的书面变更和正式审批。</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">采购管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day9.html">Day 9 · 采购管理</a>
+  <a href="day9-contract.html">Day 9 · 三类合同</a>
+  <a href="day9-rfx.html">Day 9 · RFI/RFQ/RFP</a>
+  <a href="day9-case.html" class="on">Day 9 · 案例题</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day9','采购管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>案例材料：合同变更记录</h2>
+<div class="case-grid">
+  <div class="material-item">
+    <div class="num">档案信息</div>
+    <p>编号：CR-2024-006　·　日期：2024年6月12日<br>项目名称：XX系统建设项目　·　供应商：XX科技有限公司<br>主题：关于接口工作加价的申请</p>
+  </div>
+  <div class="material-item">
+    <div class="num">事件描述</div>
+    <p>供应商提出：在原合同范围外新增的接口工作需要增加费用，申请加价。<b>项目经理在会议中口头同意加价</b>，并要求供应商继续实施相关工作。<span class="warn-inline">口头同意不能替代必要的书面变更和正式审批。</span></p>
+  </div>
+  <div class="material-item">
+    <div class="num">06-10</div>
+    <p>供应商提出新增接口工作，申请加价。</p>
+  </div>
+  <div class="material-item">
+    <div class="num">06-12</div>
+    <p>项目经理在会议中口头同意加价，并要求供应商继续实施相关工作。</p>
+  </div>
+  <div class="material-item">
+    <div class="num">06-12</div>
+    <p>供应商根据口头意见，继续展开接口工作。<span class="warn-inline">不能跳过影响分析和正式审批。</span></p>
+  </div>
+  <div class="material-item">
+    <div class="num">批注</div>
+    <p><b>先核对合同与 SOW</b> —— 第一步永远是核对合同条款与工作说明书，而不是直接表态。</p>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>正确的采购变更程序</h2>
+<div class="steps">
+  <div class="step">
+    <div class="num">1</div>
+    <div><h5>核对合同与 SOW</h5><p>首先核对合同条款及 SOW，明确约定的工作机制与变更条件。</p></div>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <div><h5>确认工作范围及加价依据</h5><p>与供应商确认新增工作的具体范围，以及其提出的加价依据。</p></div>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <div><h5>分析成本、进度等影响</h5><p>评估变更对成本、进度、质量等方面的影响。</p></div>
+  </div>
+  <div class="step">
+    <div class="num">4</div>
+    <div><h5>按授权与合同程序审批</h5><p>依据项目目标、授权权限和合同约定的程序进行审批。</p></div>
+  </div>
+  <div class="step">
+    <div class="num">5</div>
+    <div><h5>完成必要的书面变更</h5><p>形成正式的书面变更文件，双方确认。</p></div>
+  </div>
+  <div class="step">
+    <div class="num">6</div>
+    <div><h5>执行批准后的安排</h5><p>在完成审批和书面变更后，按批准的安排执行相关工作。</p></div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>相关易错问题（连带扩展）</h2>
+<div class="error-table">
+  <table>
+    <tr><th>01</th><td>未开展自制或外购分析</td></tr>
+    <tr><th>02</th><td>采购要求是供应商笼统表述，采购标准不够明确</td></tr>
+    <tr><th>03</th><td>评审过程中临时改变评审因素</td></tr>
+    <tr><th>04</th><td>约定日期未完成全部对接工作</td></tr>
+  </table>
+</div>
+
+<h2 class="section-title"><span class="no">04</span>证据边界（必须注意）</h2>
+<div class="boundary-grid">
+  <div class="boundary-card">
+    <h5>✔ 未看到合同条款，不能直接断定加价要求不合理</h5>
+    <p>材料没有给出合同条款内容，不能跳过核对直接下结论；应先核对合同与 SOW 再判断。</p>
+  </div>
+  <div class="boundary-card">
+    <h5>✔ 部分工作未完成，不能写成已经正式交付</h5>
+    <p>供应商只是"继续展开接口工作"，尚未完成交付，表述时要注意区分"开展"与"完成"。</p>
+  </div>
+</div>
+
+<div class="memory-box">
+  口头同意不能替代书面变更；先核合同与 SOW，再走影响分析、审批和书面确认。
+</div>
+
+<h2 class="section-title"><span class="no">05</span>解题套路</h2>
+<div class="flow-box">
+  <div class="flow">
+    <div class="item">发现变更请求</div>
+    <div class="arrow">→</div>
+    <div class="item">核对合同与 SOW</div>
+    <div class="arrow">→</div>
+    <div class="item">影响分析</div>
+    <div class="arrow">→</div>
+    <div class="item">按程序审批</div>
+    <div class="arrow">→</div>
+    <div class="item">书面变更确认</div>
+    <div class="arrow">→</div>
+    <div class="item">执行与跟踪</div>
+  </div>
+</div>
+
+<div class="quote">合同管理的关键控制点：核实、分析、审批、书面变更、执行。</div>
+
+<a href="day10.html" class="day-next">
+  <div>
+    <h4>继续 Day 10：项目干系人管理</h4>
+    <div class="items">
+      <span class="it">四大过程</span>
+      <span class="it">权力-关注度矩阵</span>
+      <span class="it">参与度阶梯</span>
+    </div>
+  </div>
+  <div class="right">进入下一阶段 →</div>
+</a>
+
+<a class="back-link" href="day9.html">← 返回 Day 9 · 采购管理</a>
+
+</div>
+</body>
+</html>

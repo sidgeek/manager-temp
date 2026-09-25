@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 8 · 项目沟通管理</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(124,58,237,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.chain-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.chain-box h5{font-size:13px;font-weight:700;margin-bottom:12px}
+.chain-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chain-flow .item{background:#f3eefe;border:1px solid #ddd3f8;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#6d28d9;font-weight:600}
+.chain-flow .arrow{color:#9aa2b1;font-size:13px}
+.chain-box p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+@media(max-width:800px){.role-grid{grid-template-columns:1fr}}
+.role-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+.role-card .who{font-size:12px;font-weight:700;color:#6d28d9;margin-bottom:4px}
+.role-card p{font-size:12px;color:var(--sub);line-height:1.6;margin:0}
+.process-list{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.process-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;align-items:flex-start}
+.process-item .num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+.process-item .body{flex:1}
+.process-item .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.process-item h4{font-size:14px;font-weight:700;margin:0}
+.process-item .tag{display:inline-block;font-size:11px;font-weight:700;background:#f3eefe;color:#6d28d9;border-radius:20px;padding:3px 10px}
+.process-item p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.compare-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px;overflow-x:auto}
+.compare-box table{width:100%;font-size:12px;border-collapse:collapse;min-width:560px}
+.compare-box th,.compare-box td{text-align:left;padding:10px 12px;border-bottom:1px dashed var(--line);vertical-align:top}
+.compare-box th{background:#f7f8fc;color:var(--ink);font-weight:700}
+.compare-box tr:last-child td{border-bottom:none}
+.compare-box td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+.compare-box .kw{color:#6d28d9;font-weight:700}
+.quote{background:var(--card);border-left:4px solid #7c3aed;border-radius:0 14px 14px 0;padding:16px;margin:22px 0;font-size:14px;font-weight:700;color:var(--ink);font-style:italic}
+.review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.review-grid{grid-template-columns:1fr}}
+.review-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.review-card h5{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.review-card table{width:100%;font-size:12px;border-collapse:collapse}
+.review-card th,.review-card td{text-align:left;padding:6px 8px;border-bottom:1px dashed var(--line)}
+.review-card th{background:#f7f8fc;color:var(--ink);font-weight:600}
+.review-card tr:last-child td{border-bottom:none}
+.review-card ul{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px;margin:0}
+.review-card li{margin:4px 0}
+.score-big{font-size:30px;font-weight:800;color:#6d28d9;margin:4px 0 2px}
+.score-cap{font-size:11.5px;color:var(--sub)}
+.error-table{width:100%;font-size:12px;border-collapse:collapse}
+.error-table th,.error-table td{text-align:left;padding:8px 10px;border-bottom:1px dashed var(--line);vertical-align:top}
+.error-table th{background:#f7f8fc;color:var(--ink);font-weight:600;width:90px}
+.error-table td{color:var(--sub);line-height:1.7}
+.error-table tr:last-child td{border-bottom:none}
+.plan-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.plan-flow .item{background:#f7f8fc;border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:600}
+.plan-flow .arrow{color:#9aa2b1}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tag-row span{background:#f3eefe;border:1px solid #ddd3f8;color:#6d28d9;border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600}
+.day-next{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:16px;padding:18px 22px;text-decoration:none;margin:24px 0}
+.day-next h4{margin:0 0 6px;font-size:15px}
+.day-next .items{display:flex;gap:8px;flex-wrap:wrap}
+.day-next .items .it{font-size:11.5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 10px}
+.day-next .right{font-size:13px;opacity:.9}
+.back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 8</h1>
+      <p class="day-sub">项目沟通管理 | 三大过程 · 沟通机制</p>
+      <p class="day-motto">邮件都发了，为什么大家还是理解错了？</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">沟通管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day8.html" class="on">Day 8 · 沟通管理</a>
+  <a href="day8-channel.html">Day 8 · 渠道计算</a>
+  <a href="day8-case.html">Day 8 · 案例题</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day8','沟通管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>信息送达 ≠ 理解一致</h2>
+<div class="chain-box">
+  <h5>同样一句"月底完成上线准备"，不同角色的理解可能完全不同</h5>
+  <div class="role-grid">
+    <div class="role-card">
+      <div class="who">研发</div>
+      <p>月底完成开发</p>
+    </div>
+    <div class="role-card">
+      <div class="who">测试</div>
+      <p>月底完成全部测试</p>
+    </div>
+    <div class="role-card">
+      <div class="who">客户</div>
+      <p>月底完成上线准备</p>
+    </div>
+  </div>
+  <p>信息在传递过程中会被经验、职位和关注点所影响，<b>信息送达 ≠ 理解一致</b>。</p>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>项目沟通管理三大过程</h2>
+<div class="process-list">
+  <div class="process-item">
+    <div class="num">01</div>
+    <div class="body">
+      <div class="title-row"><h4>规划沟通管理</h4><span class="tag">定规则</span><span class="tag">Plan Communications Management</span></div>
+      <p>明确沟通对象、内容、责任人、频率与渠道。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">02</div>
+    <div class="body">
+      <div class="title-row"><h4>管理沟通</h4><span class="tag">传信息</span><span class="tag">Manage Communications</span></div>
+      <p>生成、收集、发布、存储和传递项目信息。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">03</div>
+    <div class="body">
+      <div class="title-row"><h4>监督沟通</h4><span class="tag">查效果</span><span class="tag">Monitor Communications</span></div>
+      <p>检查沟通是否满足干系人的信息需求，必要时调整。</p>
+    </div>
+  </div>
+</div>
+
+<div class="chain-box">
+  <h5>沟通闭环：规划 → 执行 → 检查 → 改进，形成闭环</h5>
+  <div class="chain-flow">
+    <div class="item">规划沟通管理</div>
+    <div class="arrow">→</div>
+    <div class="item">管理沟通（按计划传信息）</div>
+    <div class="arrow">→</div>
+    <div class="item">监督沟通（检查效果）</div>
+    <div class="arrow">→</div>
+    <div class="item">调整沟通安排（持续改进）</div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>沟通的基本机制</h2>
+<div class="chain-box">
+  <h5>信息在发送者和接收者之间传递，并通过反馈实现理解一致</h5>
+  <div class="chain-flow">
+    <div class="item">发送者（想法清晰）</div>
+    <div class="arrow">→</div>
+    <div class="item">编码（形成语言）</div>
+    <div class="arrow">→</div>
+    <div class="item">信息与沟通渠道（语言、文字、会话等）</div>
+    <div class="arrow">→</div>
+    <div class="item">接收者解码（理解信息）</div>
+    <div class="arrow">→</div>
+    <div class="item">反馈确认（是否理解）</div>
+  </div>
+  <p><b>常见陷阱：</b>信息不明确（发送者）· 渠道不合适（渠道）· 理解不一致（解码）· 缺少反馈（确认）。</p>
+</div>
+
+<div class="quote">发送成功，不代表对方已经理解。</div>
+
+<h2 class="section-title"><span class="no">04</span>容易混淆的概念对比</h2>
+<div class="compare-box">
+  <table>
+    <tr><th>过程</th><th>核心作用</th><th>一句话理解</th><th>关键词</th></tr>
+    <tr><td>规划沟通管理</td><td>定规则</td><td>制定沟通计划，明确沟通对象、内容、责任人、频率与渠道</td><td><span class="kw">先规划</span></td></tr>
+    <tr><td>管理沟通</td><td>传信息</td><td>按照计划执行沟通活动，生成、收集、发布、存储和传递信息</td><td><span class="kw">执行</span></td></tr>
+    <tr><td>监督沟通</td><td>查效果</td><td>检查沟通效果是否满足干系人的信息需求，必要时调整</td><td><span class="kw">看结果</span></td></tr>
+  </table>
+</div>
+
+<div class="quote">规划定规则，管理传信息，监督查效果。</div>
+
+<h2 class="section-title"><span class="no">05</span>学习复盘：新知识全对，旧知识为什么还是记不住？</h2>
+<div class="review-grid">
+  <div class="review-card">
+    <h5>当天新知识：新学内容掌握良好</h5>
+    <div class="score-big">13 / 13</div>
+    <div class="score-cap">沟通管理两轮选择题全部正确</div>
+    <div class="score-big" style="margin-top:12px">5 / 5</div>
+    <div class="score-cap">沟通管理当天客观验收通过</div>
+  </div>
+  <div class="review-card">
+    <h5>旧知识抽查：部分内容回忆不完整</h5>
+    <table>
+      <tr><th>知识领域</th><th>情况</th></tr>
+      <tr><td>范围管理</td><td>过程遗漏、顺序倒置</td></tr>
+      <tr><td>风险管理</td><td>七个位置基本记住，但标准名称不准确</td></tr>
+      <tr><td>整合管理</td><td>遗漏关键过程</td></tr>
+      <tr><td>资源管理</td><td>多个过程名称遗漏或改写</td></tr>
+      <tr><td>质量管理</td><td>质量审计归属错误</td></tr>
+    </table>
+    <ul style="margin-top:10px">
+      <li>看到选项会判断，不代表隔天能完整写出</li>
+    </ul>
+  </div>
+  <div class="review-card" style="grid-column:1 / -1">
+    <h5>旧知识到底忘在了哪里？</h5>
+    <table class="error-table">
+      <tr><th>范围管理</th><td><span class="wrong">遗漏收集需求；确认范围与控制范围顺序倒置</span><br><span class="right">收集需求 → 定义范围 → 创建工作分解结构 → 确认范围 → 控制范围</span></td></tr>
+      <tr><th>风险管理</th><td><span class="wrong">风险定性分析；制定风险应对；持续监督</span><br><span class="right">实施定性风险分析；规划风险应对；监督风险</span></td></tr>
+      <tr><th>整合管理</th><td><span class="wrong">遗漏制定项目管理计划；遗漏监控项目工作</span><br><span class="right">制定项目章程 → 制定项目管理计划 → 指导与管理项目工作 → 监控项目工作 → 实施整体变更控制</span></td></tr>
+      <tr><th>资源管理</th><td><span class="wrong">遗漏规划资源管理；估算资源（名称改写）</span><br><span class="right">规划资源管理 → 估算活动资源 → 获取资源 → 建设团队 → 控制资源</span></td></tr>
+      <tr><th>质量管理</th><td><span class="wrong">质量审计归属错误</span> <span class="right">质量审计属于管理质量</span></td></tr>
+    </table>
+  </div>
+  <div class="review-card">
+    <h5>识别 vs 主动提取：问题的关键</h5>
+    <table>
+      <tr><th></th><th>选择题</th><th>闭卷复述</th></tr>
+      <tr><td><b>提示</b></td><td>看到术语</td><td>没有提示</td></tr>
+      <tr><td><b>要求</b></td><td>识别答案</td><td>主动提取名称、顺序与位置</td></tr>
+    </table>
+    <p style="margin-top:10px">当天正确的题目是"识别能力"的表现；隔天能否复述，取决于<b>主动提取能力</b>。标准名称容易遗忘，孤立记忆不稳定，建议与具体情境和对比记忆。</p>
+  </div>
+  <div class="review-card">
+    <h5>下一步：让知识可以闭卷调用</h5>
+    <table>
+      <tr><th>节奏</th><th>动作</th></tr>
+      <tr><td>次日</td><td>随机过程默写：优先补缺失位置</td></tr>
+      <tr><td>3 天后</td><td>完整顺序复述：标准名称、数量和顺序落差</td></tr>
+      <tr><td>7 天后</td><td>跨章节合成抽查：加入易混概念和案例判断</td></tr>
+    </table>
+    <div class="tag-row">
+      <span>范围管理六过程</span>
+      <span>风险管理七过程</span>
+      <span>整合管理七过程</span>
+      <span>资源管理过程</span>
+      <span>质量审计归属</span>
+    </div>
+  </div>
+</div>
+
+<div class="quote">当天答对只是一次验证；隔天还能独立写出，才说明记忆开始稳定。</div>
+
+<h2 class="section-title"><span class="no">06</span>学习现状与下一步</h2>
+<div class="chain-box">
+  <h5>当前状态</h5>
+  <p>沟通管理三大过程与基本机制已清晰：当天选择题全对；旧知识（过程顺序、标准名称）的主动提取仍是主要薄弱点，需要按复习节奏持续回炉。</p>
+</div>
+
+<a href="day8-channel.html" class="day-next">
+  <div>
+    <h4>继续 Day 8：沟通渠道计算与三种沟通方式</h4>
+    <div class="items">
+      <span class="it">C = n×(n−1)÷2</span>
+      <span class="it">互动 / 推式 / 拉式</span>
+    </div>
+  </div>
+  <div class="right">继续学习 →</div>
+</a>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

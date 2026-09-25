@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 7 · 项目资源管理</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#059669 0%,#10b981 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(5,150,105,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.chain-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.chain-box h5{font-size:13px;font-weight:700;margin-bottom:12px}
+.chain-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chain-flow .item{background:#e8f8f2;border:1px solid #bfeadd;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#047857;font-weight:600}
+.chain-flow .arrow{color:#9aa2b1;font-size:13px}
+.chain-box p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.process-list{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.process-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;align-items:flex-start}
+.process-item .num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+.process-item .body{flex:1}
+.process-item .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.process-item h4{font-size:14px;font-weight:700;margin:0}
+.process-item .tag{display:inline-block;font-size:11px;font-weight:700;background:#e8f8f2;color:#047857;border-radius:20px;padding:3px 10px}
+.process-item p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.raci-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px;overflow-x:auto}
+.raci-table{width:100%;font-size:12px;border-collapse:collapse;min-width:360px}
+.raci-table th,.raci-table td{text-align:center;padding:10px 8px;border:1px solid var(--line)}
+.raci-table th{background:#f7f8fc;color:var(--ink);font-weight:700}
+.raci-table td:first-child{text-align:left;font-weight:600;color:var(--ink)}
+.raci-table td{background:#fff}
+.raci-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--sub)}
+.raci-legend span{display:inline-block;background:#f7f8fc;border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+.raci-tip{background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:10px 12px;font-size:12px;color:#8a5200;margin-top:12px}
+.review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.review-grid{grid-template-columns:1fr}}
+.review-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.review-card h5{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.review-card table{width:100%;font-size:12px;border-collapse:collapse}
+.review-card th,.review-card td{text-align:left;padding:6px 8px;border-bottom:1px dashed var(--line)}
+.review-card th{background:#f7f8fc;color:var(--ink);font-weight:600}
+.review-card tr:last-child td{border-bottom:none}
+.review-card ul{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px;margin:0}
+.review-card li{margin:4px 0}
+.forget-curve{height:140px;background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;align-items:center;justify-content:center}
+.forget-curve svg{width:100%;height:100%}
+.error-table{width:100%;font-size:12px;border-collapse:collapse}
+.error-table th,.error-table td{text-align:left;padding:8px 10px;border-bottom:1px dashed var(--line);vertical-align:top}
+.error-table th{background:#f7f8fc;color:var(--ink);font-weight:600;width:90px}
+.error-table td{color:var(--sub);line-height:1.7}
+.error-table tr:last-child td{border-bottom:none}
+.error-table .wrong{color:#be123c;text-decoration:line-through;margin-right:6px}
+.error-table .right{color:#047857;font-weight:600}
+.plan-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.plan-flow .item{background:#f7f8fc;border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:600}
+.plan-flow .arrow{color:#9aa2b1}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.summary{grid-template-columns:1fr}}
+.sum-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.stars{display:flex;gap:2px}
+.star{width:14px;height:14px;background:#e2e8f0;border-radius:2px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.on{background:#f59e0b}
+.day-next{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:16px;padding:18px 22px;text-decoration:none;margin:24px 0}
+.day-next h4{margin:0 0 6px;font-size:15px}
+.day-next .items{display:flex;gap:8px;flex-wrap:wrap}
+.day-next .items .it{font-size:11.5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 10px}
+.day-next .right{font-size:13px;opacity:.9}
+.back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+.quote{background:var(--card);border-left:4px solid #059669;border-radius:0 14px 14px 0;padding:16px;margin:22px 0;font-size:14px;font-weight:700;color:var(--ink);font-style:italic}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 7</h1>
+      <p class="day-sub">项目资源管理 | 六个过程 · RACI</p>
+      <p class="day-motto">为什么项目加了 4 个人，进度却没有变快？</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">资源管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day7.html" class="on">Day 7 · 资源管理</a>
+  <a href="day7-team.html">Day 7 · 团队与冲突</a>
+  <a href="day7-resource.html">Day 7 · 平衡/平滑</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day7','资源管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>为什么加人不一定加进度？</h2>
+<div class="chain-box">
+  <h5>人数增加带来的连锁成本</h5>
+  <div class="chain-flow">
+    <div class="item">人数增加</div>
+    <div class="arrow">→</div>
+    <div class="item">熟悉成本增加</div>
+    <div class="arrow">→</div>
+    <div class="item">沟通成本增加</div>
+    <div class="arrow">→</div>
+    <div class="item">效率不一定提升</div>
+  </div>
+  <p>资源管理管的不是人数本身，而是资源的获取、协同和使用效率。</p>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>资源管理六个过程</h2>
+<div class="process-list">
+  <div class="process-item">
+    <div class="num">01</div>
+    <div class="body">
+      <div class="title-row"><h4>规划资源管理</h4><span class="tag">怎么管资源</span></div>
+      <p>明确资源角色、职责、分工和管理方式。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">02</div>
+    <div class="body">
+      <div class="title-row"><h4>估算活动资源</h4><span class="tag">需要多少资源</span></div>
+      <p>估算完成活动所需的人力、设备、材料。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">03</div>
+    <div class="body">
+      <div class="title-row"><h4>获取资源</h4><span class="tag">把资源拿到手</span></div>
+      <p>获取项目所需团队成员、设备和其他资源。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">04</div>
+    <div class="body">
+      <div class="title-row"><h4>建设团队</h4><span class="tag">让团队更强</span></div>
+      <p>培训、协作，提升团队能力和整体绩效。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">05</div>
+    <div class="body">
+      <div class="title-row"><h4>管理团队</h4><span class="tag">处理人和绩效问题</span></div>
+      <p>解决冲突、提供反馈、跟踪成员表现。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">06</div>
+    <div class="body">
+      <div class="title-row"><h4>控制资源</h4><span class="tag">防止资源失控</span></div>
+      <p>监控实物资源的使用、分配和偏差情况。</p>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>RACI：谁执行，谁负责？</h2>
+<div class="raci-box">
+  <table class="raci-table">
+    <tr><th>任务</th><th>项目经理</th><th>开发</th><th>测试</th></tr>
+    <tr><td>代码开发</td><td>A</td><td>R</td><td>C</td></tr>
+    <tr><td>测试执行</td><td>I</td><td>C</td><td>R</td></tr>
+    <tr><td>验收协调</td><td>A/R</td><td>C</td><td>I</td></tr>
+  </table>
+  <div class="raci-legend">
+    <span><b>R</b> = Responsible = 执行</span>
+    <span><b>A</b> = Accountable = 最终负责</span>
+    <span><b>C</b> = Consulted = 咨询</span>
+    <span><b>I</b> = Informed = 知会</span>
+  </div>
+  <div class="raci-tip">💡 一项任务可以有多个 R，但通常应明确一个 A。</div>
+</div>
+
+<div class="quote">资源管理不是简单“加人”，而是把人、设备和协作方式放在合适的位置。</div>
+
+<h2 class="section-title"><span class="no">04</span>学习复盘</h2>
+<div class="review-grid">
+  <div class="review-card">
+    <h5>今天的真实表现</h5>
+    <table>
+      <tr><th>题型</th><th>结果</th></tr>
+      <tr><td>旧知识综合选择题</td><td>7 / 8</td></tr>
+      <tr><td>计算题</td><td>2 / 2</td></tr>
+      <tr><td>术语强化填空</td><td>2 / 9 完全正确</td></tr>
+      <tr><td>关键过程复测</td><td>3 / 4</td></tr>
+      <tr><td>资源管理两轮选择题</td><td>11 / 12</td></tr>
+    </table>
+  </div>
+  <div class="review-card">
+    <h5>真正掉得最快的：术语和流程顺序</h5>
+    <div class="forget-curve">
+      <svg viewBox="0 0 300 120" preserveAspectRatio="xMidYMid meet">
+        <text x="10" y="15" font-size="10" fill="#6b7280">记忆保留度</text>
+        <text x="260" y="115" font-size="10" fill="#6b7280">学习后时间</text>
+        <line x1="30" y1="20" x2="30" y2="100" stroke="#e4e7ef" stroke-width="1"/>
+        <line x1="30" y1="100" x2="280" y2="100" stroke="#e4e7ef" stroke-width="1"/>
+        <text x="10" y="25" font-size="9" fill="#9aa2b1">高</text>
+        <text x="10" y="65" font-size="9" fill="#9aa2b1">中</text>
+        <text x="10" y="102" font-size="9" fill="#9aa2b1">低</text>
+        <text x="28" y="112" font-size="9" fill="#9aa2b1">当天</text>
+        <text x="90" y="112" font-size="9" fill="#9aa2b1">第2天</text>
+        <text x="150" y="112" font-size="9" fill="#9aa2b1">第3天</text>
+        <text x="205" y="112" font-size="9" fill="#9aa2b1">第7天</text>
+        <polyline points="30,25 90,45 150,62 210,88 270,92" fill="none" stroke="#9aa2b1" stroke-width="2" stroke-dasharray="4,2"/>
+        <polyline points="30,25 90,35 150,45 210,55 270,60" fill="none" stroke="#b45309" stroke-width="2"/>
+        <circle cx="30" cy="25" r="3" fill="#b45309"/>
+        <circle cx="90" cy="35" r="3" fill="#b45309"/>
+        <circle cx="150" cy="45" r="3" fill="#b45309"/>
+        <circle cx="210" cy="55" r="3" fill="#b45309"/>
+        <circle cx="270" cy="60" r="3" fill="#b45309"/>
+        <text x="200" y="30" font-size="9" fill="#b45309">● 经过复习</text>
+        <text x="200" y="42" font-size="9" fill="#9aa2b1">● 未复习</text>
+      </svg>
+    </div>
+    <ul style="margin-top:10px">
+      <li>当天觉得会了，不代表三天后还能闭卷写出来</li>
+      <li>不复习时，最先掉的是标准术语和流程名称</li>
+    </ul>
+  </div>
+  <div class="review-card" style="grid-column:1 / -1">
+    <h5>这几天真实忘掉的内容</h5>
+    <table class="error-table">
+      <tr><th>范围管理</th><td>创建工作分解结构容易漏；<span class="wrong">控制范围</span> <span class="right">确认范围</span> 容易被忘掉</td></tr>
+      <tr><th>风险管理</th><td><span class="wrong">风险采集</span> <span class="right">识别风险</span>；规划风险应对 / 实施风险应对：容易串位或漏写</td></tr>
+      <tr><th>质量管理</th><td><span class="wrong">规划质量管理 → 控制质量 → 管理质量</span> <span class="right">规划质量管理 → 管理质量 → 控制质量</span><br>质量审计 → 管理质量</td></tr>
+      <tr><th>整合管理</th><td><span class="wrong">监督项目工作</span> <span class="right">监控项目工作</span>；<span class="wrong">项目实施计划</span> <span class="right">项目管理计划</span>；<span class="wrong">实施项目工作</span> <span class="right">指导与管理项目工作</span></td></tr>
+      <tr><th>资源管理</th><td><span class="wrong">项目平衡</span> <span class="right">资源平衡</span> / <span class="right">资源平滑</span>（针对利用浮动时间调整任务）</td></tr>
+    </table>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">05</span>后面不是只学新内容，而是把旧内容留住</h2>
+<div class="chain-box">
+  <h5>复习节奏</h5>
+  <div class="plan-flow">
+    <div class="item">次日抽查</div>
+    <div class="arrow">→</div>
+    <div class="item">3 天后复测</div>
+    <div class="arrow">→</div>
+    <div class="item">7 天后回炉</div>
+  </div>
+  <p style="margin-top:12px"><b>优先复习：</b>过程名称、流程顺序、易混概念、标准术语。<br>目标不是“看见认识”，而是“闭卷能写出来”。</p>
+</div>
+
+<div class="quote">遗忘不是失败，没有复习机制，才会让理解停留在短期记忆里。</div>
+
+<h2 class="section-title"><span class="no">06</span>学习现状与下一步</h2>
+<div class="summary">
+  <div class="sum-card">
+    <h5>当前掌握</h5>
+    <div class="stars" style="margin-bottom:10px"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star"></span></div>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">资源管理六个过程与 RACI 已清晰。</div>
+  </div>
+  <div class="sum-card">
+    <h5>学习状态</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">过程：6/6 ✅ | 术语稳定度仍需加强</div>
+  </div>
+  <div class="sum-card">
+    <h5>下一步</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">进入团队发展阶段与冲突处理专题。</div>
+  </div>
+</div>
+
+<a href="day7-team.html" class="day-next">
+  <div>
+    <h4>继续 Day 7：团队与冲突</h4>
+    <div class="items">
+      <span class="it">塔克曼阶梯</span>
+      <span class="it">五种冲突处理</span>
+    </div>
+  </div>
+  <div class="right">继续学习 →</div>
+</a>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 10 · 项目干系人管理</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#0d9488 0%,#14b8a6 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(13,148,136,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.chain-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.chain-box h5{font-size:13px;font-weight:700;margin-bottom:12px}
+.chain-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chain-flow .item{background:#ecfdf8;border:1px solid #b6e8dd;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#0f766e;font-weight:600}
+.chain-flow .arrow{color:#9aa2b1;font-size:13px}
+.chain-box p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.process-list{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.process-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;align-items:flex-start}
+.process-item .num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+.process-item .body{flex:1}
+.process-item .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.process-item h4{font-size:14px;font-weight:700;margin:0}
+.process-item .tag{display:inline-block;font-size:11px;font-weight:700;background:#ecfdf8;color:#0f766e;border-radius:20px;padding:3px 10px}
+.process-item p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.duo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px}
+@media(max-width:800px){.duo-grid{grid-template-columns:1fr}}
+.duo-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.duo-card h5{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.duo-card .en{font-size:11px;color:var(--sub);margin-bottom:8px}
+.duo-card p{font-size:12.5px;color:var(--sub);line-height:1.7;margin:0}
+.memory-box{background:#ecfdf8;border:1px solid #b6e8dd;border-radius:10px;padding:14px;margin-bottom:22px;font-size:13.5px;color:#0f766e;line-height:1.8;font-weight:700}
+.quote{background:var(--card);border-left:4px solid #0d9488;border-radius:0 14px 14px 0;padding:16px;margin:22px 0;font-size:14px;font-weight:700;color:var(--ink);font-style:italic}
+.chain-box .cap{font-size:11.5px;color:var(--sub);margin-top:10px}
+.day-next{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:16px;padding:18px 22px;text-decoration:none;margin:24px 0}
+.day-next h4{margin:0 0 6px;font-size:15px}
+.day-next .items{display:flex;gap:8px;flex-wrap:wrap}
+.day-next .items .it{font-size:11.5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 10px}
+.day-next .right{font-size:13px;opacity:.9}
+.back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 10</h1>
+      <p class="day-sub">项目干系人管理 | 四大过程</p>
+      <p class="day-motto">系统快上线了，业务部门为什么还是不配合？</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">干系人管理 · 10/10</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day10.html" class="on">Day 10 · 干系人管理</a>
+  <a href="day10-matrix.html">Day 10 · 权力-关注度矩阵</a>
+  <a href="day10-engagement.html">Day 10 · 参与度阶梯</a>
+  <a href="day10-lifecycle.html">Day 10 · 生命周期全景</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day10','干系人管理专题 · 首轮收官');</script>
+
+<h2 class="section-title"><span class="no">01</span>发了通知，不等于关键相关方真的参与进来了</h2>
+<div class="chain-box">
+  <h5>常见误区：通知发出 → 以为就万事大吉</h5>
+  <div class="chain-flow">
+    <div class="item">系统快上线</div>
+    <div class="arrow">→</div>
+    <div class="item">发了通知</div>
+    <div class="arrow">→</div>
+    <div class="item">业务部门仍然不配合</div>
+  </div>
+  <p>发了通知，不等于关键相关方真的参与进来了。<b>干系人管理不是简单发消息，而是让关键相关方真正参与项目。</b></p>
+  <p class="cap">进度：10 / 10 知识领域 —— 十大知识领域首轮学习已全部覆盖（仅代表首轮覆盖，不代表整体备考完成）。</p>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>干系人管理四大过程</h2>
+<div class="process-list">
+  <div class="process-item">
+    <div class="num">01</div>
+    <div class="body">
+      <div class="title-row"><h4>识别干系人</h4><span class="tag">找出人</span><span class="tag">Identify Stakeholders</span></div>
+      <p>找出谁会影响项目，谁会受到项目影响。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">02</div>
+    <div class="body">
+      <div class="title-row"><h4>规划干系人参与</h4><span class="tag">定策略</span><span class="tag">Plan Stakeholder Engagement</span></div>
+      <p>根据不同干系人的需求、期望和影响，制定参与策略。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">03</div>
+    <div class="body">
+      <div class="title-row"><h4>管理干系人参与</h4><span class="tag">促参与</span><span class="tag">Manage Stakeholder Engagement</span></div>
+      <p>沟通、协调、处理关注点，引导相关方实际参与。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">04</div>
+    <div class="body">
+      <div class="title-row"><h4>监督干系人参与</h4><span class="tag">查效果</span><span class="tag">Monitor Stakeholder Engagement</span></div>
+      <p>检查参与是否达到预期，并根据效果调整策略。</p>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>沟通管理 vs 干系人管理</h2>
+<div class="duo-grid">
+  <div class="duo-card">
+    <h5>沟通管理</h5>
+    <div class="en">Communications Management</div>
+    <p>关注<b>信息传递</b>与沟通效果。</p>
+  </div>
+  <div class="duo-card">
+    <h5>干系人管理</h5>
+    <div class="en">Stakeholder Management</div>
+    <p>关注<b>人</b>的需求、影响与参与状态。</p>
+  </div>
+</div>
+
+<div class="quote">干系人管理不是简单发消息，而是让关键相关方真正参与项目。</div>
+
+<h2 class="section-title"><span class="no">04</span>学习复盘：首轮学完了，还没到放松的时候</h2>
+<div class="review-grid">
+  <div class="review-card">
+    <h5>首轮学习完成</h5>
+    <div class="score-big">10 / 10 · 100%</div>
+    <div class="score-cap">十大知识领域首轮内容已全部覆盖</div>
+    <ul style="margin-top:10px">
+      <li>这不代表整体备考完成，只代表第一轮框架学习结束</li>
+      <li>从"学过"进入"闭卷能写、案例会用"</li>
+    </ul>
+  </div>
+  <div class="review-card">
+    <h5>今日实战结果</h5>
+    <div class="score-big">16 / 16</div>
+    <div class="score-cap">干系人管理两轮选择题全对</div>
+    <div class="tag-row" style="margin-top:12px">
+      <span>案例题：主要问题识别正确</span>
+      <span>定点补考：基本掌握</span>
+    </div>
+  </div>
+  <div class="review-card" style="grid-column:1 / -1">
+    <h5>今天不是不会，而是术语还不够稳</h5>
+    <table class="error-table">
+      <tr><th>01</th><td><span class="wrong">过程名称容易漏"参与"</span>：<span class="wrong">规划干系人 / 管理干系人 / 监督干系人</span> <span class="right">规划干系人参与 / 管理干系人参与 / 监督干系人参与</span></td></tr>
+      <tr><th>02</th><td><span class="wrong">权力 / 利益方格的标准说法不稳</span>：<span class="right">低权力、低关注 = 适度监督</span></td></tr>
+      <tr><th>03</th><td><span class="wrong">C / D 要和英文全称绑定记忆</span>：<span class="right">C = Current = 当前参与水平；D = Desired = 期望参与水平</span></td></tr>
+    </table>
+  </div>
+  <div class="review-card" style="grid-column:1 / -1">
+    <h5>接下来：不再按章节学新知识</h5>
+    <table class="error-table">
+      <tr><th>01</th><td><b>整合管理七过程</b>：继续强化标准名称和顺序</td></tr>
+      <tr><th>02</th><td><b>资源管理六过程</b>：继续强化标准名称和易混概念</td></tr>
+      <tr><th>03</th><td><b>综合训练</b>：开始跨章节案例题、关键路径、挣值计算与闭卷抽查</td></tr>
+    </table>
+    <p style="font-size:12px;color:var(--sub);margin-top:10px">下一阶段重点从"覆盖知识点"，转向"<b>提取、计算和作答</b>"。具体计划见：<a href="sprint-plan.html" style="color:#0d9488;font-weight:700">冲刺备考计划 →</a></p>
+  </div>
+</div>
+
+<div class="quote">首轮学习已经完成，真正拉开差距的是：跨天还记得、闭卷能写出、案例能用上。</div>
+
+<div class="memory-box">
+  识别谁重要，规划怎么参与，推动真正参与，再检查参与是否有效。
+</div>
+
+<a href="day10-matrix.html" class="day-next">
+  <div>
+    <h4>继续 Day 10：权力-关注度矩阵</h4>
+    <div class="items">
+      <span class="it">重点管理</span>
+      <span class="it">令其满意</span>
+      <span class="it">随时告知</span>
+      <span class="it">适度监督</span>
+    </div>
+  </div>
+  <div class="right">继续学习 →</div>
+</a>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

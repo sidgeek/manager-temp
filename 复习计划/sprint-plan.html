@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冲刺备考计划 · 十个领域学完了，接下来怎么备考？</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.page-header{background:linear-gradient(135deg,#b45309 0%,#d97706 100%);color:#fff;border-radius:16px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(180,83,9,.22)}
+.page-header h1{font-size:28px;font-weight:800;margin:0}
+.page-header p{font-size:14px;opacity:.9;margin-top:8px}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px}
+.status-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.status-card{flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.status-card .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.status-card b{font-size:13px;color:var(--ink)}
+.status-card p{font-size:12px;color:var(--sub);line-height:1.6;margin:6px 0 0}
+.status-card .cap{font-size:11px;color:#9aa2b1;margin-top:8px}
+.line-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:14px}
+@media(max-width:800px){.line-grid{grid-template-columns:1fr}}
+.line-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.line-card b{font-size:13px;color:var(--ink)}
+.line-card p{font-size:12px;color:var(--sub);line-height:1.6;margin:6px 0 0}
+.merge-cap{text-align:center;font-size:12.5px;font-weight:700;color:#b45309;background:#fff7e6;border:1px solid #f3ddae;border-radius:20px;padding:8px 18px;display:inline-block;margin-bottom:22px}
+.merge-wrap{text-align:center}
+.phase{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;align-items:flex-start}
+.phase .num{width:36px;height:36px;border-radius:50%;background:#b45309;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+.phase .body{flex:1}
+.phase .date{display:inline-block;font-size:11px;font-weight:700;background:#fff7e6;color:#b45309;border:1px solid #f3ddae;border-radius:20px;padding:3px 10px;margin-bottom:6px}
+.phase h4{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.phase ul{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px;margin:0 0 8px}
+.phase .result{font-size:11.5px;color:#047857;background:#e8f8f2;border:1px solid #bfeadd;border-radius:8px;padding:6px 10px;display:inline-block}
+.phase .result b{color:#047857}
+.exam-banner{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#b45309 0%,#d97706 100%);color:#fff;border-radius:14px;padding:16px 20px;margin:16px 0 22px;flex-wrap:wrap;gap:8px}
+.exam-banner h4{margin:0;font-size:15px}
+.exam-banner .cap{font-size:11.5px;opacity:.85}
+.chain-wrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.chain{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.chain .item{background:#fff7e6;border:1px solid #f3ddae;border-radius:20px;padding:8px 14px;font-size:12.5px;color:#b45309;font-weight:700}
+.chain .arrow{color:#9aa2b1;font-size:13px}
+.quote{background:var(--card);border-left:4px solid #b45309;border-radius:0 14px 14px 0;padding:16px;margin:22px 0;font-size:14px;font-weight:700;color:var(--ink);font-style:italic}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="page-header">
+  <h1>🎯 冲刺备考计划</h1>
+  <p>十个领域学完了，接下来怎么备考？—— 从知识覆盖，走向真正能够作答</p>
+</header>
+
+<h2 class="section-title">当前状态</h2>
+<div class="status-row">
+  <div class="status-card">
+    <b><span class="dot" style="background:#0d9488"></span>已完成</b>
+    <p>十大知识领域首轮学习 10 / 10。</p>
+  </div>
+  <div class="status-card">
+    <b><span class="dot" style="background:#b45309"></span>待强化</b>
+    <p>标准流程记忆、综合计算、案例应用。</p>
+  </div>
+  <div class="status-card">
+    <b><span class="dot" style="background:#9aa2b1"></span>待补充</b>
+    <p>其他考试知识模块。</p>
+  </div>
+</div>
+<p style="font-size:11.5px;color:#9aa2b1;margin-bottom:22px">十大知识领域已覆盖，不代表全部考试内容已覆盖或已经达标熟练。</p>
+
+<h2 class="section-title">双主线安排</h2>
+<div class="line-grid">
+  <div class="line-card">
+    <b>主线 A · 项目管理知识巩固</b>
+    <p>流程记忆 ｜ 计算 ｜ 案例</p>
+  </div>
+  <div class="line-card">
+    <b>主线 B · 其他考试知识补齐</b>
+    <p>信息技术 ｜ 软件与系统集成 ｜ 相关知识</p>
+  </div>
+</div>
+<div class="merge-wrap"><span class="merge-cap">两条主线汇合 → 进入综合训练</span></div>
+
+<h2 class="section-title">五个阶段</h2>
+
+<div class="phase">
+  <div class="num">01</div>
+  <div class="body">
+    <span class="date">9月23日 — 9月29日</span>
+    <h4>梳理脉络 · 修复记忆</h4>
+    <ul>
+      <li>整合、范围、进度、风险流程强化</li>
+      <li>建立十大领域之间的关系</li>
+      <li>启动信息技术等未学内容的补充</li>
+    </ul>
+    <span class="result"><b>阶段成果：</b>形成知识总图与个人薄弱点清单。</span>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="num">02</div>
+  <div class="body">
+    <span class="date">9月30日 — 10月6日</span>
+    <h4>补齐知识 · 完成覆盖</h4>
+    <ul>
+      <li>补充信息技术、系统集成、数据与信息安全等知识</li>
+      <li>覆盖其他尚未系统学习的考试模块</li>
+      <li>穿插自测闭卷复述</li>
+    </ul>
+    <span class="result"><b>阶段成果：</b>补齐主要知识模块，明确剩余缺口。</span>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="num">03</div>
+  <div class="body">
+    <span class="date">10月7日 — 10月13日</span>
+    <h4>专项突破 · 综合应用</h4>
+    <ul>
+      <li>关键路径与活动时间</li>
+      <li>挣值与完工估算</li>
+      <li>变更综合案例</li>
+      <li>历史真题第一次限时模拟</li>
+    </ul>
+    <span class="result"><b>阶段成果：</b>建立稳定解题步骤，发现真实失分点。</span>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="num">04</div>
+  <div class="body">
+    <span class="date">10月14日 — 10月20日</span>
+    <h4>模拟实战 · 精准纠错</h4>
+    <ul>
+      <li>开展整套限时模拟</li>
+      <li>分析错题和时间分配</li>
+      <li>针对性训练薄弱知识点并进行强化</li>
+    </ul>
+    <span class="result"><b>阶段成果：</b>形成最后的薄弱点清单和应试策略。</span>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="num">05</div>
+  <div class="body">
+    <span class="date">10月21日 — 10月23日</span>
+    <h4>考前收敛 · 稳定输出</h4>
+    <ul>
+      <li>复习高频错题与标准过程</li>
+      <li>回顾关键公式和案例作答方法</li>
+      <li>确认考试时间及考场安排</li>
+    </ul>
+    <span class="result"><b>阶段成果：</b>形成可快速回顾的个人考前清单。</span>
+  </div>
+</div>
+
+<div class="exam-banner">
+  <h4>📌 10月24日 · 进入考试</h4>
+  <span class="cap">实际考试日期及批次以准考证为准。</span>
+</div>
+
+<h2 class="section-title">能力进阶路线</h2>
+<div class="chain-wrap">
+  <div class="chain">
+    <div class="item">知识覆盖</div>
+    <div class="arrow">→</div>
+    <div class="item">理解关系</div>
+    <div class="arrow">→</div>
+    <div class="item">场景提取</div>
+    <div class="arrow">→</div>
+    <div class="item">计算与案例应用</div>
+    <div class="arrow">→</div>
+    <div class="item">限时稳定作答</div>
+  </div>
+</div>
+
+<div class="quote">下一阶段，不再追求学了多少，而要验证：记得住、算得对、写得出。</div>
+
+<a class="back-link" href="system.html">← 返回系统学习</a>
+<a class="back-link" href="day10.html" style="margin-left:10px">← 返回 Day 10 · 干系人管理</a>
+
+</div>
+</body>
+</html>

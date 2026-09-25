@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 10 · 参与度阶梯</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#0d9488 0%,#14b8a6 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(13,148,136,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.hero-card h3{font-size:20px;font-weight:800;color:var(--ink);margin:0 0 10px}
+.hero-card p{font-size:13px;color:var(--sub);line-height:1.7;margin:0}
+.ladder{display:flex;gap:6px;align-items:flex-end;margin-bottom:14px;flex-wrap:wrap}
+.ladder .step{flex:1;min-width:120px;border-radius:12px;padding:14px 12px;position:relative}
+.ladder .step .name{font-size:14px;font-weight:800;margin-bottom:6px}
+.ladder .step p{font-size:11px;line-height:1.6;margin:0}
+.ladder .s1{background:#f7f8fc;border:1px solid var(--line);color:var(--sub)}
+.ladder .s1 .name{color:var(--ink)}
+.ladder .s2{background:#fff1f2;border:1px solid #fecdd3;color:#be123c;height:86px}
+.ladder .s3{background:#f7f8fc;border:1px solid var(--line);color:var(--sub);height:102px}
+.ladder .s3 .name{color:var(--ink)}
+.ladder .s4{background:#fff3e2;border:1px solid #f3ddae;color:#8a5200;height:118px}
+.ladder .s4 .name{color:#b45309}
+.ladder .s5{background:#b45309;color:#fff;height:134px}
+.ladder .s5 .name{color:#fff}
+.ladder .arr{color:#9aa2b1;font-size:12px;align-self:center}
+.ladder-note{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.ladder-note span{background:#f7f8fc;border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--sub)}
+.ladder-note b{color:#be123c}
+.se-matrix{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;overflow-x:auto}
+.se-matrix h5{font-size:13px;font-weight:700;margin-bottom:6px}
+.se-matrix .legend{font-size:11.5px;color:var(--sub);margin-bottom:10px}
+.se-matrix .legend b{color:#b45309}
+.se-matrix table{width:100%;font-size:12px;border-collapse:collapse;min-width:560px;text-align:center}
+.se-matrix th,.se-matrix td{text-align:center;padding:10px 8px;border:1px solid var(--line)}
+.se-matrix th{background:#f7f8fc;color:var(--ink);font-weight:700}
+.se-matrix td:first-child{text-align:left;font-weight:700;color:var(--ink);background:#fff}
+.se-matrix .cell-c,.se-matrix .cell-d{display:inline-flex;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px}
+.se-matrix .cell-c{background:#0d9488}
+.se-matrix .cell-d{background:#b45309}
+.se-cap{font-size:12px;color:var(--sub);margin-bottom:22px}
+.flow-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flow .item{background:#ecfdf8;border:1px solid #b6e8dd;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#0f766e;font-weight:600}
+.flow .arrow{color:#9aa2b1;font-size:13px}
+.flow-box .cap{font-size:12px;color:var(--sub);margin:10px 0 0}
+.warn-box{background:#fff1f2;border:1px solid #fecdd3;border-radius:14px;padding:16px;margin-bottom:22px}
+.warn-box h5{font-size:13px;font-weight:700;color:#be123c;margin-bottom:8px}
+.warn-box p{font-size:12px;color:#be123c;line-height:1.7;margin:0}
+.quote{background:var(--card);border-left:4px solid #0d9488;border-radius:0 14px 14px 0;padding:16px;margin:22px 0;font-size:14px;font-weight:700;color:var(--ink);font-style:italic}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+.day-next{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:16px;padding:18px 22px;text-decoration:none;margin:24px 0}
+.day-next h4{margin:0 0 6px;font-size:15px}
+.day-next .items{display:flex;gap:8px;flex-wrap:wrap}
+.day-next .items .it{font-size:11.5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 10px}
+.day-next .right{font-size:13px;opacity:.9}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 10</h1>
+      <p class="day-sub">参与度阶梯 | 干系人参与评估矩阵</p>
+      <p class="day-motto">知道项目，不代表支持项目。</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">干系人管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day10.html">Day 10 · 干系人管理</a>
+  <a href="day10-matrix.html">Day 10 · 权力-关注度矩阵</a>
+  <a href="day10-engagement.html" class="on">Day 10 · 参与度阶梯</a>
+  <a href="day10-lifecycle.html">Day 10 · 生命周期全景</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day10','干系人管理专题 · 首轮收官');</script>
+
+<h2 class="section-title"><span class="no">01</span>参与度五级阶梯</h2>
+<div class="hero-card">
+  <h3>先看当前状态，再决定希望他达到什么状态</h3>
+  <p>从"不了解"到"领导"，参与程度逐级上升，管理策略也逐级加强。</p>
+</div>
+
+<div class="ladder">
+  <div class="step s1">
+    <div class="name">不了解</div>
+    <p>不了解项目存在及其影响</p>
+  </div>
+  <div class="arr">→</div>
+  <div class="step s2">
+    <div class="name">抵制</div>
+    <p>知道项目，但反对项目工作或变化</p>
+  </div>
+  <div class="arr">→</div>
+  <div class="step s3">
+    <div class="name">中立</div>
+    <p>知道项目，既不支持也不反对</p>
+  </div>
+  <div class="arr">→</div>
+  <div class="step s4">
+    <div class="name">支持</div>
+    <p>了解项目，并支持项目工作与成果</p>
+  </div>
+  <div class="arr">→</div>
+  <div class="step s5">
+    <div class="name">领导</div>
+    <p>积极参与，并主动推动项目成功</p>
+  </div>
+</div>
+
+<div class="ladder-note">
+  <span>不了解 <b>≠</b> 中立</span>
+  <span>支持 <b>≠</b> 领导</span>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>干系人参与评估矩阵</h2>
+<div class="se-matrix">
+  <h5>Stakeholder Engagement Assessment Matrix</h5>
+  <div class="legend"><b>C</b> = Current = 当前参与水平　·　<b>D</b> = Desired = 期望参与水平</div>
+  <table>
+    <tr><th>干系人</th><th>不了解</th><th>抵制</th><th>中立</th><th>支持</th><th>领导</th></tr>
+    <tr>
+      <td>一线客服人员</td>
+      <td></td>
+      <td><span class="cell-c">C</span></td>
+      <td></td>
+      <td><span class="cell-d">D</span></td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+<div class="se-cap">读法：一线客服人员当前抵制，期望支持。</div>
+
+<h2 class="section-title"><span class="no">03</span>从抵制到支持：不是直接改表，而是先解决问题</h2>
+<div class="flow-box">
+  <div class="flow">
+    <div class="item">了解顾虑</div>
+    <div class="arrow">→</div>
+    <div class="item">邀请测试</div>
+    <div class="arrow">→</div>
+    <div class="item">收集反馈</div>
+    <div class="arrow">→</div>
+    <div class="item">开展培训</div>
+    <div class="arrow">→</div>
+    <div class="item">持续检查参与情况</div>
+  </div>
+  <p class="cap">根据实际变化，再更新矩阵记录。</p>
+</div>
+
+<div class="warn-box">
+  <h5>重要提醒</h5>
+  <p><b>C 和 D 记录的是事实与目标，不是主观愿望。</b><br>不能因为希望对方支持，就直接把当前状态写成支持。</p>
+</div>
+
+<div class="quote">参与度管理：先如实评估现状，再设定合理目标，用行动缩短差距。</div>
+
+<a href="sprint-plan.html" class="day-next">
+  <div>
+    <h4>首轮完成 · 进入冲刺备考计划</h4>
+    <div class="items">
+      <span class="it">五阶段安排</span>
+      <span class="it">双主线推进</span>
+      <span class="it">10月24日考试</span>
+    </div>
+  </div>
+  <div class="right">进入下一阶段 →</div>
+</a>
+
+<a class="back-link" href="day10.html">← 返回 Day 10 · 干系人管理</a>
+
+</div>
+</body>
+</html>

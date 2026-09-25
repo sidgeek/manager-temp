@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 · 项目生命周期全景图</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#b45309 0%,#d97706 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(180,83,9,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.hero-card h3{font-size:20px;font-weight:800;color:var(--ink);margin:0 0 10px}
+.hero-card p{font-size:13px;color:var(--sub);line-height:1.7;margin:0}
+.life-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px}
+@media(max-width:800px){.life-grid{grid-template-columns:1fr}}
+.life-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.life-card h5{font-size:13px;font-weight:700;color:#b45309;margin-bottom:4px}
+.life-card p{font-size:12px;color:var(--sub);line-height:1.6;margin:0}
+.life-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.life-flow .item{background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:10px 14px;font-size:13px;color:#b45309;font-weight:700}
+.life-flow .item small{display:block;font-size:10.5px;color:#8a5200;font-weight:600;margin-top:3px}
+.life-flow .arrow{color:#9aa2b1;font-size:13px}
+.loop-cap{background:#f7f8fc;border:1px dashed var(--line);border-radius:8px;padding:8px 12px;font-size:11.5px;color:var(--sub);margin-bottom:22px}
+.duo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px}
+@media(max-width:800px){.duo-grid{grid-template-columns:1fr}}
+.group-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.group-card h5{font-size:13px;font-weight:700;color:#b45309;margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.group-card table{width:100%;font-size:12px;border-collapse:collapse}
+.group-card th,.group-card td{text-align:left;padding:6px 8px;border-bottom:1px dashed var(--line)}
+.group-card th{color:var(--ink);font-weight:700}
+.group-card tr:last-child td{border-bottom:none}
+.group-card td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+.integrate-card{background:#b45309;color:#fff;border-radius:14px;padding:16px;margin-bottom:14px}
+.integrate-card h5{font-size:13px;font-weight:700;margin-bottom:6px}
+.integrate-card p{font-size:12px;line-height:1.7;margin:0;opacity:.92}
+.note-cap{font-size:12px;color:#8a5200;background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:10px 12px;margin-bottom:22px}
+.change-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.change-step{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.change-step .num{width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.change-step p{font-size:12.5px;color:var(--sub);line-height:1.6;margin:0}
+.change-step b{color:var(--ink)}
+.change-step .cap{display:block;font-size:11px;color:#9aa2b1;margin-top:2px}
+.memory-box{background:#ecfdf8;border:1px solid #b6e8dd;border-radius:10px;padding:14px;margin-bottom:22px;font-size:13.5px;color:#0f766e;line-height:1.8;font-weight:700}
+.quote{background:var(--card);border-left:4px solid #b45309;border-radius:0 14px 14px 0;padding:16px;margin:22px 0;font-size:14px;font-weight:700;color:var(--ink);font-style:italic}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">项目生命周期全景图</h1>
+      <p class="day-sub">五大过程组 × 十大知识领域 × 关键关系 | 一张图看懂：项目如何推进，各知识领域如何协同</p>
+      <p class="day-motto">先理解整体结构，再记忆具体过程、公式和细节。</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">首轮收官 · 全景梳理</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day10.html">Day 10 · 干系人管理</a>
+  <a href="day10-matrix.html">Day 10 · 权力-关注度矩阵</a>
+  <a href="day10-engagement.html">Day 10 · 参与度阶梯</a>
+  <a href="day10-lifecycle.html" class="on">Day 10 · 生命周期全景</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day10','首轮收官 · 全景梳理');</script>
+
+<h2 class="section-title"><span class="no">01</span>五大过程组</h2>
+<div class="life-grid">
+  <div class="life-card">
+    <h5>启动过程组</h5>
+    <p>让项目正式开始。</p>
+  </div>
+  <div class="life-card">
+    <h5>规划过程组</h5>
+    <p>想清楚怎么做。</p>
+  </div>
+  <div class="life-card">
+    <h5>执行过程组</h5>
+    <p>按计划把事做起来。</p>
+  </div>
+  <div class="life-card">
+    <h5>监控过程组</h5>
+    <p>检查有没有偏、要不要调。</p>
+  </div>
+  <div class="life-card">
+    <h5>收尾过程组</h5>
+    <p>把项目正式结束。</p>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>项目生命周期主线</h2>
+<div class="hero-card">
+  <div class="life-flow">
+    <div class="item">01 启动<small>明确目标、获得授权</small></div>
+    <div class="arrow">→</div>
+    <div class="item">02 规划<small>形成协调一致的整体计划</small></div>
+    <div class="arrow">→</div>
+    <div class="item">03 执行<small>组织资源、开展项目工作</small></div>
+    <div class="arrow">→</div>
+    <div class="item">05 收尾<small>正式结束、移交与总结</small></div>
+  </div>
+  <div class="loop-cap"><b>04 监控（贯穿全程）：</b>持续跟踪项目状态，发现问题、组织纠偏、处理变更。监控不是一个独立阶段，而是伴随启动到收尾全过程。</div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>十大知识领域：三大职能组 + 一个总控中心</h2>
+<div class="integrate-card">
+  <h5>整合管理 · 总控中心</h5>
+  <p>统领全局、协调计划、控制变更、正式收尾。</p>
+</div>
+<div class="duo-grid">
+  <div class="group-card">
+    <h5>交付目标组</h5>
+    <table>
+      <tr><th>范围管理</th><td>做什么、不做什么</td></tr>
+      <tr><th>进度管理</th><td>何时完成</td></tr>
+      <tr><th>成本管理</th><td>花多少钱</td></tr>
+      <tr><th>质量管理</th><td>达到什么标准</td></tr>
+    </table>
+  </div>
+  <div class="group-card">
+    <h5>执行协同组</h5>
+    <table>
+      <tr><th>资源管理</th><td>谁来做、拿什么做</td></tr>
+      <tr><th>沟通管理</th><td>信息怎么传递</td></tr>
+      <tr><th>干系人管理</th><td>谁参与、谁支持</td></tr>
+    </table>
+  </div>
+  <div class="group-card">
+    <h5>保障与外部依赖组</h5>
+    <table>
+      <tr><th>风险管理</th><td>管理不确定性</td></tr>
+      <tr><th>采购管理</th><td>管理外部获取与合同</td></tr>
+    </table>
+  </div>
+  <div class="group-card">
+    <h5>整体视角</h5>
+    <p style="font-size:12px;color:var(--sub);line-height:1.8;margin:0">十大知识领域<b style="color:var(--ink)">不是十个阶段</b>，而是<b style="color:var(--ink)">贯穿项目全生命周期的不同管理视角</b>。每个领域都可能在启动、规划、执行、监控、收尾中发挥作用。</p>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">04</span>一次变更，整个系统如何运转？</h2>
+<div class="change-steps">
+  <div class="change-step">
+    <div class="num">1</div>
+    <p><b>发现变化</b>：项目状态或环境出现变化。</p>
+  </div>
+  <div class="change-step">
+    <div class="num">2</div>
+    <p><b>各领域分析影响</b>：范围 / 进度 / 成本 / 质量 / 资源 / 风险等。<span class="cap">多个领域提供专业分析。</span></p>
+  </div>
+  <div class="change-step">
+    <div class="num">3</div>
+    <p><b>整合管理协调决策</b>：统筹取舍，形成决策。<span class="cap">整合管理负责统筹决策。</span></p>
+  </div>
+  <div class="change-step">
+    <div class="num">4</div>
+    <p><b>更新相关计划并执行</b>：按决策调整计划，落实执行。</p>
+  </div>
+  <div class="change-step">
+    <div class="num">5</div>
+    <p><b>监控结果</b>：验证变更后的实际效果。</p>
+  </div>
+  <div class="change-step">
+    <div class="num">6</div>
+    <p><b>继续推进或收尾</b>：符合预期则推进，达到终点则收尾。</p>
+  </div>
+</div>
+
+<div class="memory-box">
+  项目管理不是十章分散知识，而是在项目生命周期中，用十大知识领域共同管理同一个目标。
+</div>
+
+<div class="quote">先理解整体结构，再记忆具体过程、公式和细节。</div>
+
+<a class="back-link" href="day10.html">← 返回 Day 10 · 干系人管理</a>
+
+</div>
+</body>
+</html>

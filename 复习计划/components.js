@@ -30,8 +30,10 @@
       { id: 'day4', label: 'Day 4 风险管理', href: 'day4.html' },
       { id: 'day5', label: 'Day 5 质量管理', href: 'day5.html' },
       { id: 'day6', label: 'Day 6 整合管理', href: 'day6.html' },
-      { id: 'day7', label: '沟通/干系人', href: null },
-      { id: 'day8', label: '案例题综合', href: null }
+      { id: 'day7', label: 'Day 7 资源管理', href: 'day7.html' },
+      { id: 'day8', label: 'Day 8 沟通管理', href: 'day8.html' },
+      { id: 'day9', label: 'Day 9 采购管理', href: 'day9.html' },
+      { id: 'day10', label: 'Day 10 干系人管理', href: 'day10.html' },
     ];
 
     const currentNum = parseInt((currentDay || '').replace('day', ''), 10) || 0;

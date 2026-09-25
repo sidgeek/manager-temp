@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 8 · 案例题 · 沟通管理问题</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(124,58,237,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.hero-card h3{font-size:20px;font-weight:800;color:var(--ink);margin:0 0 10px}
+.hero-card p{font-size:13px;color:var(--sub);line-height:1.7;margin:0}
+.case-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:22px}
+.material-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;align-items:flex-start}
+.material-item .num{font-size:16px;font-weight:800;color:#c4b5fd;flex:none;width:32px}
+.material-item p{font-size:12.5px;color:var(--sub);line-height:1.7;margin:0}
+.material-item b{color:var(--ink)}
+.analyze-table{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px;overflow-x:auto}
+.analyze-table table{width:100%;font-size:12px;border-collapse:collapse;min-width:640px}
+.analyze-table th,.analyze-table td{text-align:left;padding:10px 12px;border-bottom:1px dashed var(--line);vertical-align:top}
+.analyze-table th{background:#f7f8fc;color:var(--ink);font-weight:700}
+.analyze-table tr:last-child td{border-bottom:none}
+.analyze-table td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+.analyze-table .fix{color:#047857;font-weight:600}
+.plan-table{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px;overflow-x:auto}
+.plan-table table{width:100%;font-size:12px;border-collapse:collapse;min-width:560px;text-align:center}
+.plan-table th,.plan-table td{text-align:center;padding:10px 8px;border:1px solid var(--line)}
+.plan-table th{background:#f3eefe;color:#6d28d9;font-weight:700}
+.plan-table td{background:#fff;color:var(--sub)}
+.plan-table td:first-child{font-weight:700;color:var(--ink)}
+.score-box{background:#fff7e6;border:1px solid #f3ddae;border-radius:14px;padding:16px;margin-bottom:22px}
+.score-box h5{font-size:13px;font-weight:700;color:#8a5200;margin-bottom:10px}
+.score-box ol{font-size:12px;color:#8a5200;line-height:2;padding-left:20px;margin:0}
+.answer-box{background:#e8f8f2;border:1px solid #bfeadd;border-radius:14px;padding:16px;margin-bottom:22px}
+.answer-box h5{font-size:13px;font-weight:700;color:#047857;margin-bottom:10px}
+.answer-box .row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;align-items:flex-start}
+.answer-box .lab{font-size:11.5px;font-weight:700;background:#fff;border:1px solid #bfeadd;border-radius:6px;padding:3px 8px;color:#047857;flex:none}
+.answer-box p{font-size:12px;color:#065f46;line-height:1.7;margin:0}
+.flow-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flow .item{background:#f3eefe;border:1px solid #ddd3f8;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#6d28d9;font-weight:600}
+.flow .arrow{color:#9aa2b1;font-size:13px}
+.memory-box{background:#fff1f2;border:1px solid #fecdd3;border-radius:10px;padding:12px 14px;margin-bottom:22px;font-size:13px;color:#be123c;line-height:1.8;font-weight:600}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+.day-next{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:16px;padding:18px 22px;text-decoration:none;margin:24px 0}
+.day-next h4{margin:0 0 6px;font-size:15px}
+.day-next .items{display:flex;gap:8px;flex-wrap:wrap}
+.day-next .items .it{font-size:11.5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 10px}
+.day-next .right{font-size:13px;opacity:.9}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 8</h1>
+      <p class="day-sub">案例题 | 从材料证据找到沟通管理问题</p>
+      <p class="day-motto">通知都发了，为什么项目还是出现分歧？</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">沟通管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day8.html">Day 8 · 沟通管理</a>
+  <a href="day8-channel.html">Day 8 · 渠道计算</a>
+  <a href="day8-case.html" class="on">Day 8 · 案例题</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day8','沟通管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>案例材料</h2>
+<div class="hero-card">
+  <h3>阅读下列材料，识别其中的沟通管理问题</h3>
+  <p>对照材料，逐条分析问题与改进方向。</p>
+</div>
+<div class="case-grid">
+  <div class="material-item">
+    <div class="num">01</div>
+    <p>项目启动后，<b>项目经理没有明确各方的信息需求、沟通频率和责任人</b>。</p>
+  </div>
+  <div class="material-item">
+    <div class="num">02</div>
+    <p>研发使用<b>微信讨论需求</b>，客户通过<b>邮件提出意见</b>，重要信息分散。</p>
+  </div>
+  <div class="material-item">
+    <div class="num">03</div>
+    <p>客户提出"月底完成上线准备"，研发和测试<b>对完成标准的理解不一致</b>，项目经理没有组织确认。</p>
+  </div>
+  <div class="material-item">
+    <div class="num">04</div>
+    <p>项目经理定期发送周报，但客户多次反馈<b>缺少风险和决策事项</b>，项目经理没有调整。</p>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>问题分析</h2>
+<div class="analyze-table">
+  <table>
+    <tr><th>编号</th><th>材料事实</th><th>对应问题</th><th>改进方向</th></tr>
+    <tr><td>01</td><td>沟通对象、频率和责任人未明确</td><td>规划沟通管理不足</td><td class="fix">制定沟通管理计划</td></tr>
+    <tr><td>02</td><td>信息分散在微信和邮件</td><td>重要信息缺乏统一管理</td><td class="fix">规范渠道，集中记录关键需求</td></tr>
+    <tr><td>03</td><td>月底完成上线准备，理解不一致</td><td>关键要求未澄清确认</td><td class="fix">明确范围、时间和完成标准，组织确认</td></tr>
+    <tr><td>04</td><td>客户反馈周报缺少重要信息</td><td>监督沟通不到位</td><td class="fix">调整周报内容，建立反馈机制</td></tr>
+  </table>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>沟通管理计划至少明确什么？</h2>
+<div class="plan-table">
+  <table>
+    <tr><th>对象</th><th>内容</th><th>责任人</th><th>频率</th><th>渠道</th><th>反馈</th></tr>
+    <tr><td>谁需要</td><td>需要什么</td><td>谁提供</td><td>何时提供</td><td>如何提供</td><td>如何确认与升级</td></tr>
+  </table>
+</div>
+
+<h2 class="section-title"><span class="no">04</span>本题评分点</h2>
+<div class="score-box">
+  <h5>每个问题对应一个评分点</h5>
+  <ol>
+    <li>未制定完善的沟通管理计划。</li>
+    <li>重要信息缺乏统一记录和管理。</li>
+    <li>关键交付要求没有澄清确认。</li>
+    <li>未检查沟通效果并根据客户反馈调整。</li>
+  </ol>
+</div>
+
+<h2 class="section-title"><span class="no">05</span>参考答案与解析</h2>
+<div class="answer-box">
+  <h5>对照参考答案，学习更准确的表述</h5>
+  <div class="row">
+    <span class="lab">原答案</span>
+    <p>应采用互动式沟通。</p>
+  </div>
+  <div class="row">
+    <span class="lab">批注</span>
+    <p>不能一律更换沟通方式。</p>
+  </div>
+  <div class="row">
+    <span class="lab">更准确的措施</span>
+    <p>保留必要的推式沟通，完善周报内容，增加反馈确认与跟进沟通。</p>
+  </div>
+</div>
+
+<div class="memory-box">
+  推式沟通本身不是错误，缺少反馈才是问题。
+</div>
+
+<h2 class="section-title"><span class="no">06</span>解题套路</h2>
+<div class="flow-box">
+  <div class="flow">
+    <div class="item">材料事实</div>
+    <div class="arrow">→</div>
+    <div class="item">判断问题</div>
+    <div class="arrow">→</div>
+    <div class="item">标准术语</div>
+    <div class="arrow">→</div>
+    <div class="item">改进措施</div>
+  </div>
+  <p style="font-size:12px;color:var(--sub);margin:10px 0 0">一个独立问题，对应一个评分点。</p>
+</div>
+
+<a href="day9.html" class="day-next">
+  <div>
+    <h4>继续 Day 9：项目采购管理</h4>
+    <div class="items">
+      <span class="it">合同生命周期</span>
+      <span class="it">三类合同</span>
+      <span class="it">RFI/RFQ/RFP</span>
+    </div>
+  </div>
+  <div class="right">进入下一阶段 →</div>
+</a>
+
+<a class="back-link" href="day8.html">← 返回 Day 8 · 沟通管理</a>
+
+</div>
+</body>
+</html>
