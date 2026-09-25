@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 1 · 系统集成项目管理工程师</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(79,95,224,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-stage{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin-bottom:22px}
+.day-stage h3{font-size:15px;font-weight:700;margin-bottom:12px}
+.day-stage .tags{display:flex;flex-wrap:wrap;gap:10px}
+.day-stage .tag{background:#f4f6fb;border:1px solid #e4e7ef;border-radius:20px;padding:5px 12px;font-size:12.5px;color:var(--ink)}
+.day-stage .tag.done{background:#e8f8f2;color:#0a6b52;border-color:#bfeadd}
+.day-stage .next{font-size:12.5px;color:var(--sub);margin-top:12px}
+.day-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.day-grid{grid-template-columns:1fr}}
+.day-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 8px rgba(20,25,50,.04)}
+.day-card h4{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.day-card .topic{font-size:13px;color:var(--sub);line-height:1.7}
+.day-card .topic b{color:var(--accent);font-size:15px;display:block;margin-bottom:6px}
+.data-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.data-row:last-child{border-bottom:none}
+.data-row .k{color:var(--sub)}
+.data-row .v{font-weight:700;color:var(--ink)}
+.data-row .v.ok{color:#059669}
+.skill-row{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:5px 0}
+.skill-row .name{width:5em;color:var(--sub);flex:none}
+.stars{display:flex;gap:2px;flex:none}
+.star{width:14px;height:14px;background:#e2e8f0;border-radius:2px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.on{background:#f59e0b}
+.day-tip{background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:12px;font-size:12.5px;color:var(--sub);line-height:1.7}
+.day-tip b{color:var(--accent)}
+.knowledge{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.knowledge{grid-template-columns:1fr}}
+.know-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.know-card h4{font-size:14px;font-weight:700;margin-bottom:14px}
+.know-card h4 span{background:var(--accent);color:#fff;font-size:11px;padding:2px 8px;border-radius:6px;margin-right:8px}
+.process-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
+.process-flow .p{font-size:12px;background:#f4f6fb;border:1px solid #e4e7ef;border-radius:8px;padding:5px 10px;color:var(--ink)}
+.process-flow .a{font-size:12px;color:var(--sub)}
+.framework{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.groups{display:flex;flex-direction:column;gap:6px;min-width:90px}
+.groups .g{font-size:12px;padding:6px 10px;border-radius:8px;text-align:center;color:#fff;font-weight:600}
+.g-start{background:var(--g-start)}.g-plan{background:var(--g-plan)}.g-exec{background:var(--g-exec)}.g-mon{background:var(--g-mon)}.g-close{background:var(--g-close)}
+.areas{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:6px;min-width:180px}
+.areas .a{font-size:11.5px;background:#f7f8fc;border:1px solid #e4e7ef;border-radius:8px;padding:5px 8px;color:var(--ink)}
+.wbs-box{background:linear-gradient(135deg,#eef0ff 0%,#f7f3ff 100%);border:1px solid #e0d3fb;border-radius:12px;padding:14px;margin-top:10px}
+.wbs-title{font-weight:700;color:#5b2bb8;font-size:13px;margin-bottom:8px}
+.wbs-list{font-size:12px;color:var(--sub);line-height:1.8}
+.wbs-list li{margin:5px 0;list-style:none;padding-left:18px;position:relative}
+.wbs-list li:before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;background:#7c3aed;border-radius:50%}
+.review{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.review{grid-template-columns:1fr}}
+.compare{font-size:12px;color:var(--sub);line-height:1.8;margin-top:8px}
+.compare .vs{display:flex;align-items:flex-start;gap:8px;margin:8px 0;padding:8px;background:#f7f8fc;border-radius:8px}
+.compare .vs .dot{width:7px;height:7px;border-radius:50%;margin-top:7px;flex:none}
+.dot-red{background:#e11d48}.dot-blue{background:#2563eb}
+.weak-list{margin-top:8px}
+.weak-list li{font-size:12.5px;color:var(--sub);padding:8px 0;border-bottom:1px dashed var(--line);list-style-position:inside}
+.weak-list li:last-child{border-bottom:none}
+.day2{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;text-decoration:none;color:inherit;transition:.15s;cursor:pointer}
+.day2:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,95,224,.1)}
+.day2-left h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.day2-left .items{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.day2-left .it{font-size:12px;background:#f4f6fb;border:1px solid #e4e7ef;border-radius:8px;padding:5px 10px;color:var(--ink)}
+.day2-right{font-size:12.5px;color:var(--sub);max-width:200px;line-height:1.7}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 1</h1>
+      <p class="day-sub">系统集成项目管理工程师</p>
+      <p class="day-motto">一步一个脚印，把知识变成自己的能力</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">10 月 24 日</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前进度</div>
+        <div class="val">Day 1 / 约 60 天</div>
+        <div class="bar"><i style="width:2%"></i></div>
+        <div class="num">已完成 2%</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day1','基础框架构建');</script>
+
+<section class="day-grid">
+  <div class="day-card">
+    <h4>学习主题</h4>
+    <div class="topic"><b>项目管理整体框架 + 范围管理</b>建立全局认知，理解五大过程组、十大知识领域的组织方式，掌握范围管理六个过程及 WBS 核心概念。</div>
+  </div>
+  <div class="day-card">
+    <h4>学习数据</h4>
+    <div class="data-row"><span class="k">今日学习题量</span><span class="v">28 题</span></div>
+    <div class="data-row"><span class="k">第一轮基础测试</span><span class="v ok">10 / 10</span></div>
+    <div class="data-row"><span class="k">第二轮专项测试</span><span class="v">8 / 10</span></div>
+    <div class="data-row"><span class="k">范围专项</span><span class="v ok">8 / 8</span></div>
+  </div>
+  <div class="day-card">
+    <h4>学习能力分析</h4>
+    <div class="skill-row"><span class="name">理解能力</span><div class="stars"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star"></span></div></div>
+    <div class="skill-row"><span class="name">概念区分</span><div class="stars"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star"></span></div></div>
+    <div class="skill-row"><span class="name">术语记忆</span><div class="stars"><span class="star on"></span><span class="star on"></span><span class="star"></span><span class="star"></span><span class="star"></span></div></div>
+    <div class="skill-row"><span class="name">计算能力</span><div class="stars"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star"></span><span class="star"></span></div></div>
+    <div class="skill-row"><span class="name">案例应用</span><div class="stars"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star"></span><span class="star"></span></div></div>
+    <div class="day-tip"><b>当前重点：</b>加强考试标准术语记忆；具备项目实践经验，管理逻辑理解较快。</div>
+  </div>
+</section>
+
+<section class="knowledge">
+  <div class="know-card">
+    <h4><span>1</span>项目管理整体框架</h4>
+    <div class="framework">
+      <div class="groups">
+        <div class="g g-start">启动</div>
+        <div class="g g-plan">规划</div>
+        <div class="g g-exec">执行</div>
+        <div class="g g-mon">监控</div>
+        <div class="g g-close">收尾</div>
+      </div>
+      <div style="font-size:12px;color:var(--sub);line-height:1.7">
+        <p style="margin-bottom:8px"><b>过程组</b>：项目什么时候该做什么</p>
+        <div class="areas">
+          <div class="a">1 整合管理</div>
+          <div class="a">6 资源管理</div>
+          <div class="a">2 范围管理</div>
+          <div class="a">7 沟通管理</div>
+          <div class="a">3 进度管理</div>
+          <div class="a">8 风险管理</div>
+          <div class="a">4 成本管理</div>
+          <div class="a">9 采购管理</div>
+          <div class="a">5 质量管理</div>
+          <div class="a">10 干系人管理</div>
+        </div>
+        <p style="margin-top:8px"><b>知识领域</b>：项目管理什么内容</p>
+      </div>
+    </div>
+  </div>
+  <div class="know-card">
+    <h4><span>2</span>范围管理六过程</h4>
+    <div class="process-flow">
+      <span class="p">规划范围管理</span><span class="a">→</span>
+      <span class="p">收集需求</span><span class="a">→</span>
+      <span class="p">定义范围</span><span class="a">→</span>
+      <span class="p">创建 WBS</span><span class="a">→</span>
+      <span class="p">确认范围</span><span class="a">→</span>
+      <span class="p">控制范围</span>
+    </div>
+    <div class="wbs-box">
+      <div class="wbs-title">重点：WBS（范围管理的核心工具）</div>
+      <ul class="wbs-list">
+        <li><b>Work Breakdown Structure</b> 工作分解结构</li>
+        <li>将项目范围逐层分解为更小的、可管理的工作单元</li>
+        <li>最底层：<b>工作包 Work Package</b></li>
+        <li>是进度、成本、资源等管理的基础</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="review">
+  <div class="know-card">
+    <h4><span>!</span>今日复盘 · 易错点</h4>
+    <div class="compare">
+      <div class="vs"><span class="dot dot-red"></span><div><b>控制质量 VS 确认范围</b><br>控制质量：检查成果是否符合标准；确认范围：客户正式验收成果。<br>流程：<b>控制质量 → 确认范围</b></div></div>
+      <div class="vs"><span class="dot dot-blue"></span><div><b>范围蔓延 VS 镀金</b><br>范围蔓延：客户不断增加需求；镀金：团队主动增加额外功能。<br>口诀：<b>客户加需求 = 范围蔓延；自己主动加 = 镀金</b></div></div>
+    </div>
+  </div>
+  <div class="know-card">
+    <h4><span>?</span>今日复盘 · 当前薄弱点</h4>
+    <ol class="weak-list">
+      <li><b>考试术语精准记忆</b>：容易混淆相似概念</li>
+      <li><b>知识点边界区分</b>：如质量 / 范围 / 成本的边界</li>
+      <li><b>计算题熟练度</b>：网络图、关键路径、三点估算等</li>
+    </ol>
+    <div class="day-tip" style="margin-top:10px">针对薄弱点，在 Day 2 重点突破。</div>
+  </div>
+</section>
+
+<a href="day2.html" class="day2">
+  <div class="day2-left">
+    <h4>Day 2 计划：进度管理</h4>
+    <div class="items">
+      <span class="it">六个进度过程</span>
+      <span class="it">网络图</span>
+      <span class="it">关键路径</span>
+      <span class="it">总浮动 / 自由浮动</span>
+      <span class="it">三点估算</span>
+    </div>
+  </div>
+  <div class="day2-right">继续加油！向下一个知识点进发。→</div>
+</a>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

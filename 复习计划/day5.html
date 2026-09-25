@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 5 · 质量管理</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(79,95,224,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.day-tip{background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:12.5px;color:var(--sub);line-height:1.7}
+/* 三大过程 */
+.process-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.process-grid-3{grid-template-columns:1fr}}
+.process-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;height:100%}
+.process-card .p-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.process-card .p-header .no{background:var(--accent);color:#fff;font-size:11px;padding:2px 8px;border-radius:6px;flex:none}
+.process-card .p-header h4{font-size:14px;font-weight:700;margin:0}
+.process-card .p-header .en{font-size:11px;color:var(--sub);margin-top:2px}
+.process-card .p-tag{display:inline-block;font-size:18px;font-weight:800;color:var(--ink);margin:8px 0 12px;background:#f7f8fc;border-radius:8px;padding:6px 12px}
+.process-card ul{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px;margin:0 0 12px}
+.process-card li{margin:4px 0}
+.process-card .p-output{font-size:11.5px;color:#8a5200;background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:8px 10px;line-height:1.6}
+.process-card.plan{border-top:4px solid #2563eb}
+.process-card.manage{border-top:4px solid #f59e0b}
+.process-card.control{border-top:4px solid #059669}
+/* 易混点 */
+.confuse-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.confuse-grid{grid-template-columns:1fr}}
+.confuse-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.confuse-card.wide{grid-column:1 / -1}
+.confuse-card h5{font-size:13px;font-weight:700;margin-bottom:8px}
+.confuse-card p{font-size:12px;color:var(--sub);line-height:1.7;margin:0 0 10px}
+.confuse-card .highlight{display:inline-block;font-size:12px;font-weight:700;color:#047857;background:#ecfdf5;border:1px solid #bfeadd;border-radius:8px;padding:5px 10px}
+.confuse-card .flow-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+.confuse-card .flow-row .box{background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px;text-align:center;flex:1;min-width:120px}
+.confuse-card .flow-row .box small{display:block;color:var(--sub);font-size:11px;margin-top:2px}
+.confuse-card .note{font-size:11.5px;color:#8a5200;background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:8px 10px;margin-top:10px}
+/* 学习状态 */
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.summary{grid-template-columns:1fr}}
+.sum-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.sum-list{font-size:12px;color:var(--sub);line-height:1.8;padding:0;list-style:none;margin:0}
+.sum-list li{padding:3px 0;border-bottom:1px dashed var(--line)}
+.sum-list li:last-child{border-bottom:none}
+.stars{display:flex;gap:2px}
+.star{width:14px;height:14px;background:#e2e8f0;border-radius:2px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.on{background:#f59e0b}
+/* 下一日 */
+.day-next{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;text-decoration:none;color:inherit;transition:.15s;cursor:pointer}
+.day-next:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,95,224,.1)}
+.day-next h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.day-next .items{display:flex;flex-wrap:wrap;gap:8px}
+.day-next .it{font-size:12px;background:#f4f6fb;border:1px solid #e4e7ef;border-radius:8px;padding:5px 10px;color:var(--ink)}
+.day-next .right{font-size:12.5px;color:var(--sub)}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 5</h1>
+      <p class="day-sub">质量管理 | 从标准、过程到结果</p>
+      <p class="day-motto">质量不能只靠最后测试，更重要的是在过程中把质量做出来</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">质量与整合管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day5.html" class="on">Day 5 · 质量管理</a>
+  <a href="day5-tool.html">Day 5 · 七种工具</a>
+  <a href="day5-cost.html">Day 5 · 质量成本</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day5','质量与整合管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>质量管理三大过程</h2>
+<div class="process-grid-3">
+  <div class="process-card plan">
+    <div class="p-header">
+      <span class="no">01</span>
+      <div>
+        <h4>规划质量管理</h4>
+        <div class="en">Plan Quality Management</div>
+      </div>
+    </div>
+    <div class="p-tag">定标准</div>
+    <ul>
+      <li>明确质量要求</li>
+      <li>确定质量指标</li>
+      <li>明确检查方式</li>
+    </ul>
+    <div class="p-output"><b>输出成果：</b>质量管理计划、质量测量指标</div>
+  </div>
+  <div class="process-card manage">
+    <div class="p-header">
+      <span class="no">02</span>
+      <div>
+        <h4>管理质量</h4>
+        <div class="en">Manage Quality</div>
+      </div>
+    </div>
+    <div class="p-tag">管过程</div>
+    <ul>
+      <li>检查流程、规范和方法</li>
+      <li>是否正确执行</li>
+    </ul>
+    <div class="p-output"><b>关键内容：</b>质量审计、过程改进、质量保证</div>
+  </div>
+  <div class="process-card control">
+    <div class="p-header">
+      <span class="no">03</span>
+      <div>
+        <h4>控制质量</h4>
+        <div class="en">Control Quality</div>
+      </div>
+    </div>
+    <div class="p-tag">查结果</div>
+    <ul>
+      <li>通过测试、检查和测量</li>
+      <li>判断成果是否符合质量标准</li>
+    </ul>
+    <div class="p-output"><b>关键内容：</b>测试、缺陷、检查、测量</div>
+  </div>
+</div>
+<div class="day-tip"><b>口诀：</b>规划质量：标准是什么 | 管理质量：过程对不对 | 控制质量：结果合不合格</div>
+
+<h2 class="section-title"><span class="no">02</span>高频易混点与控制质量 vs 确认范围</h2>
+<div class="confuse-grid">
+  <div class="confuse-card">
+    <h5>质量审计 → 管理质量</h5>
+    <p>检查流程、规范、方法是否落实</p>
+    <div class="highlight">查过程，不是查产品</div>
+  </div>
+  <div class="confuse-card">
+    <h5>测试 / 检查 / 测量 → 控制质量</h5>
+    <p>检查可交付成果是否符合标准</p>
+    <div class="highlight">查结果</div>
+  </div>
+  <div class="confuse-card wide">
+    <h5>控制质量 vs 确认范围</h5>
+    <div class="flow-row">
+      <div class="box">控制质量<small>内部判断产品是否合格</small></div>
+      <span>→</span>
+      <div class="box">确认范围<small>客户正式接受成果</small></div>
+      <span>→</span>
+      <div class="box">客户正式验收</div>
+    </div>
+    <div class="note">💡 内部检查合格 ≠ 客户已经验收</div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>今日学习状态</h2>
+<div class="summary">
+  <div class="sum-card">
+    <h5>今日掌握</h5>
+    <ul class="sum-list">
+      <li>质量管理三个过程</li>
+      <li>管理质量与控制质量区别</li>
+      <li>控制质量与确认范围区别</li>
+    </ul>
+  </div>
+  <div class="sum-card">
+    <h5>今日错题</h5>
+    <ul class="sum-list">
+      <li>质量审计的归属</li>
+    </ul>
+  </div>
+  <div class="sum-card">
+    <h5>强化记忆</h5>
+    <ul class="sum-list">
+      <li>质量审计 → 管理质量</li>
+      <li>闭卷复述：三大过程完整复述</li>
+    </ul>
+  </div>
+</div>
+<div class="day-tip">💡 质量不能只靠最后测试，更重要的是在过程中把质量做出来。</div>
+
+<a href="day6.html" class="day-next">
+  <div>
+    <h4>Day 6 计划：整合管理</h4>
+    <div class="items">
+      <span class="it">制定项目章程</span>
+      <span class="it">制定项目管理计划</span>
+      <span class="it">指导与管理项目工作</span>
+      <span class="it">监控项目工作</span>
+    </div>
+  </div>
+  <div class="right">一步一个脚印，继续加油！→</div>
+</a>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

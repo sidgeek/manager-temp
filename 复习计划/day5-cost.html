@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 5 · 质量成本 & 案例题</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(79,95,224,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.cost-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px}
+@media(max-width:700px){.cost-grid{grid-template-columns:1fr}}
+.cost-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.cost-card.good{border-top:4px solid #059669}
+.cost-card.bad{border-top:4px solid #e11d48}
+.cost-card h5{font-size:14px;font-weight:700;margin-bottom:6px}
+.cost-card p{font-size:12px;color:var(--sub);margin:0 0 10px}
+.cost-card ul{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px;margin:0}
+.cost-card li{margin:4px 0}
+.cost-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.cost-flow .cost-step{background:#f7f8fb;border:1px solid #e4e7ef;border-radius:20px;padding:5px 12px;font-size:12px;color:var(--ink)}
+.cost-flow .cost-step.fail1{background:#fff1f2;color:#be123c;border-color:#fecdd3}
+.cost-flow .cost-step.fail2{background:#ffe4e6;color:#9f1239;border-color:#fecdd3}
+.cost-flow span{color:#9aa2b1;font-size:12px}
+.cost-tip{font-size:11.5px;color:#8a5200;background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:8px 10px;display:inline-block;margin-bottom:22px}
+.cost-detail-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+@media(max-width:900px){.cost-detail-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.cost-detail-grid{grid-template-columns:1fr}}
+.cost-detail{background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:12px}
+.cost-detail h6{font-size:12px;font-weight:700;margin-bottom:6px}
+.cost-detail .kw{font-size:11px;color:#8a5200;background:#fff7e6;border:1px solid #f3ddae;border-radius:6px;padding:2px 6px;display:inline-block;margin-bottom:6px}
+.cost-detail ul{font-size:11.5px;color:var(--sub);line-height:1.7;padding-left:16px;margin:0}
+.cost-detail li{margin:2px 0}
+.case-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.case-box h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.case-box p{font-size:12px;color:var(--sub);line-height:1.7;margin:0 0 10px}
+.case-box .case-points{font-size:12px;color:var(--sub);line-height:1.8;background:#f7f8fc;border-radius:10px;padding:12px}
+.case-box .case-points ol{padding-left:18px;margin:0}
+.case-box .case-points li{margin:4px 0}
+.method-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.method-box h5{font-size:13px;font-weight:700;margin-bottom:12px}
+.method-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.method-flow span{color:#9aa2b1}
+.method-rule{font-size:12px;color:#047857;background:#ecfdf5;border:1px solid #bfeadd;border-radius:8px;padding:6px 10px;display:inline-block;margin-bottom:12px}
+.method-compare{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:700px){.method-compare{grid-template-columns:1fr}}
+.method-compare .bad{color:#be123c;background:#fff1f2;border:1px solid #fecdd3;border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.6}
+.method-compare .good{color:#047857;background:#ecfdf5;border:1px solid #bfeadd;border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.6}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.summary{grid-template-columns:1fr}}
+.sum-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.stars{display:flex;gap:2px}
+.star{width:14px;height:14px;background:#e2e8f0;border-radius:2px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.on{background:#f59e0b}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 5</h1>
+      <p class="day-sub">质量成本 & 案例题</p>
+      <p class="day-motto">越晚发现问题，修复代价通常越高</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">质量与整合管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day5.html">Day 5 · 质量管理</a>
+  <a href="day5-tool.html">Day 5 · 七种工具</a>
+  <a href="day5-cost.html" class="on">Day 5 · 质量成本</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day5','质量与整合管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>质量成本两大类</h2>
+<div class="cost-grid">
+  <div class="cost-card good">
+    <h5>一致性成本</h5>
+    <p>为了把事情做好而花的钱</p>
+    <ul>
+      <li><b>预防成本</b>：防止缺陷发生，提前投入的成本</li>
+      <li><b>评估成本</b>：检查有没有缺陷，进行评估的成本</li>
+    </ul>
+  </div>
+  <div class="cost-card bad">
+    <h5>非一致性成本</h5>
+    <p>事情没做好以后付出的代价</p>
+    <ul>
+      <li><b>内部失败成本</b>：在交付前发现问题而产生的成本</li>
+      <li><b>外部失败成本</b>：在交付后发现问题而产生的成本</li>
+    </ul>
+  </div>
+</div>
+<div class="cost-flow">
+  <div class="cost-step">预防</div>
+  <span>→</span>
+  <div class="cost-step">评估</div>
+  <span>→</span>
+  <div class="cost-step fail1">内部失败</div>
+  <span>→</span>
+  <div class="cost-step fail2">外部失败</div>
+</div>
+<div class="cost-tip">越晚发现问题，修复代价通常越高</div>
+
+<h2 class="section-title"><span class="no">02</span>四类质量成本典型举例</h2>
+<div class="cost-detail-grid">
+  <div class="cost-detail">
+    <h6>预防成本</h6>
+    <div class="kw">关键词：防止缺陷发生</div>
+    <ul><li>培训</li><li>规范制定</li><li>流程建设</li></ul>
+  </div>
+  <div class="cost-detail">
+    <h6>评估成本</h6>
+    <div class="kw">关键词：检查有没有缺陷</div>
+    <ul><li>测试</li><li>检查</li><li>质量审计</li></ul>
+  </div>
+  <div class="cost-detail">
+    <h6>内部失败成本</h6>
+    <div class="kw">关键词：交付前发现问题</div>
+    <ul><li>返工</li><li>报废</li><li>重新测试</li></ul>
+  </div>
+  <div class="cost-detail">
+    <h6>外部失败成本</h6>
+    <div class="kw">关键词：交付后发现问题</div>
+    <ul><li>客户投诉</li><li>整改 / 赔偿</li><li>售后修复</li></ul>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>今日案例题</h2>
+<div class="case-box">
+  <p><b>案例背景：</b>为赶进度取消代码评审 → 测试阶段大量返工 → 交付后客户发现严重问题</p>
+  <div class="case-points">
+    <b>评分点分析：</b>
+    <ol>
+      <li>未进行代码评审 → 质量管理不到位</li>
+      <li>过度依赖最终测试 → 忽视过程质量管理</li>
+      <li>测试阶段大量返工 → 内部失败成本</li>
+      <li>客户交付后发现问题 → 外部失败成本</li>
+      <li>材料没有说的，不要自己脑补</li>
+    </ol>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">04</span>案例题答题方法</h2>
+<div class="method-box">
+  <div class="method-flow">找事实 <span>→</span> 做判断 <span>→</span> 对应过程 <span>→</span> 写标准术语</div>
+  <div class="method-rule">一个问题 = 一个评分点</div>
+  <div class="method-compare">
+    <div class="bad">❌ 错误示范：预防、评估成本过低导致外部失败</div>
+    <div class="good">✅ 正确做法：只写材料能够证明的内容 | 不把多个问题强行合并</div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">05</span>学习现状与下一步</h2>
+<div class="summary">
+  <div class="sum-card">
+    <h5>当前掌握</h5>
+    <div class="stars" style="margin-bottom:10px"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span></div>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">质量成本分类与四类典型已掌握。</div>
+  </div>
+  <div class="sum-card">
+    <h5>学习状态</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">质量成本专项：5/5 ✅。案例题当前问题：理解正确，证据边界还要继续训练。</div>
+  </div>
+  <div class="sum-card">
+    <h5>下一步</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">先看材料发生了什么，再决定用哪个知识点。</div>
+  </div>
+</div>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

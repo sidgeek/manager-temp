@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 5 · 七种质量工具</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(79,95,224,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+@media(max-width:900px){.tool-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.tool-grid{grid-template-columns:1fr}}
+.tool-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;height:100%;display:flex;flex-direction:column}
+.tool-card h5{font-size:13px;font-weight:700;margin-bottom:6px}
+.tool-card h5 small{display:block;font-size:11px;color:var(--sub);font-weight:400;margin-top:2px}
+.tool-card .tag{display:inline-block;font-size:14px;font-weight:800;color:#1f2937;background:#fef3c7;border-radius:20px;padding:5px 12px;margin-top:10px;margin-bottom:6px;align-self:flex-start}
+.tool-card p{font-size:11.5px;color:var(--sub);line-height:1.6;margin:0}
+.tool-chart{height:90px;background:#f7f8fc;border:1px solid #e4e7ef;border-radius:10px;margin-top:auto;padding:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.tool-chart svg{width:100%;height:100%}
+.memory-box{background:#ecfdf5;border:1px solid #bfeadd;border-radius:10px;padding:12px 14px;margin-bottom:22px;font-size:12.5px;color:#047857;line-height:1.8;font-weight:600}
+.control-chart-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.control-chart-box h5{font-size:13px;font-weight:700;margin-bottom:12px}
+.cc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:12px}
+@media(max-width:700px){.cc-grid{grid-template-columns:1fr}}
+.cc-grid div{font-size:12px;color:var(--sub);line-height:1.8;background:#f7f8fc;border-radius:8px;padding:10px}
+.cc-grid div b{color:var(--ink)}
+.control-chart-box .important{display:inline-block;font-size:14px;font-weight:800;color:#be123c;background:#fff1f2;border:1px solid #fecdd3;border-radius:8px;padding:6px 12px;margin:8px 0}
+.control-chart-box p{font-size:12px;color:var(--sub);line-height:1.7;margin:8px 0 0}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.summary{grid-template-columns:1fr}}
+.sum-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.stars{display:flex;gap:2px}
+.star{width:14px;height:14px;background:#e2e8f0;border-radius:2px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.on{background:#f59e0b}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 5</h1>
+      <p class="day-sub">七种质量工具 | 一张图记住用途</p>
+      <p class="day-motto">工具本身不复杂，关键是知道什么时候用哪一个</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">质量与整合管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day5.html">Day 5 · 质量管理</a>
+  <a href="day5-tool.html" class="on">Day 5 · 七种工具</a>
+  <a href="day5-cost.html">Day 5 · 质量成本</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day5','质量与整合管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>七种质量工具速览</h2>
+<div class="tool-grid">
+  <div class="tool-card">
+    <h5>01 因果图 <small>鱼骨图 / 石川图</small></h5>
+    <div class="tool-chart">
+      <svg viewBox="0 0 180 90" preserveAspectRatio="xMidYMid meet">
+        <line x1="8" y1="45" x2="145" y2="45" stroke="#4f5fe0" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="145,45 168,32 168,58" fill="#4f5fe0"/>
+        <text x="160" y="50" font-size="9" fill="#fff">问题</text>
+        <line x1="45" y1="45" x2="75" y2="22" stroke="#7c3aed" stroke-width="2"/>
+        <line x1="80" y1="45" x2="105" y2="18" stroke="#7c3aed" stroke-width="2"/>
+        <line x1="110" y1="45" x2="132" y2="24" stroke="#7c3aed" stroke-width="2"/>
+        <line x1="60" y1="31" x2="72" y2="16" stroke="#9aa2b1" stroke-width="1.2"/>
+        <line x1="55" y1="35" x2="68" y2="24" stroke="#9aa2b1" stroke-width="1.2"/>
+        <line x1="90" y1="28" x2="100" y2="14" stroke="#9aa2b1" stroke-width="1.2"/>
+        <line x1="120" y1="32" x2="128" y2="18" stroke="#9aa2b1" stroke-width="1.2"/>
+      </svg>
+    </div>
+    <div class="tag">找原因</div>
+    <p>分析问题产生的根本原因</p>
+  </div>
+  <div class="tool-card">
+    <h5>02 流程图</h5>
+    <div class="tool-chart">
+      <svg viewBox="0 0 180 80" preserveAspectRatio="xMidYMid meet">
+        <rect x="8" y="28" width="36" height="22" rx="5" stroke="#2563eb" fill="#eef2ff" stroke-width="1.5"/>
+        <text x="26" y="42" font-size="8" text-anchor="middle" fill="#2563eb">开始</text>
+        <line x1="44" y1="39" x2="60" y2="39" stroke="#6b7280" stroke-width="1.5"/>
+        <polygon points="60,39 56,36 56,42" fill="#6b7280"/>
+        <rect x="62" y="28" width="44" height="22" stroke="#7c3aed" fill="#f3eefe" stroke-width="1.5"/>
+        <text x="84" y="42" font-size="7" text-anchor="middle" fill="#7c3aed">处理</text>
+        <line x1="106" y1="39" x2="122" y2="39" stroke="#6b7280" stroke-width="1.5"/>
+        <polygon points="122,39 118,36 118,42" fill="#6b7280"/>
+        <polygon points="144,39 130,28 130,50" stroke="#059669" fill="#e8f8f2" stroke-width="1.5"/>
+        <text x="139" y="42" font-size="7" text-anchor="middle" fill="#059669">判断</text>
+        <line x1="144" y1="39" x2="160" y2="39" stroke="#6b7280" stroke-width="1.5"/>
+        <polygon points="160,39 156,36 156,42" fill="#6b7280"/>
+        <rect x="162" y="28" width="14" height="22" rx="4" stroke="#6b7280" fill="#f7f8fc" stroke-width="1.2"/>
+      </svg>
+    </div>
+    <div class="tag">看过程</div>
+    <p>梳理流程步骤，发现重复、等待和异常环节</p>
+  </div>
+  <div class="tool-card">
+    <h5>03 核查表</h5>
+    <div class="tool-chart">
+      <svg viewBox="0 0 180 90" preserveAspectRatio="xMidYMid meet">
+        <rect x="18" y="10" width="144" height="70" fill="#fff" stroke="#e4e7ef" stroke-width="1.5" rx="4"/>
+        <line x1="18" y1="26" x2="162" y2="26" stroke="#4f5fe0" stroke-width="1.5"/>
+        <line x1="62" y1="10" x2="62" y2="80" stroke="#e4e7ef" stroke-width="1"/>
+        <line x1="110" y1="10" x2="110" y2="80" stroke="#e4e7ef" stroke-width="1"/>
+        <text x="40" y="21" font-size="8" text-anchor="middle" fill="#1f2937">缺陷</text>
+        <text x="86" y="21" font-size="8" text-anchor="middle" fill="#1f2937">次数</text>
+        <text x="136" y="21" font-size="8" text-anchor="middle" fill="#1f2937">合计</text>
+        <text x="40" y="40" font-size="8" text-anchor="middle" fill="#4b5563">A</text>
+        <text x="86" y="40" font-size="8" text-anchor="middle" fill="#4b5563">正</text>
+        <text x="136" y="40" font-size="8" text-anchor="middle" fill="#4b5563">5</text>
+        <text x="40" y="56" font-size="8" text-anchor="middle" fill="#4b5563">B</text>
+        <text x="86" y="56" font-size="8" text-anchor="middle" fill="#4b5563">T</text>
+        <text x="136" y="56" font-size="8" text-anchor="middle" fill="#4b5563">2</text>
+        <text x="40" y="72" font-size="8" text-anchor="middle" fill="#4b5563">C</text>
+        <text x="86" y="72" font-size="8" text-anchor="middle" fill="#4b5563">一</text>
+        <text x="136" y="72" font-size="8" text-anchor="middle" fill="#4b5563">1</text>
+      </svg>
+    </div>
+    <div class="tag">收数据</div>
+    <p>记录缺陷类型、次数和分布</p>
+  </div>
+  <div class="tool-card">
+    <h5>04 帕累托图</h5>
+    <div class="tool-chart">
+      <svg viewBox="0 0 180 90" preserveAspectRatio="xMidYMid meet">
+        <line x1="22" y1="72" x2="168" y2="72" stroke="#6b7280" stroke-width="1"/>
+        <line x1="22" y1="72" x2="22" y2="12" stroke="#6b7280" stroke-width="1"/>
+        <rect x="28" y="28" width="18" height="44" fill="#3b82f6" opacity="0.85"/>
+        <rect x="52" y="40" width="18" height="32" fill="#3b82f6" opacity="0.85"/>
+        <rect x="76" y="50" width="18" height="22" fill="#3b82f6" opacity="0.85"/>
+        <rect x="100" y="58" width="18" height="14" fill="#3b82f6" opacity="0.85"/>
+        <rect x="124" y="62" width="18" height="10" fill="#3b82f6" opacity="0.85"/>
+        <polyline points="37,34 62,44 85,54 109,61 133,65" fill="none" stroke="#ef4444" stroke-width="2"/>
+        <circle cx="37" cy="34" r="2.5" fill="#ef4444"/>
+        <circle cx="62" cy="44" r="2.5" fill="#ef4444"/>
+        <circle cx="85" cy="54" r="2.5" fill="#ef4444"/>
+        <circle cx="109" cy="61" r="2.5" fill="#ef4444"/>
+        <circle cx="133" cy="65" r="2.5" fill="#ef4444"/>
+      </svg>
+    </div>
+    <div class="tag">抓重点</div>
+    <p>利用 80/20 思想，找到少数主要原因</p>
+  </div>
+  <div class="tool-card">
+    <h5>05 直方图</h5>
+    <div class="tool-chart">
+      <svg viewBox="0 0 180 90" preserveAspectRatio="xMidYMid meet">
+        <line x1="18" y1="72" x2="168" y2="72" stroke="#6b7280" stroke-width="1"/>
+        <line x1="18" y1="72" x2="18" y2="12" stroke="#6b7280" stroke-width="1"/>
+        <text x="11" y="25" font-size="8" fill="#6b7280">频数</text>
+        <text x="82" y="85" font-size="8" fill="#6b7280">数据区间</text>
+        <rect x="26" y="55" width="18" height="17" fill="#7c3aed" opacity="0.8"/>
+        <rect x="48" y="42" width="18" height="30" fill="#7c3aed" opacity="0.8"/>
+        <rect x="70" y="28" width="18" height="44" fill="#7c3aed" opacity="0.9"/>
+        <rect x="92" y="35" width="18" height="37" fill="#7c3aed" opacity="0.85"/>
+        <rect x="114" y="48" width="18" height="24" fill="#7c3aed" opacity="0.8"/>
+        <rect x="136" y="58" width="18" height="14" fill="#7c3aed" opacity="0.75"/>
+      </svg>
+    </div>
+    <div class="tag">看分布</div>
+    <p>观察大量数据集中在哪些区间</p>
+  </div>
+  <div class="tool-card">
+    <h5>06 控制图</h5>
+    <div class="tool-chart">
+      <svg viewBox="0 0 180 90" preserveAspectRatio="xMidYMid meet">
+        <line x1="15" y1="15" x2="165" y2="15" stroke="#ef4444" stroke-width="1" stroke-dasharray="5,3"/>
+        <line x1="15" y1="45" x2="165" y2="45" stroke="#6b7280" stroke-width="1"/>
+        <line x1="15" y1="75" x2="165" y2="75" stroke="#ef4444" stroke-width="1" stroke-dasharray="5,3"/>
+        <text x="168" y="18" font-size="8" fill="#ef4444">UCL</text>
+        <text x="168" y="79" font-size="8" fill="#ef4444">LCL</text>
+        <polyline points="22,48 42,40 62,52 82,35 102,50 122,42 142,55 158,47" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="22" cy="48" r="2" fill="#2563eb"/>
+        <circle cx="42" cy="40" r="2" fill="#2563eb"/>
+        <circle cx="62" cy="52" r="2" fill="#2563eb"/>
+        <circle cx="82" cy="35" r="2" fill="#2563eb"/>
+        <circle cx="102" cy="50" r="2" fill="#2563eb"/>
+        <circle cx="122" cy="42" r="2" fill="#2563eb"/>
+        <circle cx="142" cy="55" r="2" fill="#2563eb"/>
+        <circle cx="158" cy="47" r="2" fill="#2563eb"/>
+      </svg>
+    </div>
+    <div class="tag">看稳定</div>
+    <p>判断过程是否处于统计控制状态</p>
+  </div>
+  <div class="tool-card">
+    <h5>07 散点图</h5>
+    <div class="tool-chart">
+      <svg viewBox="0 0 180 90" preserveAspectRatio="xMidYMid meet">
+        <line x1="20" y1="75" x2="165" y2="75" stroke="#6b7280" stroke-width="1"/>
+        <line x1="20" y1="75" x2="20" y2="10" stroke="#6b7280" stroke-width="1"/>
+        <text x="85" y="86" font-size="8" fill="#6b7280">变量 X</text>
+        <text x="5" y="20" font-size="8" fill="#6b7280">Y</text>
+        <line x1="35" y1="70" x2="155" y2="20" stroke="#9aa2b1" stroke-width="1" stroke-dasharray="4,3"/>
+        <circle cx="38" cy="68" r="2.2" fill="#f59e0b"/>
+        <circle cx="45" cy="62" r="2.2" fill="#f59e0b"/>
+        <circle cx="55" cy="58" r="2.2" fill="#f59e0b"/>
+        <circle cx="65" cy="50" r="2.2" fill="#f59e0b"/>
+        <circle cx="72" cy="52" r="2.2" fill="#f59e0b"/>
+        <circle cx="85" cy="42" r="2.2" fill="#f59e0b"/>
+        <circle cx="95" cy="38" r="2.2" fill="#f59e0b"/>
+        <circle cx="105" cy="35" r="2.2" fill="#f59e0b"/>
+        <circle cx="118" cy="30" r="2.2" fill="#f59e0b"/>
+        <circle cx="132" cy="26" r="2.2" fill="#f59e0b"/>
+        <circle cx="145" cy="22" r="2.2" fill="#f59e0b"/>
+      </svg>
+    </div>
+    <div class="tag">看关系</div>
+    <p>观察两个变量之间是否存在相关性</p>
+  </div>
+</div>
+<div class="memory-box">一句话记忆：鱼骨找原因 | 流程看过程 | 核查表收数据 | 帕累托抓重点 | 直方图看分布 | 控制图看稳定 | 散点图看关系</div>
+
+<h2 class="section-title"><span class="no">02</span>控制图最容易考什么？</h2>
+<div class="control-chart-box">
+  <div class="cc-grid">
+    <div>
+      <b>UCL = 控制上限</b><br>
+      <b>LCL = 控制下限</b>
+    </div>
+    <div>
+      <b>控制界限</b>：由过程数据统计得到 → 判断过程是否稳定<br>
+      <b>规格界限</b>：由客户、合同或设计要求确定 → 判断结果是否合格
+    </div>
+  </div>
+  <div class="important">稳定 ≠ 合格</div>
+  <p>例：合同要求响应时间 ≤ 2 秒，系统长期稳定在 2.5 秒。<br>结论：过程稳定，但产品不合格。</p>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>学习现状与下一步</h2>
+<div class="summary">
+  <div class="sum-card">
+    <h5>当前掌握</h5>
+    <div class="stars" style="margin-bottom:10px"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span></div>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">七种工具基础对应关系已掌握。</div>
+  </div>
+  <div class="sum-card">
+    <h5>学习状态</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">七种工具专项：7/7 ✅</div>
+  </div>
+  <div class="sum-card">
+    <h5>下一步</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">重点训练控制图，区分控制界限与规格界限。</div>
+  </div>
+</div>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

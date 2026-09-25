@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 6 · 项目整合管理</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#92400e 0%,#b45309 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(180,83,9,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.chain-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.chain-box h5{font-size:13px;font-weight:700;margin-bottom:12px}
+.chain-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chain-flow .item{background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#8a5200;font-weight:600}
+.chain-flow .arrow{color:#9aa2b1;font-size:13px}
+.chain-box p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.process-list{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.process-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;align-items:flex-start}
+.process-item .num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+.process-item .body{flex:1}
+.process-item .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.process-item h4{font-size:14px;font-weight:700;margin:0}
+.process-item .tag{display:inline-block;font-size:11px;font-weight:700;background:#fef3c7;color:#92400e;border-radius:20px;padding:3px 10px}
+.process-item p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.memory-box{background:#fff7e6;border:1px solid #f3ddae;border-radius:10px;padding:12px 14px;margin-bottom:22px;font-size:13px;color:#8a5200;line-height:1.8;font-weight:600}
+.memory-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.memory-flow .item{background:#fff;border:1px solid #f3ddae;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:600}
+.memory-flow .arrow{font-size:12px;color:#b45309}
+.warn-box{background:#fff1f2;border:1px solid #fecdd3;border-radius:14px;padding:16px;margin-bottom:22px}
+.warn-box h5{font-size:13px;font-weight:700;color:#be123c;margin-bottom:10px}
+.warn-row{display:flex;align-items:center;gap:10px;font-size:12.5px;margin:6px 0}
+.warn-row .x{color:#be123c;font-weight:700;background:#fff;border:1px solid #fecdd3;border-radius:4px;padding:2px 6px}
+.warn-row .ok{color:#047857;font-weight:700;background:#ecfdf5;border:1px solid #bfeadd;border-radius:4px;padding:2px 6px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.summary{grid-template-columns:1fr}}
+.sum-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.stars{display:flex;gap:2px}
+.star{width:14px;height:14px;background:#e2e8f0;border-radius:2px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.on{background:#f59e0b}
+.day-next{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:16px;padding:18px 22px;text-decoration:none;margin:24px 0}
+.day-next h4{margin:0 0 6px;font-size:15px}
+.day-next .items{display:flex;gap:8px;flex-wrap:wrap}
+.day-next .items .it{font-size:11.5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 10px}
+.day-next .right{font-size:13px;opacity:.9}
+.back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 6</h1>
+      <p class="day-sub">项目整合管理 | 七大过程</p>
+      <p class="day-motto">一个小需求，为什么会牵动整个项目？</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">整合管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day6.html" class="on">Day 6 · 七大过程</a>
+  <a href="day6-data.html">Day 6 · 绩效数据</a>
+  <a href="day6-change.html">Day 6 · 变更流程</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day6','整合管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>一个小需求，为什么会牵动整个项目？</h2>
+<div class="chain-box">
+  <h5>需求变更的连锁反应</h5>
+  <div class="chain-flow">
+    <div class="item">新增需求</div>
+    <div class="arrow">→</div>
+    <div class="item">范围变化</div>
+    <div class="arrow">→</div>
+    <div class="item">工期变化</div>
+    <div class="arrow">→</div>
+    <div class="item">成本变化</div>
+    <div class="arrow">→</div>
+    <div class="item">质量 / 风险变化</div>
+  </div>
+  <p>项目里的变化，很少只影响一个维度。整合管理要解决的，就是把这些维度串起来、协调好，避免顾此失彼。</p>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>项目整合管理七大过程</h2>
+<div class="process-list">
+  <div class="process-item">
+    <div class="num">01</div>
+    <div class="body">
+      <div class="title-row"><h4>制定项目章程</h4><span class="tag">授权</span></div>
+      <p>正式授权项目和项目经理。项目章程是项目的“出生证”。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">02</div>
+    <div class="body">
+      <div class="title-row"><h4>制定项目管理计划</h4><span class="tag">统筹</span></div>
+      <p>把各子计划整合成总计划，明确基准和执行路径。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">03</div>
+    <div class="body">
+      <div class="title-row"><h4>指导与管理项目工作</h4><span class="tag">执行</span></div>
+      <p>按照项目管理计划执行工作，产出可交付成果。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">04</div>
+    <div class="body">
+      <div class="title-row"><h4>管理项目知识</h4><span class="tag">沉淀</span></div>
+      <p>把经验教训和隐性知识记录下来，让组织资产越来越厚。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">05</div>
+    <div class="body">
+      <div class="title-row"><h4>监控项目工作</h4><span class="tag">看全局</span></div>
+      <p>跟踪、审查和调整项目进展，把实际与计划对比。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">06</div>
+    <div class="body">
+      <div class="title-row"><h4>实施整体变更控制</h4><span class="tag">管变化</span></div>
+      <p>审查所有变更请求，批准后才允许实施。<b>先审批，再实施。</b></p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">07</div>
+    <div class="body">
+      <div class="title-row"><h4>结束项目或阶段</h4><span class="tag">收尾</span></div>
+      <p>正式完结项目或阶段。<b>交付完成 ≠ 项目自动结束。</b></p>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>快速记忆</h2>
+<div class="memory-box">
+  <div class="memory-flow">
+    <div class="item">立项</div><div class="arrow">→</div>
+    <div class="item">总计划</div><div class="arrow">→</div>
+    <div class="item">干活</div><div class="arrow">→</div>
+    <div class="item">留经验</div><div class="arrow">→</div>
+    <div class="item">盯全局</div><div class="arrow">→</div>
+    <div class="item">管变更</div><div class="arrow">→</div>
+    <div class="item">收尾</div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">04</span>易错提醒</h2>
+<div class="warn-box">
+  <h5>名称别写错</h5>
+  <div class="warn-row"><span class="x">✗ 监督项目工作</span><span class="ok">✓ 监控项目工作</span></div>
+  <div class="warn-row"><span class="x">✗ 需求变更控制</span><span class="ok">✓ 实施整体变更控制</span></div>
+</div>
+
+<h2 class="section-title"><span class="no">05</span>学习现状与下一步</h2>
+<div class="summary">
+  <div class="sum-card">
+    <h5>当前掌握</h5>
+    <div class="stars" style="margin-bottom:10px"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star"></span></div>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">七大过程顺序与核心含义已建立。</div>
+  </div>
+  <div class="sum-card">
+    <h5>学习状态</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">七大过程：7/7 ✅</div>
+  </div>
+  <div class="sum-card">
+    <h5>下一步</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">重点训练绩效数据、信息、报告的区分，以及变更流程。</div>
+  </div>
+</div>
+
+<a href="day6-data.html" class="day-next">
+  <div>
+    <h4>继续 Day 6：工作绩效数据 → 信息 → 报告</h4>
+    <div class="items">
+      <span class="it">80 万只是数据</span>
+      <span class="it">超支 14% 才有意义</span>
+    </div>
+  </div>
+  <div class="right">继续学习 →</div>
+</a>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

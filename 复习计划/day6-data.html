@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 6 · 工作绩效数据</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#92400e 0%,#b45309 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(180,83,9,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.hero-card h3{font-size:20px;font-weight:800;color:var(--ink);margin:0 0 10px}
+.hero-card h3 span{color:#b45309}
+.hero-card p{font-size:13px;color:var(--sub);line-height:1.7;margin:0}
+.formula-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.formula-grid{grid-template-columns:1fr}}
+.formula-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.formula-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.formula-card .eq{font-size:14px;font-weight:700;color:#b45309;background:#fff7e6;border:1px dashed #f3ddae;border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.formula-card p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.example-box{background:#fff7e6;border:1px solid #f3ddae;border-radius:14px;padding:16px;margin-bottom:22px}
+.example-box h5{font-size:13px;font-weight:700;color:#8a5200;margin-bottom:12px}
+.example-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;font-size:12.5px;color:var(--ink)}
+.example-row .calc{background:#fff;border:1px solid #f3ddae;border-radius:8px;padding:8px 12px;font-weight:600}
+.example-row .arrow{color:#b45309}
+.example-row .result{background:#b45309;color:#fff;border-radius:8px;padding:8px 12px;font-weight:600}
+.status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+@media(max-width:700px){.status-grid{grid-template-columns:1fr}}
+.status-grid .item{background:#fff;border:1px solid #f3ddae;border-radius:8px;padding:10px;text-align:center;font-size:12px}
+.status-grid .item b{display:block;color:#8a5200;margin-bottom:4px}
+.tip-box{background:#ecfdf5;border:1px solid #bfeadd;border-radius:14px;padding:16px;margin-bottom:22px}
+.tip-box h5{font-size:13px;font-weight:700;color:#047857;margin-bottom:10px}
+.tip-box p{font-size:12px;color:#047857;line-height:1.7;margin:0}
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.case-grid{grid-template-columns:1fr}}
+.case-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.case-table{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.case-table .case-row{display:grid;grid-template-columns:2fr 26px 1.2fr 26px 2fr;gap:8px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line);font-size:12px}
+.case-table .case-row:last-child{border-bottom:none}
+.case-table .case-row.head{font-weight:700;color:var(--ink);padding-top:0}
+.case-table .col{padding:8px 10px;border-radius:8px}
+.case-table .fact{background:#fff1f2;color:#be123c;border:1px solid #fecdd3}
+.case-table .fact u{text-decoration:none;border-bottom:2px solid #f43f5e;font-weight:700}
+.case-table .problem{background:#fff7e6;color:#8a5200;border:1px solid #f3ddae;font-weight:600}
+.case-table .answer{background:#ecfdf5;color:#047857;border:1px solid #bfeadd;font-weight:600}
+.case-table .arrow-col{text-align:center;color:#9aa2b1;font-size:14px}
+@media(max-width:800px){.case-table .case-row{grid-template-columns:1fr;gap:6px}.case-table .arrow-col{display:none}.case-table .fact,.case-table .problem,.case-table .answer{width:100%;box-sizing:border-box}}
+.method-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:22px}
+.method-box h5{font-size:13px;font-weight:700;margin-bottom:12px}
+.method-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.method-flow .item{background:#f7f8fc;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:12.5px;font-weight:600;color:var(--ink)}
+.method-flow .arrow{color:var(--sub)}
+.warn-box{background:#fff1f2;border:1px solid #fecdd3;border-radius:14px;padding:16px;margin-bottom:22px}
+.warn-box h5{font-size:13px;font-weight:700;color:#be123c;margin-bottom:10px}
+.warn-row{display:flex;align-items:center;gap:10px;font-size:12.5px;margin:6px 0}
+.warn-row .x{color:#be123c;font-weight:700;background:#fff;border:1px solid #fecdd3;border-radius:4px;padding:2px 6px}
+.warn-row .ok{color:#047857;font-weight:700;background:#ecfdf5;border:1px solid #bfeadd;border-radius:4px;padding:2px 6px}
+.review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.review-grid{grid-template-columns:1fr}}
+.review-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.review-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.review-card ul{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px;margin:0}
+.review-card li{margin:4px 0}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.summary{grid-template-columns:1fr}}
+.sum-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.stars{display:flex;gap:2px}
+.star{width:14px;height:14px;background:#e2e8f0;border-radius:2px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.on{background:#f59e0b}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 6</h1>
+      <p class="day-sub">工作绩效数据 → 信息 → 报告</p>
+      <p class="day-motto">80 万只是数据；“超支 14%”才开始有意义。</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">整合管理专题</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day6.html">Day 6 · 七大过程</a>
+  <a href="day6-data.html" class="on">Day 6 · 绩效数据</a>
+  <a href="day6-change.html">Day 6 · 变更流程</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day6','整合管理专题');</script>
+
+<h2 class="section-title"><span class="no">01</span>一句话核心</h2>
+<div class="hero-card">
+  <h3>80 万，只是数据；<span>“超支 14%”</span>，才开始有意义。</h3>
+  <p>工作绩效数据是原始事实，工作绩效信息是分析比较后的结论，工作绩效报告是按对象整理后的呈现。</p>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>工作绩效三层关系</h2>
+<div class="formula-grid">
+  <div class="formula-card">
+    <h5>工作绩效数据</h5>
+    <div class="eq">原始事实</div>
+    <p>原始记录，未经解释。例如：计划成本 70 万，实际成本 80 万。</p>
+  </div>
+  <div class="formula-card">
+    <h5>工作绩效信息</h5>
+    <div class="eq">数据 + 分析比较</div>
+    <p>数据经过比较、分析，才变成可以支持判断的信息。例如：80 − 70 = 10 万，10 ÷ 70 ≈ 14%。</p>
+  </div>
+  <div class="formula-card">
+    <h5>工作绩效报告</h5>
+    <div class="eq">信息 + 整理呈现</div>
+    <p>把信息按对象需要整理后，才形成报告。例如：9 月项目状态报告，告诉管理层需要决策的事项。</p>
+  </div>
+  <div class="formula-card" style="background:#fff7e6;border-color:#f3ddae">
+    <h5>三层递进公式</h5>
+    <div class="eq">原始事实 + 分析比较 = 工作绩效信息</div>
+    <div class="eq">工作绩效信息 + 整理呈现 = 工作绩效报告</div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>一个例子帮你记住</h2>
+<div class="example-box">
+  <h5>9 月项目状态</h5>
+  <div class="example-row">
+    <span class="calc">计划成本：70 万</span>
+    <span class="calc">实际成本：80 万</span>
+    <span class="arrow">→</span>
+    <span class="result">这是原始事实</span>
+  </div>
+  <div class="example-row">
+    <span class="calc">80 − 70 = 10 万</span>
+    <span class="calc">10 ÷ 70 ≈ 14%</span>
+    <span class="arrow">→</span>
+    <span class="result">当前成本超支约 14%</span>
+  </div>
+  <div class="status-grid">
+    <div class="item"><b>范围</b>正常</div>
+    <div class="item"><b>进度</b>轻微落后</div>
+    <div class="item"><b>成本</b>超支 14%</div>
+    <div class="item"><b>质量</b>正常</div>
+    <div class="item"><b>主要风险</b>2 项</div>
+    <div class="item"><b>待决策事项</b>1 项</div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">04</span>三个问题，三种答案</h2>
+<div class="tip-box">
+  <h5>记住这个对应关系</h5>
+  <p><b>数据</b>回答：发生了什么<br><b>信息</b>回答：说明了什么<br><b>报告</b>回答：要告诉别人什么</p>
+</div>
+
+<h2 class="section-title"><span class="no">05</span>案例题示范 · 材料事实 → 评分点</h2>
+<div class="case-table">
+  <div class="case-row head">
+    <div class="col">材料事实</div>
+    <div class="arrow-col">→</div>
+    <div class="col">问题提炼</div>
+    <div class="arrow-col">→</div>
+    <div class="col">评分点</div>
+  </div>
+  <div class="case-row">
+    <div class="col fact">客户<u>口头</u>要求新增统计报表</div>
+    <div class="arrow-col">→</div>
+    <div class="col problem">口头新增需求</div>
+    <div class="arrow-col">→</div>
+    <div class="col answer">未将客户新增需求形成正式变更请求</div>
+  </div>
+  <div class="case-row">
+    <div class="col fact">项目经理认为功能简单，<u>直接安排开发</u></div>
+    <div class="arrow-col">→</div>
+    <div class="col problem">直接安排开发</div>
+    <div class="arrow-col">→</div>
+    <div class="col answer">变更未经正式审批即安排实施，未实施整体变更控制</div>
+  </div>
+  <div class="case-row">
+    <div class="col fact">修改后原计划<u>工期受到影响</u>，测试任务被压缩</div>
+    <div class="arrow-col">→</div>
+    <div class="col problem">工期受到影响</div>
+    <div class="arrow-col">→</div>
+    <div class="col answer">未分析变更对范围、进度、成本、质量、风险等方面的影响</div>
+  </div>
+  <div class="case-row">
+    <div class="col fact">要求团队加班追回进度，但<u>未更新项目管理计划及相关基准</u></div>
+    <div class="arrow-col">→</div>
+    <div class="col problem">未更新计划和基准</div>
+    <div class="arrow-col">→</div>
+    <div class="col answer">变更及纠正措施实施后，未及时更新项目管理计划和相关基准</div>
+  </div>
+  <div class="case-row">
+    <div class="col fact">项目结束后也<u>未整理经验教训</u></div>
+    <div class="arrow-col">→</div>
+    <div class="col problem">未整理经验教训</div>
+    <div class="arrow-col">→</div>
+    <div class="col answer">项目结束时未总结并更新经验教训登记册</div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">06</span>解题思路</h2>
+<div class="method-box">
+  <h5>四步拆题</h5>
+  <div class="method-flow">
+    <div class="item">材料事实</div>
+    <div class="arrow">↓</div>
+    <div class="item">判断问题</div>
+    <div class="arrow">↓</div>
+    <div class="item">对应标准过程</div>
+    <div class="arrow">↓</div>
+    <div class="item">标准术语</div>
+  </div>
+  <p style="font-size:12px;color:var(--sub);line-height:1.7;margin-top:12px"><b>关键原则：</b>一条问题 = 一个评分点</p>
+</div>
+
+<h2 class="section-title"><span class="no">07</span>易错提醒 & 备考小结</h2>
+<div class="review-grid">
+  <div class="review-card">
+    <h5>不要脑补</h5>
+    <ul>
+      <li>材料做了测试 ≠ 评估成本不足</li>
+      <li>看到什么写什么，不要加戏</li>
+    </ul>
+  </div>
+  <div class="review-card">
+    <h5>不要改术语</h5>
+    <ul>
+      <li>监督项目工作 ✗ → <b>监控项目工作</b> ✓</li>
+      <li>需求变更控制 ✗ → <b>实施整体变更控制</b> ✓</li>
+    </ul>
+  </div>
+  <div class="review-card">
+    <h5>已稳定</h5>
+    <ul>
+      <li>变更判断</li>
+      <li>四类变更请求</li>
+      <li>工作绩效三层</li>
+    </ul>
+  </div>
+  <div class="review-card">
+    <h5>仍需强化</h5>
+    <ul>
+      <li>七大过程标准名称</li>
+      <li>旧知识闭卷抽查</li>
+      <li>做题 → 复述 → 错题回炉</li>
+    </ul>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">08</span>学习现状</h2>
+<div class="summary">
+  <div class="sum-card">
+    <h5>当前掌握</h5>
+    <div class="stars" style="margin-bottom:10px"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star"></span></div>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">数据 / 信息 / 报告三层递进已清晰。</div>
+  </div>
+  <div class="sum-card">
+    <h5>学习状态</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">案例评分点：5/5 ✅</div>
+  </div>
+  <div class="sum-card">
+    <h5>下一步</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">进入变更流程专题，区分“审批”与“实施”。</div>
+  </div>
+</div>
+
+<a class="back-link" href="day6.html">← 返回 Day 6 · 七大过程</a>
+
+</div>
+</body>
+</html>

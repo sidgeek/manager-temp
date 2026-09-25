@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 2 · 进度管理</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(79,95,224,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-stage{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin-bottom:22px}
+.day-stage h3{font-size:15px;font-weight:700;margin-bottom:12px}
+.day-stage .tags{display:flex;flex-wrap:wrap;gap:10px}
+.day-stage .tag{background:#f4f6fb;border:1px solid #e4e7ef;border-radius:20px;padding:5px 12px;font-size:12.5px;color:var(--ink)}
+.day-stage .tag.done{background:#e8f8f2;color:#0a6b52;border-color:#bfeadd}
+.day-stage .next{font-size:12.5px;color:var(--sub);margin-top:12px}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.day-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 8px rgba(20,25,50,.04);margin-bottom:16px}
+.day-card h4{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:12px}
+.process-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
+.process-flow .p{font-size:12px;background:#f4f6fb;border:1px solid #e4e7ef;border-radius:8px;padding:5px 10px;color:var(--ink)}
+.process-flow .a{font-size:12px;color:var(--sub)}
+.day-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px}
+@media(max-width:900px){.day-grid-2{grid-template-columns:1fr}}
+.day-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+@media(max-width:900px){.day-grid-4{grid-template-columns:repeat(2,1fr)}}
+.rel-card{background:#f7f8fc;border:1px solid #e4e7ef;border-radius:12px;padding:12px}
+.rel-card .badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--accent);padding:2px 8px;border-radius:6px;margin-bottom:6px}
+.rel-card .name{font-size:13px;font-weight:700;margin-bottom:6px}
+.rel-card .desc{font-size:12px;color:var(--sub);line-height:1.6}
+.rel-card .eg{font-size:11px;color:#9aa2b1;margin-top:6px}
+.net-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+@media(max-width:900px){.net-row{grid-template-columns:1fr}}
+.net-svg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;justify-content:center;align-items:center}
+.formula{background:#f7f8fc;border:1px solid #e4e7ef;border-radius:12px;padding:14px;margin-bottom:10px}
+.formula .t{font-size:13px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.formula .eq{font-size:12px;color:var(--sub);line-height:1.8}
+.formula .eq b{color:var(--accent)}
+.formula .rule{font-size:11px;color:#9aa2b1;margin-top:6px}
+.compare{display:flex;gap:16px;flex-wrap:wrap}
+.compare .box{flex:1;min-width:240px;background:#f7f8fc;border:1px solid #e4e7ef;border-radius:12px;padding:14px}
+.compare .box h5{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--ink)}
+.compare .box ul{font-size:12px;color:var(--sub);line-height:1.8;margin:0;padding-left:18px}
+.compare .box li{margin:4px 0}
+.compare .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#fff;margin-left:auto}
+.tech{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:900px){.tech{grid-template-columns:1fr}}
+.tech-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.tech-card h5{font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.tech-icon{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700}
+.tech-list{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px}
+.tech-list li{margin:4px 0}
+.tech-tag{font-size:11px;padding:3px 8px;border-radius:6px;display:inline-block;margin-top:10px;background:#fff;border:1px solid #e4e7ef}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:900px){.summary{grid-template-columns:repeat(2,1fr)}}
+.sum-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.sum-list{font-size:12px;color:var(--sub);line-height:1.8;padding:0;list-style:none}
+.sum-list li{padding:4px 0;border-bottom:1px dashed var(--line)}
+.sum-list li:last-child{border-bottom:none}
+.sum-list .done{color:#059669;font-weight:600}
+.stars{display:flex;gap:2px}
+.star{width:14px;height:14px;background:#e2e8f0;border-radius:2px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.on{background:#f59e0b}
+.day-next{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;text-decoration:none;color:inherit;transition:.15s;cursor:pointer}
+.day-next:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,95,224,.1)}
+.day-next h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.day-next .items{display:flex;flex-wrap:wrap;gap:8px}
+.day-next .it{font-size:12px;background:#f4f6fb;border:1px solid #e4e7ef;border-radius:8px;padding:5px 10px;color:var(--ink)}
+.day-next .right{font-size:12.5px;color:var(--sub)}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 2</h1>
+      <p class="day-sub">进度管理 · 网络图 · 关键路径</p>
+      <p class="day-motto">每天进步一点点！</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">基础计算能力建立</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day2','基础计算能力建立');</script>
+
+<h2 class="section-title"><span class="no">01</span>进度管理六个过程</h2>
+<div class="day-card">
+  <h4>进度管理 = 确定项目什么时间完成</h4>
+  <div class="process-flow">
+    <span class="p">规划进度管理</span><span class="a">→</span>
+    <span class="p">定义活动</span><span class="a">→</span>
+    <span class="p">排列活动顺序</span><span class="a">→</span>
+    <span class="p">估算活动持续时间</span><span class="a">→</span>
+    <span class="p">制定进度计划</span><span class="a">→</span>
+    <span class="p">控制进度</span>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>四种活动逻辑关系</h2>
+<div class="day-grid-4">
+  <div class="rel-card">
+    <span class="badge">FS</span>
+    <div class="name">完成 → 开始</div>
+    <div class="desc">前置活动完成后，后续活动才能开始。</div>
+    <div class="eg">例：需求分析完成 → 开发开始</div>
+  </div>
+  <div class="rel-card">
+    <span class="badge">SS</span>
+    <div class="name">开始 → 开始</div>
+    <div class="desc">一个活动开始后，另一个活动才能开始。</div>
+    <div class="eg">例：设计开始 → 开发开始</div>
+  </div>
+  <div class="rel-card">
+    <span class="badge">FF</span>
+    <div class="name">完成 → 完成</div>
+    <div class="desc">一个活动完成后，另一个活动才能完成。</div>
+    <div class="eg">例：开发完成 → 测试完成</div>
+  </div>
+  <div class="rel-card">
+    <span class="badge">SF</span>
+    <div class="name">开始 → 完成</div>
+    <div class="desc">一个活动开始后，另一个活动才能结束。</div>
+    <div class="eg">例：维护开始 → 系统关闭</div>
+    <div class="eg">最少见关系</div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>关键路径计算</h2>
+<div class="day-card">
+  <h4>最长路径 = 关键路径</h4>
+  <div class="net-row">
+    <div class="net-svg">
+      <svg width="320" height="220" viewBox="0 0 320 220">
+        <defs>
+          <marker id="ar" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#5b6472"/></marker>
+        </defs>
+        <g fill="#fff" stroke="#2563eb" stroke-width="2">
+          <circle cx="50" cy="110" r="26"/><text x="50" y="106" text-anchor="middle" font-size="12" fill="#1f2430" font-weight="700">A</text><text x="50" y="120" text-anchor="middle" font-size="10" fill="#5b6472">4天</text>
+          <circle cx="130" cy="50" r="26"/><text x="130" y="46" text-anchor="middle" font-size="12" fill="#1f2430" font-weight="700">B</text><text x="130" y="60" text-anchor="middle" font-size="10" fill="#5b6472">3天</text>
+          <circle cx="130" cy="170" r="26"/><text x="130" y="166" text-anchor="middle" font-size="12" fill="#1f2430" font-weight="700">C</text><text x="130" y="180" text-anchor="middle" font-size="10" fill="#5b6472">5天</text>
+          <circle cx="210" cy="50" r="26"/><text x="210" y="46" text-anchor="middle" font-size="12" fill="#1f2430" font-weight="700">D</text><text x="210" y="60" text-anchor="middle" font-size="10" fill="#5b6472">2天</text>
+          <circle cx="210" cy="170" r="26"/><text x="210" y="166" text-anchor="middle" font-size="12" fill="#1f2430" font-weight="700">E</text><text x="210" y="180" text-anchor="middle" font-size="10" fill="#5b6472">4天</text>
+          <circle cx="290" cy="110" r="26"/><text x="290" y="106" text-anchor="middle" font-size="12" fill="#1f2430" font-weight="700">F</text><text x="290" y="120" text-anchor="middle" font-size="10" fill="#5b6472">3天</text>
+        </g>
+        <g stroke="#5b6472" stroke-width="1.5" fill="none" marker-end="url(#ar)">
+          <path d="M76 110 Q100 110 104 50"/>
+          <path d="M76 110 Q100 110 104 170"/>
+          <path d="M156 50 L184 50"/>
+          <path d="M156 170 L184 170"/>
+          <path d="M236 50 Q260 50 264 84"/>
+          <path d="M236 170 Q260 110 264 110"/>
+        </g>
+        <g stroke="#e11d48" stroke-width="3" fill="none">
+          <path d="M50 110 L130 170 L210 170 L290 110" stroke-dasharray="0"/>
+        </g>
+        <text x="160" y="205" text-anchor="middle" font-size="12" fill="#e11d48" font-weight="700">关键路径：A → C → E → F = 4 + 5 + 4 + 3 = 16 天</text>
+      </svg>
+    </div>
+    <div>
+      <div class="formula" style="border-left:4px solid #2563eb">
+        <div class="t">正推（求最早时间）</div>
+        <div class="eq"><b>ES：</b>最早开始时间<br><b>EF：</b>最早完成时间<br><b>公式：</b>EF = ES + 活动持续时间<br><b>规则：</b>前置活动 EF 的最大值</div>
+      </div>
+      <div class="formula" style="border-left:4px solid #7c3aed">
+        <div class="t">反推（求最晚时间）</div>
+        <div class="eq"><b>LS：</b>最晚开始时间<br><b>LF：</b>最晚完成时间<br><b>公式：</b>LS = LF - 活动持续时间<br><b>规则：</b>后续活动 LS 的最小值</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">04</span>总浮动 & 自由浮动</h2>
+<div class="day-card">
+  <h4>两种浮动时间，含义不同，FF 更严格</h4>
+  <div class="compare">
+    <div class="box" style="border-left:4px solid #2563eb">
+      <h5>总浮动时间 TF</h5>
+      <ul>
+        <li><b>公式：</b>TF = LS - ES = LF - EF</li>
+        <li><b>含义：</b>不影响项目最终完成日期，最多可以拖多久。</li>
+        <li><b>关键词：</b>影响项目终点</li>
+      </ul>
+    </div>
+    <div class="box" style="border-left:4px solid #7c3aed">
+      <h5>自由浮动时间 FF</h5>
+      <ul>
+        <li><b>公式：</b>FF = 后续活动 ES 的最小值 - 当前活动 EF</li>
+        <li><b>含义：</b>不影响后续活动的最早开始，最多可以拖多久。</li>
+        <li><b>关键词：</b>影响下一活动</li>
+      </ul>
+      <div style="margin-top:10px;font-size:12px;color:#9aa2b1;background:#fff;border-radius:6px;padding:6px 8px;border:1px solid #e4e7ef"><b>重要关系：</b>TF ≥ FF；FF 不一定大于 0，项目延误需赶期，但会影响后续活动。</div>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">05</span>进度压缩技术</h2>
+<div class="tech">
+  <div class="tech-card">
+    <h5><span class="tech-icon" style="background:#e11d48">!</span>赶工 Crashing</h5>
+    <ul class="tech-list">
+      <li>增加资源（人力、设备等）</li>
+      <li>增加成本</li>
+      <li>缩短活动持续时间</li>
+      <li>可能导致沟通成本增加</li>
+    </ul>
+    <span class="tech-tag" style="color:#e11d48;border-color:#f9cddb">花钱换时间</span>
+  </div>
+  <div class="tech-card">
+    <h5><span class="tech-icon" style="background:#d97706">!</span>快速跟进 Fast Tracking</h5>
+    <ul class="tech-list">
+      <li>将原本顺序执行的活动改为部分并行</li>
+      <li>减少顺序等待时间</li>
+      <li>可能增加返工风险</li>
+    </ul>
+    <span class="tech-tag" style="color:#d97706;border-color:#f3ddae">冒风险换时间</span>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">06</span>Day 2 学习总结</h2>
+<div class="summary">
+  <div class="sum-card">
+    <h5>学习总结</h5>
+    <ul class="sum-list">
+      <li class="done">进度管理六过程</li>
+      <li class="done">FS / SS / FF / SF</li>
+      <li class="done">网络图正推反推</li>
+      <li class="done">关键路径</li>
+    </ul>
+  </div>
+  <div class="sum-card">
+    <h5>当前掌握度</h5>
+    <div class="stars" style="margin-bottom:10px"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star"></span></div>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">关键路径逻辑已掌握，计算方法基本熟练。</div>
+  </div>
+  <div class="sum-card">
+    <h5>待加强</h5>
+    <ul class="sum-list">
+      <li>复杂网络图计算速度</li>
+      <li>多活动并行关系分析</li>
+      <li>案例题审题能力</li>
+    </ul>
+  </div>
+  <div class="sum-card">
+    <h5>下一步计划 Day 3</h5>
+    <ul class="sum-list">
+      <li>成本管理</li>
+      <li>挣值分析 EVM</li>
+      <li>成本公式</li>
+      <li>成本控制要点</li>
+    </ul>
+  </div>
+</div>
+
+<a href="day3.html" class="day-next">
+  <div>
+    <h4>Day 3 计划：成本管理 + 挣值分析 EVM</h4>
+    <div class="items">
+      <span class="it">基础变量</span>
+      <span class="it">偏差与绩效</span>
+      <span class="it">完工预测</span>
+      <span class="it">剩余绩效 TCPI</span>
+    </div>
+  </div>
+  <div class="right">继续加油！向下一个知识点进发。→</div>
+</a>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>

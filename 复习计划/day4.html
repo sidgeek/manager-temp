@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中项备考 Day 4 · 风险管理 · 案例题基础</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.day-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+.day-header{background:linear-gradient(135deg,#4f5fe0 0%,#7c3aed 100%);color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:22px;box-shadow:0 10px 28px rgba(79,95,224,.22)}
+.day-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.day-title{font-size:32px;font-weight:800;margin:0;letter-spacing:.5px}
+.day-sub{font-size:14px;opacity:.9;margin-top:8px}
+.day-motto{font-size:13px;opacity:.8;margin-top:10px;font-style:italic}
+.day-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;min-width:160px}
+.day-badge .lab{font-size:12px;opacity:.85}
+.day-badge .val{font-size:18px;font-weight:700;margin-top:4px}
+.day-stage{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin-bottom:22px}
+.day-stage h3{font-size:15px;font-weight:700;margin-bottom:12px}
+.day-stage .tags{display:flex;flex-wrap:wrap;gap:10px}
+.day-stage .tag{background:#f4f6fb;border:1px solid #e4e7ef;border-radius:20px;padding:5px 12px;font-size:12.5px;color:var(--ink)}
+.day-stage .tag.done{background:#e8f8f2;color:#0a6b52;border-color:#bfeadd}
+.day-stage .tag.current{background:var(--accent-soft);color:var(--accent);border-color:#c6dbff}
+.day-stage .next{font-size:12.5px;color:var(--sub);margin-top:12px}
+.day-nav{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.day-nav a{font-size:12.5px;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);transition:.15s}
+.day-nav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.day-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:var(--ink);margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.problem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.problem-grid{grid-template-columns:1fr}}
+.problem-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;height:100%}
+.problem-card h5{font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.problem-card h5 span{background:#e11d48;color:#fff;font-size:11px;padding:2px 8px;border-radius:6px}
+.term-compare{font-size:12px;line-height:1.8}
+.term-compare .row{display:flex;align-items:center;gap:8px;margin:5px 0;padding:6px 8px;border-radius:8px}
+.term-compare .err{background:#fff1f2;color:#be123c;text-decoration:line-through}
+.term-compare .ok{background:#ecfdf5;color:#047857}
+.term-compare .tip{font-size:11.5px;color:var(--sub);margin-top:8px;padding:8px;background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;color:#8a5200}
+.issue-flow{display:flex;flex-direction:column;gap:8px;align-items:center}
+.issue-flow .box{padding:8px 14px;border-radius:8px;font-size:12px;text-align:center;min-width:140px}
+.issue-flow .risk{background:#fff7e6;border:1px solid #f3ddae;color:#8a5200}
+.issue-flow .issue{background:#ffe4e6;border:1px solid #fecdd3;color:#9f1239}
+.issue-flow .arrow{color:#9aa2b1;font-size:12px}
+.issue-flow .note{font-size:11.5px;color:var(--sub);background:#f7f8fc;border:1px solid #e4e7ef;border-radius:8px;padding:8px 10px;line-height:1.6;margin-top:6px}
+.case-compare{font-size:12px;line-height:1.7;margin-top:6px}
+.case-compare .bad{color:#be123c;background:#fff1f2;border:1px solid #fecdd3;border-radius:8px;padding:8px 10px;margin-bottom:8px}
+.case-compare .good{color:#047857;background:#ecfdf5;border:1px solid #bfeadd;border-radius:8px;padding:8px 10px}
+.case-compare ol{padding-left:18px;margin:6px 0 0}
+.case-compare li{margin:3px 0}
+.abbr-table{width:100%;font-size:12px;border-collapse:collapse;margin-top:6px}
+.abbr-table th,.abbr-table td{text-align:left;padding:6px 8px;border-bottom:1px dashed var(--line)}
+.abbr-table th{color:var(--ink);font-weight:600;background:#f7f8fc}
+.abbr-table tr:last-child td{border-bottom:none}
+.check-bar{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.check-bar .item{display:flex;align-items:center;gap:6px;font-size:12.5px;background:#e8f8f2;color:#0a6b52;border:1px solid #bfeadd;border-radius:20px;padding:6px 12px}
+.cap-eval{display:flex;flex-direction:column;gap:6px}
+.eval-item{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--ink)}
+.eval-item .stars{gap:1px}
+.eval-item .star{width:11px;height:11px}
+.section-title .no{background:var(--accent);color:#fff;font-size:12px;padding:3px 10px;border-radius:20px}
+.timeline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0;padding:14px;background:#f7f8fc;border-radius:12px}
+.timeline .item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--sub);background:#fff;border:1px solid #e4e7ef;border-radius:20px;padding:5px 10px;white-space:nowrap;text-decoration:none;transition:.15s}
+.timeline .item:hover{filter:brightness(.96);transform:translateY(-1px);box-shadow:0 2px 6px rgba(20,25,50,.06)}
+.timeline .item.done{background:#e8f8f2;color:#0a6b52;border-color:#bfeadd}
+.timeline .item.current{background:var(--accent-soft);color:var(--accent);border-color:#c6dbff;font-weight:600}
+.timeline .item .dot{width:7px;height:7px;border-radius:50%;background:#9aa2b1}
+.timeline .item.done .dot{background:#059669}
+.timeline .item.current .dot{background:var(--accent)}
+.timeline .arr{color:#9aa2b1;font-size:12px}
+.day-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.day-grid-4{grid-template-columns:repeat(2,1fr)}}
+.formula-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;height:100%}
+.formula-card h5{font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.formula-card h5 span{background:var(--accent);color:#fff;font-size:11px;padding:2px 8px;border-radius:6px}
+.formula-card ul{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px;margin:0}
+.formula-card li{margin:5px 0}
+.formula-card b{color:var(--ink)}
+.process-flow{display:flex;flex-direction:column;gap:6px}
+.process-row{display:flex;align-items:center;gap:8px;font-size:12px}
+.process-row .p{background:#f4f6fb;border:1px solid #e4e7ef;border-radius:8px;padding:5px 10px;color:var(--ink);flex:1;text-align:center}
+.process-row .a{color:var(--sub);font-size:11px}
+.process-tip{background:#fff7e6;border:1px solid #f3ddae;border-radius:8px;padding:8px 10px;font-size:11.5px;color:#8a5200;margin-top:8px}
+.strategy{display:flex;gap:10px;margin-top:10px}
+.strategy .col{flex:1;background:#f7f8fc;border:1px solid #e4e7ef;border-radius:10px;padding:10px}
+.strategy .col h6{font-size:12px;font-weight:700;margin-bottom:6px}
+.strategy .col ul{font-size:11.5px;color:var(--sub);line-height:1.7;padding-left:16px;margin:0}
+.strategy .col li{margin:3px 0}
+.term-list{font-size:12px;color:var(--sub);line-height:1.8;padding:0;margin:0;list-style:none}
+.term-list li{padding:6px 0;border-bottom:1px dashed var(--line)}
+.term-list li:last-child{border-bottom:none}
+.term-list b{display:inline-block;min-width:100px;color:var(--ink)}
+.emv-box{background:#fff7e6;border:1px solid #f3ddae;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:#8a5200;line-height:1.7}
+.capability{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.capability h4{font-size:14px;font-weight:700;margin-bottom:14px}
+.cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:600px){.cap-grid{grid-template-columns:1fr}}
+.cap-item{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--sub);line-height:1.6;background:#f7f8fc;border-radius:8px;padding:8px 10px}
+.cap-dot{width:18px;height:18px;border-radius:50%;background:#e8f8f2;color:#059669;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:none}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:900px){.summary{grid-template-columns:1fr}}
+.sum-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum-card h5{font-size:13px;font-weight:700;margin-bottom:10px}
+.sum-list{font-size:12px;color:var(--sub);line-height:1.8;padding:0;list-style:none}
+.sum-list li{padding:4px 0;border-bottom:1px dashed var(--line)}
+.sum-list li:last-child{border-bottom:none}
+.stars{display:flex;gap:2px}
+.star{width:14px;height:14px;background:#e2e8f0;border-radius:2px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.on{background:#f59e0b}
+.day-tip{background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:12.5px;color:var(--sub);line-height:1.7}
+.day-next{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;text-decoration:none;color:inherit;transition:.15s;cursor:pointer}
+.day-next:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,95,224,.1)}
+.day-next h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.day-next .items{display:flex;flex-wrap:wrap;gap:8px}
+.day-next .it{font-size:12px;background:#f4f6fb;border:1px solid #e4e7ef;border-radius:8px;padding:5px 10px;color:var(--ink)}
+.day-next .right{font-size:12.5px;color:var(--sub)}
+.back-link{display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back-link:hover{background:var(--accent-soft)}
+</style>
+</head>
+<body>
+<div class="day-wrap">
+
+<header class="day-header">
+  <div class="day-top">
+    <div>
+      <h1 class="day-title">中项备考 Day 4</h1>
+      <p class="day-sub">风险管理 · 案例题基础</p>
+      <p class="day-motto">从“理解概念”进入“标准术语 + 案例表达”强化</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="day-badge">
+        <div class="lab">考试时间</div>
+        <div class="val">2026.10.24</div>
+      </div>
+      <div class="day-badge">
+        <div class="lab">当前阶段</div>
+        <div class="val">核心知识领域持续构建</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <a href="day4.html" class="on">Day 4 · 风险管理</a>
+  <a href="day4-problem.html">Day 4 · 暴露的问题</a>
+  <a href="method.html">Day 4 · 学习方法</a>
+</nav>
+
+<section class="day-stage" id="timelineStage"></section>
+<script src="components.js"></script>
+<script>renderTimeline('day4','核心知识领域持续构建');</script>
+
+<h2 class="section-title"><span class="no">01</span>今天学了什么</h2>
+<div class="day-grid-4">
+  <div class="formula-card">
+    <h5><span>01</span>风险管理七过程</h5>
+    <div class="process-flow">
+      <div class="process-row"><div class="p">规划风险管理</div></div>
+      <div class="process-row"><span class="a">↓</span></div>
+      <div class="process-row"><div class="p">识别风险</div></div>
+      <div class="process-row"><span class="a">↓</span></div>
+      <div class="process-row"><div class="p">实施定性风险分析</div></div>
+      <div class="process-row"><span class="a">↓</span></div>
+      <div class="process-row"><div class="p">实施定量风险分析</div></div>
+      <div class="process-row"><span class="a">↓</span></div>
+      <div class="process-row"><div class="p">规划风险应对</div></div>
+      <div class="process-row"><span class="a">↓</span></div>
+      <div class="process-row"><div class="p">实施风险应对</div></div>
+      <div class="process-row"><span class="a">↓</span></div>
+      <div class="process-row"><div class="p">监督风险</div></div>
+    </div>
+    <div class="process-tip"><b>口诀：</b>怎么管 → 找风险 → 排优先级 → 算影响 → 想办法 → 真执行 → 持续盯</div>
+  </div>
+  <div class="formula-card">
+    <h5><span>02</span>风险应对策略</h5>
+    <div class="strategy">
+      <div class="col">
+        <h6>威胁（负面风险）</h6>
+        <ul>
+          <li>规避</li>
+          <li>转移</li>
+          <li>减轻</li>
+          <li>接受</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6>机会（正面风险）</h6>
+        <ul>
+          <li>开拓</li>
+          <li>分享</li>
+          <li>提高</li>
+          <li>接受</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="formula-card">
+    <h5><span>03</span>重点风险术语</h5>
+    <ul class="term-list">
+      <li><b>Risk Register</b> 风险登记册</li>
+      <li><b>Risk Owner</b> 风险责任人</li>
+      <li><b>Contingency Plan</b> 应急计划</li>
+      <li><b>Workaround</b> 权变措施</li>
+      <li><b>Residual Risk</b> 残余风险</li>
+      <li><b>Secondary Risk</b> 次生风险</li>
+    </ul>
+  </div>
+  <div class="formula-card">
+    <h5><span>04</span>EMV 预期货币价值</h5>
+    <div class="emv-box">
+      <b>EMV = 发生概率 × 金额影响</b><br>
+      Expected Monetary Value<br><br>
+      · 机会收益取正值<br>
+      · 威胁损失取负值
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>风险案例题已具备的基础能力</h2>
+<section class="capability">
+  <div class="cap-grid">
+    <div class="cap-item"><span class="cap-dot">✓</span><div>能区分 Risk 与 Issue</div></div>
+    <div class="cap-item"><span class="cap-dot">✓</span><div>能识别未指定 Risk Owner</div></div>
+    <div class="cap-item"><span class="cap-dot">✓</span><div>能识别未制定应急计划</div></div>
+    <div class="cap-item"><span class="cap-dot">✓</span><div>能识别未持续更新 Risk Register</div></div>
+    <div class="cap-item"><span class="cap-dot">✓</span><div>能识别未持续 Monitor Risks</div></div>
+    <div class="cap-item"><span class="cap-dot">✓</span><div>能判断 Workaround</div></div>
+    <div class="cap-item"><span class="cap-dot">✓</span><div>能识别 Residual Risk / Secondary Risk</div></div>
+    <div class="cap-item"><span class="cap-dot">✓</span><div>能进行基础 EMV 决策</div></div>
+  </div>
+</section>
+
+<h2 class="section-title"><span class="no">03</span>学习现状与下一步</h2>
+<div class="summary">
+  <div class="sum-card">
+    <h5>当前掌握</h5>
+    <div class="stars" style="margin-bottom:10px"><span class="star on"></span><span class="star on"></span><span class="star on"></span><span class="star"></span><span class="star"></span></div>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">风险管理基础已建立。</div>
+  </div>
+  <div class="sum-card">
+    <h5>学习状态</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">风险案例题基础能力已基本具备，能够识别常见找错点。</div>
+  </div>
+  <div class="sum-card">
+    <h5>下一步</h5>
+    <div style="font-size:12px;color:var(--sub);line-height:1.6">从“理解概念”进入“标准术语 + 案例表达”强化。</div>
+  </div>
+</div>
+
+<a href="day5.html" class="day-next">
+  <div>
+    <h4>Day 5 计划：质量管理</h4>
+    <div class="items">
+      <span class="it">质量规划</span>
+      <span class="it">质量保证</span>
+      <span class="it">质量控制</span>
+      <span class="it">质量七工具</span>
+    </div>
+  </div>
+  <div class="right">一步一个脚印，继续加油！→</div>
+</a>
+
+<a class="back-link" href="index.html">← 返回主复习计划</a>
+
+</div>
+</body>
+</html>
