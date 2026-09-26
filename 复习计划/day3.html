@@ -59,6 +59,20 @@
 .flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0;padding:14px;background:#f7f8fc;border-radius:12px}
 .flow .step{font-size:12px;background:#fff;border:1px solid #e4e7ef;border-radius:8px;padding:6px 10px;color:var(--ink);font-weight:600}
 .flow .arr{font-size:14px;color:var(--sub)}
+.process-list{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.process-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;align-items:flex-start}
+.process-item .num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+.process-item .body{flex:1}
+.process-item .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.process-item h4{font-size:14px;font-weight:700;margin:0}
+.process-item .tag{display:inline-block;font-size:11px;font-weight:700;background:#f0f7ff;color:#2563eb;border-radius:20px;padding:3px 10px}
+.process-item p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
+.chain-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:22px}
+.chain-box h5{font-size:13px;font-weight:700;margin-bottom:12px}
+.chain-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chain-flow .item{background:#f0f7ff;border:1px solid #c6dbff;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#2563eb;font-weight:600}
+.chain-flow .arrow{color:#9aa2b1;font-size:13px}
+.chain-box p{font-size:12px;color:var(--sub);line-height:1.7;margin:0}
 .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
 @media(max-width:900px){.summary{grid-template-columns:1fr}}
 .sum-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
@@ -107,7 +121,7 @@
 <section class="day-grid-3">
   <div class="day-card">
     <h4>学习主题</h4>
-    <div class="topic"><b>成本管理 + 挣值分析 EVM + 完工估算 + TCPI</b>打好计算基础，把 PV/EV/AC/BAC 等变量串起来，掌握偏差、绩效、预测、剩余绩效的完整链条。</div>
+    <div class="topic"><b>成本管理四大过程 + 挣值分析 EVM + 完工估算 + TCPI</b>掌握成本管理四大过程（规划成本管理 → 估算成本 → 制定预算 → 控制成本），打好计算基础，把 PV/EV/AC/BAC 等变量串起来，掌握偏差、绩效、预测、剩余绩效的完整链条。</div>
   </div>
   <div class="day-card">
     <h4>今日训练</h4>
@@ -127,7 +141,53 @@
   </div>
 </section>
 
-<h2 class="section-title"><span class="no">01</span>今天学了什么</h2>
+<h2 class="section-title"><span class="no">01</span>成本管理四大过程：EVM 用在哪一步？</h2>
+<div class="process-list">
+  <div class="process-item">
+    <div class="num">01</div>
+    <div class="body">
+      <div class="title-row"><h4>规划成本管理</h4><span class="tag">定规则</span></div>
+      <p>确定如何估算、预算、管理、监督和控制项目成本，形成成本管理计划。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">02</div>
+    <div class="body">
+      <div class="title-row"><h4>估算成本</h4><span class="tag">算大概</span></div>
+      <p>对完成项目活动所需的成本进行近似估算，产出各项活动的成本估算。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">03</div>
+    <div class="body">
+      <div class="title-row"><h4>制定预算</h4><span class="tag">定基准</span></div>
+      <p>汇总各项活动的估算成本，建立经批准的<b>成本基准</b>（含应急储备，BAC 由此而来）。</p>
+    </div>
+  </div>
+  <div class="process-item">
+    <div class="num">04</div>
+    <div class="body">
+      <div class="title-row"><h4>控制成本</h4><span class="tag">盯偏差 · 管变更</span></div>
+      <p>监督成本绩效、管理成本基准变更——<b>今天学的 EVM（挣值分析）就属于这个过程。</b></p>
+    </div>
+  </div>
+</div>
+
+<div class="chain-box">
+  <h5>成本管理主线：先定规则 → 再估算 → 再定基准 → 最后控偏差</h5>
+  <div class="chain-flow">
+    <div class="item">规划成本管理</div>
+    <div class="arrow">→</div>
+    <div class="item">估算成本</div>
+    <div class="arrow">→</div>
+    <div class="item">制定预算（成本基准）</div>
+    <div class="arrow">→</div>
+    <div class="item">控制成本（EVM 在这里）</div>
+  </div>
+  <p>考试考法：过程名称与顺序（闭卷默写）、EVM 属于哪个过程、成本基准在"制定预算"中形成。</p>
+</div>
+
+<h2 class="section-title"><span class="no">02</span>今天学了什么</h2>
 <div class="day-grid-4">
   <div class="formula-card">
     <h5><span>01</span>基础变量</h5>
@@ -185,7 +245,108 @@
   </div>
 </div>
 
-<h2 class="section-title"><span class="no">02</span>Day 3 当前状态</h2>
+<div class="day-card">
+  <h4>挣值曲线怎么画：PV / AC / EV 三条线</h4>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:16px;align-items:start">
+    <div style="background:#f7f8fc;border:1px solid #e4e7ef;border-radius:10px;padding:12px">
+      <svg viewBox="0 0 320 210" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto">
+        <line x1="30" y1="170" x2="305" y2="170" stroke="#6b7280" stroke-width="1"/>
+        <line x1="30" y1="170" x2="30" y2="18" stroke="#6b7280" stroke-width="1"/>
+        <text x="14" y="34" font-size="10" fill="#6b7280">成</text>
+        <text x="14" y="48" font-size="10" fill="#6b7280">本</text>
+        <text x="283" y="186" font-size="10" fill="#6b7280">时间</text>
+        <line x1="30" y1="35" x2="305" y2="35" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="278" y="30" font-size="9" fill="#9aa2b1">BAC</text>
+        <path d="M30,170 C80,168 120,150 160,110 C200,70 250,45 300,38" fill="none" stroke="#2563eb" stroke-width="2"/>
+        <line x1="180" y1="18" x2="180" y2="170" stroke="#9aa2b1" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="180" y="14" font-size="9" fill="#9aa2b1" text-anchor="middle">检查点</text>
+        <path d="M30,170 C80,160 130,120 160,95 C170,85 176,79 180,75" fill="none" stroke="#be123c" stroke-width="2" stroke-dasharray="5,3"/>
+        <path d="M30,170 C90,168 140,160 180,135" fill="none" stroke="#047857" stroke-width="2" stroke-dasharray="5,3"/>
+        <text x="248" y="55" font-size="11" font-weight="700" fill="#2563eb">PV</text>
+        <text x="146" y="66" font-size="11" font-weight="700" fill="#be123c">AC</text>
+        <text x="146" y="152" font-size="11" font-weight="700" fill="#047857">EV</text>
+      </svg>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:11px;margin-top:8px">
+        <span style="color:#2563eb;font-weight:700">— PV 计划价值（S 曲线）</span>
+        <span style="color:#be123c;font-weight:700">- - AC 实际成本</span>
+        <span style="color:#047857;font-weight:700">- - EV 挣值</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:12px;color:var(--sub);line-height:1.9">
+        <b style="color:var(--ink)">画法五步：</b><br>
+        1. 横轴 = 时间，纵轴 = 累计成本；<br>
+        2. 先画 <b style="color:#2563eb">PV</b>：按计划安排画 S 曲线，终点 = BAC；<br>
+        3. 在检查日期画一条竖线（检查点）；<br>
+        4. 检查点上标 <b style="color:#be123c">AC</b>：实际花掉的钱；<br>
+        5. 检查点上标 <b style="color:#047857">EV</b>：完成工作的预算价值。<br>
+        <b style="color:var(--ink)">读图判断：</b><br>
+        EV 在 AC 下方 → CV = EV − AC &lt; 0，<b style="color:#be123c">成本超支</b>；<br>
+        EV 在 PV 下方 → SV = EV − PV &lt; 0，<b style="color:#be123c">进度落后</b>；<br>
+        图中情形 = 又超支又落后（双输，最警惕）。
+      </div>
+      <div class="day-tip" style="margin-top:12px"><b>口诀：</b>PV 定基准（S 形到 BAC），AC 看花费，EV 看完成；检查点上一竖线，线上比高低——EV 夹在中间最惨。</div>
+    </div>
+  </div>
+</div>
+
+<div class="day-card">
+  <h4>按当前效率往下画：完工预测线（EAC）怎么画</h4>
+  <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:16px;align-items:start">
+    <div style="background:#f7f8fc;border:1px solid #e4e7ef;border-radius:10px;padding:12px">
+      <svg viewBox="0 0 360 220" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto">
+        <line x1="30" y1="180" x2="350" y2="180" stroke="#6b7280" stroke-width="1"/>
+        <line x1="30" y1="180" x2="30" y2="15" stroke="#6b7280" stroke-width="1"/>
+        <text x="14" y="32" font-size="10" fill="#6b7280">成</text>
+        <text x="14" y="46" font-size="10" fill="#6b7280">本</text>
+        <text x="330" y="196" font-size="10" fill="#6b7280">时间</text>
+        <line x1="30" y1="70" x2="350" y2="70" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="322" y="64" font-size="9" fill="#9aa2b1">BAC</text>
+        <line x1="30" y1="52" x2="350" y2="52" stroke="#f0a8b8" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="322" y="46" font-size="9" fill="#be123c">EAC</text>
+        <path d="M30,180 C90,178 130,155 180,122 C220,100 260,85 300,70" fill="none" stroke="#2563eb" stroke-width="2"/>
+        <path d="M30,180 C80,165 130,130 180,95" fill="none" stroke="#be123c" stroke-width="2"/>
+        <path d="M30,180 C90,178 145,160 180,140" fill="none" stroke="#047857" stroke-width="2"/>
+        <line x1="180" y1="15" x2="180" y2="180" stroke="#9aa2b1" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="180" y="11" font-size="9" fill="#9aa2b1" text-anchor="middle">检查点</text>
+        <path d="M180,95 C240,85 290,70 330,52" fill="none" stroke="#be123c" stroke-width="2" stroke-dasharray="5,3"/>
+        <path d="M180,140 C240,130 290,100 330,70" fill="none" stroke="#047857" stroke-width="2" stroke-dasharray="5,3"/>
+        <line x1="300" y1="14" x2="300" y2="180" stroke="#2563eb" stroke-width="1" stroke-dasharray="2,3" opacity=".5"/>
+        <text x="300" y="10" font-size="9" fill="#2563eb" text-anchor="middle">计划完工</text>
+        <line x1="300" y1="166" x2="330" y2="166" stroke="#8a5200" stroke-width="1.5"/>
+        <line x1="300" y1="161" x2="300" y2="171" stroke="#8a5200" stroke-width="1.5"/>
+        <line x1="330" y1="161" x2="330" y2="171" stroke="#8a5200" stroke-width="1.5"/>
+        <text x="315" y="158" font-size="9" fill="#8a5200" text-anchor="middle">延期</text>
+        <text x="252" y="88" font-size="11" font-weight="700" fill="#2563eb">PV</text>
+        <text x="140" y="86" font-size="11" font-weight="700" fill="#be123c">AC</text>
+        <text x="140" y="156" font-size="11" font-weight="700" fill="#047857">EV</text>
+        <text x="286" y="42" font-size="10" font-weight="700" fill="#be123c">AC 预测</text>
+        <text x="286" y="118" font-size="10" font-weight="700" fill="#047857">EV 预测</text>
+      </svg>
+      <div style="font-size:11px;color:var(--sub);margin-top:8px">实线段 = 已发生的事实；虚线段 = 按当前效率的预测，只能从检查点往后画。</div>
+    </div>
+    <div>
+      <div style="font-size:12px;color:var(--sub);line-height:1.9">
+        <b style="color:var(--ink)">画法：</b><br>
+        1. AC 从检查点继续向右上延伸，终点 = <b>EAC</b>（高于 BAC → 预计超支）；<br>
+        2. EV 从检查点继续向右上延伸，终点<b>一定落在 BAC 线上</b>（干完活就挣满预算）；<br>
+        3. 横轴要延长到<b>预测完工日期</b>，并标出比"计划完工"延后多少；<br>
+        4. 两条预测线的落点差 = VAC（完工偏差）。
+      </div>
+      <div class="day-tip" style="margin-top:12px">
+        <b>注意点：</b><br>
+        ① <b>历史段不能改</b>：PV/AC/EV 已发生部分画实线，预测段一律虚线；<br>
+        ② <b>先判断偏差类型再选公式</b>：典型（会持续）EAC = BAC ÷ CPI；非典型（例外）EAC = AC + (BAC − EV)；自下而上 EAC = AC + 新 ETC；同时受进度影响用 CPI×SPI；<br>
+        ③ <b>完工时 EV = BAC，AC = EAC</b>，别把 EV 终点也画到 EAC；<br>
+        ④ <b>EAC 在 BAC 之上</b> → VAC &lt; 0 预计超支，反之为结余；<br>
+        ⑤ 别忘了配 TCPI：TCPI = (BAC − EV) ÷ (BAC − AC)（按 BAC 完成时），&gt; 1 说明剩余工作必须比现在更省，目标难守住；<br>
+        ⑥ 单位口径一致，且<b>延长期必须画在横轴上</b>，否则会读错成"提前完工"。
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title"><span class="no">03</span>Day 3 当前状态</h2>
 <div class="summary">
   <div class="sum-card">
     <h5>已掌握</h5>
